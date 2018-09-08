@@ -1,0 +1,19 @@
+{
+  "name": "net-salary-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "net-salary-calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelsaback/net-salary-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelsaback/net-salary-calculator/issues"
+  },
+  "homepage": "https://github.com/rafaelsaback/net-salary-calculator#readme"
+}
