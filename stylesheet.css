@@ -1,0 +1,241 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;  /* Show the borders */
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+table * {
+  padding: 8px 2px 8px 2px;
+  font-family: sans-serif;
+  border: none;
+}
+
+#table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: auto;
+  width: 100%;
+  display: none;
+  margin-bottom: 50px;
+}
+
+td {
+  width: 98px;
+  min-width: 90px;
+}
+
+/* ============== */
+/*      TEXT      */
+/* ============== */
+tfoot {
+  font-weight: bold;
+}
+
+tbody th {
+  text-align: left;
+}
+
+td {
+  text-align: center;
+}
+
+/* ============== */
+/*   BACKGROUND   */
+/* ============== */
+tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+tbody tr td:nth-child(7n+2),
+tfoot tr td:nth-child(7n+2) {
+  background: #e0e0e0;
+}
+
+/* ============== */
+/*     BORDER     */
+/* ============== */
+thead, tfoot {
+  border-top: 0.15rem solid #a0a0a0;
+  border-bottom: 0.15rem solid #a0a0a0;
+}
+
+tbody th,
+tbody td,
+thead tr:nth-child(2n+1) {
+  border-bottom: 0.05rem solid #c0c0c0;
+}
+
+thead tr th {
+  border-right: 0.05rem solid #c0c0c0;
+}
+
+thead tr th:nth-child(6) {
+  border-right: 0rem;
+}
+
+/* ============== */
+/*   INPUT FORM  */
+/* ============== */
+
+legend, button {
+  font-weight: bold;
+  margin: auto;
+  display: block;
+}
+
+legend {
+  height: 30px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  width: 70%;
+  text-align: center;
+}
+
+fieldset {
+  max-width: 365px;
+  min-width: 170px;
+  border-radius: 0.5rem;
+  border-color: black;
+  padding: 1rem;
+  margin: 40px auto 40px auto;
+  font-size: 18px;
+}
+
+.gross-salary {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+#gross-salary-label {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-weight: bold;
+}
+
+#gross-salary-input {
+  min-width: 90px;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 22px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#gross-salary-input:focus {
+  outline: none;
+  border-color: black;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
+#calculate-button {
+  border-radius: 60px;
+  border-color: black;
+  background-color: white;
+  height: 40px;
+  width: 60%;
+  box-shadow: none;
+  font-size: 18px;
+}
+
+
+/* ============== */
+/* RESPONSIVENESS */
+/* ============== */
+
+@media only screen and (max-width: 850px) {
+  .mobile-option {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #salary-form{
+    width:100%;
+  }
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, tfoot, th, td, tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  /* Remove head's and foot's thick borders */
+  thead, tfoot {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  /* Add border to the new table */
+  tr { border: 1px solid #ccc; }
+
+  /* Format the new table */
+  td, tbody th {
+    /* Behave  like a "row" */
+    position: relative;
+    padding-left: 50%;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Format the new "headers" */
+  td:before, th:before   {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 9.5px;
+    left: 6px;
+    width: 45%;
+  }
+
+  /* Make gross and net values as bold */
+  td:nth-of-type(1),
+  td:nth-of-type(8){
+    font-weight: bold;
+  }
+
+  /* Change table's background to white, canceling the gray background*/
+  tbody tr:nth-child(n) {
+    background-color: white;
+  }
+
+  /* Label the new headers */
+  tbody th:before { content: "Month"; }
+  td:nth-of-type(1):before { content: "Gross"; }
+  td:nth-of-type(2):before { content: "Pension"; }
+  td:nth-of-type(3):before { content: "Disability"; }
+  td:nth-of-type(4):before { content: "Sickness"; }
+  td:nth-of-type(5):before { content: "Health"; }
+  td:nth-of-type(6):before { content: "Tax base"; }
+  td:nth-of-type(7):before { content: "Tax"; }
+  td:nth-of-type(8):before { content: "Net salary"; }
+
+  /* Remove bold from the table of totals */
+  tfoot td:nth-of-type(2),
+  tfoot td:nth-of-type(3),
+  tfoot td:nth-of-type(4),
+  tfoot td:nth-of-type(5),
+  tfoot td:nth-of-type(6),
+  tfoot td:nth-of-type(7) {
+    font-weight: normal;
+  }
+}

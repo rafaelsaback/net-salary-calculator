@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" description="width=device-width, initial-scale=1">
+  <script src="net-salary-calculator.js" defer> </script>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <title> Net Salary Calculator </title>
+</head>
+<body>
+
+  <!-- BEGIN OF WORDPRESS PAGE -->
+  <div id="body-calculator">
+
+    <fieldset id="salary-form">
+      <legend> Umowa o prac&#x0229; </legend>
+      <div class="gross-salary">
+        <label id="gross-salary-label"> Enter a gross salary: </label> <br />
+        <input id="gross-salary-input" type="number" placeholder="0.00 PLN">
+      </div>
+      <div>
+        <button id="calculate-button" type="button"> Calculate </button>
+      </div>
+    </fieldset>
+
+    <div id="table-container">
+      <table id="table">
+        <thead>
+          <tr>
+            <th scope="col" rowspan="2"> Month </th>
+            <th scope="col" rowspan="2"> Gross </th>
+            <th scope="col" colspan="4"> Insurance </th>
+            <th scope="col" rowspan="2" class="mobile-option"> Tax Base </th>
+            <th scope="col" rowspan="2"> Tax </th>
+            <th scope="col" rowspan="2"> Net </th>
+          </tr>
+          <tr>
+            <th scope="col"> Pension </th>
+            <th scope="col"> Disability </th>
+            <th scope="col"> Sickness </th>
+            <th scope="col"> Health </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"> January </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> February </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> March </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> April </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> May </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> June </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> July </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> August </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> September </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> October </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> November </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+          <tr>
+            <th scope="row"> December </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row"> Total </th>
+            <td> Value1 </td>
+            <td> Value2 </td>
+            <td> Value3 </td>
+            <td> Value4 </td>
+            <td> Value5 </td>
+            <td class="mobile-option"> Value6 </td>
+            <td> Value7 </td>
+            <td> Value8 </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- END OF WORDPRESS PAGE -->
+
+</body>
+<footer>
+</footer>
+</html>
