@@ -1,8 +1,8 @@
-const SALARYFORM = document.querySelector('fieldset');
+// const SALARYFORM = document.querySelector('fieldset');
 const SALARYINPUT = document.querySelector('#gross-salary-input');
 const NETSALARYBUTTON = document.querySelector('#calculate-button');
-const TABLECONTAINER = document.querySelector("#table-container");
-const TABLE = document.querySelector("#table");
+const TABLECONTAINER = document.querySelector('#table-container');
+const TABLE = document.querySelector('#table');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
 class NetSalaryCalculator{
@@ -66,7 +66,7 @@ class NetSalaryCalculator{
       } else if (this.accGrossSalary[i] < this.pensionDisabilityLimit){
         let baseGrossSalary = this.pensionDisabilityLimit - this.accGrossSalary[i];
         this.pension[i] = this.calcContribution(baseGrossSalary, this.percentagePension);
-        this.disabilityInsurance[i] = this.calcContribution(baseGrossSalary, this.percentageDisability)
+        this.disabilityInsurance[i] = this.calcContribution(baseGrossSalary, this.percentageDisability);
       }
 
       /* Sickness contribution */
@@ -116,7 +116,7 @@ class NetSalaryCalculator{
 
 /* It sets the format to two decimals and uses space as thousand separator */
 function formatNumber(number){
-  return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 /* Populate the HTML table with the salary information */
@@ -150,8 +150,7 @@ function populateTable(calculator){
 
 /* Check if the input value is valid */
 function checkValue(grossSalary){
-  if(grossSalary === "")
-    return false;
+  if(grossSalary === '') return false;
   grossSalary = parseFloat(grossSalary);
 
   if(grossSalary <= 0){
@@ -159,7 +158,7 @@ function checkValue(grossSalary){
     SALARYINPUT.focus();
     return false;
   } else if(isNaN(grossSalary)) {
-    alert('Please enter a numeric value.')
+    alert('Please enter a numeric value.');
     SALARYINPUT.focus();
     return false;
   }
@@ -181,8 +180,7 @@ var calcNetSalary = function() {
   populateTable(calculator);
 
   /* Display the table */
-  if(TABLECONTAINER.style.display === "")
-  TABLECONTAINER.style.display = "block";
+  if(TABLECONTAINER.style.display === '') TABLECONTAINER.style.display = 'block';
 
   /* Scroll into table */
   if(window.innerWidth < 501){
@@ -202,16 +200,16 @@ var calcNetSalary = function() {
   } else {
     /* Web */
     TABLECONTAINER.scrollIntoView({block: 'end', behavior: 'smooth'});
-  };
-}
+  }
+};
 
 /* Check if the presend key is enter */
 var pressedKey = function(e){
-  if(e.key === "Enter"){
+  if(e.key === 'Enter'){
     calcNetSalary();
   }
-}
+};
 
 /* MAIN ROUTINE */
-NETSALARYBUTTON.addEventListener("click", calcNetSalary);
-SALARYINPUT.addEventListener("keydown", pressedKey);
+NETSALARYBUTTON.addEventListener('click', calcNetSalary);
+SALARYINPUT.addEventListener('keydown', pressedKey);
