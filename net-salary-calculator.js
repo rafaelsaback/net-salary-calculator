@@ -20,139 +20,8 @@ const AUXVALUES = {
   'taxLimit': 85528
 };
 
-function roundNumber(number, decimals){
-  return (Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
-}
-
-function calcContribution(baseValue, rate){
-  let contribution = baseValue * rate;
-  contribution = roundNumber(contribution, 2);
-  return contribution;
-}
-
-function calcTax(i, calculator, taxLevel1, taxLevel2, earningCost, taxLimit, monthlyRelief) {
-  /* Tax base */
-  let taxBase = 0;
-  taxBase = calculator.grossSalary[i] - calculator.socialSecurity[i] - earningCost;
-  taxBase = roundNumber(taxBase, 0);
-
-  /* Calculate the tax. The montly relief is only applied in case the tax taxLimit
-  has not been exceed */
-  let tax = 0;
-  if(calculator.accTaxBase[i] < taxLimit){
-    tax = (taxBase * taxLevel1) - calculator.healthDeductible[i] - monthlyRelief;
-  } else {
-    tax = (taxBase * taxLevel2) - calculator.healthDeductible[i];
-  }
-  tax = Math.round(tax, 0);
-
-
-  calculator.taxBase[i] = taxBase;
-  calculator.tax[i] = tax;
-  if(i < 11) {
-    calculator.accTaxBase[i + 1] = calculator.accTaxBase[i] + calculator.taxBase[i];
-  }
-  return calculator;
-}
-
-function calcHealthInsurance(i, calculator, rateHealthContribution, rateHealthDeductible) {
-  let healthBase = calculator.grossSalary[i] - calculator.socialSecurity[i];
-  calculator.healthContribution[i] = calcContribution(healthBase, rateHealthContribution);
-  calculator.healthDeductible[i] = healthBase * rateHealthDeductible;
-  return calculator;
-}
-
-function calcSocialSecurity(i, calculator) {
-  calculator.socialSecurity[i] = calculator.pension[i] + calculator.disability[i] + calculator.sickness[i];
-  return calculator;
-}
-
-function calcSickness(i, calculator, sicknessRate) {
-  calculator.sickness[i] = calcContribution(calculator.grossSalary[i], sicknessRate);
-  return calculator;
-}
-
-function calcDisability(i, calculator, disabilityRate, annualLimit) {
-  let disability = 0;
-  let accGrossSalary = calculator.accGrossSalary[i];
-  let grossSalary = calculator.grossSalary[i];
-
-  if((accGrossSalary + grossSalary) < annualLimit){
-    disability = calcContribution(grossSalary, disabilityRate);
-  } else if (accGrossSalary < annualLimit){
-    let baseGrossSalary = annualLimit - accGrossSalary;
-    disability = calcContribution(baseGrossSalary, disabilityRate);
-  }
-  calculator.disability[i] = disability;
-  return calculator;
-}
-
-function calcPension(i, calculator, pensionRate, annualLimit) {
-  let pension = 0;
-  let accGrossSalary = calculator.accGrossSalary[i];
-  let grossSalary = calculator.grossSalary[i];
-
-  if((accGrossSalary + grossSalary) < annualLimit){
-    pension = calcContribution(grossSalary, pensionRate);
-  } else if (accGrossSalary < annualLimit){
-    let baseGrossSalary = annualLimit - accGrossSalary;
-    pension = calcContribution(baseGrossSalary, pensionRate);
-  }
-  calculator.pension[i] = pension;
-  return calculator;
-}
-
-function calcNetSalary(i, calculator) {
-  calculator.netSalary[i] = calculator.grossSalary[i] - calculator.socialSecurity[i] -
-  calculator.healthContribution[i] - calculator.tax[i];
-  calculator.netSalary[i] = roundNumber(calculator.netSalary[i], 2);
-  return calculator;
-}
-
-function sumTotal(array){
-  return array.reduce((a, b) => a + b, 0);
-}
-
-function calcTotals(calculator) {
-  calculator.totalGrossSalary = sumTotal(calculator.grossSalary);
-  calculator.totalPension = sumTotal(calculator.pension);
-  calculator.totalDisability = sumTotal(calculator.disability);
-  calculator.totalSickness = sumTotal(calculator.sickness);
-  calculator.totalSocialSecurity = sumTotal(calculator.socialSecurity);
-  calculator.totalHealth = sumTotal(calculator.healthContribution);
-  calculator.totalTaxBase = sumTotal(calculator.taxBase);
-  calculator.totalTax = sumTotal(calculator.tax);
-  calculator.totalNetSalary = sumTotal(calculator.netSalary);
-  return calculator;
-}
-
-function calcAccGrossSalary(i, calculator){
-  if(i < 11) {
-    calculator.accGrossSalary[i + 1] = calculator.accGrossSalary[i] + calculator.grossSalary[i];
-  }
-  return calculator;
-}
-
-function calcSalary(grossSalary) {
-  let calculator = new SalaryCalculator(grossSalary);
-  for(let i = 0; i < 12; i++){
-    calculator = calcAccGrossSalary(i, calculator);
-    calculator = calcPension(i, calculator, RATES.pension, AUXVALUES.annualLimit);
-    calculator = calcDisability(i, calculator, RATES.disability, AUXVALUES.annualLimit);
-    calculator = calcSickness(i, calculator, RATES.sickness);
-    calculator = calcSocialSecurity(i, calculator);
-    calculator = calcHealthInsurance(i, calculator, RATES.healthContribution, RATES.healthDeductible);
-    calculator = calcTax(i, calculator, RATES.taxLevel1, RATES.taxLevel2, AUXVALUES.earningCost,
-      AUXVALUES.taxLimit, AUXVALUES.monthlyRelief);
-    calculator = calcNetSalary(i, calculator);
-  }
-  calculator = calcTotals(calculator);
-  return calculator;
-}
-
-
-class SalaryCalculator{
-  constructor(grossSalary){
+class MonthlyValues {
+  constructor(grossSalary) {
     this.grossSalary = new Array(12).fill(grossSalary);
     this.accGrossSalary = new Array(12).fill(0);
     this.pension = new Array(12).fill(0);
@@ -165,84 +34,178 @@ class SalaryCalculator{
     this.taxBase = new Array(12).fill(0);
     this.tax = new Array(12).fill(0);
     this.netSalary = new Array(12).fill(0);
-    this.totalGrossSalary = 0;
-    this.totalPension = 0;
-    this.totalDisability = 0;
-    this.totalSickness = 0;
-    this.totalSocialSecurity = 0;
-    this.totalHealth = 0;
-    this.totalTaxBase = 0;
-    this.totalTax = 0;
-    this.totalNetSalary = 0;
   }
 }
-//
-//     for(let i = 0; i < 11; i++){
-//       this.accGrossSalary[i + 1] = this.accGrossSalary[i] + grossSalary;
-//     }
-//   }
-//
-//   roundNumber(number, decimals){
-//     return (Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
-//   }
-//
-//   calcContribution(baseValue, rate){
-//     let contribution = baseValue * rate;
-//     contribution = this.roundNumber(contribution, 2);
-//     return contribution;
-//   }
-//
-//   sumTotal(array){
-//     return array.reduce((a, b) => a + b, 0);
-//   }
-//
-//   calcNetSalary(){
-//     /* Pension and disability contributions */
-//     for(let i = 0; i < 12; i++){
-//       if((this.accGrossSalary[i] + this.grossSalary[i]) < this.pensionDisabilityLimit){
-//         this.pension[i] = this.calcContribution(this.grossSalary[i], this.percentagePension);
-//         this.disabilityInsurance[i] = this.calcContribution(this.grossSalary[i], this.percentageDisability);
-//       } else if (this.accGrossSalary[i] < this.pensionDisabilityLimit){
-//         let baseGrossSalary = this.pensionDisabilityLimit - this.accGrossSalary[i];
-//         this.pension[i] = this.calcContribution(baseGrossSalary, this.percentagePension);
-//         this.disabilityInsurance[i] = this.calcContribution(baseGrossSalary, this.percentageDisability);
-//       }
-//
-//       /* Sickness contribution */
-//       this.sicknessInsurance[i] = this.calcContribution(this.grossSalary[i], this.percentageSickness);
-//       this.socialSecurity[i] = this.pension[i] + this.disabilityInsurance[i] + this.sicknessInsurance[i];
-//
-//       /* Health insurance contribution and deductible */
-//       let healthBase = (this.grossSalary[i] - this.socialSecurity[i]);
-//       this.healthInsuranceCont[i] = this.calcContribution(healthBase, this.percentageHealthInsuranceCont);
-//       this.healthInsuranceDed[i] = healthBase * this.percentageHealthInsuranceDed;
-//
-//       /* Tax base */
-//       this.taxBase[i] = this.grossSalary[i] - this.socialSecurity[i] - this.earningCost;
-//       this.taxBase[i] = this.roundNumber(this.taxBase[i], 0);
-//       if(i != 11){
-//         this.accTaxBase[i + 1] = this.accTaxBase[i] + this.taxBase[i];
-//       }
-//
-//       /* Calculate the tax. The montly relief is only applied in case the tax taxLimit
-//       has not been exceed */
-//       if(this.accTaxBase[i] < this.taxLimit){
-//         this.tax[i] = (this.taxBase[i] * 0.18) - this.healthInsuranceDed[i] - this.monthlyRelief;
-//       } else {
-//         this.tax[i] = (this.taxBase[i] * 0.32) - this.healthInsuranceDed[i];
-//       }
-//       this.tax[i] = Math.round(this.tax[i], 0);
-//
-//       /* Calculate netSalary */
-//       this.netSalary[i] = this.grossSalary[i] - this.socialSecurity[i] -
-//       this.healthInsuranceCont[i] - this.tax[i];
-//       this.netSalary[i] = this.roundNumber(this.netSalary[i], 2);
-//
-//       /* Calculate totals */
-//     }
-//     return this.netSalary;
-//   }
-// }
+
+class AnnualValues {
+  constructor() {
+    this.grossSalary = 0;
+    this.pension = 0;
+    this.disability = 0;
+    this.sickness = 0;
+    this.healthContribution = 0;
+    this.taxBase = 0;
+    this.tax = 0;
+    this.netSalary = 0;
+  }
+}
+
+class SalaryCalculator{
+  constructor(grossSalary){
+    this.monthly = new MonthlyValues(grossSalary);
+    this.annual = new AnnualValues();
+    this.rates = RATES;
+    this.auxValues = AUXVALUES;
+  }
+}
+
+function roundNumber(number, decimals){
+  return (Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
+}
+
+function calcContribution(baseValue, rate){
+  let contribution = baseValue * rate;
+  contribution = roundNumber(contribution, 2);
+  return contribution;
+}
+
+function sumTotal(array){
+  return array.reduce((a, b) => a + b, 0);
+}
+
+function calcTotals(calculator) {
+  for(let value in calculator.annual){
+    calculator.annual[value] = sumTotal(calculator.monthly[value]);
+  }
+  return calculator;
+}
+
+var calcNetSalary = function(i, calculator) {
+  calculator.monthly.netSalary[i] = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i] -
+  calculator.monthly.healthContribution[i] - calculator.monthly.tax[i];
+  calculator.monthly.netSalary[i] = roundNumber(calculator.monthly.netSalary[i], 2);
+  return calculator;
+};
+
+var calcTax = function(i, calculator) {
+  let taxLevel1 = calculator.rates.taxLevel1;
+  let taxLevel2 = calculator.rates.taxLevel2;
+  let taxLimit = calculator.auxValues.taxLimit;
+  let monthlyRelief = calculator.auxValues.monthlyRelief;
+  let taxBase = calculator.monthly.taxBase[i];
+
+  /* The montly relief is only applied in case the tax taxLimit has not been exceed */
+  let tax = 0;
+  if(calculator.monthly.accTaxBase[i] < taxLimit){
+    tax = (taxBase * taxLevel1) - calculator.monthly.healthDeductible[i] - monthlyRelief;
+  } else {
+    tax = (taxBase * taxLevel2) - calculator.monthly.healthDeductible[i];
+  }
+  tax = Math.round(tax, 0);
+
+  calculator.monthly.tax[i] = tax;
+  return calculator;
+};
+
+var calcAccTaxBase = function(i, calculator) {
+  if(i < 11) {
+    calculator.monthly.accTaxBase[i + 1] = calculator.monthly.accTaxBase[i] + calculator.monthly.taxBase[i];
+  }
+  return calculator;
+};
+
+var calcTaxBase = function(i, calculator){
+  let earningCost = calculator.auxValues.earningCost;
+  let taxBase = 0;
+  taxBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i] - earningCost;
+  taxBase = roundNumber(taxBase, 0);
+  calculator.monthly.taxBase[i] = taxBase;
+  return calculator;
+};
+
+var calcHealthDeductible = function(i, calculator) {
+  let rateHealthDeductible = calculator.rate.healthDeductible;
+  let healthBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i];
+  calculator.monthly.healthDeductible[i] = healthBase * rateHealthDeductible;
+  return calculator;
+};
+
+var calcHealthContribution = function(i, calculator) {
+  let rateHealthContribution = calculator.rates.healthContribution;
+  let healthBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i];
+  calculator.monthly.healthContribution[i] = calcContribution(healthBase, rateHealthContribution);
+  return calculator;
+};
+
+var calcSocialSecurity = function(i, calculator) {
+  calculator.monthly.socialSecurity[i] = calculator.monthly.pension[i] + calculator.monthly.disability[i] + calculator.monthly.sickness[i];
+  return calculator;
+};
+
+var calcSickness = function(i, calculator) {
+  let grossSalary = calculator.monthly.grossSalary[i];
+  let sicknessRate = calculator.rate.sicknessRate;
+  calculator.monthly.sickness[i] = calcContribution(grossSalary, sicknessRate);
+  return calculator;
+};
+
+function calcPensionDisability(i, calculator, rate) {
+  let value = 0;
+  let accGrossSalary = calculator.monthly.accGrossSalary[i];
+  let grossSalary = calculator.monthly.grossSalary[i];
+  let annualLimit = calculator.auxValues.annualLimit;
+
+  if((accGrossSalary + grossSalary) < annualLimit){
+    value = calcContribution(grossSalary, rate);
+  } else if (accGrossSalary < annualLimit){
+    let baseGrossSalary = annualLimit - accGrossSalary;
+    value = calcContribution(baseGrossSalary, rate);
+  }
+  return value;
+}
+
+var calcDisability = function(i, calculator) {
+  let disabilityRate = calculator.rates.disability;
+  calculator.monthly.disability[i] = calcPensionDisability(i, calculator, disabilityRate);
+  return calculator;
+};
+
+var calcPension = function(i, calculator) {
+  let pensionRate = calculator.rates.disability;
+  calculator.monthly.pension[i] = calcPensionDisability(i, calculator, pensionRate);
+  return calculator;
+};
+
+var calcAccGrossSalary = function(i, calculator){
+  if(i < 11) {
+    calculator.monthly.accGrossSalary[i + 1] = calculator.monthly.accGrossSalary[i] + calculator.monthly.grossSalary[i];
+  }
+  return calculator;
+};
+
+function for0To11(calculator, func){
+  for(let i = 0; i < 12; i++) {
+    calculator = func(i, calculator);
+  }
+  return calculator;
+}
+
+function calcSalary(grossSalary) {
+  let calculator = new SalaryCalculator(grossSalary);
+  calculator = for0To11(calculator, calcAccGrossSalary);
+  calculator = for0To11(calculator, calcPension);
+  calculator = for0To11(calculator, calcDisability);
+  calculator = for0To11(calculator, calcSickness);
+  calculator = for0To11(calculator, calcSocialSecurity);
+  calculator = for0To11(calculator, calcHealthContribution);
+  calculator = for0To11(calculator, calcHealthDeductible);
+  calculator = for0To11(calculator, calcTaxBase);
+  calculator = for0To11(calculator, calcAccTaxBase);
+  calculator = for0To11(calculator, calcTax);
+  calculator = for0To11(calculator, calcNetSalary);
+  calculator = calcTotals(calculator);
+  return calculator;
+}
 
 /* It sets the format to two decimals and uses space as thousand separator */
 function formatNumber(number){
@@ -256,26 +219,26 @@ function populateTable(calculator){
   /* Format monthly values */
   for(let i = 0; i < body.rows.length; i++)
   {
-    body.rows[i].cells[1].innerHTML = formatNumber(calculator.grossSalary[i]);
-    body.rows[i].cells[2].innerHTML = formatNumber(calculator.pension[i]);
-    body.rows[i].cells[3].innerHTML = formatNumber(calculator.disability[i]);
-    body.rows[i].cells[4].innerHTML = formatNumber(calculator.sickness[i]);
-    body.rows[i].cells[5].innerHTML = formatNumber(calculator.healthContribution[i]);
-    body.rows[i].cells[6].innerHTML = formatNumber(calculator.taxBase[i]);
-    body.rows[i].cells[7].innerHTML = formatNumber(calculator.tax[i]);
-    body.rows[i].cells[8].innerHTML = formatNumber(calculator.netSalary[i]);
+    body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i]);
+    body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i]);
+    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i]);
+    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i]);
+    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i]);
+    body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i]);
+    body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i]);
+    body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
   }
 
   /* Format total values */
   let foot = TABLE.tFoot;
-  foot.rows[0].cells[1].innerHTML = formatNumber(calculator.totalGrossSalary);
-  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.totalPension);
-  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.totalDisability);
-  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.totalSickness);
-  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.totalHealth);
-  foot.rows[0].cells[6].innerHTML = formatNumber(calculator.totalTaxBase);
-  foot.rows[0].cells[7].innerHTML = formatNumber(calculator.totalTax);
-  foot.rows[0].cells[8].innerHTML = formatNumber(calculator.totalNetSalary);
+  foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
+  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension);
+  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability);
+  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness);
+  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution);
+  foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase);
+  foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax);
+  foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary);
 }
 
 /* Check if the input value is valid */
@@ -339,6 +302,5 @@ var pressedKey = function(e){
   }
 };
 
-/* MAIN ROUTINE */
 NETSALARYBUTTON.addEventListener('click', calculate);
 SALARYINPUT.addEventListener('keydown', pressedKey);
