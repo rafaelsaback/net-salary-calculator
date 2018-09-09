@@ -1,8 +1,9 @@
 // const SALARYFORM = document.querySelector('fieldset');
 const SALARYINPUT = document.querySelector('#gross-salary-input');
 const NETSALARYBUTTON = document.querySelector('#calculate-button');
-const TABLECONTAINER = document.querySelector('#table-container');
-const TABLE = document.querySelector('#table');
+const TABLECONTAINER = document.querySelector('#results-container');
+const SUMMARYTABLE = document.querySelector('#summary-table');
+const MAINTABLE = document.querySelector('#main-table');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 const UOPRATES = {
   'pension': (9.76/100),
@@ -212,9 +213,17 @@ function formatNumber(number){
   return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
-/* Populate the HTML table with the salary information */
-function populateTable(calculator){
-  let body = TABLE.tBodies[0];
+function populateSummaryTable(calculator){
+  let body = SUMMARYTABLE.tBodies[0];
+  body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
+  body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0]);
+  body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0]);
+  body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0]);
+  body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
+}
+
+function populateMainTable(calculator){
+  let body = MAINTABLE.tBodies[0];
 
   /* Format monthly values */
   for(let i = 0; i < body.rows.length; i++)
@@ -230,7 +239,7 @@ function populateTable(calculator){
   }
 
   /* Format total values */
-  let foot = TABLE.tFoot;
+  let foot = MAINTABLE.tFoot;
   foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
   foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension);
   foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability);
@@ -268,8 +277,9 @@ var calculate = function() {
   /* Calculate net salary */
   let calculator = new calcSalary(grossSalary);
 
-  /* Populate table with the results */
-  populateTable(calculator);
+  /* Populate tables with the results */
+  populateSummaryTable(calculator);
+  populateMainTable(calculator);
 
   /* Display the table */
   if(TABLECONTAINER.style.display === '') TABLECONTAINER.style.display = 'block';
@@ -291,7 +301,7 @@ var calculate = function() {
     NETSALARYBUTTON.scrollIntoView();
   } else {
     /* Web */
-    TABLECONTAINER.scrollIntoView({block: 'end', behavior: 'smooth'});
+    TABLECONTAINER.scrollIntoView({block: 'start', behavior: 'smooth'});
   }
 };
 

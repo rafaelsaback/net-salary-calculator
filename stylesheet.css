@@ -2,86 +2,20 @@
   box-sizing: border-box;
 }
 
-table {
-  border-collapse: collapse;  /* Show the borders */
-  margin: auto;
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-table * {
-  padding: 8px 2px 8px 2px;
-  font-family: sans-serif;
-  border: none;
-}
-
-#table-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: auto;
-  width: 100%;
-  display: none;
-  margin-bottom: 50px;
-}
-
-td {
-  width: 98px;
-  min-width: 90px;
-}
-
-/* ============== */
-/*      TEXT      */
-/* ============== */
-tfoot {
-  font-weight: bold;
-}
-
-tbody th {
-  text-align: left;
-}
-
-td {
-  text-align: center;
-}
-
-/* ============== */
-/*   BACKGROUND   */
-/* ============== */
-tbody tr:nth-child(even) {
-  background: #f7f7f7;
-}
-
-tbody tr td:nth-child(7n+2),
-tfoot tr td:nth-child(7n+2) {
-  background: #e0e0e0;
-}
-
-/* ============== */
-/*     BORDER     */
-/* ============== */
-thead, tfoot {
-  border-top: 0.15rem solid #a0a0a0;
-  border-bottom: 0.15rem solid #a0a0a0;
-}
-
-tbody th,
-tbody td,
-thead tr:nth-child(2n+1) {
-  border-bottom: 0.05rem solid #c0c0c0;
-}
-
-thead tr th {
-  border-right: 0.05rem solid #c0c0c0;
-}
-
-thead tr th:nth-child(6) {
-  border-right: 0rem;
-}
-
 /* ============== */
 /*   INPUT FORM  */
 /* ============== */
 
+fieldset {
+  max-width: 365px;
+  min-width: 170px;
+  border-radius: 0.5rem;
+  border-color: black;
+  padding: 1rem;
+  margin: 20px auto 20px auto;
+  font-size: 18px;
+}
+/* ============== */
 legend, button {
   font-weight: bold;
   margin: auto;
@@ -95,16 +29,6 @@ legend {
   border-radius: 10px;
   width: 70%;
   text-align: center;
-}
-
-fieldset {
-  max-width: 365px;
-  min-width: 170px;
-  border-radius: 0.5rem;
-  border-color: black;
-  padding: 1rem;
-  margin: 40px auto 40px auto;
-  font-size: 18px;
 }
 
 .gross-salary {
@@ -153,6 +77,121 @@ input::-webkit-inner-spin-button {
   font-size: 18px;
 }
 
+/* ============== */
+/*     TABLES     */
+/* ============== */
+table {
+  border-collapse: collapse;  /* Show the borders */
+  margin-bottom: 10px;
+  margin: 20px auto 30px auto;
+}
+
+table * {
+  padding: 8px 2px 8px 2px;
+  font-family: sans-serif;
+  border: none;
+}
+
+#results-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: auto;
+  width: 100%;
+  display: none;
+  margin-bottom: 50px;
+}
+
+#summary-table th,
+#summary-table td {
+  width: 250px;
+  min-width: 120px;
+  padding: 15px;
+}
+
+#main-table td {
+  width: 98px;
+  min-width: 90px;
+}
+
+/* ============== */
+/*      TEXT      */
+/* ============== */
+tfoot {
+  font-weight: bold;
+}
+
+tbody th {
+  text-align: left;
+}
+
+td {
+  text-align: center;
+}
+
+#main-table {
+  font-size: 16px;
+}
+
+#summary-table tr:nth-child(2) th,
+#summary-table tr:nth-child(3) th,
+#summary-table tr:nth-child(4) th {
+  font-weight: normal;
+}
+
+#summary-table tr:nth-child(1) td,
+#summary-table tr:nth-child(5) td {
+    font-weight: bold;
+}
+
+#summary-table td {
+  text-align: right;
+}
+
+/* ============== */
+/*   BACKGROUND   */
+/* ============== */
+#main-table tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+#main-table tbody tr td:nth-child(7n+2),
+#main-table tfoot tr td:nth-child(7n+2),
+.gross-row,
+.net-row  {
+  background: #e0e0e0;
+}
+
+/* ============== */
+/*     BORDER     */
+/* ============== */
+
+#summary-table tr:nth-child(1) {
+  border-top: 0.15rem solid black;
+}
+
+#summary-table tr:nth-child(5) {
+  border-bottom: 0.15rem solid black;
+}
+
+#main-table thead,
+#main-table tfoot {
+  border-top: 0.15rem solid black;
+  border-bottom: 0.15rem solid black;
+}
+
+#main-table tbody th,
+#main-table tbody td,
+thead tr:nth-child(2n+1) {
+  border-bottom: 0.05rem solid #d0d0d0;
+}
+
+#main-table thead tr th {
+  border-right: 0.05rem solid #d0d0d0;
+}
+
+#main-table thead tr th:nth-child(6) {
+  border-right: 0rem;
+}
 
 /* ============== */
 /* RESPONSIVENESS */
@@ -169,29 +208,32 @@ input::-webkit-inner-spin-button {
     width:100%;
   }
   /* Force table to not be like tables anymore */
-  table, thead, tbody, tfoot, th, td, tr {
+  #main-table, #main-table thead, #main-table tbody,
+  #main-table tfoot, #main-table th, #main-table td, #main-table tr {
     display: block;
   }
 
   /* Hide table headers (but not display: none;, for accessibility) */
-  thead tr {
+  #main-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
   /* Remove head's and foot's thick borders */
-  thead, tfoot {
+  #main-table thead, #main-table tfoot {
     border-top: 0;
     border-bottom: 0;
   }
 
   /* Add border to the new table */
-  tr { border: 1px solid #ccc; }
+  #main-table tr {
+    border: 1px solid #ccc;
+   }
 
   /* Format the new table */
-  td, tbody th {
-    /* Behave  like a "row" */
+  #main-table td, #main-table tbody th {
+     /*Behave  like a "row" */
     position: relative;
     padding-left: 50%;
     width: 100%;
@@ -199,7 +241,7 @@ input::-webkit-inner-spin-button {
   }
 
   /* Format the new "headers" */
-  td:before, th:before   {
+  #main-table td:before, #main-table th:before   {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
@@ -209,34 +251,34 @@ input::-webkit-inner-spin-button {
   }
 
   /* Make gross and net values as bold */
-  td:nth-of-type(1),
-  td:nth-of-type(8){
+  #main-table td:nth-of-type(1),
+  #main-table td:nth-of-type(8){
     font-weight: bold;
   }
 
   /* Change table's background to white, canceling the gray background*/
-  tbody tr:nth-child(n) {
+  #main-table tbody tr:nth-child(n) {
     background-color: white;
   }
 
   /* Label the new headers */
-  tbody th:before { content: "Month"; }
-  td:nth-of-type(1):before { content: "Gross"; }
-  td:nth-of-type(2):before { content: "Pension"; }
-  td:nth-of-type(3):before { content: "Disability"; }
-  td:nth-of-type(4):before { content: "Sickness"; }
-  td:nth-of-type(5):before { content: "Health"; }
-  td:nth-of-type(6):before { content: "Tax base"; }
-  td:nth-of-type(7):before { content: "Tax"; }
-  td:nth-of-type(8):before { content: "Net salary"; }
+  #main-table tbody th:before { content: "Month"; }
+  #main-table td:nth-of-type(1):before { content: "Gross"; }
+  #main-table td:nth-of-type(2):before { content: "Pension"; }
+  #main-table td:nth-of-type(3):before { content: "Disability"; }
+  #main-table td:nth-of-type(4):before { content: "Sickness"; }
+  #main-table td:nth-of-type(5):before { content: "Health"; }
+  #main-table td:nth-of-type(6):before { content: "Tax base"; }
+  #main-table td:nth-of-type(7):before { content: "Tax"; }
+  #main-table td:nth-of-type(8):before { content: "Net salary"; }
 
   /* Remove bold from the table of totals */
-  tfoot td:nth-of-type(2),
-  tfoot td:nth-of-type(3),
-  tfoot td:nth-of-type(4),
-  tfoot td:nth-of-type(5),
-  tfoot td:nth-of-type(6),
-  tfoot td:nth-of-type(7) {
+  #main-table tfoot td:nth-of-type(2),
+  #main-table tfoot td:nth-of-type(3),
+  #main-table tfoot td:nth-of-type(4),
+  #main-table tfoot td:nth-of-type(5),
+  #main-table tfoot td:nth-of-type(6),
+  #main-table tfoot td:nth-of-type(7) {
     font-weight: normal;
   }
 }
