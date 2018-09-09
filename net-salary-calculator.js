@@ -4,7 +4,7 @@ const NETSALARYBUTTON = document.querySelector('#calculate-button');
 const TABLECONTAINER = document.querySelector('#table-container');
 const TABLE = document.querySelector('#table');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-const RATES = {
+const UOPRATES = {
   'pension': (9.76/100),
   'disability': (1.5/100),
   'sickness': (2.45/100),
@@ -13,7 +13,7 @@ const RATES = {
   'taxLevel1': (18/100),
   'taxLevel2': (32/100)
 };
-const AUXVALUES = {
+const UOPAUXVALUES = {
   'earningCost': 111.25,
   'monthlyRelief': 46.33,
   'annualLimit': 133290, /* Annual limit for pension and disability calculations */
@@ -54,8 +54,8 @@ class SalaryCalculator{
   constructor(grossSalary){
     this.monthly = new MonthlyValues(grossSalary);
     this.annual = new AnnualValues();
-    this.rates = RATES;
-    this.auxValues = AUXVALUES;
+    this.rates = UOPRATES;
+    this.auxValues = UOPAUXVALUES;
   }
 }
 
@@ -124,7 +124,7 @@ var calcTaxBase = function(i, calculator){
 };
 
 var calcHealthDeductible = function(i, calculator) {
-  let rateHealthDeductible = calculator.rate.healthDeductible;
+  let rateHealthDeductible = calculator.rates.healthDeductible;
   let healthBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i];
   calculator.monthly.healthDeductible[i] = healthBase * rateHealthDeductible;
   return calculator;
@@ -144,7 +144,7 @@ var calcSocialSecurity = function(i, calculator) {
 
 var calcSickness = function(i, calculator) {
   let grossSalary = calculator.monthly.grossSalary[i];
-  let sicknessRate = calculator.rate.sicknessRate;
+  let sicknessRate = calculator.rates.sickness;
   calculator.monthly.sickness[i] = calcContribution(grossSalary, sicknessRate);
   return calculator;
 };
@@ -171,7 +171,7 @@ var calcDisability = function(i, calculator) {
 };
 
 var calcPension = function(i, calculator) {
-  let pensionRate = calculator.rates.disability;
+  let pensionRate = calculator.rates.pension;
   calculator.monthly.pension[i] = calcPensionDisability(i, calculator, pensionRate);
   return calculator;
 };
@@ -295,7 +295,7 @@ var calculate = function() {
   }
 };
 
-/* Check if the presend key is enter */
+/* Check if enter key was pressed */
 var pressedKey = function(e){
   if(e.key === 'Enter'){
     calculate();
