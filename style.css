@@ -1,0 +1,205 @@
+/*    Variables
+----------------------*/
+/*    Global
+----------------------*/
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+/*    Input Form
+----------------------*/
+fieldset {
+  max-width: 365px;
+  min-width: 170px;
+  border-radius: 0.5rem;
+  border-color: #000000;
+  padding: 1rem;
+  margin: 20px auto 20px auto;
+  font-size: 18px; }
+
+legend, button {
+  font-weight: bold;
+  margin: auto;
+  display: block; }
+
+legend {
+  height: 30px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+  width: 70%;
+  text-align: center; }
+
+.gross-salary {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem; }
+
+#gross-salary-label {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-weight: bold; }
+
+#gross-salary-input {
+  min-width: 90px;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 22px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px; }
+
+#gross-salary-input:focus {
+  outline: none;
+  border-color: #000000;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none; }
+
+#calculate-button {
+  border-radius: 60px;
+  border-color: #000000;
+  background-color: #ffffff;
+  height: 40px;
+  width: 60%;
+  box-shadow: none;
+  font-size: 18px; }
+
+/*    Tables
+----------------------*/
+table {
+  border-collapse: collapse;
+  /* Show the borders */
+  margin-bottom: 10px;
+  margin: 20px auto 30px auto; }
+
+table * {
+  padding: 8px 2px 8px 2px;
+  font-family: sans-serif;
+  border: none; }
+
+tfoot {
+  font-weight: bold; }
+
+tbody th {
+  text-align: left; }
+
+td {
+  text-align: center; }
+
+.gross-row, .net-row {
+  background: #e0e0e0; }
+
+#results-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  display: none;
+  margin-bottom: 50px; }
+
+/*    Summary Table
+----------------------*/
+#summary-table th, #summary-table td {
+  width: 250px;
+  min-width: 120px;
+  padding: 15px; }
+#summary-table tr:nth-child(2) th,
+#summary-table tr:nth-child(3) th,
+#summary-table tr:nth-child(4) th {
+  font-weight: normal; }
+#summary-table tr:nth-child(1) td,
+#summary-table tr:nth-child(5) td {
+  font-weight: bold; }
+#summary-table td {
+  text-align: right; }
+#summary-table tr:nth-child(1) {
+  border-top: 0.15rem solid #000000; }
+#summary-table tr:nth-child(5) {
+  border-bottom: 0.15rem solid #000000; }
+
+/*    Main Table
+----------------------*/
+#main-table td {
+  width: 98px;
+  min-width: 90px; }
+#main-table {
+  font-size: 16px; }
+#main-table tbody tr:nth-child(even) {
+  background: #f7f7f7; }
+#main-table tbody tr td:nth-child(7n+2),
+#main-table tfoot tr td:nth-child(7n+2) {
+  background: #e0e0e0; }
+#main-table thead,
+#main-table tfoot {
+  border-top: 0.15rem solid #000000;
+  border-bottom: 0.15rem solid #000000; }
+#main-table tbody th,
+#main-table tbody td,
+#main-table thead tr:nth-child(2n+1) {
+  border-bottom: 0.05rem solid #d0d0d0; }
+#main-table thead tr th {
+  border-right: 0.05rem solid #d0d0d0; }
+#main-table thead tr th:nth-child(6) {
+  border-right: 0rem; }
+
+/* RESPONSIVENESS
+--------------------*/
+@media only screen and (max-width: 850px) {
+  .mobile-option {
+    display: none; } }
+@media only screen and (max-width: 500px) {
+  #salary-form {
+    width: 100%; }
+
+  #main-table, #main-table thead, #main-table tbody, #main-table tfoot, #main-table th, #main-table td, #main-table tr {
+    display: block; }
+  #main-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px; }
+  #main-table thead, #main-table tfoot {
+    border-top: 0;
+    border-bottom: 0; }
+  #main-table tr {
+    border: 1px solid #ccc; }
+  #main-table td, #main-table tbody th {
+    position: relative;
+    padding-left: 50%;
+    width: 100%;
+    text-align: center; }
+  #main-table td:before, #main-table th:before {
+    position: absolute;
+    top: 9.5px;
+    left: 6px;
+    width: 45%; }
+  #main-table td:nth-of-type(1),
+  #main-table td:nth-of-type(8) {
+    font-weight: bold; }
+  #main-table tbody tr:nth-child(n) {
+    background-color: #ffffff; }
+  #main-table tbody th:before {
+    content: "Month"; }
+  #main-table td:nth-of-type(1):before {
+    content: "Gross"; }
+  #main-table td:nth-of-type(2):before {
+    content: "Pension"; }
+  #main-table td:nth-of-type(3):before {
+    content: "Disability"; }
+  #main-table td:nth-of-type(4):before {
+    content: "Sickness"; }
+  #main-table td:nth-of-type(5):before {
+    content: "Health"; }
+  #main-table td:nth-of-type(6):before {
+    content: "Tax base"; }
+  #main-table td:nth-of-type(7):before {
+    content: "Tax"; }
+  #main-table td:nth-of-type(8):before {
+    content: "Net salary"; }
+  #main-table tfoot td:nth-of-type(2), #main-table tfoot td:nth-of-type(3), #main-table tfoot td:nth-of-type(4), #main-table tfoot td:nth-of-type(5), #main-table tfoot td:nth-of-type(6), #main-table tfoot td:nth-of-type(7) {
+    font-weight: normal; } }
+
+/*# sourceMappingURL=style.css.map */
