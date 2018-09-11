@@ -312,5 +312,6 @@ var pressedKey = function(e){
   }
 };
 
+SALARYINPUT.focus();
 NETSALARYBUTTON.addEventListener('click', calculate);
 SALARYINPUT.addEventListener('keydown', pressedKey);

@@ -12,19 +12,19 @@
   <!-- BEGIN OF WORDPRESS PAGE -->
   <div id="body-calculator">
 
-    <fieldset id="salary-form">
+    <fieldset class="salary-form">
       <legend> Umowa o prac&#x0229; </legend>
       <div class="gross-salary">
-        <label id="gross-salary-label"> Enter a gross salary: </label> <br />
-        <input id="gross-salary-input" type="number" placeholder="0.00 PLN">
+        <label class="gross-salary-label"> Enter a gross salary: </label> <br />
+        <input id="gross-salary-input" class="gross-salary-input" type="number" placeholder="0.00 PLN">
       </div>
       <div>
-        <button id="calculate-button" type="button"> Calculate </button>
+        <button id="calculate-button" class="calculate-button" type="button"> Calculate </button>
       </div>
     </fieldset>
 
-    <div id="results-container">
-      <table id="summary-table">
+    <div id="results-container" class="results-container">
+      <table id="summary-table" class="summary-table">
         <thead>
           <tr>
             <th scope="column" colspan="2"> Summary </th>
@@ -54,7 +54,7 @@
         </tbody>
       </table>
 
-      <table id="main-table">
+      <table id="main-table" class="main-table">
         <thead>
           <tr>
             <th scope="col" rowspan="2"> Month </th>

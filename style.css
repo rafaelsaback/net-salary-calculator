@@ -1,5 +1,3 @@
-/*    Variables
-----------------------*/
 /*    Global
 ----------------------*/
 *, *:before, *:after {
@@ -11,7 +9,7 @@ fieldset {
   max-width: 365px;
   min-width: 170px;
   border-radius: 0.5rem;
-  border-color: #000000;
+  border-color: black;
   padding: 1rem;
   margin: 20px auto 20px auto;
   font-size: 18px; }
@@ -23,7 +21,7 @@ legend, button {
 
 legend {
   height: 30px;
-  background: #000000;
+  background: black;
   color: #ffffff;
   border-radius: 10px;
   width: 70%;
@@ -33,12 +31,12 @@ legend {
   margin-top: 0.5rem;
   margin-bottom: 2rem; }
 
-#gross-salary-label {
+.gross-salary-label {
   margin-bottom: 0.5rem;
   display: inline-block;
   font-weight: bold; }
 
-#gross-salary-input {
+.gross-salary-input {
   min-width: 90px;
   width: 100%;
   height: 50px;
@@ -48,9 +46,9 @@ legend {
   border-left: 0px;
   border-right: 0px; }
 
-#gross-salary-input:focus {
+.gross-salary-input:focus {
   outline: none;
-  border-color: #000000;
+  border-color: black;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px; }
@@ -60,16 +58,16 @@ input::-webkit-inner-spin-button {
   display: none;
   -webkit-appearance: none; }
 
-#calculate-button {
+.calculate-button {
   border-radius: 60px;
-  border-color: #000000;
+  border-color: black;
   background-color: #ffffff;
   height: 40px;
   width: 60%;
   box-shadow: none;
   font-size: 18px; }
 
-/*    Tables
+/*       Tables
 ----------------------*/
 table {
   border-collapse: collapse;
@@ -94,7 +92,7 @@ td {
 .gross-row, .net-row {
   background: #e0e0e0; }
 
-#results-container {
+.results-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
@@ -103,103 +101,121 @@ td {
 
 /*    Summary Table
 ----------------------*/
-#summary-table th, #summary-table td {
+.summary-table th, .summary-table td {
   width: 250px;
   min-width: 120px;
   padding: 15px; }
-#summary-table tr:nth-child(2) th,
-#summary-table tr:nth-child(3) th,
-#summary-table tr:nth-child(4) th {
+.summary-table tr:nth-child(2) th,
+.summary-table tr:nth-child(3) th,
+.summary-table tr:nth-child(4) th {
   font-weight: normal; }
-#summary-table tr:nth-child(1) td,
-#summary-table tr:nth-child(5) td {
+.summary-table tr:nth-child(1) td,
+.summary-table tr:nth-child(5) td {
   font-weight: bold; }
-#summary-table td {
+.summary-table td {
   text-align: right; }
-#summary-table tr:nth-child(1) {
-  border-top: 0.15rem solid #000000; }
-#summary-table tr:nth-child(5) {
-  border-bottom: 0.15rem solid #000000; }
+.summary-table tr:nth-child(1) {
+  border-top: 0.15rem solid black; }
+.summary-table tr:nth-child(5) {
+  border-bottom: 0.15rem solid black; }
 
 /*    Main Table
 ----------------------*/
-#main-table td {
+.main-table td {
   width: 98px;
   min-width: 90px; }
-#main-table {
-  font-size: 16px; }
-#main-table tbody tr:nth-child(even) {
-  background: #f7f7f7; }
-#main-table tbody tr td:nth-child(7n+2),
-#main-table tfoot tr td:nth-child(7n+2) {
-  background: #e0e0e0; }
-#main-table thead,
-#main-table tfoot {
-  border-top: 0.15rem solid #000000;
-  border-bottom: 0.15rem solid #000000; }
-#main-table tbody th,
-#main-table tbody td,
-#main-table thead tr:nth-child(2n+1) {
+.main-table thead {
+  border-top: 0.15rem solid black;
+  border-bottom: 0.15rem solid black; }
+  .main-table thead tr:nth-child(2n+1) {
+    border-bottom: 0.05rem solid #d0d0d0; }
+  .main-table thead tr th {
+    border-right: 0.05rem solid #d0d0d0; }
+  .main-table thead tr th:nth-child(6) {
+    border-right: 0rem; }
+.main-table tbody th, .main-table tbody td {
   border-bottom: 0.05rem solid #d0d0d0; }
-#main-table thead tr th {
-  border-right: 0.05rem solid #d0d0d0; }
-#main-table thead tr th:nth-child(6) {
-  border-right: 0rem; }
+.main-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; }
+.main-table tbody tr:nth-child(even) {
+  background: #f7f7f7; }
+.main-table tbody tr td:nth-child(7n+2) {
+  background: #e0e0e0; }
+.main-table tfoot {
+  border-top: 0.15rem solid black;
+  border-bottom: 0.15rem solid black; }
+  .main-table tfoot tr td:nth-child(7n+2) {
+    background: #e0e0e0; }
 
 /* RESPONSIVENESS
 --------------------*/
-@media only screen and (max-width: 850px) {
+@media only screen and (min-width: 900px) {
+  tbody tr:hover td, tbody tr:hover {
+    background-color: #adadad; }
+
+  .main-table {
+    font-size: 16px; } }
+@media only screen and (max-width: 900px) {
   .mobile-option {
     display: none; } }
 @media only screen and (max-width: 500px) {
-  #salary-form {
+  .salary-form {
     width: 100%; }
 
-  #main-table, #main-table thead, #main-table tbody, #main-table tfoot, #main-table th, #main-table td, #main-table tr {
+  .main-table, .main-table thead, .main-table tbody, .main-table tfoot, .main-table th, .main-table td, .main-table tr {
     display: block; }
-  #main-table thead tr {
+  .main-table thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px; }
-  #main-table thead, #main-table tfoot {
+  .main-table thead, .main-table tfoot {
     border-top: 0;
     border-bottom: 0; }
-  #main-table tr {
-    border: 1px solid #ccc; }
-  #main-table td, #main-table tbody th {
+  .main-table tbody th, .main-table tfoot th {
+    border-bottom: 0.15rem solid black;
+    padding: 15px;
+    text-align: center; }
+  .main-table tr {
+    padding: 0;
+    margin-bottom: 10px;
+    border-top: 0.15rem solid black;
+    border-bottom: 0.15rem solid black; }
+  .main-table td {
     position: relative;
     padding-left: 50%;
     width: 100%;
-    text-align: center; }
-  #main-table td:before, #main-table th:before {
+    text-align: right;
+    padding: 15px; }
+  .main-table td:before, .main-table th:before {
     position: absolute;
-    top: 9.5px;
+    top: 15px;
     left: 6px;
     width: 45%; }
-  #main-table td:nth-of-type(1),
-  #main-table td:nth-of-type(8) {
+  .main-table td:nth-of-type(1),
+  .main-table td:nth-of-type(8) {
     font-weight: bold; }
-  #main-table tbody tr:nth-child(n) {
-    background-color: #ffffff; }
-  #main-table tbody th:before {
-    content: "Month"; }
-  #main-table td:nth-of-type(1):before {
+  .main-table td:before {
+    text-align: left; }
+  .main-table td:nth-of-type(1):before {
     content: "Gross"; }
-  #main-table td:nth-of-type(2):before {
+  .main-table td:nth-of-type(2):before {
     content: "Pension"; }
-  #main-table td:nth-of-type(3):before {
+  .main-table td:nth-of-type(3):before {
     content: "Disability"; }
-  #main-table td:nth-of-type(4):before {
+  .main-table td:nth-of-type(4):before {
     content: "Sickness"; }
-  #main-table td:nth-of-type(5):before {
+  .main-table td:nth-of-type(5):before {
     content: "Health"; }
-  #main-table td:nth-of-type(6):before {
+  .main-table td:nth-of-type(6):before {
     content: "Tax base"; }
-  #main-table td:nth-of-type(7):before {
+  .main-table td:nth-of-type(7):before {
     content: "Tax"; }
-  #main-table td:nth-of-type(8):before {
+  .main-table td:nth-of-type(8):before {
     content: "Net salary"; }
-  #main-table tfoot td:nth-of-type(2), #main-table tfoot td:nth-of-type(3), #main-table tfoot td:nth-of-type(4), #main-table tfoot td:nth-of-type(5), #main-table tfoot td:nth-of-type(6), #main-table tfoot td:nth-of-type(7) {
-    font-weight: normal; } }
+  .main-table tfoot td {
+    border-bottom: 0.05rem solid #d0d0d0;
+    font-weight: normal; }
+    .main-table tfoot td:nth-of-type(1), .main-table tfoot td:nth-of-type(8) {
+      font-weight: bold; } }
 
 /*# sourceMappingURL=style.css.map */
