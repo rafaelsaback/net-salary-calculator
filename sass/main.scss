@@ -208,17 +208,15 @@ td {
 --------------------*/
 
 @media only screen and (min-width: 900px) {
-  tbody {
-    tr{
-      &:hover td, // Overwrite column background
-      &:hover // Overwrite month background (th)
-      {
-        background-color: darken($dark-gray, 20);
-      }
-    }
-  }
   .main-table {
     font-size: 16px;
+      tbody tr{
+        &:hover td, // Overwrite column background
+        &:hover // Overwrite month background (th)
+        {
+          background-color: darken($dark-gray, 20);
+        }
+    }
   }
 }
 
