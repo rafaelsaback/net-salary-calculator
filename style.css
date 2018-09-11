@@ -150,11 +150,10 @@ td {
 /* RESPONSIVENESS
 --------------------*/
 @media only screen and (min-width: 900px) {
-  tbody tr:hover td, tbody tr:hover {
-    background-color: #adadad; }
-
   .main-table {
-    font-size: 16px; } }
+    font-size: 16px; }
+    .main-table tbody tr:hover td, .main-table tbody tr:hover {
+      background-color: #adadad; } }
 @media only screen and (max-width: 900px) {
   .mobile-option {
     display: none; } }
@@ -175,6 +174,11 @@ td {
     border-bottom: 0.15rem solid black;
     padding: 15px;
     text-align: center; }
+  .main-table tfoot td {
+    border-bottom: 0.05rem solid #d0d0d0;
+    font-weight: normal; }
+    .main-table tfoot td:nth-of-type(1), .main-table tfoot td:nth-of-type(8) {
+      font-weight: bold; }
   .main-table tr {
     padding: 0;
     margin-bottom: 10px;
@@ -211,11 +215,6 @@ td {
   .main-table td:nth-of-type(7):before {
     content: "Tax"; }
   .main-table td:nth-of-type(8):before {
-    content: "Net salary"; }
-  .main-table tfoot td {
-    border-bottom: 0.05rem solid #d0d0d0;
-    font-weight: normal; }
-    .main-table tfoot td:nth-of-type(1), .main-table tfoot td:nth-of-type(8) {
-      font-weight: bold; } }
+    content: "Net salary"; } }
 
 /*# sourceMappingURL=style.css.map */
