@@ -1,7 +1,7 @@
 // const SALARYFORM = document.querySelector('fieldset');
 const SALARYINPUT = document.querySelector('#gross-salary-input');
 const NETSALARYBUTTON = document.querySelector('#calculate-button');
-const TABLECONTAINER = document.querySelector('#results-container');
+const TABLECONTAINER = document.querySelector('#container-results');
 const SUMMARYTABLE = document.querySelector('#summary-table');
 const MAINTABLE = document.querySelector('#main-table');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);

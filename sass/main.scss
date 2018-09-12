@@ -1,325 +1,330 @@
 @import 'variables';
 
-/*    Global
-----------------------*/
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-/*    Input Form
-----------------------*/
-fieldset {
-  max-width: 365px;
-  min-width: 170px;
-  border-radius: 0.5rem;
-  border-color: $black;
-  padding: 1rem;
-  margin: 20px auto 20px auto;
-  font-size: 18px;
-}
-
-legend, button {
-  font-weight: bold;
-  margin: auto;
-  display: block;
-}
-
-legend {
-  height: 30px;
-  background: $black;
-  color: $white-background;
-  border-radius: 10px;
-  width: 70%;
-  text-align: center;
-}
-
-.gross-salary {
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.gross-salary-label {
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.gross-salary-input {
-  min-width: 90px;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  // !important statements are necessary to override the blog's style
-  font-size: 22px !important;
-  border-top: 0px !important;
-  border-left: 0px !important;
-  border-right: 0px !important;
-}
-
-.gross-salary-input:focus {
-  outline: none;
-  border-color: $black;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
-.calculate-button {
-  border-radius: 60px;
-  border-color: $black;
-  background-color: $white-background;
-  height: 40px;
-  width: 60%;
-  box-shadow: none;
-  font-size: 18px;
-}
-
-.calculate-button:hover {
-  cursor: pointer;
-  background-color: black;
-  color: white;
-}
-/*       Tables
-----------------------*/
-table {
-  border-collapse: collapse;  /* Show the borders */
-  margin-bottom: 10px;
-  margin: 20px auto 30px auto;
-}
-
-table * {
-  padding: 8px 2px 8px 2px;
-  font-family: sans-serif;
-  border: none;
-}
-
-tfoot {
-  font-weight: bold;
-}
-
-tbody th {
-  text-align: left;
-}
-
-td {
-  text-align: center;
-}
-
-.gross-row, .net-row  {
-  background: $dark-gray;
-}
-
-.results-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  display: none;
-  margin-bottom: 50px;
-}
-
-/*    Summary Table
-----------------------*/
-.summary-table {
-  th, td {
-    width: 250px;
-    min-width: 120px;
-    padding: 15px;
+.container-main {
+  /*    Global
+  ----------------------*/
+  *, *:before, *:after {
+    box-sizing: border-box;
   }
 
-  tr:nth-child(2) th,
-  tr:nth-child(3) th,
-  tr:nth-child(4) th {
-    font-weight: normal;
+  /*    Input Form
+  ----------------------*/
+  fieldset {
+    max-width: 365px;
+    min-width: 170px;
+    border-radius: 0.5rem;
+    border-color: $black;
+    padding: 1rem;
+    margin: 20px auto 20px auto;
+    font-size: 18px;
   }
 
-  tr:nth-child(1) td,
-  tr:nth-child(5) td {
+  legend, button {
+    font-weight: bold;
+    margin: auto;
+    display: block;
+  }
+
+  legend {
+    height: 30px;
+    background: $black;
+    color: $white-background;
+    border-radius: 10px;
+    width: 70%;
+    text-align: center;
+  }
+
+  .gross-salary {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .gross-salary-label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
     font-weight: bold;
   }
 
-  td {
-    text-align: right;
-  }
-
-  tr:nth-child(1) {
-    border-top: $thick-dark-border;
-  }
-
-  tr:nth-child(5) {
-    border-bottom: $thick-dark-border;
-  }
-}
-
-/*    Main Table
-----------------------*/
-.main-table {
-
-  td {
-    width: 98px;
+  .gross-salary-input {
     min-width: 90px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    // !important statements are necessary to override the blog's style
+    font-size: 22px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
   }
 
-  thead{
-    border-top: $thick-dark-border;
-    border-bottom: $thick-dark-border;
-
-    tr:nth-child(2n+1) {
-      border-bottom: $thin-light-border;
-    }
-
-    tr th {
-      border-right: $thin-light-border;
-    }
-
-    tr th:nth-child(6) {
-      border-right: 0rem;
-    }
+  .gross-salary-input:focus {
+    outline: none;
+    border-color: $black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
   }
 
-  tbody {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .calculate-button {
+    border-radius: 60px;
+    border-color: $black;
+    background-color: $white-background;
+    height: 40px;
+    width: 60%;
+    box-shadow: none;
+    font-size: 18px;
+  }
+
+  .calculate-button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
+  /*       Tables
+  ----------------------*/
+  table {
+    border-collapse: collapse;  /* Show the borders */
+    margin-bottom: 10px;
+    margin: 20px auto 30px auto;
+  }
+
+  table * {
+    padding: 8px 2px 8px 2px;
+    font-family: sans-serif;
+    border: none;
+  }
+
+  tfoot {
+    font-weight: bold;
+  }
+
+  tbody th {
+    text-align: left;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  .gross-row, .net-row  {
+    background: $dark-gray;
+  }
+
+  .container-results {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  /*    Summary Table
+  ----------------------*/
+  .summary-table {
     th, td {
-      border-bottom: $thin-light-border;
+      width: 250px;
+      min-width: 120px;
+      padding: 15px;
     }
-    tr {
-      &:nth-child(odd) {
-        background-color: $white-background;
+
+    tr:nth-child(2) th,
+    tr:nth-child(3) th,
+    tr:nth-child(4) th {
+      font-weight: normal;
+    }
+
+    tr:nth-child(1) td,
+    tr:nth-child(5) td {
+      font-weight: bold;
+    }
+
+    td {
+      text-align: right;
+    }
+
+    tr:nth-child(1) {
+      border-top: $thick-dark-border;
+    }
+
+    tr:nth-child(5) {
+      border-bottom: $thick-dark-border;
+    }
+  }
+
+  /*    Main Table
+  ----------------------*/
+  .main-table {
+
+    td {
+      width: 98px;
+      min-width: 90px;
+    }
+
+    thead{
+      border-top: $thick-dark-border;
+      border-bottom: $thick-dark-border;
+
+      tr:nth-child(2n+1) {
+        border-bottom: $thin-light-border;
       }
 
-      &:nth-child(even) {
-        background: $very-light-gray;
+      tr th {
+        border-right: $thin-light-border;
       }
 
-      & td:nth-child(7n+2){
+      tr th:nth-child(6) {
+        border-right: 0rem;
+      }
+    }
+
+    tbody {
+      th, td {
+        border-bottom: $thin-light-border;
+      }
+      tr {
+        &:nth-child(odd) {
+          background-color: $white-background;
+        }
+
+        &:nth-child(even) {
+          background: $very-light-gray;
+        }
+
+        & td:nth-child(7n+2){
+          background: $dark-gray;
+        }
+
+      }
+    }
+    tfoot {
+      border-top: $thick-dark-border;
+      border-bottom: $thick-dark-border;
+      tr td:nth-child(7n+2) {
         background: $dark-gray;
       }
-
     }
   }
-  tfoot {
-    border-top: $thick-dark-border;
-    border-bottom: $thick-dark-border;
-    tr td:nth-child(7n+2) {
-      background: $dark-gray;
-    }
-  }
-}
 
-/* RESPONSIVENESS
---------------------*/
+  /* RESPONSIVENESS
+  --------------------*/
 
-@media only screen and (min-width: 900px) {
-  .main-table {
-    font-size: 16px;
+  @media only screen and (min-width: 900px) {
+    .main-table {
+      font-size: 16px;
       tbody tr{
         &:hover td, // Overwrite column background
         &:hover // Overwrite month background (th)
         {
           background-color: darken($dark-gray, 20);
         }
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .mobile-option {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .salary-form{
-    width:100%;
-  }
-
-  .main-table {
-
-    // Force table to not be like tables anymore
-    &, thead, tbody, tfoot, th, td, tr {
-      display: block;
-    }
-
-    // Hide table headers (but not display: none;, for accessibility)
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    // Remove head's and foot's thick borders
-    thead, tfoot {
-      border-top: 0;
-      border-bottom: 0;
-    }
-
-    tbody th, tfoot th {
-      border-bottom: $thick-dark-border;
-      padding: 15px;
-      text-align: center;
-    }
-
-    // Remove bold from the table of totals
-    tfoot td {
-      border-bottom: $thin-light-border;
-      font-weight: normal;
-      &:nth-of-type(1),
-      &:nth-of-type(8) {
-        font-weight: bold;
       }
     }
+  }
 
-    // Add border to the new table
-    tr {
-      padding: 0;
-      margin-bottom: 10px;
-      border-top: $thick-dark-border;
-      border-bottom: $thick-dark-border;
+  @media only screen and (max-width: 900px) {
+    .mobile-option {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .salary-form{
+      width:100%;
     }
 
-    // Format the new table
-    td {
-      // Behave  like a "row"
-      position: relative;
-      padding-left: 50%;
-      width: 100%;
-      text-align: right;
-      padding: 15px;
-    }
+    .main-table {
 
-    // Format the new "headers"
-    td:before, th:before   {
-      // Now like a table header
-      position: absolute;
-      // Top/left values mimic padding
-      top: 15px;
-      left: 6px;
-      width: 45%;
-    }
+      // Force table to not be like tables anymore
+      &, thead, tbody, tfoot, th, td, tr {
+        display: block;
+      }
 
-    // Make gross and net values as bold
-    td:nth-of-type(1),
-    td:nth-of-type(8){
-      font-weight: bold;
-    }
+      // Hide table headers (but not display: none;, for accessibility)
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
 
-    td:before {
-      text-align: left;
-    }
+      // Remove head's and foot's thick borders
+      thead, tfoot {
+        border-top: 0;
+        border-bottom: 0;
+      }
 
-    // Label the new headers
-    // tbody th:before { content: "Month"; }
-    td:nth-of-type(1):before { content: "Gross"; }
-    td:nth-of-type(2):before { content: "Pension"; }
-    td:nth-of-type(3):before { content: "Disability"; }
-    td:nth-of-type(4):before { content: "Sickness"; }
-    td:nth-of-type(5):before { content: "Health"; }
-    td:nth-of-type(6):before { content: "Tax base"; }
-    td:nth-of-type(7):before { content: "Tax"; }
-    td:nth-of-type(8):before { content: "Net salary"; }
+      tbody th, tfoot th {
+        border-bottom: $thick-dark-border;
+        padding: 15px;
+        text-align: center;
+      }
+
+      // Remove bold from the table of totals
+      tfoot td {
+        border-bottom: $thin-light-border;
+        font-weight: normal;
+        &:nth-of-type(1),
+        &:nth-of-type(8) {
+          font-weight: bold;
+        }
+      }
+
+      // Add border to the new table
+      tr {
+        padding: 0;
+        margin-bottom: 10px;
+        border-top: $thick-dark-border;
+        border-bottom: $thick-dark-border;
+      }
+
+      // Format the new table
+      td {
+        // Behave  like a "row"
+        position: relative;
+        padding-left: 50%;
+        width: 100%;
+        text-align: right;
+        padding: 15px;
+      }
+
+      // Format the new "headers"
+      td:before, th:before   {
+        // Now like a table header
+        position: absolute;
+        // Top/left values mimic padding
+        top: 15px;
+        left: 6px;
+        width: 45%;
+      }
+
+      // Make gross and net values as bold
+      td:nth-of-type(1),
+      td:nth-of-type(8){
+        font-weight: bold;
+      }
+
+      td:before {
+        text-align: left;
+      }
+
+      // Label the new headers
+      // tbody th:before { content: "Month"; }
+      td:nth-of-type(1):before { content: "Gross"; }
+      td:nth-of-type(2):before { content: "Pension"; }
+      td:nth-of-type(3):before { content: "Disability"; }
+      td:nth-of-type(4):before { content: "Sickness"; }
+      td:nth-of-type(5):before { content: "Health"; }
+      td:nth-of-type(6):before { content: "Tax base"; }
+      td:nth-of-type(7):before { content: "Tax"; }
+      td:nth-of-type(8):before { content: "Net salary"; }
+    }
   }
 }

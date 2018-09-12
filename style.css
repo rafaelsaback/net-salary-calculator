@@ -1,225 +1,206 @@
-/*    Global
-----------------------*/
-*, *:before, *:after {
-  box-sizing: border-box; }
-
-/*    Input Form
-----------------------*/
-fieldset {
-  max-width: 365px;
-  min-width: 170px;
-  border-radius: 0.5rem;
-  border-color: black;
-  padding: 1rem;
-  margin: 20px auto 20px auto;
-  font-size: 18px; }
-
-legend, button {
-  font-weight: bold;
-  margin: auto;
-  display: block; }
-
-legend {
-  height: 30px;
-  background: black;
-  color: #ffffff;
-  border-radius: 10px;
-  width: 70%;
-  text-align: center; }
-
-.gross-salary {
-  margin-top: 0.5rem;
-  margin-bottom: 2rem; }
-
-.gross-salary-label {
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  font-weight: bold; }
-
-.gross-salary-input {
-  min-width: 90px;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  font-size: 22px !important;
-  border-top: 0px !important;
-  border-left: 0px !important;
-  border-right: 0px !important; }
-
-.gross-salary-input:focus {
-  outline: none;
-  border-color: black;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px; }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  display: none;
-  -webkit-appearance: none; }
-
-.calculate-button {
-  border-radius: 60px;
-  border-color: black;
-  background-color: #ffffff;
-  height: 40px;
-  width: 60%;
-  box-shadow: none;
-  font-size: 18px; }
-
-.calculate-button:hover {
-  cursor: pointer;
-  background-color: black;
-  color: white; }
-
-/*       Tables
-----------------------*/
-table {
-  border-collapse: collapse;
-  /* Show the borders */
-  margin-bottom: 10px;
-  margin: 20px auto 30px auto; }
-
-table * {
-  padding: 8px 2px 8px 2px;
-  font-family: sans-serif;
-  border: none; }
-
-tfoot {
-  font-weight: bold; }
-
-tbody th {
-  text-align: left; }
-
-td {
-  text-align: center; }
-
-.gross-row, .net-row {
-  background: #e0e0e0; }
-
-.results-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  display: none;
-  margin-bottom: 50px; }
-
-/*    Summary Table
-----------------------*/
-.summary-table th, .summary-table td {
-  width: 250px;
-  min-width: 120px;
-  padding: 15px; }
-.summary-table tr:nth-child(2) th,
-.summary-table tr:nth-child(3) th,
-.summary-table tr:nth-child(4) th {
-  font-weight: normal; }
-.summary-table tr:nth-child(1) td,
-.summary-table tr:nth-child(5) td {
-  font-weight: bold; }
-.summary-table td {
-  text-align: right; }
-.summary-table tr:nth-child(1) {
-  border-top: 0.15rem solid black; }
-.summary-table tr:nth-child(5) {
-  border-bottom: 0.15rem solid black; }
-
-/*    Main Table
-----------------------*/
-.main-table td {
-  width: 98px;
-  min-width: 90px; }
-.main-table thead {
-  border-top: 0.15rem solid black;
-  border-bottom: 0.15rem solid black; }
-  .main-table thead tr:nth-child(2n+1) {
-    border-bottom: 0.05rem solid #d0d0d0; }
-  .main-table thead tr th {
-    border-right: 0.05rem solid #d0d0d0; }
-  .main-table thead tr th:nth-child(6) {
-    border-right: 0rem; }
-.main-table tbody th, .main-table tbody td {
-  border-bottom: 0.05rem solid #d0d0d0; }
-.main-table tbody tr:nth-child(odd) {
-  background-color: #ffffff; }
-.main-table tbody tr:nth-child(even) {
-  background: #f7f7f7; }
-.main-table tbody tr td:nth-child(7n+2) {
-  background: #e0e0e0; }
-.main-table tfoot {
-  border-top: 0.15rem solid black;
-  border-bottom: 0.15rem solid black; }
-  .main-table tfoot tr td:nth-child(7n+2) {
-    background: #e0e0e0; }
-
-/* RESPONSIVENESS
---------------------*/
-@media only screen and (min-width: 900px) {
-  .main-table {
-    font-size: 16px; }
-    .main-table tbody tr:hover td, .main-table tbody tr:hover {
-      background-color: #adadad; } }
-@media only screen and (max-width: 900px) {
-  .mobile-option {
-    display: none; } }
-@media only screen and (max-width: 500px) {
-  .salary-form {
-    width: 100%; }
-
-  .main-table, .main-table thead, .main-table tbody, .main-table tfoot, .main-table th, .main-table td, .main-table tr {
+.container-main {
+  /*    Global
+  ----------------------*/
+  /*    Input Form
+  ----------------------*/
+  /*       Tables
+  ----------------------*/
+  /*    Summary Table
+  ----------------------*/
+  /*    Main Table
+  ----------------------*/
+  /* RESPONSIVENESS
+  --------------------*/ }
+  .container-main *, .container-main *:before, .container-main *:after {
+    box-sizing: border-box; }
+  .container-main fieldset {
+    max-width: 365px;
+    min-width: 170px;
+    border-radius: 0.5rem;
+    border-color: black;
+    padding: 1rem;
+    margin: 20px auto 20px auto;
+    font-size: 18px; }
+  .container-main legend, .container-main button {
+    font-weight: bold;
+    margin: auto;
     display: block; }
-  .main-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px; }
-  .main-table thead, .main-table tfoot {
-    border-top: 0;
-    border-bottom: 0; }
-  .main-table tbody th, .main-table tfoot th {
-    border-bottom: 0.15rem solid black;
-    padding: 15px;
+  .container-main legend {
+    height: 30px;
+    background: black;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 70%;
     text-align: center; }
-  .main-table tfoot td {
-    border-bottom: 0.05rem solid #d0d0d0;
-    font-weight: normal; }
-    .main-table tfoot td:nth-of-type(1), .main-table tfoot td:nth-of-type(8) {
-      font-weight: bold; }
-  .main-table tr {
-    padding: 0;
+  .container-main .gross-salary {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem; }
+  .container-main .gross-salary-label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-weight: bold; }
+  .container-main .gross-salary-input {
+    min-width: 90px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 22px !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important; }
+  .container-main .gross-salary-input:focus {
+    outline: none;
+    border-color: black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px; }
+  .container-main input::-webkit-outer-spin-button,
+  .container-main input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none; }
+  .container-main .calculate-button {
+    border-radius: 60px;
+    border-color: black;
+    background-color: #ffffff;
+    height: 40px;
+    width: 60%;
+    box-shadow: none;
+    font-size: 18px; }
+  .container-main .calculate-button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white; }
+  .container-main table {
+    border-collapse: collapse;
+    /* Show the borders */
     margin-bottom: 10px;
+    margin: 20px auto 30px auto; }
+  .container-main table * {
+    padding: 8px 2px 8px 2px;
+    font-family: sans-serif;
+    border: none; }
+  .container-main tfoot {
+    font-weight: bold; }
+  .container-main tbody th {
+    text-align: left; }
+  .container-main td {
+    text-align: center; }
+  .container-main .gross-row, .container-main .net-row {
+    background: #e0e0e0; }
+  .container-main .container-results {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 50px; }
+  .container-main .is-hidden {
+    display: none; }
+  .container-main .summary-table th, .container-main .summary-table td {
+    width: 250px;
+    min-width: 120px;
+    padding: 15px; }
+  .container-main .summary-table tr:nth-child(2) th,
+  .container-main .summary-table tr:nth-child(3) th,
+  .container-main .summary-table tr:nth-child(4) th {
+    font-weight: normal; }
+  .container-main .summary-table tr:nth-child(1) td,
+  .container-main .summary-table tr:nth-child(5) td {
+    font-weight: bold; }
+  .container-main .summary-table td {
+    text-align: right; }
+  .container-main .summary-table tr:nth-child(1) {
+    border-top: 0.15rem solid black; }
+  .container-main .summary-table tr:nth-child(5) {
+    border-bottom: 0.15rem solid black; }
+  .container-main .main-table td {
+    width: 98px;
+    min-width: 90px; }
+  .container-main .main-table thead {
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
-  .main-table td {
-    position: relative;
-    padding-left: 50%;
-    width: 100%;
-    text-align: right;
-    padding: 15px; }
-  .main-table td:before, .main-table th:before {
-    position: absolute;
-    top: 15px;
-    left: 6px;
-    width: 45%; }
-  .main-table td:nth-of-type(1),
-  .main-table td:nth-of-type(8) {
-    font-weight: bold; }
-  .main-table td:before {
-    text-align: left; }
-  .main-table td:nth-of-type(1):before {
-    content: "Gross"; }
-  .main-table td:nth-of-type(2):before {
-    content: "Pension"; }
-  .main-table td:nth-of-type(3):before {
-    content: "Disability"; }
-  .main-table td:nth-of-type(4):before {
-    content: "Sickness"; }
-  .main-table td:nth-of-type(5):before {
-    content: "Health"; }
-  .main-table td:nth-of-type(6):before {
-    content: "Tax base"; }
-  .main-table td:nth-of-type(7):before {
-    content: "Tax"; }
-  .main-table td:nth-of-type(8):before {
-    content: "Net salary"; } }
+    .container-main .main-table thead tr:nth-child(2n+1) {
+      border-bottom: 0.05rem solid #d0d0d0; }
+    .container-main .main-table thead tr th {
+      border-right: 0.05rem solid #d0d0d0; }
+    .container-main .main-table thead tr th:nth-child(6) {
+      border-right: 0rem; }
+  .container-main .main-table tbody th, .container-main .main-table tbody td {
+    border-bottom: 0.05rem solid #d0d0d0; }
+  .container-main .main-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; }
+  .container-main .main-table tbody tr:nth-child(even) {
+    background: #f7f7f7; }
+  .container-main .main-table tbody tr td:nth-child(7n+2) {
+    background: #e0e0e0; }
+  .container-main .main-table tfoot {
+    border-top: 0.15rem solid black;
+    border-bottom: 0.15rem solid black; }
+    .container-main .main-table tfoot tr td:nth-child(7n+2) {
+      background: #e0e0e0; }
+  @media only screen and (min-width: 900px) {
+    .container-main .main-table {
+      font-size: 16px; }
+      .container-main .main-table tbody tr:hover td, .container-main .main-table tbody tr:hover {
+        background-color: #adadad; } }
+  @media only screen and (max-width: 900px) {
+    .container-main .mobile-option {
+      display: none; } }
+  @media only screen and (max-width: 500px) {
+    .container-main .salary-form {
+      width: 100%; }
+    .container-main .main-table, .container-main .main-table thead, .container-main .main-table tbody, .container-main .main-table tfoot, .container-main .main-table th, .container-main .main-table td, .container-main .main-table tr {
+      display: block; }
+    .container-main .main-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px; }
+    .container-main .main-table thead, .container-main .main-table tfoot {
+      border-top: 0;
+      border-bottom: 0; }
+    .container-main .main-table tbody th, .container-main .main-table tfoot th {
+      border-bottom: 0.15rem solid black;
+      padding: 15px;
+      text-align: center; }
+    .container-main .main-table tfoot td {
+      border-bottom: 0.05rem solid #d0d0d0;
+      font-weight: normal; }
+      .container-main .main-table tfoot td:nth-of-type(1), .container-main .main-table tfoot td:nth-of-type(8) {
+        font-weight: bold; }
+    .container-main .main-table tr {
+      padding: 0;
+      margin-bottom: 10px;
+      border-top: 0.15rem solid black;
+      border-bottom: 0.15rem solid black; }
+    .container-main .main-table td {
+      position: relative;
+      padding-left: 50%;
+      width: 100%;
+      text-align: right;
+      padding: 15px; }
+    .container-main .main-table td:before, .container-main .main-table th:before {
+      position: absolute;
+      top: 15px;
+      left: 6px;
+      width: 45%; }
+    .container-main .main-table td:nth-of-type(1),
+    .container-main .main-table td:nth-of-type(8) {
+      font-weight: bold; }
+    .container-main .main-table td:before {
+      text-align: left; }
+    .container-main .main-table td:nth-of-type(1):before {
+      content: "Gross"; }
+    .container-main .main-table td:nth-of-type(2):before {
+      content: "Pension"; }
+    .container-main .main-table td:nth-of-type(3):before {
+      content: "Disability"; }
+    .container-main .main-table td:nth-of-type(4):before {
+      content: "Sickness"; }
+    .container-main .main-table td:nth-of-type(5):before {
+      content: "Health"; }
+    .container-main .main-table td:nth-of-type(6):before {
+      content: "Tax base"; }
+    .container-main .main-table td:nth-of-type(7):before {
+      content: "Tax"; }
+    .container-main .main-table td:nth-of-type(8):before {
+      content: "Net salary"; } }
 
 /*# sourceMappingURL=style.css.map */
