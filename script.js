@@ -282,7 +282,9 @@ var calculate = function() {
   populateMainTable(calculator);
 
   /* Display the table */
-  if(TABLECONTAINER.style.display === '') TABLECONTAINER.style.display = 'block';
+  if(TABLECONTAINER.classList.contains('is-hidden')) {
+    TABLECONTAINER.classList.remove('is-hidden');
+  }
 
   /* Scroll into table */
   if(window.innerWidth < 501){
