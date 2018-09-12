@@ -67,6 +67,11 @@ input::-webkit-inner-spin-button {
   box-shadow: none;
   font-size: 18px; }
 
+.calculate-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white; }
+
 /*       Tables
 ----------------------*/
 table {
