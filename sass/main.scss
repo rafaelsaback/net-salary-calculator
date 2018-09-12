@@ -49,10 +49,11 @@ legend {
   width: 100%;
   height: 50px;
   text-align: center;
-  font-size: 22px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
+  // !important statements are necessary to override the blog's style
+  font-size: 22px !important;
+  border-top: 0px !important;
+  border-left: 0px !important;
+  border-right: 0px !important;
 }
 
 .gross-salary-input:focus {
