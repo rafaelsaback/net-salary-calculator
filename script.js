@@ -1,9 +1,9 @@
 // const SALARYFORM = document.querySelector('fieldset');
-const SALARYINPUT = document.querySelector('#gross-salary-input');
-const NETSALARYBUTTON = document.querySelector('#calculate-button');
+const SALARYINPUT = document.querySelector('#input-gross-salary');
+const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
-const SUMMARYTABLE = document.querySelector('#summary-table');
-const MAINTABLE = document.querySelector('#main-table');
+const SUMMARYTABLE = document.querySelector('#table-summary');
+const MAINTABLE = document.querySelector('#table-main');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 const UOPRATES = {
   'pension': (9.76/100),

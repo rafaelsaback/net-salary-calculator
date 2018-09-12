@@ -14,7 +14,7 @@
     margin: auto;
     display: block;
   }
-  fieldset {
+  .container-form {
     max-width: 365px;
     min-width: 170px;
     border-radius: 0.5rem;
@@ -24,13 +24,7 @@
     font-size: 18px;
   }
 
-  // legend, button {
-  //   font-weight: bold;
-  //   margin: auto;
-  //   display: block;
-  // }
-
-  legend {
+  .legend {
     @extend %centralize-bold;
     height: 30px;
     background: $black;
@@ -40,18 +34,18 @@
     text-align: center;
   }
 
-  .gross-salary {
+  .container-input {
     margin-top: 0.5rem;
     margin-bottom: 2rem;
   }
 
-  .gross-salary-label {
+  .label {
     margin-bottom: 0.5rem;
     display: inline-block;
     font-weight: bold;
   }
 
-  .gross-salary-input {
+  .input {
     min-width: 90px;
     width: 100%;
     height: 50px;
@@ -61,23 +55,24 @@
     border-top: 0px !important;
     border-left: 0px !important;
     border-right: 0px !important;
+
+    &:focus {
+      outline: none;
+      border-color: $black;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+    }
+
+    // Hide the arrow that shows in .form-input
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+    }
   }
 
-  .gross-salary-input:focus {
-    outline: none;
-    border-color: $black;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    display: none;
-    -webkit-appearance: none;
-  }
-
-  .calculate-button {
+  .btn {
     @extend %centralize-bold;
     border-radius: 60px;
     border-color: $black;
@@ -88,30 +83,30 @@
     font-size: 18px;
   }
 
-  .calculate-button:hover {
+  .btn:hover {
     cursor: pointer;
     background-color: black;
     color: white;
   }
   /*       Tables
   ----------------------*/
-  table {
+  .table {
     border-collapse: collapse;  /* Show the borders */
     margin-bottom: 10px;
     margin: 20px auto 30px auto;
   }
 
-  table * {
+  .table * {
     padding: 8px 2px 8px 2px;
     font-family: sans-serif;
     border: none;
   }
 
-  tfoot {
+  .tfoot {
     font-weight: bold;
   }
 
-  tbody th {
+  .tbody th {
     text-align: left;
   }
 
@@ -119,7 +114,7 @@
     text-align: center;
   }
 
-  .gross-row, .net-row  {
+  .row-gross, .row-net  {
     background: $dark-gray;
   }
 
@@ -136,7 +131,7 @@
 
   /*    Summary Table
   ----------------------*/
-  .summary-table {
+  .table-summary {
     th, td {
       width: 250px;
       min-width: 120px;
@@ -169,7 +164,7 @@
 
   /*    Main Table
   ----------------------*/
-  .main-table {
+  .table-main {
 
     td {
       width: 98px;
@@ -225,7 +220,7 @@
   --------------------*/
 
   @media only screen and (min-width: 900px) {
-    .main-table {
+    .table-main {
       font-size: 16px;
       tbody tr{
         &:hover td, // Overwrite column background
@@ -248,7 +243,7 @@
       width:100%;
     }
 
-    .main-table {
+    .table-main {
 
       // Force table to not be like tables anymore
       &, thead, tbody, tfoot, th, td, tr {

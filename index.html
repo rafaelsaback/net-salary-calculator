@@ -12,26 +12,26 @@
   <!-- BEGIN OF WORDPRESS PAGE -->
   <div class="container-main">
 
-    <fieldset class="salary-form">
-      <legend> Umowa o prac&#x0229; </legend>
-      <div class="gross-salary">
-        <label class="gross-salary-label"> Enter a gross salary: </label> <br />
-        <input id="gross-salary-input" class="gross-salary-input" type="number" placeholder="0.00 PLN">
+    <fieldset class="container-form">
+      <legend class="legend"> Umowa o prac&#x0229; </legend>
+      <div class="container-input">
+        <label class="label"> Enter a gross salary: </label> <br />
+        <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
       </div>
       <div>
-        <button id="calculate-button" class="calculate-button" type="button"> Calculate </button>
+        <button id="btn-calculate" class="btn" type="button"> Calculate </button>
       </div>
     </fieldset>
 
     <div id="container-results" class="container-results is-hidden">
-      <table id="summary-table" class="summary-table">
-        <thead>
+      <table id="table-summary" class="table table-summary">
+        <thead class="thead">
           <tr>
             <th scope="column" colspan="2"> Summary </th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="gross-row">
+        <tbody class="tbody">
+          <tr class="row-gross">
             <th scope="row"> Gross </th>
             <td></td>
           </tr>
@@ -47,15 +47,15 @@
             <th scope="row"> Tax </th>
             <td></td>
           </tr>
-          <tr class="net-row">
+          <tr class="row-net">
             <th scope="row"> Net salary </th>
             <td></td>
           </tr>
         </tbody>
       </table>
 
-      <table id="main-table" class="main-table">
-        <thead>
+      <table id="table-main" class="table table-main">
+        <thead class="thead">
           <tr>
             <th scope="col" rowspan="2"> Month </th>
             <th scope="col" rowspan="2"> Gross </th>
@@ -71,7 +71,7 @@
             <th scope="col"> Health </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody">
           <tr>
             <th scope="row"> January </th>
             <td></td>
@@ -205,7 +205,7 @@
             <td></td>
           </tr>
         </tbody>
-        <tfoot>
+        <tfoot class="tfoot">
           <tr>
             <th scope="row"> Total </th>
             <td></td>
