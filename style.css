@@ -13,6 +13,10 @@
   --------------------*/ }
   .container-main *, .container-main *:before, .container-main *:after {
     box-sizing: border-box; }
+  .container-main legend, .container-main .calculate-button {
+    font-weight: bold;
+    margin: auto;
+    display: block; }
   .container-main fieldset {
     max-width: 365px;
     min-width: 170px;
@@ -21,10 +25,6 @@
     padding: 1rem;
     margin: 20px auto 20px auto;
     font-size: 18px; }
-  .container-main legend, .container-main button {
-    font-weight: bold;
-    margin: auto;
-    display: block; }
   .container-main legend {
     height: 30px;
     background: black;

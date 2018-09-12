@@ -9,6 +9,11 @@
 
   /*    Input Form
   ----------------------*/
+  %centralize-bold {
+    font-weight: bold;
+    margin: auto;
+    display: block;
+  }
   fieldset {
     max-width: 365px;
     min-width: 170px;
@@ -19,13 +24,14 @@
     font-size: 18px;
   }
 
-  legend, button {
-    font-weight: bold;
-    margin: auto;
-    display: block;
-  }
+  // legend, button {
+  //   font-weight: bold;
+  //   margin: auto;
+  //   display: block;
+  // }
 
   legend {
+    @extend %centralize-bold;
     height: 30px;
     background: $black;
     color: $white-background;
@@ -72,6 +78,7 @@
   }
 
   .calculate-button {
+    @extend %centralize-bold;
     border-radius: 60px;
     border-color: $black;
     background-color: $white-background;
