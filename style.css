@@ -142,7 +142,7 @@
       .container-main .table-main tbody tr:hover td, .container-main .table-main tbody tr:hover {
         background-color: #adadad; } }
   @media only screen and (max-width: 900px) {
-    .container-main .mobile-option {
+    .container-main .hide-on-tablet {
       display: none; } }
   @media only screen and (max-width: 500px) {
     .container-main .salary-form {
