@@ -1,14 +1,6 @@
+/*    Global
+----------------------*/
 .container-main {
-  /*    Global
-  ----------------------*/
-  /*    Input Form
-  ----------------------*/
-  /*       Tables
-  ----------------------*/
-  /*    Summary Table
-  ----------------------*/
-  /*    Main Table
-  ----------------------*/
   /* RESPONSIVENESS
   --------------------*/ }
   .container-main *, .container-main *:before, .container-main *:after {
@@ -19,7 +11,7 @@
     display: block; }
   .container-main .container-form {
     max-width: 365px;
-    min-width: 170px;
+    min-width: 270px;
     border-radius: 0.5rem;
     border-color: black;
     padding: 1rem;
@@ -114,57 +106,40 @@
   .container-main .table-main td {
     width: 98px;
     min-width: 90px; }
-  .container-main .table-main thead {
+  .container-main .main-thead {
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
-    .container-main .table-main thead tr:nth-child(2n+1) {
+    .container-main .main-thead tr:nth-child(1) {
       border-bottom: 0.05rem solid #d0d0d0; }
-    .container-main .table-main thead tr th {
+    .container-main .main-thead tr th {
       border-right: 0.05rem solid #d0d0d0; }
-    .container-main .table-main thead tr th:nth-child(6) {
+    .container-main .main-thead tr th:last-child {
       border-right: 0rem; }
-  .container-main .table-main tbody th, .container-main .table-main tbody td {
+  .container-main .main-tbody th, .container-main .main-tbody td {
     border-bottom: 0.05rem solid #d0d0d0; }
-  .container-main .table-main tbody tr:nth-child(odd) {
+  .container-main .main-tbody tr:nth-child(odd) {
     background-color: #ffffff; }
-  .container-main .table-main tbody tr:nth-child(even) {
+  .container-main .main-tbody tr:nth-child(even) {
     background: #f7f7f7; }
-  .container-main .table-main tbody tr td:nth-child(7n+2) {
+  .container-main .main-tbody tr td:nth-child(7n+2) {
     background: #e0e0e0; }
-  .container-main .table-main tfoot {
+  .container-main .main-tbody tr:hover td,
+  .container-main .main-tbody tr:hover {
+    background-color: #adadad; }
+  .container-main .main-tfoot {
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
-    .container-main .table-main tfoot tr td:nth-child(7n+2) {
+    .container-main .main-tfoot tr td:nth-child(7n+2) {
       background: #e0e0e0; }
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 500px) {
     .container-main .table-main {
-      font-size: 16px; }
-      .container-main .table-main tbody tr:hover td, .container-main .table-main tbody tr:hover {
-        background-color: #adadad; } }
+      font-size: 16px; } }
   @media only screen and (max-width: 900px) {
     .container-main .hide-on-tablet {
       display: none; } }
   @media only screen and (max-width: 500px) {
-    .container-main .salary-form {
-      width: 100%; }
     .container-main .table-main, .container-main .table-main thead, .container-main .table-main tbody, .container-main .table-main tfoot, .container-main .table-main th, .container-main .table-main td, .container-main .table-main tr {
       display: block; }
-    .container-main .table-main thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px; }
-    .container-main .table-main thead, .container-main .table-main tfoot {
-      border-top: 0;
-      border-bottom: 0; }
-    .container-main .table-main tbody th, .container-main .table-main tfoot th {
-      border-bottom: 0.15rem solid black;
-      padding: 15px;
-      text-align: center; }
-    .container-main .table-main tfoot td {
-      border-bottom: 0.05rem solid #d0d0d0;
-      font-weight: normal; }
-      .container-main .table-main tfoot td:nth-of-type(1), .container-main .table-main tfoot td:nth-of-type(8) {
-        font-weight: bold; }
     .container-main .table-main tr {
       padding: 0;
       margin-bottom: 10px;
@@ -181,8 +156,8 @@
       top: 15px;
       left: 6px;
       width: 45%; }
-    .container-main .table-main td:nth-of-type(1),
-    .container-main .table-main td:nth-of-type(8) {
+    .container-main .table-main td:first-of-type,
+    .container-main .table-main td:last-child {
       font-weight: bold; }
     .container-main .table-main td:before {
       text-align: left; }
@@ -201,6 +176,23 @@
     .container-main .table-main td:nth-of-type(7):before {
       content: "Tax"; }
     .container-main .table-main td:nth-of-type(8):before {
-      content: "Net salary"; } }
+      content: "Net salary"; }
+    .container-main .main-thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px; }
+    .container-main .main-thead, .container-main .main-tfoot {
+      border-top: 0;
+      border-bottom: 0; }
+    .container-main .main-tbody th, .container-main .main-tfoot th {
+      border-bottom: 0.15rem solid black;
+      padding: 15px;
+      text-align: center; }
+    .container-main .main-tfoot {
+      border-bottom: 0.05rem solid #d0d0d0;
+      font-weight: normal; }
+      .container-main .main-tfoot td:first-of-type,
+      .container-main .main-tfoot td:last-child {
+        font-weight: bold; } }
 
 /*# sourceMappingURL=style.css.map */

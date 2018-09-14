@@ -1,0 +1,159 @@
+.table-main td {
+  width: 98px;
+  min-width: 90px;
+}
+
+.main-thead{
+  // Thick borders
+  border-top: $thick-dark-border;
+  border-bottom: $thick-dark-border;
+
+  // Thin horizontal border
+  tr:nth-child(1) {
+    border-bottom: $thin-light-border;
+  }
+
+  // Right borders
+  tr th {
+    border-right: $thin-light-border;
+  }
+
+  // Remove last right border
+  tr th:last-child {
+    border-right: 0rem;
+  }
+}
+
+.main-tbody {
+
+  // Thin borders
+  th, td {
+    border-bottom: $thin-light-border;
+  }
+
+  // Background colors
+  tr {
+    &:nth-child(odd) {
+      background-color: $white-background;
+    }
+
+    &:nth-child(even) {
+      background: $very-light-gray;
+    }
+
+    & td:nth-child(7n+2){
+      background: $dark-gray;
+    }
+  }
+
+  tr:hover td, // Overwrite column background
+  tr:hover { // Overwrite month background (th)
+    background-color: darken($dark-gray, 20);
+  }
+}
+.main-tfoot {
+  border-top: $thick-dark-border;
+  border-bottom: $thick-dark-border;
+  tr td:nth-child(7n+2) {
+    background: $dark-gray;
+  }
+}
+
+/* RESPONSIVENESS
+--------------------*/
+
+@media only screen and (min-width: 500px) {
+  .table-main {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .table-main {
+    // Force table to not be like tables anymore
+    &, thead, tbody, tfoot, th, td, tr {
+      display: block;
+    }
+
+    tr {
+      padding: 0;
+      margin-bottom: 10px;
+      border-top: $thick-dark-border;
+      border-bottom: $thick-dark-border;
+    }
+
+    td {
+      // Behave  like a "row"
+      position: relative;
+      padding-left: 50%;
+      width: 100%;
+      text-align: right;
+      padding: 15px;
+    }
+
+    // Format the new "headers"
+    td:before, th:before   {
+      // Now like a table header
+      position: absolute;
+      // Top/left values mimic padding
+      top: 15px;
+      left: 6px;
+      width: 45%;
+    }
+
+    // Make gross and net values as bold
+    td:first-of-type,
+    td:last-child {
+      font-weight: bold;
+    }
+
+    td:before {
+      text-align: left;
+    }
+
+    // Label the new headers
+    td:nth-of-type(1):before { content: "Gross"; }
+    td:nth-of-type(2):before { content: "Pension"; }
+    td:nth-of-type(3):before { content: "Disability"; }
+    td:nth-of-type(4):before { content: "Sickness"; }
+    td:nth-of-type(5):before { content: "Health"; }
+    td:nth-of-type(6):before { content: "Tax base"; }
+    td:nth-of-type(7):before { content: "Tax"; }
+    td:nth-of-type(8):before { content: "Net salary"; }
+  }
+
+  // Hide table headers (but not display: none;, for accessibility)
+  .main-thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  // Remove head's and foot's thick borders
+  .main-thead, .main-tfoot {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .main-tbody th, .main-tfoot th {
+    border-bottom: $thick-dark-border;
+    padding: 15px;
+    text-align: center;
+  }
+  // Remove bold from the table of totals
+  .main-tfoot  {
+    border-bottom: $thin-light-border;
+    font-weight: normal;
+    td:first-of-type,
+    td:last-child {
+      font-weight: bold;
+    }
+  }
+}
