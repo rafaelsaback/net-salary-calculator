@@ -59,9 +59,8 @@
   }
 }
 
-/* RESPONSIVENESS
---------------------*/
-
+// RESPONSIVENESS
+//---------------------
 @media only screen and (min-width: 500px) {
   .table-main {
     font-size: 16px;
@@ -87,6 +86,10 @@
       margin-bottom: 10px;
       border-top: $thick-dark-border;
       border-bottom: $thick-dark-border;
+    }
+
+    tr:nth-child(n){
+      background: white;
     }
 
     td {
