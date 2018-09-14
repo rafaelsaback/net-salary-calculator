@@ -63,7 +63,7 @@
   border-collapse: collapse;
   /* Show the borders */
   margin-bottom: 10px;
-  margin: 20px auto 30px auto; }
+  margin: 20px auto 20px auto; }
 .container-main .table * {
   padding: 8px 2px 8px 2px;
   font-family: sans-serif;
@@ -139,9 +139,11 @@
     display: block; }
   .container-main .table-main tr {
     padding: 0;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
+  .container-main .table-main tr:first-of-type {
+    margin-top: 60px; }
   .container-main .table-main tr:nth-child(n) {
     background: white; }
   .container-main .table-main td {
@@ -180,18 +182,20 @@
     position: absolute;
     top: -9999px;
     left: -9999px; }
-  .container-main .main-thead, .container-main .main-tfoot {
+  .container-main .main-thead, .container-main .main-tbody, .container-main .main-tfoot {
     border-top: 0;
-    border-bottom: 0; }
+    border-bottom: 0;
+    padding: 0; }
   .container-main .main-tbody th, .container-main .main-tfoot th {
     border-bottom: 0.15rem solid black;
     padding: 15px;
     text-align: center; }
   .container-main .main-tfoot {
-    border-bottom: 0.05rem solid #d0d0d0;
     font-weight: normal; }
     .container-main .main-tfoot td:first-of-type,
     .container-main .main-tfoot td:last-child {
-      font-weight: bold; } }
+      font-weight: bold; }
+    .container-main .main-tfoot td {
+      border-bottom: 0.05rem solid #d0d0d0; } }
 
 /*# sourceMappingURL=style.css.map */

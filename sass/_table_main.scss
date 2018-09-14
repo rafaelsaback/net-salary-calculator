@@ -83,9 +83,13 @@
 
     tr {
       padding: 0;
-      margin-bottom: 10px;
+      margin-bottom: 60px;
       border-top: $thick-dark-border;
       border-bottom: $thick-dark-border;
+    }
+
+    tr:first-of-type {
+      margin-top: 60px;
     }
 
     tr:nth-child(n){
@@ -140,10 +144,12 @@
   }
 
   // Remove head's and foot's thick borders
-  .main-thead, .main-tfoot {
+  .main-thead, .main-tbody, .main-tfoot {
     border-top: 0;
     border-bottom: 0;
+    padding: 0;
   }
+
 
   .main-tbody th, .main-tfoot th {
     border-bottom: $thick-dark-border;
@@ -152,11 +158,13 @@
   }
   // Remove bold from the table of totals
   .main-tfoot  {
-    border-bottom: $thin-light-border;
     font-weight: normal;
     td:first-of-type,
     td:last-child {
       font-weight: bold;
+    }
+    td {
+      border-bottom: $thin-light-border;
     }
   }
 }
