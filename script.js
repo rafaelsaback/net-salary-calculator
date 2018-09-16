@@ -1,4 +1,3 @@
-// const SALARYFORM = document.querySelector('fieldset');
 const SALARYINPUT = document.querySelector('#input-gross-salary');
 const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
