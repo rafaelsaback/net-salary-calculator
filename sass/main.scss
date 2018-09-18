@@ -7,8 +7,9 @@
     box-sizing: border-box;
   }
 
-  @import 'input_form.scss';
-  @import 'tables';
-  @import 'table_summary';
-  @import 'table_main';
+  @import
+  'input_form.scss',
+  'tables',
+  'table_summary',
+  'table_main';
 }

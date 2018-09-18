@@ -45,11 +45,6 @@
       background: $dark-gray;
     }
   }
-
-  tr:hover td, // Overwrite column background
-  tr:hover { // Overwrite month background (th)
-    background-color: darken($dark-gray, 20);
-  }
 }
 .main-tfoot {
   border-top: $thick-dark-border;
@@ -64,6 +59,10 @@
 @media only screen and (min-width: 500px) {
   .table-main {
     font-size: 16px;
+    tr:hover td, // Overwrite column background
+    tr:hover { // Overwrite month background (th)
+      background-color: darken($dark-gray, 20);
+    }
   }
 }
 

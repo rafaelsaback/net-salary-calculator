@@ -120,9 +120,6 @@
   background: #f7f7f7; }
 .container-main .main-tbody tr td:nth-child(7n+2) {
   background: #e0e0e0; }
-.container-main .main-tbody tr:hover td,
-.container-main .main-tbody tr:hover {
-  background-color: #adadad; }
 .container-main .main-tfoot {
   border-top: 0.15rem solid black;
   border-bottom: 0.15rem solid black; }
@@ -130,7 +127,10 @@
     background: #e0e0e0; }
 @media only screen and (min-width: 500px) {
   .container-main .table-main {
-    font-size: 16px; } }
+    font-size: 16px; }
+    .container-main .table-main tr:hover td,
+    .container-main .table-main tr:hover {
+      background-color: #adadad; } }
 @media only screen and (max-width: 900px) {
   .container-main .hide-on-tablet {
     display: none; } }
