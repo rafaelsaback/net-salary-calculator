@@ -1,4 +1,7 @@
+
 .table-summary {
+  min-width: 280px;
+
   %standard-padding {
     padding: 15px 10px;
   }
@@ -6,13 +9,13 @@
   td {
     @extend %standard-padding;
     width: 150px;
-    min-width: 110px;
+    min-width: 130px;
   }
 
   th {
     @extend %standard-padding;
     width: 220px;
-    min-width: 180px;
+    min-width: 150px;
   }
 
   tr:nth-child(2) th,
