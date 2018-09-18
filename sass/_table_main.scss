@@ -60,6 +60,8 @@
 @media only screen and (min-width: 500px) {
   .table-main {
     font-size: 16px;
+  }
+  .main-tbody {
     tr:hover td, // Overwrite column background
     tr:hover { // Overwrite month background (th)
       background-color: darken($dark-gray, 20);
