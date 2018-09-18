@@ -41,3 +41,18 @@
     border-bottom: $thick-dark-border;
   }
 }
+
+
+@media only screen and (min-width: 1150px) {
+  .container-summary {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .table-summary {
+    width: 100%;
+    margin: 60px auto 60px auto;
+  }
+}

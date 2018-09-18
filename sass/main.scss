@@ -1,11 +1,10 @@
 @import 'variables';
 
-/*    Global
-----------------------*/
 .container-main {
   *, *:before, *:after {
     box-sizing: border-box;
   }
+
 
   @import
   'input_form.scss',
