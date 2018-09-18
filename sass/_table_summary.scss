@@ -1,8 +1,18 @@
 .table-summary {
-  th, td {
-    width: 250px;
-    min-width: 120px;
+  %standard-padding {
     padding: 15px;
+  }
+
+  td {
+    @extend %standard-padding;
+    width: 150px;
+    min-width: 110px;
+  }
+
+  th {
+    @extend %standard-padding;
+    width: 220px;
+    min-width: 180px;
   }
 
   tr:nth-child(2) th,

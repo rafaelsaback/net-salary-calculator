@@ -1,7 +1,8 @@
 const SALARYINPUT = document.querySelector('#input-gross-salary');
 const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
-const SUMMARYTABLE = document.querySelector('#table-summary');
+const SUMMARYTABLE = document.querySelector('#table-summary-1st-month');
+const SUMMARYTABLE12MONTH = document.querySelector('#table-summary-12-month');
 const MAINTABLE = document.querySelector('#table-main');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 const UOPRATES = {
@@ -43,6 +44,7 @@ class AnnualValues {
     this.pension = 0;
     this.disability = 0;
     this.sickness = 0;
+    this.socialSecurity = 0;
     this.healthContribution = 0;
     this.taxBase = 0;
     this.tax = 0;
@@ -219,6 +221,13 @@ function populateSummaryTable(calculator){
   body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0]);
   body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0]);
   body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
+
+  body = SUMMARYTABLE12MONTH.tBodies[0];
+  body.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12);
+  body.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12);
+  body.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12);
+  body.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12);
+  body.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
 }
 
 function populateMainTable(calculator){
