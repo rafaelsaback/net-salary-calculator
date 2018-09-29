@@ -11,8 +11,8 @@ const UOPRATES = {
   'sickness': (2.45/100),
   'healthContribution': (9/100),
   'healthDeductible': (7.75/100),
-  'taxLevel1': (18/100),
-  'taxLevel2': (32/100)
+  'taxRate1': (18/100),
+  'taxRate2': (32/100)
 };
 const UOPAUXVALUES = {
   'earningCost': 111.25,
@@ -82,72 +82,111 @@ function calcTotals(calculator) {
   return calculator;
 }
 
-var calcNetSalary = function(i, calculator) {
-  calculator.monthly.netSalary[i] = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i] -
-  calculator.monthly.healthContribution[i] - calculator.monthly.tax[i];
-  calculator.monthly.netSalary[i] = roundNumber(calculator.monthly.netSalary[i], 2);
+function calcNetSalary(calculator) {
+  let grossSalary = calculator.monthly.grossSalary;
+  let socialSecurity = calculator.monthly.socialSecurity;
+  let healthContribution = calculator.monthly.healthContribution;
+  let tax = calculator.monthly.tax;
+  netSalary = [];
+
+  netSalary = grossSalary.map((value, i) => {
+    let tempNetSalary = grossSalary[i] - socialSecurity[i] - healthContribution[i] - tax[i];
+    return (roundNumber(tempNetSalary,2));
+  })
+
+  calculator.monthly.netSalary = netSalary;
   return calculator;
 };
 
-var calcTax = function(i, calculator) {
-  let taxLevel1 = calculator.rates.taxLevel1;
-  let taxLevel2 = calculator.rates.taxLevel2;
+function calcTax(calculator) {
+  let taxRate1 = calculator.rates.taxRate1;
+  let taxRate2 = calculator.rates.taxRate2;
   let taxLimit = calculator.auxValues.taxLimit;
   let monthlyRelief = calculator.auxValues.monthlyRelief;
-  let taxBase = calculator.monthly.taxBase[i];
+  let tax = [];
 
-  /* The montly relief is only applied in case the tax taxLimit has not been exceed */
-  let tax = 0;
-  if(calculator.monthly.accTaxBase[i] < taxLimit){
-    tax = (taxBase * taxLevel1) - calculator.monthly.healthDeductible[i] - monthlyRelief;
-  } else {
-    tax = (taxBase * taxLevel2) - calculator.monthly.healthDeductible[i];
-  }
-  tax = Math.round(tax, 0);
+  tax = calculator.monthly.tax.map((value, i) => {
+    let taxBase = calculator.monthly.taxBase[i];
+    let tempTax = 0;
+    // The montly relief is only applied in case the tax taxLimit has not been exceeded
+    if(calculator.monthly.accTaxBase[i] < taxLimit){
+      tempTax = (taxBase * taxRate1) - calculator.monthly.healthDeductible[i] - monthlyRelief;
+    } else {
+      tempTax = (taxBase * taxRate2) - calculator.monthly.healthDeductible[i];
+    }
+    return Math.round(tempTax, 0);
+  });
 
-  calculator.monthly.tax[i] = tax;
+  calculator.monthly.tax = tax;
   return calculator;
 };
 
-var calcAccTaxBase = function(i, calculator) {
-  if(i < 11) {
-    calculator.monthly.accTaxBase[i + 1] = calculator.monthly.accTaxBase[i] + calculator.monthly.taxBase[i];
-  }
+function calcAccTaxBase(calculator) {
+  let taxBase = calculator.monthly.taxBase;
+  let accTaxBase = [];
+  taxBase.reduce((a, b, i) => { return accTaxBase[i] = a + b}, 0);
+  // Shift array by 1 element so it suits the tax logic (starting with 0)
+  accTaxBase.unshift(0);
+  accTaxBase.pop();
+  calculator.monthly.accTaxBase = accTaxBase;
   return calculator;
 };
 
-var calcTaxBase = function(i, calculator){
+function calcTaxBase(calculator){
   let earningCost = calculator.auxValues.earningCost;
-  let taxBase = 0;
-  taxBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i] - earningCost;
-  taxBase = roundNumber(taxBase, 0);
-  calculator.monthly.taxBase[i] = taxBase;
+  let grossSalary = calculator.monthly.grossSalary;
+  let socialSecurity = calculator.monthly.socialSecurity;
+  let taxBase = [];
+  taxBase = grossSalary.map((value, i) => {
+    let tempTaxBase =  grossSalary[i] - socialSecurity[i] - earningCost;
+    return roundNumber(tempTaxBase, 0);
+  });
+  calculator.monthly.taxBase = taxBase;
   return calculator;
 };
 
-var calcHealthDeductible = function(i, calculator) {
+function calcHealthDeductible(calculator) {
   let rateHealthDeductible = calculator.rates.healthDeductible;
-  let healthBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i];
-  calculator.monthly.healthDeductible[i] = healthBase * rateHealthDeductible;
+  let grossSalary = calculator.monthly.grossSalary;
+  let socialSecurity = calculator.monthly.socialSecurity;
+  let healthDeductible = [];
+  healthDeductible = calculator.monthly.healthDeductible.map((value, i) => {
+    let healthBase = grossSalary[i] - socialSecurity[i];
+    return (healthBase * rateHealthDeductible);
+  })
+  calculator.monthly.healthDeductible = healthDeductible;
   return calculator;
 };
 
-var calcHealthContribution = function(i, calculator) {
+function calcHealthContribution(calculator) {
   let rateHealthContribution = calculator.rates.healthContribution;
-  let healthBase = calculator.monthly.grossSalary[i] - calculator.monthly.socialSecurity[i];
-  calculator.monthly.healthContribution[i] = calcContribution(healthBase, rateHealthContribution);
+  let grossSalary = calculator.monthly.grossSalary;
+  let socialSecurity = calculator.monthly.socialSecurity;
+  let healthContribution = [];
+  healthContribution = calculator.monthly.healthContribution.map((value, i) => {
+    let healthBase = grossSalary[i] - socialSecurity[i];
+    return calcContribution(healthBase, rateHealthContribution);
+  })
+  calculator.monthly.healthContribution = healthContribution;
   return calculator;
 };
 
-var calcSocialSecurity = function(i, calculator) {
-  calculator.monthly.socialSecurity[i] = calculator.monthly.pension[i] + calculator.monthly.disability[i] + calculator.monthly.sickness[i];
+function calcSocialSecurity(calculator) {
+  let pension = calculator.monthly.pension;
+  let disability = calculator.monthly.disability;
+  let sickness = calculator.monthly.sickness;
+  let socialSecurity = [];
+  socialSecurity = calculator.monthly.socialSecurity.map((value, i) => {return pension[i] + disability[i] + sickness[i]});
+  calculator.monthly.socialSecurity = socialSecurity;
   return calculator;
 };
 
-var calcSickness = function(i, calculator) {
-  let grossSalary = calculator.monthly.grossSalary[i];
+function calcSickness(calculator) {
+  let grossSalary = calculator.monthly.grossSalary[0];
   let sicknessRate = calculator.rates.sickness;
-  calculator.monthly.sickness[i] = calcContribution(grossSalary, sicknessRate);
+  let sickness = [];
+  sickness = calculator.monthly.sickness.map((value, i) => {return calcContribution(grossSalary, sicknessRate)});
+  calculator.monthly.sickness = sickness;
   return calculator;
 };
 
@@ -166,45 +205,46 @@ function calcPensionDisability(i, calculator, rate) {
   return value;
 }
 
-var calcDisability = function(i, calculator) {
+function calcDisability(calculator) {
   let disabilityRate = calculator.rates.disability;
-  calculator.monthly.disability[i] = calcPensionDisability(i, calculator, disabilityRate);
+  let disability = [];
+  disability = calculator.monthly.disability.map((value, i) => {return calcPensionDisability(i, calculator, disabilityRate)});
+  calculator.monthly.disability = disability;
   return calculator;
 };
 
-var calcPension = function(i, calculator) {
+function calcPension(calculator) {
   let pensionRate = calculator.rates.pension;
-  calculator.monthly.pension[i] = calcPensionDisability(i, calculator, pensionRate);
+  let pension = [];
+  pension = calculator.monthly.pension.map((value, i) => {return calcPensionDisability(i, calculator, pensionRate)});
+  calculator.monthly.pension = pension;
   return calculator;
 };
 
-var calcAccGrossSalary = function(i, calculator){
-  if(i < 11) {
-    calculator.monthly.accGrossSalary[i + 1] = calculator.monthly.accGrossSalary[i] + calculator.monthly.grossSalary[i];
-  }
+function calcAccGrossSalary(calculator){
+  let grossSalary = calculator.monthly.grossSalary;
+  let accGrossSalary = [];
+  grossSalary.reduce((a, b, i) => { return accGrossSalary[i] = a + b}, 0);
+  // Shift array by 1 element so it suits the tax logic (starting with 0)
+  accGrossSalary.unshift(0);
+  accGrossSalary.pop();
+  calculator.monthly.accGrossSalary = accGrossSalary;
   return calculator;
 };
-
-function for0To11(calculator, func){
-  for(let i = 0; i < 12; i++) {
-    calculator = func(i, calculator);
-  }
-  return calculator;
-}
 
 function calcSalary(grossSalary) {
   let calculator = new SalaryCalculator(grossSalary);
-  calculator = for0To11(calculator, calcAccGrossSalary);
-  calculator = for0To11(calculator, calcPension);
-  calculator = for0To11(calculator, calcDisability);
-  calculator = for0To11(calculator, calcSickness);
-  calculator = for0To11(calculator, calcSocialSecurity);
-  calculator = for0To11(calculator, calcHealthContribution);
-  calculator = for0To11(calculator, calcHealthDeductible);
-  calculator = for0To11(calculator, calcTaxBase);
-  calculator = for0To11(calculator, calcAccTaxBase);
-  calculator = for0To11(calculator, calcTax);
-  calculator = for0To11(calculator, calcNetSalary);
+  calculator = calcAccGrossSalary(calculator);
+  calculator = calcPension(calculator);
+  calculator = calcDisability(calculator);
+  calculator = calcSickness(calculator);
+  calculator = calcSocialSecurity(calculator);
+  calculator = calcHealthContribution(calculator);
+  calculator = calcHealthDeductible(calculator);
+  calculator = calcTaxBase(calculator);
+  calculator = calcAccTaxBase(calculator);
+  calculator = calcTax(calculator);
+  calculator = calcNetSalary(calculator);
   calculator = calcTotals(calculator);
   return calculator;
 }
