@@ -1,5 +1,9 @@
+const radioMonthly = document.querySelector('#monthly');
 const radioAnnually = document.querySelector('#annually');
 const buttonUOP = document.querySelector('#btn-uop');
+const inputInsurance = document.querySelector('#insurance');
+const inputPvtInsurance = document.querySelector('#pvt-insurance');
+const inputOthers = document.querySelector('#others');
 const SALARYINPUT = document.querySelector('#input-gross-salary');
 const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
@@ -7,6 +11,9 @@ const SUMMARYTABLE = document.querySelector('#table-summary-1st-month');
 const SUMMARYTABLE12MONTH = document.querySelector('#table-summary-12-month');
 const MAINTABLE = document.querySelector('#table-main');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+const defaultInsurance = 504.66;
+const defaultPvtInsurance = 100.00;
+const defaultOthers = 0.00;
 const UOPRATES = {
   'pension': (9.76/100),
   'disability': (1.5/100),
@@ -273,6 +280,18 @@ function selectContract(evt, contractType) {
     evt.currentTarget.className += " active";
 }
 
+var clickMonthly = function() {
+  inputInsurance.placeholder = "default: " + formatNumber(defaultInsurance) + " PLN";
+  inputPvtInsurance.placeholder = "default: " + formatNumber(defaultPvtInsurance) + " PLN";
+  inputOthers.placeholder = "default: " + formatNumber(defaultOthers) + " PLN";
+}
+
+var clickAnnually = function() {
+  inputInsurance.placeholder = "default: " + formatNumber(12*defaultInsurance) + " PLN";
+  inputPvtInsurance.placeholder = "default: " + formatNumber(12*defaultPvtInsurance) + " PLN";
+  inputOthers.placeholder = "default: " + formatNumber(12*defaultOthers) + " PLN";
+}
+
 /* It sets the format to two decimals and uses space as thousand separator */
 function formatNumber(number){
   return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -390,5 +409,8 @@ var pressedKey = function(e){
 
 SALARYINPUT.focus();
 buttonUOP.click();
+NETSALARYBUTTON.addEventListener('click', calculate);
+radioMonthly.addEventListener('click', clickMonthly);
+radioAnnually.addEventListener('click', clickAnnually);
 NETSALARYBUTTON.addEventListener('click', calculate);
 SALARYINPUT.addEventListener('keydown', pressedKey);
