@@ -1,4 +1,5 @@
-const radioAnnually = document.querySelector('#annually')
+const radioAnnually = document.querySelector('#annually');
+const buttonUOP = document.querySelector('#btn-uop');
 const SALARYINPUT = document.querySelector('#input-gross-salary');
 const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
@@ -249,6 +250,29 @@ class SalaryCalculator{
   };
 } // End of class Salary Calculator
 
+function selectContract(evt, contractType) {
+    // Declare all variables
+    let i;
+    let tabs;
+    let tabLinks;
+
+    // Get all elements with class="tab-content" and hide them
+    tabs = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+    }
+
+    // Get all elements with class="tab-link" and remove the class "active"
+    tabLinks = document.getElementsByClassName("tab-link");
+    for (i = 0; i < tabLinks.length; i++) {
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(contractType).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 /* It sets the format to two decimals and uses space as thousand separator */
 function formatNumber(number){
   return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -365,5 +389,6 @@ var pressedKey = function(e){
 };
 
 SALARYINPUT.focus();
+buttonUOP.click();
 NETSALARYBUTTON.addEventListener('click', calculate);
 SALARYINPUT.addEventListener('keydown', pressedKey);
