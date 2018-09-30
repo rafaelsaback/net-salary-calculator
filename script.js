@@ -1,3 +1,4 @@
+const radioAnnually = document.querySelector('#annually')
 const SALARYINPUT = document.querySelector('#input-gross-salary');
 const NETSALARYBUTTON = document.querySelector('#btn-calculate');
 const TABLECONTAINER = document.querySelector('#container-results');
@@ -320,6 +321,8 @@ var calculate = function() {
   /* If the result is false, interrupt the code */
   grossSalary = checkValue(grossSalary);
   if(!grossSalary) return false;
+
+  if(radioAnnually.checked) grossSalary /= 12;
 
   /* Calculate net salary */
   let calculator = new SalaryCalculator(grossSalary);

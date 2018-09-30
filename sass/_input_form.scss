@@ -30,9 +30,13 @@
 }
 
 .label {
-  margin-bottom: 0.5rem;
   display: inline-block;
   font-weight: bold;
+}
+
+.container-radio {
+  margin: 0.5rem;
+  display: inline-block;
 }
 
 .input {
@@ -40,6 +44,7 @@
   width: 100%;
   height: 50px;
   text-align: center;
+  margin-top: 0.5rem;
   // !important statements are necessary to override the blog's style
   font-size: 22px !important;
   border-top: 0px !important;
