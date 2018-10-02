@@ -10,8 +10,6 @@ const TABLECONTAINER = document.querySelector('#container-results');
 const SUMMARYTABLE = document.querySelector('#table-summary-1st-month');
 const SUMMARYTABLE12MONTH = document.querySelector('#table-summary-12-month');
 const MAINTABLE = document.querySelector('#table-main');
-const UOP = Symbol('umowa o prace');
-const B2B = Symbol('b2b');
 const ISSAFARI = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 const defaultInsurance = 504.66;
 const defaultPvtInsurance = 100.00;
@@ -58,6 +56,14 @@ class BaseCalculator {
     this.annual.tax = 0;
     this.annual.netSalary = 0;
   }
+
+  calcHealthDeductible(healthContribution, rateDeductible, rateContribution) {
+    let healthDeductible = [];
+    healthDeductible = healthContribution.map((value, i) => {
+      return healthContribution[i] * (rateDeductible / rateContribution);
+    })
+    return healthDeductible;
+  };
 
   roundNumber(number, decimals){
     return (Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
@@ -179,17 +185,13 @@ class UOPCalculator extends BaseCalculator{
   };
 
   calcHealthDeductible(calculator) {
-    let rateHealthDeductible = calculator.rates.healthDeductible;
-    let grossSalary = calculator.monthly.grossSalary;
-    let socialSecurity = calculator.monthly.socialSecurity;
-    let healthDeductible = [];
-    healthDeductible = calculator.monthly.healthDeductible.map((value, i) => {
-      let healthBase = grossSalary[i] - socialSecurity[i];
-      return (healthBase * rateHealthDeductible);
-    })
+    let healthContribution = calculator.monthly.healthContribution;
+    let rateDeductible = calculator.rates.healthDeductible;
+    let rateContribution = calculator.rates.healthContribution;
+    let healthDeductible = super.calcHealthDeductible(healthContribution, rateDeductible, rateContribution);
     calculator.monthly.healthDeductible = healthDeductible;
     return calculator;
-  };
+  }
 
   calcTaxBase(calculator){
     let earningCost = calculator.auxValues.earningCost;
