@@ -56,22 +56,23 @@
             <label class="label"> Costs associated with running the business: </label> <br />
             <input id="costs" class="input" type="number" placeholder="0.00 PLN">
           </div>
+
         </div>
 
-          <label class="label"> Period: </label> <br />
-          <label id="monthly" class="container-radio"> Monthly
-            <input type="radio" name="period" value="monthly" checked>
-            <span class="label-radio" for="monthly"></span>
-          </label>
-          <label id="annually" class="container-radio"> Annually
-            <input type="radio" name="period" value="annually">
-            <span class="label-radio" for="annually"></span>
-          </label>
-          <div class="container-input">
-            <label class="label"> Enter a gross salary: </label> <br />
-            <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
-          </div>
+        <label class="label"> Period: </label> <br />
+        <label id="monthly" class="container-radio"> Monthly
+          <input type="radio" name="period" value="monthly" checked>
+          <span class="label-radio" for="monthly"></span>
+        </label>
+        <label id="annually" class="container-radio"> Annually
+          <input type="radio" name="period" value="annually">
+          <span class="label-radio" for="annually"></span>
+        </label>
+        <div class="container-input">
+          <label class="label"> Enter a gross salary: </label> <br />
+          <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
         </div>
+      </div>
       <div>
         <button id="btn-calculate" class="btn" type="button"> Calculate </button>
       </div>
@@ -80,66 +81,66 @@
     <div id="container-results" class="container-results is-hidden">
 
       <div class="container-summary">
-      <table id="table-summary-1st-month" class="table table-summary">
-        <thead class="thead">
-          <tr>
-            <th scope="column" colspan="2"> Summary - 1st Month </th>
-          </tr>
-        </thead>
-        <tbody class="tbody">
-          <tr class="row-gross">
-            <th scope="row"> Gross </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Social security </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Health </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Tax </th>
-            <td></td>
-          </tr>
-          <tr class="row-net">
-            <th scope="row"> Net salary </th>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+        <table id="table-summary-1st-month" class="table table-summary">
+          <thead class="thead">
+            <tr>
+              <th scope="column" colspan="2"> Summary - 1st Month </th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr class="row-gross">
+              <th scope="row"> Gross </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Social security </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Health </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Tax </th>
+              <td></td>
+            </tr>
+            <tr class="row-net">
+              <th scope="row"> Net salary </th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <table id="table-summary-12-month" class="table table-summary">
-        <thead class="thead">
-          <tr>
-            <th scope="column" colspan="2"> Summary - 12-month Average</th>
-          </tr>
-        </thead>
-        <tbody class="tbody">
-          <tr class="row-gross">
-            <th scope="row"> Gross </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Social security </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Health </th>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row"> Tax </th>
-            <td></td>
-          </tr>
-          <tr class="row-net">
-            <th scope="row"> Net salary </th>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <table id="table-summary-12-month" class="table table-summary">
+          <thead class="thead">
+            <tr>
+              <th scope="column" colspan="2"> Summary - 12-month Average</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr class="row-gross">
+              <th scope="row"> Gross </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Social security </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Health </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row"> Tax </th>
+              <td></td>
+            </tr>
+            <tr class="row-net">
+              <th scope="row"> Net salary </th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <table id="table-main" class="table table-main">
         <thead class="main-thead">
