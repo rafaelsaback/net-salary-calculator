@@ -1,7 +1,7 @@
 const radioMonthly = document.querySelector('#monthly');
 const radioAnnually = document.querySelector('#annually');
-const buttonUOP = document.querySelector('#btn-uop');
-const buttonB2B = document.querySelector('#btn-b2b');
+const buttonUOP = document.querySelector('#tab-btn-uop');
+const buttonB2B = document.querySelector('#tab-btn-b2b');
 const containerUOP = document.querySelector('#uop');
 const containerB2B = document.querySelector('#b2b');
 const inputCosts = document.querySelector('#costs');
@@ -298,14 +298,14 @@ function selectContract(contractType) {
   }
 
   // Get all elements with class='tab-link' and remove the class 'active'
-  tabLinks = document.getElementsByClassName('tab-link');
+  tabLinks = document.getElementsByClassName('tab-btn');
   for (i = 0; i < tabLinks.length; i++) {
     tabLinks[i].className = tabLinks[i].className.replace(' active', '');
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  document.getElementById(contractType).style.display = 'block';
-  document.getElementById(contractType).className += ' active';
+  document.getElementById('tab-' + contractType).style.display = 'block';
+  document.getElementById('tab-btn-' + contractType).className += ' active';
 }
 
 /* It sets the format to two decimals and uses space as thousand separator */
