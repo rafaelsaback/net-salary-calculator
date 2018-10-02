@@ -2,6 +2,8 @@ const radioMonthly = document.querySelector('#monthly');
 const radioAnnually = document.querySelector('#annually');
 const buttonUOP = document.querySelector('#btn-uop');
 const buttonB2B = document.querySelector('#btn-b2b');
+const containerUOP = document.querySelector('#uop');
+const containerB2B = document.querySelector('#b2b');
 const inputCosts = document.querySelector('#costs');
 const salaryInput = document.querySelector('#input-gross-salary');
 const netSalaryButton = document.querySelector('#btn-calculate');
@@ -13,6 +15,9 @@ const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(nav
 const defaultInsurance = 504.66;
 const defaultPvtInsurance = 100.00;
 const defaultOthers = 0.00;
+const noZUS = Symbol('No contributions in the first 6 months');
+const preferentialZUS = Symbol('Lower contributions in the first 2 years');
+const normalZUS = Symbol('Normal contribution');
 
 const ratesSocial = {
   'pension': (9.76/100),
@@ -271,18 +276,16 @@ class UOPCalculator extends BaseCalculator{
 } // End of class UOPCalculator
 
 class B2BCalculator extends BaseCalculator {
-  constructor(grossSalary, ratesSocial, ratesHealth, ratesTax){
+  constructor(netSalary, vat, zusContribution){
     super();
-    this.monthly.grossSalary.fill(grossSalary);
-    this.monthly.accTaxBase = new Array(12).fill(0);
+    this.monthly.netSalary.fill(netSalary);
     this.ratesSocial = ratesSocial;
     this.ratesHealth = ratesHealth;
     this.ratesTax = ratesTax;
-    this.calcSalary(grossSalary);
   }
 }
 
-function selectContract(evt, contractType) {
+function selectContract(contractType) {
   // Declare all variables
   let i;
   let tabs;
@@ -302,7 +305,7 @@ function selectContract(evt, contractType) {
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
   document.getElementById(contractType).style.display = 'block';
-  evt.currentTarget.className += ' active';
+  document.getElementById(contractType).className += ' active';
 }
 
 /* It sets the format to two decimals and uses space as thousand separator */
@@ -373,15 +376,23 @@ function checkValue(grossSalary){
 
 var calculate = function() {
   document.activeElement.blur();
-  let grossSalary = salaryInput.value;
+  let salary = salaryInput.value;
   /* If the result is false, interrupt the code */
-  grossSalary = checkValue(grossSalary);
-  if(!grossSalary) return false;
+  salary = checkValue(salary);
+  if(!salary) return false;
 
-  if(radioAnnually.checked) grossSalary /= 12;
+  if(radioAnnually.checked) salary /= 12;
 
   /* Calculate net salary */
-  let calculator = new UOPCalculator(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
+  let calculator = {};
+
+  if(containerUOP.classList.contains('active')) {
+    calculator = new UOPCalculator(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
+  } else if(containerB2B.classList.contains('active')) {
+    let vat = 0.23;
+    let zusContribution = preferentialZUS;
+    calculator = new B2BCalculator(salary, vat, zusContribution);
+  }
 
   /* Populate tables with the results */
   populateSummaryTable(calculator);
@@ -421,8 +432,8 @@ var pressedKey = function(e){
 };
 
 salaryInput.focus();
+buttonUOP.addEventListener('click', function() {selectContract('uop');});
+buttonB2B.addEventListener('click', function() {selectContract('b2b');});
 buttonUOP.click();
-buttonUOP.addEventListener('click', function() {selectContract(event, 'uop');});
-buttonB2B.addEventListener('click', function() {selectContract(event, 'b2b');});
 netSalaryButton.addEventListener('click', calculate);
 salaryInput.addEventListener('keydown', pressedKey);
