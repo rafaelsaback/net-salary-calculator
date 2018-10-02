@@ -25,9 +25,31 @@
           <h2 class="tab-title"> B2B Contract </h2>
 
           <div class="container-input">
+            <label class="label"> ZUS: </label> <br />
+            <label class="container-radio"> No ZUS - first 6 months
+              <input type="radio" name="zus" value="no-zus" checked>
+              <span class="label-radio"></span>
+            </label>
+            <label class="container-radio"> Lower ZUS contribution - through 2 years
+              <input type="radio" name="zus" value="lower-zus">
+              <span class="label-radio"></span>
+            </label>
+            <label class="container-radio"> Normal ZUS
+              <input type="radio" name="zus" value="normal-zus">
+              <span class="label-radio"></span>
+            </label>
           </div>
 
           <div class="container-input">
+            <label class="label"> Income tax: </label> <br />
+            <label class="container-radio"> 18% / 32%
+              <input type="radio" name="income-tax" value="progressive" checked>
+              <span class="label-radio"></span>
+            </label>
+            <label class="container-radio"> 19% (linear)
+              <input type="radio" name="income-tax" value="linear">
+              <span class="label-radio"></span>
+            </label>
           </div>
 
           <div class="container-input">
