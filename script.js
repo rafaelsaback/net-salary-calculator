@@ -412,6 +412,8 @@ var pressedKey = function(e){
 
 SALARYINPUT.focus();
 buttonUOP.click();
+buttonUOP.addEventListener('click', function() {selectContract(event, 'uop');});
+buttonB2B.addEventListener('click', function() {selectContract(event, 'b2b');});
 NETSALARYBUTTON.addEventListener('click', calculate);
 radioMonthly.addEventListener('click', clickMonthly);
 radioAnnually.addEventListener('click', clickAnnually);
