@@ -303,7 +303,9 @@ function selectContract(contractType) {
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  document.getElementById('tab-' + contractType).style.display = 'block';
+  if(contractType === 'b2b') {
+    document.getElementById('tab-b2b').style.display = 'block';
+  }
   document.getElementById('tab-btn-' + contractType).className += ' active';
 }
 
