@@ -2,7 +2,6 @@ const radioMonthly = document.querySelector('#monthly');
 const radioAnnually = document.querySelector('#annually');
 const buttonUOP = document.querySelector('#tab-btn-uop');
 const buttonB2B = document.querySelector('#tab-btn-b2b');
-const containerUOP = document.querySelector('#uop');
 const containerB2B = document.querySelector('#b2b');
 const inputCosts = document.querySelector('#costs');
 const salaryInput = document.querySelector('#input-gross-salary');
@@ -384,19 +383,14 @@ var calculate = function() {
   if(radioAnnually.checked) salary /= 12;
 
   /* Calculate net salary */
-  let calculator = {};
-
-  if(containerUOP.classList.contains('active')) {
-    calculator = new UOPCalculator(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
-  } else if(containerB2B.classList.contains('active')) {
-    let vat = 0.23;
-    let zusContribution = preferentialZUS;
-    calculator = new B2BCalculator(salary, vat, zusContribution);
-  }
+  let uopCalculator = new UOPCalculator(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
+  let vat = 0.23;
+  let zusContribution = preferentialZUS;
+  let b2bCalculator = new B2BCalculator(salary, vat, zusContribution);
 
   /* Populate tables with the results */
-  populateSummaryTable(calculator);
-  populateMainTable(calculator);
+  populateSummaryTable(uopCalculator);
+  populateMainTable(uopCalculator);
 
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
