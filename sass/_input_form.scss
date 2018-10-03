@@ -14,16 +14,6 @@
   font-size: 18px;
 }
 
-.legend {
-  @extend %centralize-bold;
-  height: 30px;
-  background: $black;
-  color: $white-background;
-  border-radius: 10px;
-  width: 70%;
-  text-align: center;
-}
-
 .container-input {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
