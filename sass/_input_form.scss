@@ -5,6 +5,7 @@
 }
 
 .container-form {
+  max-width: 700px;
   min-width: 270px;
   border-radius: 0.5rem;
   border-color: $black;
@@ -13,22 +14,14 @@
   font-size: 18px;
 }
 
-.container-input {
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.tab-title {
-  text-align: center;
-}
-
 .label {
   display: inline-block;
   font-weight: bold;
+  font-size: 22px;
 }
 
 .container-input {
-  margin: 1rem 0rem;
+  margin: 2rem 0rem;
 }
 
 .tab {
@@ -39,9 +32,9 @@
   background-color: white;
   border-color: black;
   display: inline-block;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
-  padding: 20px 20px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
@@ -53,13 +46,12 @@
   outline: none;
 }
 
-$corner: 50%;
 .tab-btn-uop {
-  border-radius: $corner 0 0 $corner;
+  border-radius: 60px 0 0 60px;
 }
 
 .tab-btn-b2b {
-  border-radius: 0 $corner $corner 0;
+  border-radius: 0 60px 60px 0;
 }
 
 /*
@@ -67,10 +59,11 @@ $corner: 50%;
 */
 
 .container-radio {
-  display: block;
+  display: inline;
   position: relative;
   padding-left: 35px;
   margin: 12px;
+  font-size: 22px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -120,12 +113,13 @@ $corner: 50%;
   background: white;
 }
 
+/* End Radio Button */
+
 .input {
-  min-width: 90px;
+  // min-width: 90px;
   width: 100%;
   height: 50px;
   text-align: center;
-  // margin-top: 0.5rem;
   // !important statements are necessary to override the blog's style
   font-size: 22px !important;
   border-top: 0px !important;
@@ -155,14 +149,49 @@ $corner: 50%;
   border-radius: 60px;
   border-color: $black;
   background-color: $white-background;
-  height: 40px;
-  width: 60%;
+  height: 50px;
+  width: 40%;
+  min-width: 200px;
   box-shadow: none;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .btn:hover {
   cursor: pointer;
   background-color: black;
   color: white;
+}
+
+.btn:active {
+  outline: none;
+}
+
+@media only screen and (min-width: 500px) {
+
+  .container-zus + .container-zus {
+    display: block;
+    margin-left: 68px;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .tab-btn {
+    display: block;
+    margin: 10px auto;
+    width: 225px;
+  }
+
+  .tab-btn-uop {
+    border-radius: 60px;
+  }
+
+  .tab-btn-b2b {
+    border-radius: 60px;
+  }
+
+  .container-radio {
+    display: block;
+  }
+
 }

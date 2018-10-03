@@ -19,10 +19,10 @@
       </div>
       <div class="container-input">
         <div class="container-input">
-          <label class="label"> Salary: </label> <br />
+          <label class="label"> Salary: </label>
           <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
         </div>
-        <label class="label"> Period: </label> <br />
+        <label class="label"> Period: </label>
         <label id="monthly" class="container-radio"> Monthly
           <input type="radio" name="period" value="monthly" checked>
           <span class="label-radio" for="monthly"></span>
@@ -34,51 +34,55 @@
         <div id="tab-b2b" class="tab-content">
 
           <div class="container-input">
-            <label class="label"> VAT: </label> <br />
-            <label class="container-radio"> 8%
-              <input type="radio" name="vat" value="eight" checked>
+            <label class="label"> VAT: </label>
+            <label class="container-radio"> 0%
+              <input type="radio" name="vat" value="zero">
               <span class="label-radio"></span>
             </label>
-            <label class="container-radio"> 12%
-              <input type="radio" name="vat" value="twelve">
+            <label class="container-radio"> 5%
+              <input type="radio" name="vat" value="five">
+              <span class="label-radio"></span>
+            </label>
+            <label class="container-radio"> 8%
+              <input type="radio" name="vat" value="eight">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 23%
-              <input type="radio" name="vat" value="twenty-three">
+              <input type="radio" name="vat" value="twenty-three" checked>
               <span class="label-radio"></span>
             </label>
           </div>
 
           <div class="container-input">
-            <label class="label"> Income tax: </label> <br />
+            <label class="label"> Income tax: </label>
             <label class="container-radio"> 18% / 32%
-              <input type="radio" name="income-tax" value="progressive" checked>
+              <input type="radio" name="income-tax" value="progressive">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 19% (linear)
-              <input type="radio" name="income-tax" value="linear">
+              <input type="radio" name="income-tax" value="linear" checked>
               <span class="label-radio"></span>
             </label>
           </div>
 
           <div class="container-input">
-            <label class="label"> ZUS: </label> <br />
-            <label class="container-radio"> No ZUS - first 6 months
-              <input type="radio" name="zus" value="no-zus" checked>
+            <label class="label"> ZUS: </label>
+            <label class="container-radio container-zus"> No ZUS - first 6 months
+              <input type="radio" name="zus" value="no-zus">
               <span class="label-radio"></span>
             </label>
-            <label class="container-radio"> Lower ZUS contribution - through 2 years
+            <label class="container-radio container-zus"> Discounted ZUS - next 2 years
               <input type="radio" name="zus" value="lower-zus">
               <span class="label-radio"></span>
             </label>
-            <label class="container-radio"> Normal ZUS
-              <input type="radio" name="zus" value="normal-zus">
+            <label class="container-radio container-zus"> Normal ZUS
+              <input type="radio" name="zus" value="normal-zus" checked>
               <span class="label-radio"></span>
             </label>
           </div>
 
           <div class="container-input">
-            <label class="label"> Sickness insurance: </label> <br />
+            <label class="label"> Sickness insurance: </label>
             <label class="container-radio"> Yes
               <input type="radio" name="sickness" value="yes" checked>
               <span class="label-radio"></span>
@@ -90,7 +94,7 @@
           </div>
 
           <div class="container-input">
-            <label class="label"> Costs associated with running the business: </label> <br />
+            <label class="label"> Costs associated with running the business: </label>
             <input id="costs" class="input" type="number" placeholder="0.00 PLN">
           </div>
 
