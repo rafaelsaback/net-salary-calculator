@@ -23,12 +23,12 @@
           <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
         </div>
         <label class="label"> Period: </label>
-        <label id="monthly" class="container-radio"> Monthly
-          <input type="radio" name="period" value="monthly" checked>
+        <label class="container-radio"> Monthly
+          <input id="monthly" type="radio" name="period" value="monthly" checked>
           <span class="label-radio" for="monthly"></span>
         </label>
-        <label id="annually" class="container-radio"> Annually
-          <input type="radio" name="period" value="annually">
+        <label class="container-radio"> Annually
+          <input id="annually" type="radio" name="period" value="annually">
           <span class="label-radio" for="annually"></span>
         </label>
         <div id="tab-b2b" class="tab-content">
@@ -36,19 +36,19 @@
           <div class="container-input">
             <label class="label"> VAT: </label>
             <label class="container-radio"> 0%
-              <input type="radio" name="vat" value="zero">
+              <input id='vat-0' type="radio" name="vat" value="zero">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 5%
-              <input type="radio" name="vat" value="five">
+              <input id='vat-5' type="radio" name="vat" value="five">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 8%
-              <input type="radio" name="vat" value="eight">
+              <input id='vat-8' type="radio" name="vat" value="eight">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 23%
-              <input type="radio" name="vat" value="twenty-three" checked>
+              <input id='vat-23' type="radio" name="vat" value="twenty-three" checked>
               <span class="label-radio"></span>
             </label>
           </div>
@@ -56,11 +56,11 @@
           <div class="container-input">
             <label class="label"> Income tax: </label>
             <label class="container-radio"> 18% / 32%
-              <input type="radio" name="income-tax" value="progressive">
+              <input id='tax-progressive' type="radio" name="income-tax" value="progressive">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> 19% (linear)
-              <input type="radio" name="income-tax" value="linear" checked>
+              <input id='tax-linear' type="radio" name="income-tax" value="linear" checked>
               <span class="label-radio"></span>
             </label>
           </div>
@@ -68,15 +68,15 @@
           <div class="container-input">
             <label class="label"> ZUS: </label>
             <label class="container-radio container-zus"> No ZUS - first 6 months
-              <input type="radio" name="zus" value="no-zus">
+              <input id="no-zus" type="radio" name="zus" value="no-zus">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio container-zus"> Discounted ZUS - next 2 years
-              <input type="radio" name="zus" value="lower-zus">
+              <input id="discounted-zus" type="radio" name="zus" value="lower-zus">
               <span class="label-radio"></span>
             </label>
             <label class="container-radio container-zus"> Normal ZUS
-              <input type="radio" name="zus" value="normal-zus" checked>
+              <input id="normal-zus" type="radio" name="zus" value="normal-zus" checked>
               <span class="label-radio"></span>
             </label>
           </div>
@@ -84,11 +84,11 @@
           <div class="container-input">
             <label class="label"> Sickness insurance: </label>
             <label class="container-radio"> Yes
-              <input type="radio" name="sickness" value="yes" checked>
+              <input id="sickness-yes" type="radio" name="sickness" value="yes" checked>
               <span class="label-radio"></span>
             </label>
             <label class="container-radio"> No
-              <input type="radio" name="sickness" value="no">
+              <input id="sickness-yes" type="radio" name="sickness" value="no">
               <span class="label-radio"></span>
             </label>
           </div>
