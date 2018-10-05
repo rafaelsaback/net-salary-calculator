@@ -450,27 +450,25 @@ function selectContract(calculator) {
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
   let contractString;
-  switch(calculator.contractType){
-    case contractType.UOP:
+  execBasedOnContract(calculator.contractType, function(){
     selectedContract = contractType.UOP;
     contractString = 'uop';
     formInputSalary.innerHTML = 'Gross salary';
-    break;
-    case contractType.B2B:
+  }, function() {
     document.getElementById('tab-b2b').style.display = 'block';
     selectedContract = contractType.B2B;
     contractString = 'b2b';
-    formInputSalary.innerHTML = 'Net salary (no VAT)';
-    document.getElementById('header-gross').innerHTML = 'Net salary <br> (no VAT)';
+    formInputSalary.innerHTML = 'Net salary (from invoice)';
+    document.getElementById('header-gross').innerHTML = 'Net salary <br> (from invoice)';
     document.getElementById('header-tax-base').innerHTML = 'Others';
     document.getElementById('header-net').innerHTML = 'Salary <br> in hand';
     let grossElements = document.getElementsByClassName('summary-header-gross');
     let netElements = document.getElementsByClassName('summary-header-net');
     for(let i = 0; i < grossElements.length; i++) {
-      grossElements[i].innerHTML = 'Net (no VAT)';
+      grossElements[i].innerHTML = 'Net (from invoice)';
       netElements[i].innerHTML = 'Salary in hand';
     }
-  }
+  });
   document.getElementById('tab-btn-' + contractString).className += ' active';
 
   if(isCalculated) {
@@ -487,20 +485,17 @@ function formatNumber(number){
 function populateSummaryTable(calculator){
   let body = summaryTable.tBodies[0];
   let body12 = summaryTable12Month.tBodies[0];
-  switch(calculator.contractType){
-    case contractType.UOP:
+  execBasedOnContract(calculator.contractType, function() {
     body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
     body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
     body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12);
     body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
-    break;
-    case contractType.B2B:
+  }, function() {
     body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
     body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0]);
     body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
     body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.salaryInHand/12);
-    break;
-  }
+  });
   body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0]);
   body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0]);
   body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0]);
@@ -515,20 +510,17 @@ function populateMainTable(calculator) {
   /* Format monthly values */
   for(let i = 0; i < body.rows.length; i++)
   {
-    switch(calculator.contractType) {
-      case contractType.UOP:
+    execBasedOnContract(calculator.contractType, function() {
       body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i]);
       body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i]);
       body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
-      break;
-      case contractType.B2B:
+    }, function() {
       body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
       body.rows[i].cells[6].innerHTML = formatNumber(
         (calculator.monthly.accident[i] + calculator.monthly.laborFund[i])
       );
       body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i]);
-      break;
-    }
+    });
     body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i]);
     body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i]);
     body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i]);
@@ -538,20 +530,17 @@ function populateMainTable(calculator) {
 
   /* Format total values */
   let foot = mainTable.tFoot;
-  switch(calculator.contractType) {
-    case contractType.UOP:
+  execBasedOnContract(calculator.contractType, function() {
     foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
     foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase);
     foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary);
-    break;
-    case contractType.B2B:
+  }, function() {
     foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary);
     foot.rows[0].cells[6].innerHTML = formatNumber(
       (calculator.annual.accident + calculator.annual.laborFund)
     );
     foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand);
-    break;
-  }
+  });
   foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension);
   foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability);
   foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness);
@@ -613,6 +602,21 @@ function getB2BOptions(b2bOptions) {
   return b2bOptions;
 }
 
+function displayValueOnTab(calculator) {
+
+}
+
+function execBasedOnContract(type, funcUOP, funcB2B) {
+  switch(type){
+    case contractType.UOP:
+    funcUOP();
+    break;
+    case contractType.B2B:
+    funcB2B();
+    break;
+  }
+}
+
 var calculate = function(selectedContract) {
   document.activeElement.blur();
   let salary = salaryInput.value;
@@ -629,16 +633,16 @@ var calculate = function(selectedContract) {
   b2bCalculator.calcSalary(salary, b2bOptions);
 
   /* Populate tables with the results */
-  switch(selectedContract){
-    case contractType.UOP:
-    populateSummaryTable(uopCalculator);
-    populateMainTable(uopCalculator);
-    break;
-    case contractType.B2B:
-    populateSummaryTable(b2bCalculator);
-    populateMainTable(b2bCalculator);
-    break;
-  }
+  execBasedOnContract(selectedContract,
+    function(){
+      populateSummaryTable(uopCalculator);
+      populateMainTable(uopCalculator);
+    },
+    function(){
+      populateSummaryTable(b2bCalculator);
+      populateMainTable(b2bCalculator);
+    }
+  );
 
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
