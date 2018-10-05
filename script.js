@@ -1,6 +1,8 @@
 const buttonUOP = document.querySelector('#tab-btn-uop');
 const buttonB2B = document.querySelector('#tab-btn-b2b');
-const containerB2B = document.querySelector('#b2b');
+const formInputSalary = document.querySelector('#form-input-salary');
+const btnB2BOptions = document.querySelector('#btn-b2b-options');
+const containerB2BOptions = document.querySelector('#b2b-options');
 const inputCosts = document.querySelector('#costs');
 const salaryInput = document.querySelector('#input-gross-salary');
 const radioAnnually = document.querySelector('#annually');
@@ -451,11 +453,13 @@ function selectContract(calculator) {
     case contractType.UOP:
     selectedContract = contractType.UOP;
     contractString = 'uop';
+    formInputSalary.innerHTML = 'Gross salary';
     break;
     case contractType.B2B:
     document.getElementById('tab-b2b').style.display = 'block';
     selectedContract = contractType.B2B;
     contractString = 'b2b';
+    formInputSalary.innerHTML = 'Net salary (no VAT)';
     document.getElementById('header-gross').innerHTML = 'Net salary <br> (no VAT)';
     document.getElementById('header-tax-base').innerHTML = 'Others';
     document.getElementById('header-net').innerHTML = 'Salary <br> in hand';
@@ -669,6 +673,15 @@ var pressedKey = function(e){
   }
 };
 
+var toggleB2BOptions = function() {
+  containerB2BOptions.classList.toggle('is-hidden');
+  if(containerB2BOptions.classList.contains('is-hidden')) {
+    btnB2BOptions.innerHTML = "Show B2B options";
+  } else {
+    btnB2BOptions.innerHTML = "Hide B2B options";
+  }
+}
+
 var uopCalculator = new UOPCalculator;
 var b2bCalculator = new B2BCalculator;
 var selectedContract;
@@ -679,3 +692,4 @@ buttonB2B.addEventListener('click', function() {selectContract(b2bCalculator);})
 buttonUOP.click();
 netSalaryButton.addEventListener('click', function() {calculate(selectedContract);});
 salaryInput.addEventListener('keydown', function() {pressedKey(event, selectedContract);});
+btnB2BOptions.addEventListener('click', function() {toggleB2BOptions();});

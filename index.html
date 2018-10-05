@@ -19,7 +19,7 @@
       </div>
       <div class="container-input">
         <div class="container-input">
-          <label class="label"> Salary: </label>
+          <label id="form-input-salary" class="label"> Gross salary: </label>
           <input id="input-gross-salary" class="input" type="number" placeholder="0.00 PLN">
         </div>
         <label class="label"> Period: </label>
@@ -32,6 +32,9 @@
           <span class="label-radio" for="annually"></span>
         </label>
         <div id="tab-b2b" class="tab-content">
+          <button id="btn-b2b-options" class="btn-b2b-options"> Show B2B options </button>
+        </div>
+        <div id="b2b-options" class="is-hidden">
 
           <div class="container-input">
             <label class="label"> VAT: </label>
@@ -189,7 +192,7 @@
         <tbody class="main-tbody">
           <tr>
             <th scope="row"> January </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -200,7 +203,7 @@
           </tr>
           <tr>
             <th scope="row"> February </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -211,7 +214,7 @@
           </tr>
           <tr>
             <th scope="row"> March </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -222,7 +225,7 @@
           </tr>
           <tr>
             <th scope="row"> April </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -233,7 +236,7 @@
           </tr>
           <tr>
             <th scope="row"> May </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -244,7 +247,7 @@
           </tr>
           <tr>
             <th scope="row"> June </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -255,7 +258,7 @@
           </tr>
           <tr>
             <th scope="row"> July </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -266,7 +269,7 @@
           </tr>
           <tr>
             <th scope="row"> August </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -277,7 +280,7 @@
           </tr>
           <tr>
             <th scope="row"> September </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -288,7 +291,7 @@
           </tr>
           <tr>
             <th scope="row"> October </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -299,7 +302,7 @@
           </tr>
           <tr>
             <th scope="row"> November </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -310,7 +313,7 @@
           </tr>
           <tr>
             <th scope="row"> December </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -323,7 +326,7 @@
         <tfoot class="main-tfoot">
           <tr>
             <th scope="row"> Total </th>
-            <td class="input-salary"></td>
+            <td class="col-input-salary"></td>
             <td></td>
             <td></td>
             <td></td>

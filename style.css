@@ -26,6 +26,15 @@
     margin: 2rem 0rem; }
   .container-main .tab {
     text-align: center; }
+  .container-main .btn-b2b-options {
+    display: block;
+    margin: 30px auto 0;
+    text-decoration: underline;
+    color: #0000EE;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; }
   .container-main .tab-btn {
     background-color: white;
     border-color: black;
@@ -186,7 +195,7 @@
   .container-main .table-main td {
     width: 98px;
     min-width: 90px; }
-  .container-main .input-salary, .container-main .final-salary {
+  .container-main .col-input-salary, .container-main .final-salary {
     background: #e0e0e0; }
   .container-main .main-thead {
     border-top: 0.15rem solid black;
