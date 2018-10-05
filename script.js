@@ -20,9 +20,6 @@ const summaryTable = document.querySelector('#table-summary-1st-month');
 const summaryTable12Month = document.querySelector('#table-summary-12-month');
 const mainTable = document.querySelector('#table-main');
 
-
-const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-
 const ratesSocial = {
   'pension': (9.76/100),
   'disability': (1.5/100),
@@ -647,26 +644,6 @@ var calculate = function(selectedContract) {
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
     tableContainer.classList.remove('is-hidden');
-  }
-
-  /* Scroll into table */
-  if(window.innerWidth < 501){
-    /* Smartphone */
-    setTimeout(function(){
-      tableContainer.scrollIntoView({block: 'start', behavior: 'smooth'});
-    }, 500);
-  } else if (window.innerWidth < 1000) {
-    /* Ipad */
-    /* Safari does not support the behavior arguments for scrolIntoView */
-    setTimeout(function(){
-      netSalaryButton.scrollIntoView();
-    }, 500);
-  } else if (isSafari) {
-    /* Safari on computer */
-    netSalaryButton.scrollIntoView();
-  } else {
-    /* Web */
-    tableContainer.scrollIntoView({block: 'start', behavior: 'smooth'});
   }
   isCalculated = true;
 };
