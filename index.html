@@ -116,7 +116,7 @@
           </thead>
           <tbody class="tbody">
             <tr class="row-gross">
-              <th scope="row"> Gross </th>
+              <th scope="row" class="summary-header-gross"> Gross </th>
               <td></td>
             </tr>
             <tr>
@@ -132,7 +132,7 @@
               <td></td>
             </tr>
             <tr class="row-net">
-              <th scope="row"> Net salary </th>
+              <th scope="row" class="summary-header-net"> Net salary </th>
               <td></td>
             </tr>
           </tbody>
@@ -146,7 +146,7 @@
           </thead>
           <tbody class="tbody">
             <tr class="row-gross">
-              <th scope="row"> Gross </th>
+              <th scope="row" class="summary-header-gross"> Gross </th>
               <td></td>
             </tr>
             <tr>
@@ -162,7 +162,7 @@
               <td></td>
             </tr>
             <tr class="row-net">
-              <th scope="row"> Net salary </th>
+              <th scope="row" class="summary-header-net"> Net salary </th>
               <td></td>
             </tr>
           </tbody>
@@ -173,11 +173,11 @@
         <thead class="main-thead">
           <tr>
             <th scope="col" rowspan="2"> Month </th>
-            <th scope="col" rowspan="2"> Gross </th>
+            <th scope="col" rowspan="2" id="header-gross"> Gross <br> salary </th>
             <th scope="col" colspan="4"> Insurance </th>
-            <th scope="col" rowspan="2" class="hide-on-tablet"> Tax Base </th>
+            <th scope="col" rowspan="2" id="header-tax-base" class="hide-on-tablet"> Tax Base </th>
             <th scope="col" rowspan="2"> Tax </th>
-            <th scope="col" rowspan="2"> Net </th>
+            <th scope="col" rowspan="2" id="header-net"> Net <br> salary </th>
           </tr>
           <tr>
             <th scope="col"> Pension </th>
@@ -189,148 +189,148 @@
         <tbody class="main-tbody">
           <tr>
             <th scope="row"> January </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> February </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> March </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> April </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> May </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> June </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> July </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> August </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> September </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> October </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> November </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
           <tr>
             <th scope="row"> December </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
         </tbody>
         <tfoot class="main-tfoot">
           <tr>
             <th scope="row"> Total </th>
-            <td></td>
+            <td class="input-salary"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td class="hide-on-tablet"></td>
             <td></td>
-            <td></td>
+            <td class="final-salary"></td>
           </tr>
         </tfoot>
       </table>

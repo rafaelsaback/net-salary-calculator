@@ -186,6 +186,8 @@
   .container-main .table-main td {
     width: 98px;
     min-width: 90px; }
+  .container-main .input-salary, .container-main .final-salary {
+    background: #e0e0e0; }
   .container-main .main-thead {
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
@@ -201,8 +203,6 @@
     background-color: #ffffff; }
   .container-main .main-tbody tr:nth-child(even) {
     background: #f7f7f7; }
-  .container-main .main-tbody tr td:nth-child(7n+2) {
-    background: #e0e0e0; }
   .container-main .main-tfoot {
     font-weight: bold;
     border-top: 0.15rem solid black;

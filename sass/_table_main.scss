@@ -3,6 +3,10 @@
   min-width: 90px;
 }
 
+.input-salary, .final-salary {
+  background: $dark-gray;
+}
+
 .main-thead{
   // Thick borders
   border-top: $thick-dark-border;
@@ -39,10 +43,6 @@
 
     &:nth-child(even) {
       background: $very-light-gray;
-    }
-
-    & td:nth-child(7n+2){
-      background: $dark-gray;
     }
   }
 }

@@ -56,6 +56,11 @@ const ZUS = {
   'normalZUS': Symbol('Normal contribution')
 };
 
+const contractType = {
+  'B2B': Symbol('B2B'),
+  'UOP': Symbol('Umowa o prace')
+};
+
 class BaseCalculator {
   constructor() {
     this.monthly = {};
@@ -81,6 +86,8 @@ class BaseCalculator {
     this.annual.taxBase = 0;
     this.annual.tax = 0;
     this.annual.netSalary = 0;
+
+    this.contractType;
   }
 
   calcHealthDeductible(healthContribution, rateDeductible, rateContribution) {
@@ -101,11 +108,12 @@ class BaseCalculator {
     return contribution;
   }
 
-  calcTotals(calculator) {
-    for(let value in calculator.annual){
-      calculator.annual[value] = calculator.monthly[value].reduce((a, b) => a + b, 0);
+  calcTotals(annualVar, monthlyVar) {
+    let annual = annualVar;
+    for(let value in annual){
+      annual[value] = monthlyVar[value].reduce((a, b) => a + b, 0);
     }
-    return calculator;
+    return annual;
   }
 
   accumulateValue(array) {
@@ -122,6 +130,7 @@ class UOPCalculator extends BaseCalculator{
   constructor(){
     super();
     this.monthly.accTaxBase = new Array(12).fill(0);
+    this.contractType = contractType.UOP;
   }
 
   calcSalary(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValues) {
@@ -143,7 +152,7 @@ class UOPCalculator extends BaseCalculator{
     this.monthly.netSalary = this.calcNetSalary(this.monthly.grossSalary,
       this.monthly.socialSecurity, this.monthly.healthContribution, this.monthly.tax
     );
-    super.calcTotals(this);
+    this.annual = super.calcTotals(this.annual, this.monthly);
   }
 
   calcAccGrossSalary(calculator){
@@ -281,7 +290,13 @@ class UOPCalculator extends BaseCalculator{
 class B2BCalculator extends BaseCalculator {
   constructor() {
     super();
+    this.monthly.acccident = new Array(12).fill(0);
+    this.monthly.laborFund = new Array(12).fill(0);
     this.monthly.salaryInHand = new Array(12).fill(0);
+    this.annual.accident = 0;
+    this.annual.laborFund = 0;
+    this.annual.salaryInHand = 0;
+    this.contractType = contractType.B2B;
   }
 
   calcSalary(netSalary, b2bOptions) {
@@ -316,16 +331,17 @@ class B2BCalculator extends BaseCalculator {
     );
     this.monthly.salaryInHand = this.calcSalaryInHand(this.monthly.netSalary,
       this.monthly.socialSecurity, this.monthly.healthContribution,
-      this.monthly.costs, this.monthly.tax
+      this.costs, this.monthly.tax
     );
+    this.annual = super.calcTotals(this.annual, this.monthly);
   }
 
   evalZUS(zusType, noZUSValue, discountedZUSValue, normalZUSValue) {
     let array = new Array(12);
     switch(zusType) {
       case ZUS.noZUS:
-      array.fil(noZUSValue, 0, 5);
-      array.fil(discountedZUSValue, 6, 11);
+      array.fill(noZUSValue, 0, 6);
+      array.fill(discountedZUSValue, 6, 12);
       break;
       case ZUS.discountedZUS:
       array.fill(discountedZUSValue);
@@ -411,7 +427,7 @@ class B2BCalculator extends BaseCalculator {
   }
 }
 
-function selectContract(contractType) {
+function selectContract(calculator) {
   // Declare all variables
   let i;
   let tabs;
@@ -430,10 +446,32 @@ function selectContract(contractType) {
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  if(contractType === 'b2b') {
+  let contractString;
+  switch(calculator.contractType){
+    case contractType.UOP:
+    selectedContract = contractType.UOP;
+    contractString = 'uop';
+    break;
+    case contractType.B2B:
     document.getElementById('tab-b2b').style.display = 'block';
+    selectedContract = contractType.B2B;
+    contractString = 'b2b';
+    document.getElementById('header-gross').innerHTML = 'Net salary <br> (no VAT)';
+    document.getElementById('header-tax-base').innerHTML = 'Others';
+    document.getElementById('header-net').innerHTML = 'Salary <br> in hand';
+    let grossElements = document.getElementsByClassName('summary-header-gross');
+    let netElements = document.getElementsByClassName('summary-header-net');
+    for(let i = 0; i < grossElements.length; i++) {
+      grossElements[i].innerHTML = 'Net (no VAT)';
+      netElements[i].innerHTML = 'Salary in hand';
+    }
   }
-  document.getElementById('tab-btn-' + contractType).className += ' active';
+  document.getElementById('tab-btn-' + contractString).className += ' active';
+
+  if(isCalculated) {
+    populateSummaryTable(calculator);
+    populateMainTable(calculator);
+  }
 }
 
 /* It sets the format to two decimals and uses space as thousand separator */
@@ -441,48 +479,79 @@ function formatNumber(number){
   return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
-function populateUOPSummaryTable(calculator){
+function populateSummaryTable(calculator){
   let body = summaryTable.tBodies[0];
-  body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
+  let body12 = summaryTable12Month.tBodies[0];
+  switch(calculator.contractType){
+    case contractType.UOP:
+    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
+    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
+    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12);
+    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
+    break;
+    case contractType.B2B:
+    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
+    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0]);
+    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
+    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.salaryInHand/12);
+    break;
+  }
   body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0]);
   body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0]);
   body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0]);
-  body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
-
-  body = summaryTable12Month.tBodies[0];
-  body.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12);
-  body.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12);
-  body.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12);
-  body.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12);
-  body.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
+  body12.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12);
+  body12.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12);
+  body12.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12);
 }
 
-function populateUOPMainTable(calculator){
+function populateMainTable(calculator) {
   let body = mainTable.tBodies[0];
 
   /* Format monthly values */
   for(let i = 0; i < body.rows.length; i++)
   {
-    body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i]);
+    switch(calculator.contractType) {
+      case contractType.UOP:
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i]);
+      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i]);
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
+      break;
+      case contractType.B2B:
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
+      body.rows[i].cells[6].innerHTML = formatNumber(
+        (calculator.monthly.accident[i] + calculator.monthly.laborFund[i])
+      );
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i]);
+      break;
+    }
     body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i]);
     body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i]);
     body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i]);
     body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i]);
-    body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i]);
     body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i]);
-    body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
   }
 
   /* Format total values */
   let foot = mainTable.tFoot;
-  foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
+  switch(calculator.contractType) {
+    case contractType.UOP:
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
+    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase);
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary);
+    break;
+    case contractType.B2B:
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary);
+    foot.rows[0].cells[6].innerHTML = formatNumber(
+      (calculator.annual.accident + calculator.annual.laborFund)
+    );
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand);
+    break;
+  }
   foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension);
   foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability);
   foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness);
   foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution);
-  foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase);
   foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax);
-  foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary);
 }
 
 /* Check if the input value is valid */
@@ -539,7 +608,7 @@ function getB2BOptions(b2bOptions) {
   return b2bOptions;
 }
 
-var calculate = function() {
+var calculate = function(selectedContract) {
   document.activeElement.blur();
   let salary = salaryInput.value;
   /* If the result is false, interrupt the code */
@@ -555,8 +624,16 @@ var calculate = function() {
   b2bCalculator.calcSalary(salary, b2bOptions);
 
   /* Populate tables with the results */
-  populateUOPSummaryTable(uopCalculator);
-  populateUOPMainTable(uopCalculator);
+  switch(selectedContract){
+    case contractType.UOP:
+    populateSummaryTable(uopCalculator);
+    populateMainTable(uopCalculator);
+    break;
+    case contractType.B2B:
+    populateSummaryTable(b2bCalculator);
+    populateMainTable(b2bCalculator);
+    break;
+  }
 
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
@@ -582,20 +659,23 @@ var calculate = function() {
     /* Web */
     tableContainer.scrollIntoView({block: 'start', behavior: 'smooth'});
   }
+  isCalculated = true;
 };
 
 /* Check if enter key was pressed */
 var pressedKey = function(e){
   if(e.key === 'Enter'){
-    calculate();
+    calculate(selectedContract);
   }
 };
 
 var uopCalculator = new UOPCalculator;
 var b2bCalculator = new B2BCalculator;
+var selectedContract;
+var isCalculated = false;
 salaryInput.focus();
-buttonUOP.addEventListener('click', function() {selectContract('uop');});
-buttonB2B.addEventListener('click', function() {selectContract('b2b');});
+buttonUOP.addEventListener('click', function() {selectContract(uopCalculator);});
+buttonB2B.addEventListener('click', function() {selectContract(b2bCalculator);});
 buttonUOP.click();
-netSalaryButton.addEventListener('click', calculate);
-salaryInput.addEventListener('keydown', pressedKey);
+netSalaryButton.addEventListener('click', function() {calculate(selectedContract);});
+salaryInput.addEventListener('keydown', function() {pressedKey(event, selectedContract);});
