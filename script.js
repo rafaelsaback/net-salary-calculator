@@ -364,7 +364,8 @@ class B2BCalculator extends BaseCalculator {
   }
 
   calcSickness(paySickness, zus) {
-    return this.evalZUS(zus, 0, 15.44, 65.31);
+    if(paySickness) return this.evalZUS(zus, 0, 15.44, 65.31);
+    else return new Array(12).fill(0);
   }
 
   calcHealthContribution() {
