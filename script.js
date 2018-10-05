@@ -1,32 +1,35 @@
-const radioMonthly = document.querySelector('#monthly');
-const radioAnnually = document.querySelector('#annually');
 const buttonUOP = document.querySelector('#tab-btn-uop');
 const buttonB2B = document.querySelector('#tab-btn-b2b');
 const containerB2B = document.querySelector('#b2b');
 const inputCosts = document.querySelector('#costs');
 const salaryInput = document.querySelector('#input-gross-salary');
+const radioAnnually = document.querySelector('#annually');
+const vat0 = document.querySelector('#vat-0');
+const vat5 = document.querySelector('#vat-5');
+const vat8 = document.querySelector('#vat-8');
+const taxProgressive = document.querySelector('#tax-progressive');
+const noZUS = document.querySelector('#no-zus');
+const discountedZUS = document.querySelector('#discounted-zus');
+const sicknessYes = document.querySelector('#sickness-yes');
+const costs = document.querySelector('#costs');
 const netSalaryButton = document.querySelector('#btn-calculate');
 const tableContainer = document.querySelector('#container-results');
 const summaryTable = document.querySelector('#table-summary-1st-month');
 const summaryTable12Month = document.querySelector('#table-summary-12-month');
 const mainTable = document.querySelector('#table-main');
+
+
 const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-const defaultInsurance = 504.66;
-const defaultPvtInsurance = 100.00;
-const defaultOthers = 0.00;
-const noZUS = Symbol('No contributions in the first 6 months');
-const preferentialZUS = Symbol('Lower contributions in the first 2 years');
-const normalZUS = Symbol('Normal contribution');
 
 const ratesSocial = {
   'pension': (9.76/100),
   'disability': (1.5/100),
-  'sickness': (2.45/100),
+  'sickness': (2.45/100)
 };
 
 const ratesHealth = {
   'contribution': (9/100),
-  'deductible': (7.75/100),
+  'deductible': (7.75/100)
 };
 
 const ratesTax = {
@@ -40,6 +43,17 @@ const auxValuesUOP = {
   'monthlyRelief': 46.33,
   'annualLimit': 133290, /* Annual limit for pension and disability calculations */
   'taxLimit': 85528
+};
+
+const taxRate = {
+  'progressive': Symbol('18%/32%'),
+  'linear': Symbol('19%')
+};
+
+const ZUS = {
+  'noZUS': Symbol('No contributions in the first 6 months'),
+  'discountedZUS': Symbol('Lower contributions in the first 2 years'),
+  'normalZUS': Symbol('Normal contribution')
 };
 
 class BaseCalculator {
@@ -87,8 +101,11 @@ class BaseCalculator {
     return contribution;
   }
 
-  sumTotal(array){
-    return array.reduce((a, b) => a + b, 0);
+  calcTotals(calculator) {
+    for(let value in calculator.annual){
+      calculator.annual[value] = calculator.monthly[value].reduce((a, b) => a + b, 0);
+    }
+    return calculator;
   }
 
   accumulateValue(array) {
@@ -102,18 +119,17 @@ class BaseCalculator {
 }
 
 class UOPCalculator extends BaseCalculator{
-  constructor(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValues){
+  constructor(){
     super();
-    this.monthly.grossSalary.fill(grossSalary);
     this.monthly.accTaxBase = new Array(12).fill(0);
+  }
+
+  calcSalary(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValues) {
+    this.monthly.grossSalary.fill(grossSalary);
     this.ratesSocial = ratesSocial;
     this.ratesHealth = ratesHealth;
     this.ratesTax = ratesTax;
     this.auxValues = auxValues;
-    this.calcSalary();
-  }
-
-  calcSalary() {
     this.calcAccGrossSalary(this);
     this.calcPension(this);
     this.calcDisability(this);
@@ -124,8 +140,10 @@ class UOPCalculator extends BaseCalculator{
     this.calcTaxBase(this);
     this.calcAccTaxBase(this);
     this.calcTax(this);
-    this.calcNetSalary(this);
-    this.calcTotals(this);
+    this.monthly.netSalary = this.calcNetSalary(this.monthly.grossSalary,
+      this.monthly.socialSecurity, this.monthly.healthContribution, this.monthly.tax
+    );
+    super.calcTotals(this);
   }
 
   calcAccGrossSalary(calculator){
@@ -250,37 +268,146 @@ class UOPCalculator extends BaseCalculator{
     return calculator;
   }
 
-  calcNetSalary(calculator) {
-    let grossSalary = calculator.monthly.grossSalary;
-    let socialSecurity = calculator.monthly.socialSecurity;
-    let healthContribution = calculator.monthly.healthContribution;
-    let tax = calculator.monthly.tax;
-    let netSalary = [];
-
-    netSalary = grossSalary.map((value, i) => {
+  calcNetSalary(grossSalary, socialSecurity, healthContribution, tax) {
+    let netSalary = new Array(12);
+    for(let i = 0; i < netSalary.length; i++){
       let tempNetSalary = grossSalary[i] - socialSecurity[i] - healthContribution[i] - tax[i];
-      return (this.roundNumber(tempNetSalary,2));
-    });
-
-    calculator.monthly.netSalary = netSalary;
-    return calculator;
-  }
-
-  calcTotals(calculator) {
-    for(let value in calculator.annual){
-      calculator.annual[value] = this.sumTotal(calculator.monthly[value]);
+      netSalary[i] = this.roundNumber(tempNetSalary,2);
     }
-    return calculator;
+    return netSalary;
   }
 } // End of class UOPCalculator
 
 class B2BCalculator extends BaseCalculator {
-  constructor(netSalary, vat, zusContribution){
+  constructor() {
     super();
+    this.monthly.salaryInHand = new Array(12).fill(0);
+  }
+
+  calcSalary(netSalary, b2bOptions) {
     this.monthly.netSalary.fill(netSalary);
-    this.ratesSocial = ratesSocial;
-    this.ratesHealth = ratesHealth;
-    this.ratesTax = ratesTax;
+    this.vat = b2bOptions.vat;
+    this.taxRate = b2bOptions.taxRate;
+    this.zus = b2bOptions.zus;
+    this.paySickness = b2bOptions.paySickness;
+    this.costs = b2bOptions.costs;
+
+    this.monthly.pension = this.calcPension(this.zus);
+    this.monthly.disability = this.calcDisability(this.zus);
+    this.monthly.sickness = this.calcSickness(this.paySickness, this.zus);
+    this.monthly.healthContribution = this.calcHealthContribution();
+    this.monthly.healthDeductible = super.calcHealthDeductible(
+      this.monthly.healthContribution, ratesHealth.deductible, ratesHealth.contribution
+    );
+    this.monthly.accident = this.calcAccident(this.zus);
+    this.monthly.laborFund = this.calcLaborFund(this.zus);
+    this.monthly.socialSecurity = this.calcSocialSecurity(
+      this.monthly.pension, this.monthly.disability, this.monthly.sickness,
+      this.monthly.accident, this.monthly.laborFund
+    );
+    this.monthly.zusContribution = this.calcZUSContribution(
+      this.monthly.socialSecurity, this.monthly.healthContribution
+    );
+    this.monthly.baseTax = this.calcBaseTax(this.monthly.netSalary,
+      this.monthly.socialSecurity, this.costs
+    );
+    this.monthly.tax = this.calcTax(this.taxRate, this.monthly.baseTax,
+      this.monthly.healthDeductible
+    );
+    this.monthly.salaryInHand = this.calcSalaryInHand(this.monthly.netSalary,
+      this.monthly.socialSecurity, this.monthly.healthContribution,
+      this.monthly.costs, this.monthly.tax
+    );
+  }
+
+  evalZUS(zusType, noZUSValue, discountedZUSValue, normalZUSValue) {
+    let array = new Array(12);
+    switch(zusType) {
+      case ZUS.noZUS:
+      array.fil(noZUSValue, 0, 5);
+      array.fil(discountedZUSValue, 6, 11);
+      break;
+      case ZUS.discountedZUS:
+      array.fill(discountedZUSValue);
+      break;
+      case ZUS.normalZUS:
+      array.fill(normalZUSValue);
+      break;
+    }
+    return array;
+  }
+
+  calcPension(zus) {
+    return this.evalZUS(zus, 0, 122.98, 520.36);
+  }
+
+  calcDisability(zus) {
+    return this.evalZUS(zus, 0, 50.40, 213.26);
+  }
+
+  calcSickness(paySickness, zus) {
+    return this.evalZUS(zus, 0, 15.44, 65.31);
+  }
+
+  calcHealthContribution() {
+    let healthArray = new Array(12).fill(319.94);
+    return healthArray;
+  }
+
+  calcAccident(zus) {
+    return this.evalZUS(zus, 0, 11.34, 47.98);
+  }
+
+  calcLaborFund(zus) {
+    return this.evalZUS(zus, 0, 0, 65.31);
+  }
+
+  calcSocialSecurity(pension, disability, sickness, accident, laborFund) {
+    let socialSecurity = new Array(12);
+
+    for(let i = 0; i < socialSecurity.length; i++){
+      socialSecurity[i] = pension[i] + disability[i] + sickness[i]+ accident[i] + laborFund[i];
+    }
+    return socialSecurity;
+  }
+
+  calcZUSContribution(socialSecurity, healthContribution) {
+    return (new Array(12).fill(socialSecurity + healthContribution));
+  }
+
+  calcBaseTax(netSalary, socialSecurity, costs) {
+    let baseTax = new Array(12);
+    for(let i = 0; i < baseTax.length; i++) {
+      baseTax[i] = netSalary[i] - socialSecurity[i] - costs;
+    }
+    return baseTax;
+  }
+
+  calcTax(taxRate, baseTax, healthDeductible) {
+    if(taxRate == ratesTax.progressive) {
+      return this.calcLinearTax(baseTax, healthDeductible);
+    } else {
+      return this.calcLinearTax(baseTax, healthDeductible);
+    }
+  }
+
+  calcLinearTax(baseTax, healthDeductible) {
+    let tax = new Array(12);
+    for(let i = 0; i < tax.length; i++){
+      let taxBeforeDeductible = baseTax[i] * ratesTax.rate19;
+      tax[i] = taxBeforeDeductible - healthDeductible[i];
+    }
+    return tax;
+  }
+
+  calcSalaryInHand(netSalary, socialSecurity, healthContribution, costs, tax) {
+    let salaryInHand = new Array(12);
+    for(let i = 0; i < netSalary.length; i++){
+      let tempSalary = netSalary[i] - socialSecurity[i] -
+      healthContribution[i] - costs - tax[i];
+      salaryInHand[i] = this.roundNumber(tempSalary,2);
+    }
+    return salaryInHand;
   }
 }
 
@@ -314,7 +441,7 @@ function formatNumber(number){
   return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
-function populateSummaryTable(calculator){
+function populateUOPSummaryTable(calculator){
   let body = summaryTable.tBodies[0];
   body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
   body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0]);
@@ -330,7 +457,7 @@ function populateSummaryTable(calculator){
   body.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
 }
 
-function populateMainTable(calculator){
+function populateUOPMainTable(calculator){
   let body = mainTable.tBodies[0];
 
   /* Format monthly values */
@@ -375,6 +502,43 @@ function checkValue(grossSalary){
   return grossSalary;
 }
 
+function getVAT() {
+  if(vat0.checked) return 0;
+  else if(vat5.checked) return (5/100);
+  else if(vat8.checked) return (8/100);
+  else return (23/100);
+}
+
+function getTaxRate() {
+  if(taxProgressive.checked) return taxRate.progressive;
+  else return taxRate.linear;
+}
+
+function getZUS() {
+  if(noZUS.checked) return ZUS.noZUS;
+  else if(discountedZUS.checked) return ZUS.discountedZUS;
+  else return ZUS.normalZUS;
+}
+
+function getPaySickness() {
+  if(sicknessYes.checked) return true;
+  else return false;
+}
+
+function getCosts() {
+  if(costs.value.trim() != '') return costs.value;
+  else return 0;
+}
+
+function getB2BOptions(b2bOptions) {
+  b2bOptions.vat = getVAT();
+  b2bOptions.taxRate = getTaxRate();
+  b2bOptions.zus = getZUS();
+  b2bOptions.paySickness = getPaySickness();
+  b2bOptions.costs = getCosts();
+  return b2bOptions;
+}
+
 var calculate = function() {
   document.activeElement.blur();
   let salary = salaryInput.value;
@@ -385,14 +549,14 @@ var calculate = function() {
   if(radioAnnually.checked) salary /= 12;
 
   /* Calculate net salary */
-  let uopCalculator = new UOPCalculator(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
-  let vat = 0.23;
-  let zusContribution = preferentialZUS;
-  let b2bCalculator = new B2BCalculator(salary, vat, zusContribution);
+  uopCalculator.calcSalary(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
+  let b2bOptions =  {};
+  b2bOptions = getB2BOptions(b2bOptions);
+  b2bCalculator.calcSalary(salary, b2bOptions);
 
   /* Populate tables with the results */
-  populateSummaryTable(uopCalculator);
-  populateMainTable(uopCalculator);
+  populateUOPSummaryTable(uopCalculator);
+  populateUOPMainTable(uopCalculator);
 
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
@@ -427,6 +591,8 @@ var pressedKey = function(e){
   }
 };
 
+var uopCalculator = new UOPCalculator;
+var b2bCalculator = new B2BCalculator;
 salaryInput.focus();
 buttonUOP.addEventListener('click', function() {selectContract('uop');});
 buttonB2B.addEventListener('click', function() {selectContract('b2b');});
