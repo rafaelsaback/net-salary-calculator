@@ -34,14 +34,14 @@
     background: white;
     border: none;
     cursor: pointer;
-    font-size: 18px; }
+    font-size: 22px; }
   .container-main .tab-btn {
     background-color: white;
     border-color: black;
     display: inline-block;
     font-size: 24px;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 20px;
     cursor: pointer; }
   .container-main .tab-btn.active {
     background-color: #2196F3; }
@@ -94,7 +94,7 @@
     width: 100%;
     height: 50px;
     text-align: center;
-    font-size: 22px !important;
+    font-size: 26px !important;
     border-top: 0px !important;
     border-left: 0px !important;
     border-right: 0px !important;
