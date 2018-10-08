@@ -599,8 +599,15 @@ function getB2BOptions(b2bOptions) {
   return b2bOptions;
 }
 
-function displayValueOnTab(calculator) {
-
+function displayValueOnTab(uopCalculator, b2bCalculator) {
+  let netSalary = formatNumber(uopCalculator.annual.netSalary/12, 0);
+  buttonUOP.innerHTML = 'Umowa o pracę' +
+  '<div class="big-font"> ' + netSalary  + ' zł</div>' +
+  'net (in hand)'
+  let salaryInHand = formatNumber(b2bCalculator.annual.salaryInHand/12, 0);
+  buttonB2B.innerHTML = 'B2B contract' +
+  '<div class="big-font"> ' + salaryInHand  + ' zł</div>' +
+  'in hand'
 }
 
 function execBasedOnContract(type, funcUOP, funcB2B) {
@@ -640,6 +647,7 @@ var calculate = function(selectedContract) {
       populateMainTable(b2bCalculator);
     }
   );
+  displayValueOnTab(uopCalculator, b2bCalculator);
 
   /* Display the table */
   if(tableContainer.classList.contains('is-hidden')) {
