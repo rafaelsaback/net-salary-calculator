@@ -411,7 +411,11 @@ class B2BCalculator extends BaseCalculator {
     let tax = new Array(12);
     for(let i = 0; i < tax.length; i++){
       let taxBeforeDeductible = baseTax[i] * ratesTax.rate19;
-      tax[i] = taxBeforeDeductible - healthDeductible[i];
+      if(taxBeforeDeductible >= healthDeductible){
+        tax[i] = taxBeforeDeductible - healthDeductible[i];
+      } else {
+        tax[i] = 0;
+      }
     }
     return tax;
   }
