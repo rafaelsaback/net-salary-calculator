@@ -123,6 +123,14 @@ class BaseCalculator {
     accArray.pop();
     return accArray;
   }
+
+  isUOP() {
+    return (this.contract === contract.UOP);
+  }
+
+  isB2B() {
+    return (this.contract === contract.B2B);
+  }
 }
 
 class UOPCalculator extends BaseCalculator{
