@@ -446,36 +446,30 @@ class B2BCalculator extends BaseCalculator {
 }
 
 function selectContract(calculator) {
-  // Declare all variables
-  let i;
-  let tabs;
-  let tabLinks;
+  // Update global variable selectedContract
+  selectedContract = calculator.contract;
 
-  // Get all elements with class='tab-content' and hide them
-  tabs = document.getElementsByClassName('tab-content');
-  for (i = 0; i < tabs.length; i++) {
-    tabs[i].style.display = 'none';
-  }
+  // Update table titles based on contract
+  updateTitles(calculator.contract);
 
-  // Get all elements with class='tab-link' and remove the class 'active'
-  tabLinks = document.getElementsByClassName('tab-btn');
-  for (i = 0; i < tabLinks.length; i++) {
-    tabLinks[i].className = tabLinks[i].className.replace(' active', '');
-  }
-
-  updateTitles(calculator.contractType);
-  let contractString;
-  if(calculator.contractType === contractType.UOP) {
-    contractString = 'uop';
-    if(!containerB2BOptions.classList.contains('is-hidden')) {
-      containerB2BOptions.classList.add('is-hidden');
-    }
-  } else if (calculator.contractType === contractType.B2B) {
-    contractString = 'b2b';
+  if(calculator.isUOP()) {
+    // Highlight UOP button
+    buttonUOP.classList.add('active');
+    // Remove highlight from B2B button
+    buttonB2B.classList.remove('active');
+    // Hide B2B elements
+    tabB2B.classList.add('is-hidden');
+    containerB2BOptions.classList.add('is-hidden');
+  } else if (calculator.isB2B()) {
+    // Highlight B2B button
+    buttonB2B.classList.add('active');
+    // Remove highlight from UOP button
+    buttonUOP.classList.remove('active');
+    // Show B2B options button
+    tabB2B.classList.remove('is-hidden');
   };
-  // Show the current tab, and add an 'active' class to the button that opened the tab
-  document.getElementById('tab-btn-' + contractString).className += ' active';
 
+  // Update the table data in case it has been calculated
   if(isCalculated) {
     populateSummaryTable(calculator);
     populateMainTable(calculator);
