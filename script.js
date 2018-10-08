@@ -475,30 +475,30 @@ function selectContract(calculator) {
 }
 
 /* It sets the format to two decimals and uses space as thousand separator */
-function formatNumber(number){
-  return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+function formatNumber(number, precision){
+  return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 function populateSummaryTable(calculator){
   let body = summaryTable.tBodies[0];
   let body12 = summaryTable12Month.tBodies[0];
   execBasedOnContract(calculator.contractType, function() {
-    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0]);
-    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
-    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12);
-    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
+    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0], 2);
+    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
+    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12, 2);
+    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
   }, function() {
-    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0]);
-    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0]);
-    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12);
-    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.salaryInHand/12);
+    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
+    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0], 2);
+    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
+    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.salaryInHand/12, 2);
   });
-  body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0]);
-  body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0]);
-  body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0]);
-  body12.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12);
-  body12.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12);
-  body12.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12);
+  body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0], 2);
+  body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0], 2);
+  body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0], 2);
+  body12.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12, 2);
+  body12.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12, 2);
+  body12.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12, 2);
 }
 
 function populateMainTable(calculator) {
@@ -508,41 +508,41 @@ function populateMainTable(calculator) {
   for(let i = 0; i < body.rows.length; i++)
   {
     execBasedOnContract(calculator.contractType, function() {
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i]);
-      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i]);
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i],2 );
+      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i],2 );
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i],2 );
     }, function() {
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i]);
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i],2 );
       body.rows[i].cells[6].innerHTML = formatNumber(
-        (calculator.monthly.accident[i] + calculator.monthly.laborFund[i])
+        (calculator.monthly.accident[i] + calculator.monthly.laborFund[i]), 2
       );
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i]);
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i],2 );
     });
-    body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i]);
-    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i]);
-    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i]);
-    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i]);
-    body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i]);
+    body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i], 2);
+    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i],2 );
+    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i],2 );
+    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i],2 );
+    body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i], 2);
   }
 
   /* Format total values */
   let foot = mainTable.tFoot;
   execBasedOnContract(calculator.contractType, function() {
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary);
-    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase);
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary);
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary,2 );
+    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase,2 );
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary,2 );
   }, function() {
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary);
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary,2 );
     foot.rows[0].cells[6].innerHTML = formatNumber(
-      (calculator.annual.accident + calculator.annual.laborFund)
+      (calculator.annual.accident + calculator.annual.laborFund), 2
     );
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand);
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand,2 );
   });
-  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension);
-  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability);
-  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness);
-  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution);
-  foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax);
+  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension,2 );
+  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability,2 );
+  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness,2 );
+  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution,2 );
+  foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax, 2);
 }
 
 /* Check if the input value is valid */
