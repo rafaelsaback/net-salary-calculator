@@ -449,16 +449,32 @@ function selectContract(calculator) {
     tabLinks[i].className = tabLinks[i].className.replace(' active', '');
   }
 
-  // Show the current tab, and add an 'active' class to the button that opened the tab
+  updateTitles(calculator.contractType);
   let contractString;
-  execBasedOnContract(calculator.contractType, function(){
-    selectedContract = contractType.UOP;
+  execBasedOnContract(calculator.contractType, () => {
     contractString = 'uop';
+    if(!containerB2BOptions.classList.contains('is-hidden')) {
+      containerB2BOptions.classList.add('is-hidden');
+    }
+  }, () => {
+    contractString = 'b2b';
+  });
+  // Show the current tab, and add an 'active' class to the button that opened the tab
+  document.getElementById('tab-btn-' + contractString).className += ' active';
+
+  if(isCalculated) {
+    populateSummaryTable(calculator);
+    populateMainTable(calculator);
+  }
+}
+
+function updateTitles(type) {
+  execBasedOnContract(type, function() {
+    selectedContract = contractType.UOP;
     formInputSalary.innerHTML = 'Gross salary';
   }, function() {
     document.getElementById('tab-b2b').style.display = 'block';
     selectedContract = contractType.B2B;
-    contractString = 'b2b';
     formInputSalary.innerHTML = 'Net salary (from invoice)';
     document.getElementById('header-gross').innerHTML = 'Net salary <br> (from invoice)';
     document.getElementById('header-tax-base').innerHTML = 'Others';
@@ -470,12 +486,6 @@ function selectContract(calculator) {
       netElements[i].innerHTML = 'Salary in hand';
     }
   });
-  document.getElementById('tab-btn-' + contractString).className += ' active';
-
-  if(isCalculated) {
-    populateSummaryTable(calculator);
-    populateMainTable(calculator);
-  }
 }
 
 /* It sets the format to two decimals and uses space as thousand separator */
