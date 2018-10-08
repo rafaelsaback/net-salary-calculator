@@ -505,7 +505,6 @@ function updateTitles(type) {
   };
 }
 
-/* It sets the format to two decimals and uses space as thousand separator */
 function formatNumber(number, precision){
   return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
@@ -538,45 +537,42 @@ function populateMainTable(calculator) {
   /* Format monthly values */
   for(let i = 0; i < body.rows.length; i++)
   {
-    if(calculator.contractType === contractType.UOP) {
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i],2 );
-      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i],2 );
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i],2 );
-    } else if(calculator.contractType === contractType.B2B) {
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i],2 );
-      body.rows[i].cells[6].innerHTML = formatNumber(
-        (calculator.monthly.accident[i] + calculator.monthly.laborFund[i]), 2
-      );
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i],2 );
+    if(calculator.contract === contract.UOP) {
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i], 2);
+      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i], 2);
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i], 2);
+    } else if(calculator.contract === contract.B2B) {
+      let others = calculator.monthly.accident[i] + calculator.monthly.laborFund[i];
+      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i], 2);
+      body.rows[i].cells[6].innerHTML = formatNumber(others, 2);
+      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i], 2);
     };
     body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i], 2);
-    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i],2 );
-    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i],2 );
-    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i],2 );
+    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i], 2);
+    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i], 2);
+    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i], 2);
     body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i], 2);
   }
 
   /* Format total values */
   let foot = mainTable.tFoot;
-  if(calculator.contractType === contractType.UOP) {
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary,2 );
-    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase,2 );
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary,2 );
-  } else if(calculator.contractType === contractType.B2B) {
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary,2 );
-    foot.rows[0].cells[6].innerHTML = formatNumber(
-      (calculator.annual.accident + calculator.annual.laborFund), 2
-    );
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand,2 );
+  if(calculator.contract === contract.UOP) {
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary,2);
+    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase,2);
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary,2);
+  } else if(calculator.contract === contract.B2B) {
+    let others = calculator.monthly.accident[i] + calculator.monthly.laborFund[i];
+    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary,2);
+    foot.rows[0].cells[6].innerHTML = formatNumber(others, 2);
+    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand,2);
   };
-  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension,2 );
-  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability,2 );
-  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness,2 );
-  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution,2 );
+  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension,2);
+  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability,2);
+  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness,2);
+  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution,2);
   foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax, 2);
 }
 
-/* Check if the input value is valid */
 function checkValue(grossSalary){
   if(grossSalary === '') return false;
   grossSalary = parseFloat(grossSalary);
@@ -648,16 +644,16 @@ function displayValueOnTab(uopCalculator, b2bCalculator) {
   `;
 }
 
-var calculate = function(selectedContract) {
+var calculate = function(contract) {
   document.activeElement.blur();
   let salary = salaryInput.value;
-  /* If the result is false, interrupt the code */
+  // If the result is false, interrupt the code
   salary = checkValue(salary);
   if(!salary) return false;
 
   if(radioAnnually.checked) salary /= 12;
 
-  /* Calculate net salary */
+  // Calculate net salary
   uopCalculator.calcSalary(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
   let b2bOptions =  {};
   b2bOptions = getB2BOptions(b2bOptions);
