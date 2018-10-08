@@ -55,7 +55,7 @@ const ZUS = {
   'normalZUS': Symbol('Normal contribution')
 };
 
-const contractType = {
+const contract = {
   'B2B': Symbol('B2B'),
   'UOP': Symbol('Umowa o prace')
 };
@@ -86,7 +86,7 @@ class BaseCalculator {
     this.annual.tax = 0;
     this.annual.netSalary = 0;
 
-    this.contractType;
+    this.contract;
   }
 
   calcHealthDeductible(healthContribution, rateDeductible, rateContribution) {
@@ -129,7 +129,7 @@ class UOPCalculator extends BaseCalculator{
   constructor(){
     super();
     this.monthly.accTaxBase = new Array(12).fill(0);
-    this.contractType = contractType.UOP;
+    this.contract = contract.UOP;
   }
 
   calcSalary(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValues) {
@@ -301,7 +301,7 @@ class B2BCalculator extends BaseCalculator {
     this.annual.accident = 0;
     this.annual.laborFund = 0;
     this.annual.salaryInHand = 0;
-    this.contractType = contractType.B2B;
+    this.contract = contract.B2B;
   }
 
   calcSalary(netSalary, b2bOptions) {
@@ -475,7 +475,7 @@ function selectContract(calculator) {
 }
 
 function updateTitles(type) {
-  if(type === contractType.UOP) {
+  if(type === contract.UOP) {
     formInputSalary.innerHTML = 'Gross salary:';
     headerGross.innerHTML = 'Net salary <br> (from invoice)';
     headerTaxBase.innerHTML = 'Others';
@@ -484,7 +484,7 @@ function updateTitles(type) {
       grossElements[i].innerHTML = 'Net (from invoice)';
       netElements[i].innerHTML = 'Salary in hand';
     }
-  } else if(type === contractType.B2B) {
+  } else if(type === contract.B2B) {
     tabB2B.style.display = 'block';
     formInputSalary.innerHTML = 'Net salary (from invoice):';
     headerGross.innerHTML = 'Net salary <br> (from invoice)';
@@ -505,12 +505,12 @@ function formatNumber(number, precision){
 function populateSummaryTable(calculator){
   let body = summaryTable.tBodies[0];
   let body12 = summaryTable12Month.tBodies[0];
-  if(calculator.contract === contractType.UOP) {
+  if(calculator.contract === contract.UOP) {
     body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0], 2);
     body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
     body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12, 2);
     body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
-  } else if(calculator.contract === contractType.B2B) {
+  } else if(calculator.contract === contract.B2B) {
     body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
     body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0], 2);
     body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
@@ -649,10 +649,10 @@ var calculate = function(selectedContract) {
   b2bCalculator.calcSalary(salary, b2bOptions);
 
   //  Populate tables with the results
-  if(contract === contractType.UOP) {
+  if(contract === contract.UOP) {
     populateSummaryTable(uopCalculator);
     populateMainTable(uopCalculator);
-  } else if(contract === contractType.B2B) {
+  } else if(contract === contract.B2B) {
     populateSummaryTable(b2bCalculator);
     populateMainTable(b2bCalculator);
   };
