@@ -36,13 +36,17 @@
     cursor: pointer;
     font-size: 22px; }
   .container-main .tab-btn {
+    width: 180px;
     background-color: white;
     border-color: black;
     display: inline-block;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     padding: 20px;
     cursor: pointer; }
+  .container-main .big-font {
+    font-size: 32px;
+    margin: 2px 0; }
   .container-main .tab-btn.active {
     background-color: #2196F3; }
   .container-main .tab-btn:focus {
