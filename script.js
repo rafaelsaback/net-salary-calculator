@@ -582,40 +582,40 @@ function checkValue(grossSalary){
   return grossSalary;
 }
 
-function getVAT() {
-  if(vat0.checked) return 0;
-  else if(vat5.checked) return (5/100);
-  else if(vat8.checked) return (8/100);
-  else return (23/100);
-}
-
-function getTaxRate() {
-  if(taxProgressive.checked) return taxRate.progressive;
-  else return taxRate.linear;
-}
-
-function getZUS() {
-  if(noZUS.checked) return ZUS.noZUS;
-  else if(discountedZUS.checked) return ZUS.discountedZUS;
-  else return ZUS.normalZUS;
-}
-
-function getPaySickness() {
-  if(sicknessYes.checked) return true;
-  else return false;
-}
-
-function getCosts() {
-  if(costs.value.trim() != '') return costs.value;
-  else return 0;
-}
-
 function getB2BOptions(b2bOptions) {
-  b2bOptions.vat = getVAT();
-  b2bOptions.taxRate = getTaxRate();
-  b2bOptions.zus = getZUS();
-  b2bOptions.paySickness = getPaySickness();
-  b2bOptions.costs = getCosts();
+  // VAT
+  b2bOptions.vat = (() => {
+    if(vat0.checked) return 0;
+    else if(vat5.checked) return (5/100);
+    else if(vat8.checked) return (8/100);
+    else return (23/100);
+  })();
+
+  // Tax rate modality (19% or 18%/32%)
+  b2bOptions.taxRate = (() => {
+    if(taxProgressive.checked) return taxRate.progressive;
+    else return taxRate.linear;
+  })();
+
+  // ZUS modality (no ZUS, discounted or normal)
+  b2bOptions.zus = (() => {
+    if(noZUS.checked) return ZUS.noZUS;
+    else if(discountedZUS.checked) return ZUS.discountedZUS;
+    else return ZUS.normalZUS;
+  })();
+
+  // Pay sickness (yes or no)
+  b2bOptions.paySickness = (() => {
+    if(sicknessYes.checked) return true;
+    else return false;
+  })();
+
+  // Costs for running the business
+  b2bOptions.costs = (() => {
+    if(costs.value.trim() != '') return costs.value;
+    else return 0;
+  })();
+
   return b2bOptions;
 }
 
