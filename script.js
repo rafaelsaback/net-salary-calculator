@@ -631,14 +631,21 @@ function getB2BOptions(b2bOptions) {
 }
 
 function displayValueOnTab(uopCalculator, b2bCalculator) {
+  // Display net salary on Umowa o pracę's tab
   let netSalary = formatNumber(uopCalculator.annual.netSalary/12, 0);
-  buttonUOP.innerHTML = 'Umowa o pracę' +
-  '<div class="big-font"> ' + netSalary  + ' zł</div>' +
-  'net (in hand)'
+  buttonUOP.innerHTML = `
+  Umowa o pracę
+  <div class="big-font"> ${netSalary} zł</div>
+  net (in hand)
+  `;
+
+  // Display salary in hand on B2B's tab
   let salaryInHand = formatNumber(b2bCalculator.annual.salaryInHand/12, 0);
-  buttonB2B.innerHTML = 'B2B contract' +
-  '<div class="big-font"> ' + salaryInHand  + ' zł</div>' +
-  'in hand'
+  buttonB2B.innerHTML = `
+  B2B contract
+  <div class="big-font"> ${salaryInHand}  zł</div>
+  in hand
+  `;
 }
 
 var calculate = function(selectedContract) {
