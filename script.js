@@ -292,11 +292,7 @@ class UOPCalculator extends BaseCalculator{
   }
 
   calcSocialSecurity(pension, disability, sickness) {
-    let socialSecurity = new Array(12);
-    for(let i = 0; i < socialSecurity.length; i++){
-      socialSecurity[i] = pension[i] + disability[i] + sickness[i];
-    }
-    return socialSecurity;
+    return pension.map((pen, i) => pen + disability[i] + sickness[i]);
   }
 
   calcHealthContribution(grossSalary, socialSecurity, rateHealthContribution) {
@@ -406,20 +402,11 @@ class B2BCalculator extends BaseCalculator {
   }
 
   calcOthers(accident, laborFund) {
-    let others = new Array(12);
-    for(let i = 0; i < others.length; i++) {
-      others[i] = accident[i] + laborFund[i];
-    }
-    return others;
+    return accident.map((acc, i) => acc + laborFund[i]);
   }
 
   calcSocialSecurity(pension, disability, sickness, accident, laborFund) {
-    let socialSecurity = new Array(12);
-
-    for(let i = 0; i < socialSecurity.length; i++){
-      socialSecurity[i] = pension[i] + disability[i] + sickness[i]+ accident[i] + laborFund[i];
-    }
-    return socialSecurity;
+    return pension.map((pen, i) => pen + disability[i] + sickness[i] + accident[i] + laborFund[i]);
   }
 
   calcZUSContribution(socialSecurity, healthContribution) {
