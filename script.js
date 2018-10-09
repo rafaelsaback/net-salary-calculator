@@ -107,12 +107,12 @@ class BaseCalculator {
     return contribution;
   }
 
-  calcTotals(annualVar, monthlyVar) {
-    let annual = annualVar;
+  calcTotals(annual, monthly) {
+    let totals = {};
     for(let value in annual){
-      annual[value] = monthlyVar[value].reduce((a, b) => a + b, 0);
+      totals[value] = monthly[value].reduce((a, b) => a + b, 0);
     }
-    return annual;
+    return totals;
   }
 
   accumulateValue(array) {
