@@ -341,9 +341,6 @@ class B2BCalculator extends BaseCalculator {
       this.monthly.pension, this.monthly.disability, this.monthly.sickness,
       this.monthly.accident, this.monthly.laborFund
     );
-    this.monthly.zusContribution = this.calcZUSContribution(
-      this.monthly.socialSecurity, this.monthly.healthContribution
-    );
     this.monthly.taxBase = super.calcTaxBase(this.monthly.netSalary,
       this.monthly.socialSecurity, this.costs
     );
@@ -409,9 +406,6 @@ class B2BCalculator extends BaseCalculator {
     return pension.map((pen, i) => pen + disability[i] + sickness[i] + accident[i] + laborFund[i]);
   }
 
-  calcZUSContribution(socialSecurity, healthContribution) {
-    return (new Array(12).fill(socialSecurity + healthContribution));
-  }
 
   calcTax(taxType, taxBase, healthDeductible) {
     if(taxType == TAXTYPE.progressive) {
