@@ -520,67 +520,67 @@ function formatNumber(number, precision){
 }
 
 function populateSummaryTable(calculator){
-  let body = summaryTable.tBodies[0];
-  let body12 = summaryTable12Month.tBodies[0];
-  if(calculator.contract === contract.UOP) {
-    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[0], 2);
-    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
-    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary/12, 2);
-    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
-  } else if(calculator.contract === contract.B2B) {
-    body.rows[0].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[0], 2);
-    body.rows[4].cells[1].innerHTML = formatNumber(calculator.monthly.salaryInHand[0], 2);
-    body12.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary/12, 2);
-    body12.rows[4].cells[1].innerHTML = formatNumber(calculator.annual.salaryInHand/12, 2);
+  let tableFields = ['input-salary', 'social-security', 'health-contribution',
+  'tax', 'final-salary'];
+  let values = [];
+  let values12 = [];
+  let valueNames = [];
+
+  if(calculator.isUOP()) {
+    valueNames = ['grossSalary', 'socialSecurity', 'healthContribution', 'tax', 'netSalary'];
+  } else if(calculator.isB2B()) {
+    valueNames = ['netSalary', 'socialSecurity', 'healthContribution', 'tax', 'salaryInHand'];
   };
-  body.rows[1].cells[1].innerHTML = formatNumber(calculator.monthly.socialSecurity[0], 2);
-  body.rows[2].cells[1].innerHTML = formatNumber(calculator.monthly.healthContribution[0], 2);
-  body.rows[3].cells[1].innerHTML = formatNumber(calculator.monthly.tax[0], 2);
-  body12.rows[1].cells[1].innerHTML = formatNumber(calculator.annual.socialSecurity/12, 2);
-  body12.rows[2].cells[1].innerHTML = formatNumber(calculator.annual.healthContribution/12, 2);
-  body12.rows[3].cells[1].innerHTML = formatNumber(calculator.annual.tax/12, 2);
+  valueNames.forEach((name) => {
+    values.push(calculator.monthly[name][0]);
+    values12.push(calculator.annual[name]/12);
+  });
+  writeToTable(summaryTable, tableFields, values);
+  writeToTable(summaryTable12Month, tableFields, values12);
+}
+
+function writeToTable(table, fields, values) {
+  for(let i = 0; i < fields.length; i++) {
+    table.querySelector(`.${fields[i]}`).innerHTML = formatNumber(values[i], 2);
+  }
 }
 
 function populateMainTable(calculator) {
-  let body = mainTable.tBodies[0];
+  // Variable names inside calculator
+  let valueNames = [];
+  if(calculator.isUOP()) {
+    valueNames = ['grossSalary', 'pension', 'disability', 'sickness',
+    'healthContribution', 'taxBase', 'tax', 'netSalary'];
+  } else if(calculator.isB2B()) {
+    valueNames = ['netSalary', 'pension', 'disability', 'sickness',
+    'healthContribution', 'others', 'tax', 'netSalary'];
+  };
+  // Class names used in the table
+  let tableFields = ['input-salary', 'pension', 'disability', 'sickness',
+  'health', 'tax-base', 'tax', 'final-salary'];
 
-  /* Format monthly values */
-  for(let i = 0; i < body.rows.length; i++)
+  // Write monthly values
+  for(let i = 0; i < 12; i++)
   {
-    if(calculator.contract === contract.UOP) {
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.grossSalary[i], 2);
-      body.rows[i].cells[6].innerHTML = formatNumber(calculator.monthly.taxBase[i], 2);
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.netSalary[i], 2);
-    } else if(calculator.contract === contract.B2B) {
-      let others = calculator.monthly.accident[i] + calculator.monthly.laborFund[i];
-      body.rows[i].cells[1].innerHTML = formatNumber(calculator.monthly.netSalary[i], 2);
-      body.rows[i].cells[6].innerHTML = formatNumber(others, 2);
-      body.rows[i].cells[8].innerHTML = formatNumber(calculator.monthly.salaryInHand[i], 2);
-    };
-    body.rows[i].cells[2].innerHTML = formatNumber(calculator.monthly.pension[i], 2);
-    body.rows[i].cells[3].innerHTML = formatNumber(calculator.monthly.disability[i], 2);
-    body.rows[i].cells[4].innerHTML = formatNumber(calculator.monthly.sickness[i], 2);
-    body.rows[i].cells[5].innerHTML = formatNumber(calculator.monthly.healthContribution[i], 2);
-    body.rows[i].cells[7].innerHTML = formatNumber(calculator.monthly.tax[i], 2);
+    // Add suffix to the classnames based on the month
+    let monthTableFields = tableFields.map((el) => {return el + `-${i}`});
+    let values = [];
+    // Retrieve the values for each variable from the calculator
+    valueNames.forEach((name) => {
+      values.push(calculator.monthly[name][i]);
+    });
+    // Write values to the table
+    writeToTable(mainTable, monthTableFields, values);
   }
 
-  /* Format total values */
-  let foot = mainTable.tFoot;
-  if(calculator.contract === contract.UOP) {
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.grossSalary,2);
-    foot.rows[0].cells[6].innerHTML = formatNumber(calculator.annual.taxBase,2);
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.netSalary,2);
-  } else if(calculator.contract === contract.B2B) {
-    let others = calculator.monthly.accident[i] + calculator.monthly.laborFund[i];
-    foot.rows[0].cells[1].innerHTML = formatNumber(calculator.annual.netSalary,2);
-    foot.rows[0].cells[6].innerHTML = formatNumber(others, 2);
-    foot.rows[0].cells[8].innerHTML = formatNumber(calculator.annual.salaryInHand,2);
-  };
-  foot.rows[0].cells[2].innerHTML = formatNumber(calculator.annual.pension,2);
-  foot.rows[0].cells[3].innerHTML = formatNumber(calculator.annual.disability,2);
-  foot.rows[0].cells[4].innerHTML = formatNumber(calculator.annual.sickness,2);
-  foot.rows[0].cells[5].innerHTML = formatNumber(calculator.annual.healthContribution,2);
-  foot.rows[0].cells[7].innerHTML = formatNumber(calculator.annual.tax, 2);
+  // Write totals
+  let values = [];
+  // Retrieve the values for each variable from the calculator
+  valueNames.forEach((name) => {
+    values.push(calculator.annual[name]);
+  });
+  // Write values to the table
+  writeToTable(mainTable.tFoot, tableFields, values);
 }
 
 function checkValue(grossSalary){
