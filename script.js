@@ -1,6 +1,12 @@
 const buttonUOP = document.querySelector('#tab-btn-uop');
 const buttonB2B = document.querySelector('#tab-btn-b2b');
 const formInputSalary = document.querySelector('#form-input-salary');
+const tabB2B = document.getElementById('tab-b2b');
+const headerGross = document.getElementById('header-gross');
+const headerTaxBase = document.getElementById('header-tax-base');
+const headerNet = document.getElementById('header-net');
+const grossElements = document.getElementsByClassName('summary-header-gross');
+const netElements = document.getElementsByClassName('summary-header-net');
 const btnB2BOptions = document.querySelector('#btn-b2b-options');
 const containerB2BOptions = document.querySelector('#b2b-options');
 const inputCosts = document.querySelector('#costs');
@@ -450,7 +456,7 @@ function selectContract(calculator) {
   selectedContract = calculator.contract;
 
   // Update table titles based on contract
-  updateTitles(calculator.contract);
+  updateHeaderNames(calculator.contract);
 
   if(calculator.isUOP()) {
     // Highlight UOP button
@@ -476,18 +482,17 @@ function selectContract(calculator) {
   }
 }
 
-function updateTitles(type) {
-  if(type === contract.UOP) {
+function updateHeaderNames(type) {
+  if(type === CONTRACT.UOP) {
     formInputSalary.innerHTML = 'Gross salary:';
-    headerGross.innerHTML = 'Net salary <br> (from invoice)';
-    headerTaxBase.innerHTML = 'Others';
-    headerNet.innerHTML = 'Salary <br> in hand';
+    headerGross.innerHTML = 'Gross <br> salary';
+    headerTaxBase.innerHTML = 'Tax base';
+    headerNet.innerHTML = 'Net <br> salary';
     for(let i = 0; i < grossElements.length; i++) {
-      grossElements[i].innerHTML = 'Net (from invoice)';
-      netElements[i].innerHTML = 'Salary in hand';
+      grossElements[i].innerHTML = 'Gross salary';
+      netElements[i].innerHTML = 'Net salary';
     }
-  } else if(type === contract.B2B) {
-    tabB2B.style.display = 'block';
+  } else if(type === CONTRACT.B2B) {
     formInputSalary.innerHTML = 'Net salary (from invoice):';
     headerGross.innerHTML = 'Net salary <br> (from invoice)';
     headerTaxBase.innerHTML = 'Others';
