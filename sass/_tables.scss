@@ -21,10 +21,6 @@ td {
   text-align: center;
 }
 
-.row-gross, .row-net  {
-  background: $dark-gray;
-}
-
 .container-results {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -34,4 +30,8 @@ td {
 
 .is-hidden {
   display: none;
+}
+
+.highlight {
+  background: $dark-gray;
 }

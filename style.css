@@ -156,8 +156,6 @@
     text-align: left; }
   .container-main td {
     text-align: center; }
-  .container-main .row-gross, .container-main .row-net {
-    background: #e0e0e0; }
   .container-main .container-results {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -165,6 +163,8 @@
     margin-bottom: 50px; }
   .container-main .is-hidden {
     display: none; }
+  .container-main .highlight {
+    background: #e0e0e0; }
   .container-main .table-summary {
     min-width: 280px; }
     .container-main .table-summary td, .container-main .table-summary th {
@@ -199,8 +199,6 @@
   .container-main .table-main td {
     width: 98px;
     min-width: 90px; }
-  .container-main .col-input-salary, .container-main .final-salary {
-    background: #e0e0e0; }
   .container-main .main-thead {
     border-top: 0.15rem solid black;
     border-bottom: 0.15rem solid black; }
