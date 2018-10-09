@@ -118,6 +118,52 @@ class BaseCalculator {
     return totals;
   }
 
+  calcAccTaxBase(taxBase) {
+    return this.accumulateValue(taxBase);
+  }
+
+  calcTaxBase(grossSalary, socialSecurity, earningCost){
+    let taxBase = new Array(12);
+    for(let i = 0; i < taxBase.length; i++) {
+      let tempTaxBase =  grossSalary[i] - socialSecurity[i] - earningCost;
+      taxBase[i] = this.roundNumber(tempTaxBase, 0);
+    };
+    return taxBase;
+  }
+
+  calcProgressiveTax(taxBase, accTaxBase, healthDeductible, rate18, rate32, taxLimit, monthlyRelief) {
+    let tax = new Array(12);
+
+    for(let i = 0; i < tax.length; i++) {
+      let tempTax = 0;
+      // The montly relief is only applied in case the tax taxLimit has not been exceeded
+      if(accTaxBase[i] < taxLimit){
+        tempTax = (taxBase[i] * rate18) - healthDeductible[i] - monthlyRelief;
+      } else {
+        tempTax = (taxBase[i] * rate32) - healthDeductible[i];
+      }
+      tax[i] = Math.round(tempTax, 0);
+    };
+
+    return tax;
+  }
+
+  calcFinalSalary(grossSalary, ...costs) {
+    let finalSalary = new Array(12);
+    for(let i = 0; i < finalSalary.length; i++){
+      let tempFinalSalary = grossSalary[i];
+      for(let j = 0; j < costs.length; j++){
+        if(costs[j] instanceof Array) {
+          tempFinalSalary -= costs[j][i];
+        } else {
+          tempFinalSalary -= costs[j];
+        }
+      }
+      finalSalary[i] = this.roundNumber(tempFinalSalary,2);
+    }
+    return finalSalary;
+  }
+
   accumulateValue(array) {
     let accArray = [];
     array.reduce((a, b, i) => { return accArray[i] = a + b;}, 0);
@@ -186,22 +232,22 @@ class UOPCalculator extends BaseCalculator{
     );
 
     // Tax base
-    this.monthly.taxBase = this.calcTaxBase(
+    this.monthly.taxBase = super.calcTaxBase(
       this.monthly.grossSalary, this.monthly.socialSecurity, this.auxValues.earningCost
     );
 
     // Accumulated tax base
-    this.monthly.accTaxBase = this.calcAccTaxBase(this.monthly.taxBase);
+    this.monthly.accTaxBase = super.calcAccTaxBase(this.monthly.taxBase);
 
     // Tax
-    this.monthly.tax = this.calcTax(
+    this.monthly.tax = super.calcProgressiveTax(
       this.monthly.taxBase, this.monthly.accTaxBase,
       this.monthly.healthDeductible, this.taxRate.rate18,
       this.taxRate.rate32, this.auxValues.taxLimit, this.auxValues.monthlyRelief
     );
 
     // Net salary
-    this.monthly.netSalary = this.calcNetSalary(this.monthly.grossSalary,
+    this.monthly.netSalary = super.calcFinalSalary(this.monthly.grossSalary,
       this.monthly.socialSecurity, this.monthly.healthContribution, this.monthly.tax
     );
 
@@ -261,45 +307,6 @@ class UOPCalculator extends BaseCalculator{
     };
     return healthContribution;
   }
-
-  calcTaxBase(grossSalary, socialSecurity, earningCost){
-    let taxBase = new Array(12);
-    for(let i = 0; i < taxBase.length; i++) {
-      let tempTaxBase =  grossSalary[i] - socialSecurity[i] - earningCost;
-      taxBase[i] = this.roundNumber(tempTaxBase, 0);
-    };
-    return taxBase;
-  }
-
-  calcAccTaxBase(taxBase) {
-    return this.accumulateValue(taxBase);
-  }
-
-  calcTax(taxBase, accTaxBase, healthDeductible, rate18, rate32, taxLimit, monthlyRelief) {
-    let tax = new Array(12);
-
-    for(let i = 0; i < tax.length; i++) {
-      let tempTax = 0;
-      // The montly relief is only applied in case the tax taxLimit has not been exceeded
-      if(accTaxBase[i] < taxLimit){
-        tempTax = (taxBase[i] * rate18) - healthDeductible[i] - monthlyRelief;
-      } else {
-        tempTax = (taxBase[i] * rate32) - healthDeductible[i];
-      }
-      tax[i] = Math.round(tempTax, 0);
-    };
-
-    return tax;
-  }
-
-  calcNetSalary(grossSalary, socialSecurity, healthContribution, tax) {
-    let netSalary = new Array(12);
-    for(let i = 0; i < netSalary.length; i++){
-      let tempNetSalary = grossSalary[i] - socialSecurity[i] - healthContribution[i] - tax[i];
-      netSalary[i] = this.roundNumber(tempNetSalary,2);
-    }
-    return netSalary;
-  }
 } // End of class UOPCalculator
 
 class B2BCalculator extends BaseCalculator {
@@ -341,13 +348,14 @@ class B2BCalculator extends BaseCalculator {
     this.monthly.zusContribution = this.calcZUSContribution(
       this.monthly.socialSecurity, this.monthly.healthContribution
     );
-    this.monthly.baseTax = this.calcBaseTax(this.monthly.netSalary,
+    this.monthly.taxBase = super.calcTaxBase(this.monthly.netSalary,
       this.monthly.socialSecurity, this.costs
     );
-    this.monthly.tax = this.calcTax(this.taxType, this.monthly.baseTax,
+    this.monthly.accTaxBase = super.calcAccTaxBase(this.monthly.taxBase);
+    this.monthly.tax = this.calcTax(this.taxType, this.monthly.taxBase,
       this.monthly.healthDeductible
     );
-    this.monthly.salaryInHand = this.calcSalaryInHand(this.monthly.netSalary,
+    this.monthly.salaryInHand = super.calcFinalSalary(this.monthly.netSalary,
       this.monthly.socialSecurity, this.monthly.healthContribution,
       this.costs, this.monthly.tax
     );
@@ -418,26 +426,18 @@ class B2BCalculator extends BaseCalculator {
     return (new Array(12).fill(socialSecurity + healthContribution));
   }
 
-  calcBaseTax(netSalary, socialSecurity, costs) {
-    let baseTax = new Array(12);
-    for(let i = 0; i < baseTax.length; i++) {
-      baseTax[i] = netSalary[i] - socialSecurity[i] - costs;
-    }
-    return baseTax;
-  }
-
-  calcTax(taxType, baseTax, healthDeductible) {
+  calcTax(taxType, taxBase, healthDeductible) {
     if(taxType == TAXTYPE.progressive) {
-      return this.calcLinearTax(baseTax, healthDeductible);
+      return super.calcProgressiveTax(taxBase, healthDeductible, 0);
     } else {
-      return this.calcLinearTax(baseTax, healthDeductible);
+      return this.calcLinearTax(taxBase, healthDeductible);
     }
   }
 
-  calcLinearTax(baseTax, healthDeductible) {
+  calcLinearTax(taxBase, healthDeductible) {
     let tax = new Array(12);
     for(let i = 0; i < tax.length; i++){
-      let taxBeforeDeductible = baseTax[i] * TAXRATE.rate19;
+      let taxBeforeDeductible = taxBase[i] * TAXRATE.rate19;
       if(taxBeforeDeductible >= healthDeductible[i]){
         tax[i] = taxBeforeDeductible - healthDeductible[i];
       } else {
@@ -446,17 +446,7 @@ class B2BCalculator extends BaseCalculator {
     }
     return tax;
   }
-
-  calcSalaryInHand(netSalary, socialSecurity, healthContribution, costs, tax) {
-    let salaryInHand = new Array(12);
-    for(let i = 0; i < netSalary.length; i++){
-      let tempSalary = netSalary[i] - socialSecurity[i] -
-      healthContribution[i] - costs - tax[i];
-      salaryInHand[i] = this.roundNumber(tempSalary,2);
-    }
-    return salaryInHand;
-  }
-}
+} // End of class UOPCalculator
 
 function selectContract(calculator) {
   // Update global variable selectedContract
