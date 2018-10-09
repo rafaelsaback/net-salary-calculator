@@ -311,9 +311,11 @@ class B2BCalculator extends BaseCalculator {
     super();
     this.monthly.acccident = new Array(12).fill(0);
     this.monthly.laborFund = new Array(12).fill(0);
+    this.monthly.others = new Array(12).fill(0);
     this.monthly.salaryInHand = new Array(12).fill(0);
     this.annual.accident = 0;
     this.annual.laborFund = 0;
+    this.annual.others = 0;
     this.annual.salaryInHand = 0;
     this.contract = contract.B2B;
   }
@@ -335,6 +337,7 @@ class B2BCalculator extends BaseCalculator {
     );
     this.monthly.accident = this.calcAccident(this.zus);
     this.monthly.laborFund = this.calcLaborFund(this.zus);
+    this.monthly.others = this.calcOthers(this.monthly.accident, this.monthly.laborFund);
     this.monthly.socialSecurity = this.calcSocialSecurity(
       this.monthly.pension, this.monthly.disability, this.monthly.sickness,
       this.monthly.accident, this.monthly.laborFund
@@ -396,6 +399,14 @@ class B2BCalculator extends BaseCalculator {
 
   calcLaborFund(zus) {
     return this.evalZUS(zus, 0, 0, 65.31);
+  }
+
+  calcOthers(accident, laborFund) {
+    let others = new Array(12);
+    for(let i = 0; i < others.lenth; i++) {
+      others[i] = accident[i] + laborFund[i];
+    }
+    return others;
   }
 
   calcSocialSecurity(pension, disability, sickness, accident, laborFund) {
