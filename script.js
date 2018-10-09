@@ -26,31 +26,28 @@ const summaryTable = document.querySelector('#table-summary-1st-month');
 const summaryTable12Month = document.querySelector('#table-summary-12-month');
 const mainTable = document.querySelector('#table-main');
 
-const ratesSocial = {
+const RATES = {
   'pension': (9.76/100),
   'disability': (1.5/100),
-  'sickness': (2.45/100)
+  'sickness': (2.45/100),
+  'healthContribution': (9/100),
+  'healthDeductible': (7.75/100)
 };
 
-const ratesHealth = {
-  'contribution': (9/100),
-  'deductible': (7.75/100)
-};
-
-const ratesTax = {
+const TAXRATE = {
   'rate18': (18/100),
   'rate19': (19/100),
   'rate32': (32/100)
 };
 
-const auxValuesUOP = {
+const AUXVALUESUOP = {
   'earningCost': 111.25,
   'monthlyRelief': 46.33,
   'annualLimit': 133290, /* Annual limit for pension and disability calculations */
   'taxLimit': 85528
 };
 
-const taxRate = {
+const TAXTYPE = {
   'progressive': Symbol('18%/32%'),
   'linear': Symbol('19%')
 };
@@ -61,7 +58,7 @@ const ZUS = {
   'normalZUS': Symbol('Normal contribution')
 };
 
-const contract = {
+const CONTRACT = {
   'B2B': Symbol('B2B'),
   'UOP': Symbol('Umowa o prace')
 };
@@ -131,11 +128,11 @@ class BaseCalculator {
   }
 
   isUOP() {
-    return (this.contract === contract.UOP);
+    return (this.contract === CONTRACT.UOP);
   }
 
   isB2B() {
-    return (this.contract === contract.B2B);
+    return (this.contract === CONTRACT.B2B);
   }
 }
 
@@ -143,14 +140,13 @@ class UOPCalculator extends BaseCalculator{
   constructor(){
     super();
     this.monthly.accTaxBase = new Array(12).fill(0);
-    this.contract = contract.UOP;
+    this.contract = CONTRACT.UOP;
   }
 
-  calcSalary(grossSalary, ratesSocial, ratesHealth, ratesTax, auxValues) {
+  calcSalary(grossSalary, rates, taxRate, auxValues) {
     this.monthly.grossSalary.fill(grossSalary);
-    this.ratesSocial = ratesSocial;
-    this.ratesHealth = ratesHealth;
-    this.ratesTax = ratesTax;
+    this.rates = rates;
+    this.taxRate = taxRate;
     this.auxValues = auxValues;
 
     // Accumulated gross salary
@@ -159,18 +155,18 @@ class UOPCalculator extends BaseCalculator{
     // Pension
     this.monthly.pension = this.calcPension(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.auxValues.annualLimit, this.ratesSocial.pension
+      this.auxValues.annualLimit, this.rates.pension
     );
 
     // Disability insurance
     this.monthly.disability = this.calcDisability(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.auxValues.annualLimit, this.ratesSocial.disability
+      this.auxValues.annualLimit, this.rates.disability
     );
 
     // Sickness insurance
     this.monthly.sickness = this.calcSickness(
-      this.monthly.grossSalary, this.ratesSocial.sickness
+      this.monthly.grossSalary, this.rates.sickness
     );
 
     // Social security
@@ -180,13 +176,13 @@ class UOPCalculator extends BaseCalculator{
 
     // Health contribution
     this.monthly.healthContribution = this.calcHealthContribution(
-      this.monthly.grossSalary, this.monthly.socialSecurity, this.ratesHealth.contribution
+      this.monthly.grossSalary, this.monthly.socialSecurity, this.rates.healthContribution
     );
 
     // Health deductible
     this.monthly.healthDeductible = super.calcHealthDeductible(
-      this.monthly.healthContribution, this.ratesHealth.deductible,
-      this.ratesHealth.contribution
+      this.monthly.healthContribution, this.rates.healthDeductible,
+      this.rates.healthContribution
     );
 
     // Tax base
@@ -200,8 +196,8 @@ class UOPCalculator extends BaseCalculator{
     // Tax
     this.monthly.tax = this.calcTax(
       this.monthly.taxBase, this.monthly.accTaxBase,
-      this.monthly.healthDeductible, this.ratesTax.rate18,
-      this.ratesTax.rate32, this.auxValues.taxLimit, this.auxValues.monthlyRelief
+      this.monthly.healthDeductible, this.taxRate.rate18,
+      this.taxRate.rate32, this.auxValues.taxLimit, this.auxValues.monthlyRelief
     );
 
     // Net salary
@@ -317,13 +313,13 @@ class B2BCalculator extends BaseCalculator {
     this.annual.laborFund = 0;
     this.annual.others = 0;
     this.annual.salaryInHand = 0;
-    this.contract = contract.B2B;
+    this.contract = CONTRACT.B2B;
   }
 
   calcSalary(netSalary, b2bOptions) {
     this.monthly.netSalary.fill(netSalary);
     this.vat = b2bOptions.vat;
-    this.taxRate = b2bOptions.taxRate;
+    this.taxType = b2bOptions.taxType;
     this.zus = b2bOptions.zus;
     this.paySickness = b2bOptions.paySickness;
     this.costs = b2bOptions.costs;
@@ -333,7 +329,7 @@ class B2BCalculator extends BaseCalculator {
     this.monthly.sickness = this.calcSickness(this.paySickness, this.zus);
     this.monthly.healthContribution = this.calcHealthContribution();
     this.monthly.healthDeductible = super.calcHealthDeductible(
-      this.monthly.healthContribution, ratesHealth.deductible, ratesHealth.contribution
+      this.monthly.healthContribution, RATES.healthDeductible, RATES.healthContribution
     );
     this.monthly.accident = this.calcAccident(this.zus);
     this.monthly.laborFund = this.calcLaborFund(this.zus);
@@ -348,7 +344,7 @@ class B2BCalculator extends BaseCalculator {
     this.monthly.baseTax = this.calcBaseTax(this.monthly.netSalary,
       this.monthly.socialSecurity, this.costs
     );
-    this.monthly.tax = this.calcTax(this.taxRate, this.monthly.baseTax,
+    this.monthly.tax = this.calcTax(this.taxType, this.monthly.baseTax,
       this.monthly.healthDeductible
     );
     this.monthly.salaryInHand = this.calcSalaryInHand(this.monthly.netSalary,
@@ -403,7 +399,7 @@ class B2BCalculator extends BaseCalculator {
 
   calcOthers(accident, laborFund) {
     let others = new Array(12);
-    for(let i = 0; i < others.lenth; i++) {
+    for(let i = 0; i < others.length; i++) {
       others[i] = accident[i] + laborFund[i];
     }
     return others;
@@ -430,8 +426,8 @@ class B2BCalculator extends BaseCalculator {
     return baseTax;
   }
 
-  calcTax(taxRate, baseTax, healthDeductible) {
-    if(taxRate == ratesTax.progressive) {
+  calcTax(taxType, baseTax, healthDeductible) {
+    if(taxType == TAXTYPE.progressive) {
       return this.calcLinearTax(baseTax, healthDeductible);
     } else {
       return this.calcLinearTax(baseTax, healthDeductible);
@@ -441,7 +437,7 @@ class B2BCalculator extends BaseCalculator {
   calcLinearTax(baseTax, healthDeductible) {
     let tax = new Array(12);
     for(let i = 0; i < tax.length; i++){
-      let taxBeforeDeductible = baseTax[i] * ratesTax.rate19;
+      let taxBeforeDeductible = baseTax[i] * TAXRATE.rate19;
       if(taxBeforeDeductible >= healthDeductible[i]){
         tax[i] = taxBeforeDeductible - healthDeductible[i];
       } else {
@@ -553,7 +549,7 @@ function populateMainTable(calculator) {
     'healthContribution', 'taxBase', 'tax', 'netSalary'];
   } else if(calculator.isB2B()) {
     valueNames = ['netSalary', 'pension', 'disability', 'sickness',
-    'healthContribution', 'others', 'tax', 'netSalary'];
+    'healthContribution', 'others', 'tax', 'salaryInHand'];
   };
   // Class names used in the table
   let tableFields = ['input-salary', 'pension', 'disability', 'sickness',
@@ -609,9 +605,9 @@ function getB2BOptions(b2bOptions) {
   })();
 
   // Tax rate modality (19% or 18%/32%)
-  b2bOptions.taxRate = (() => {
-    if(taxProgressive.checked) return taxRate.progressive;
-    else return taxRate.linear;
+  b2bOptions.taxType = (() => {
+    if(taxProgressive.checked) return TAXTYPE.progressive;
+    else return TAXTYPE.linear;
   })();
 
   // ZUS modality (no ZUS, discounted or normal)
@@ -642,7 +638,7 @@ function displayValueOnTab(uopCalculator, b2bCalculator) {
   buttonUOP.innerHTML = `
   Umowa o pracę
   <div class="big-font"> ${netSalary} zł</div>
-  net (in hand)
+  net
   `;
 
   // Display salary in hand on B2B's tab
@@ -664,16 +660,16 @@ var calculate = function(contract) {
   if(radioAnnually.checked) salary /= 12;
 
   // Calculate net salary
-  uopCalculator.calcSalary(salary, ratesSocial, ratesHealth, ratesTax, auxValuesUOP);
+  uopCalculator.calcSalary(salary, RATES, TAXRATE, AUXVALUESUOP);
   let b2bOptions =  {};
   b2bOptions = getB2BOptions(b2bOptions);
   b2bCalculator.calcSalary(salary, b2bOptions);
 
   //  Populate tables with the results
-  if(contract === contract.UOP) {
+  if(contract === CONTRACT.UOP) {
     populateSummaryTable(uopCalculator);
     populateMainTable(uopCalculator);
-  } else if(contract === contract.B2B) {
+  } else if(contract === CONTRACT.B2B) {
     populateSummaryTable(b2bCalculator);
     populateMainTable(b2bCalculator);
   };
@@ -710,6 +706,6 @@ salaryInput.focus();
 buttonUOP.addEventListener('click', function() {selectContract(uopCalculator);});
 buttonB2B.addEventListener('click', function() {selectContract(b2bCalculator);});
 buttonUOP.click();
-netSalaryButton.addEventListener('click', function() {calculate(selectedContract);});
+calculateButton.addEventListener('click', function() {calculate(selectedContract);});
 salaryInput.addEventListener('keydown', function() {pressedKey(event, selectedContract);});
 btnB2BOptions.addEventListener('click', function() {toggleB2BOptions();});
