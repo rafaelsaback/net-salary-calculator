@@ -1,4 +1,5 @@
 *.map
 .sass-cache
 .eslintrc.js
-package.json
+build/
+node_modules/
