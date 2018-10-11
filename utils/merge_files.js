@@ -13,6 +13,6 @@ var fileNames = [
 ];
 var inputFiles = fileNames.map(file => inputDir + file);
 
-var outputFile = baseDir + 'components/typescript/merged/test.ts'
+var outputFile = baseDir + 'components/typescript/merged/script.ts';
 
 concat(inputFiles, outputFile);
