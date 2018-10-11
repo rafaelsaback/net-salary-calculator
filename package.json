@@ -6,8 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "sass": "sass --watch components/sass/main.scss:build/style.css",
-        "typescript": "tsc components/typescript/merged/script.ts --outDir components/scripts",
-        "merge-ts": "onchange 'components/typescript/*.ts' -- node utils/merge_files.js && npm run typescript",
+        "merge-ts": "onchange 'components/typescript/*.ts' -- node utils/merge_files.js && tsc",
         "start-dev": "npm-run-all -p sass merge-js"
     },
     "repository": {
