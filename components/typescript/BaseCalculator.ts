@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 class BaseCalculator {
   constructor() {
     this.monthly = {};

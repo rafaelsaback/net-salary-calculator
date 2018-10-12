@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 function updateHeaderNames(type) {
   if(type === CONTRACT.UOP) {
     formInputSalary.innerHTML = 'Gross salary:';

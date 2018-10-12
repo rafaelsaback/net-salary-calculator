@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 class UOPCalculator extends BaseCalculator{
   constructor(){
     super();

@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 function selectContract(calculator) {
   // Update global variable selectedContract
   selectedContract = calculator.contract;

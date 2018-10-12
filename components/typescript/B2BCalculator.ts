@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 class B2BCalculator extends BaseCalculator {
   constructor() {
     super();

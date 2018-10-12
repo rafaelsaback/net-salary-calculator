@@ -1,3 +1,5 @@
+/// <reference path="references.ts" />
+
 const buttonUOP = document.querySelector('#tab-btn-uop');
 const buttonB2B = document.querySelector('#tab-btn-b2b');
 const formInputSalary = document.querySelector('#form-input-salary');
