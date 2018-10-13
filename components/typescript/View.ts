@@ -1,33 +1,35 @@
-/// <reference path="references.ts" />
+import {BaseCalculator} from 'BaseCalculator';
+import {UOPCalculator} from 'UOPCalculator';
+import {B2BCalculator} from 'B2BCalculator';
 
-function updateHeaderNames(type) {
+export function updateHeaderNames(type: Symbol): void {
   if(type === CONTRACT.UOP) {
-    formInputSalary.innerHTML = 'Gross salary:';
-    headerGross.innerHTML = 'Gross <br> salary';
-    headerTaxBase.innerHTML = 'Tax base';
-    headerNet.innerHTML = 'Net <br> salary';
-    for(let i = 0; i < grossElements.length; i++) {
-      grossElements[i].innerHTML = 'Gross salary';
-      netElements[i].innerHTML = 'Net salary';
+    labelSalary.innerHTML = 'Gross salary:';
+    hdrGross.innerHTML = 'Gross <br> salary';
+    hdrTaxBase.innerHTML = 'Tax base';
+    hdrNet.innerHTML = 'Net <br> salary';
+    for(let i = 0; i < elsGross.length; i++) {
+      elsGross[i].innerHTML = 'Gross salary';
+      elsNet[i].innerHTML = 'Net salary';
     }
   } else if(type === CONTRACT.B2B) {
-    formInputSalary.innerHTML = 'Net salary (from invoice):';
-    headerGross.innerHTML = 'Net salary <br> (from invoice)';
-    headerTaxBase.innerHTML = 'Others';
-    headerNet.innerHTML = 'Salary <br> in hand';
-    for(let i = 0; i < grossElements.length; i++) {
-      grossElements[i].innerHTML = 'Net (from invoice)';
-      netElements[i].innerHTML = 'Salary in hand';
+    labelSalary.innerHTML = 'Net salary (from invoice):';
+    hdrGross.innerHTML = 'Net salary <br> (from invoice)';
+    hdrTaxBase.innerHTML = 'Others';
+    hdrNet.innerHTML = 'Salary <br> in hand';
+    for(let i = 0; i < elsGross.length; i++) {
+      elsGross[i].innerHTML = 'Net (from invoice)';
+      elsNet[i].innerHTML = 'Salary in hand';
     }
   };
 }
 
-function populateSummaryTable(calculator){
+export function populateSummaryTable(calculator: BaseCalculator): void {
   let tableFields = ['input-salary', 'social-security', 'health-contribution',
   'tax', 'final-salary'];
-  let values = [];
-  let values12 = [];
-  let valueNames = [];
+  let values: number[] = [];
+  let values12: number[] = [];
+  let valueNames: string[] = [];
 
   if(calculator.isUOP()) {
     valueNames = ['grossSalary', 'socialSecurity', 'healthContribution', 'tax', 'netSalary'];
@@ -38,19 +40,23 @@ function populateSummaryTable(calculator){
     values.push(calculator.monthly[name][0]);
     values12.push(calculator.annual[name]/12);
   });
-  writeToTable(summaryTable, tableFields, values);
-  writeToTable(summaryTable12Month, tableFields, values12);
+  writeToTable(tblSummary, tableFields, values);
+  writeToTable(tblSummary12Month, tableFields, values12);
 }
 
-function writeToTable(table, fields, values) {
+function formatNumber(number: number, precision: number): string{
+  return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+function writeToTable(table: HTMLElement, fields: string[], values: number[]): void {
   for(let i = 0; i < fields.length; i++) {
     table.querySelector(`.${fields[i]}`).innerHTML = formatNumber(values[i], 2);
   }
 }
 
-function populateMainTable(calculator) {
+export function populateMainTable(calculator: BaseCalculator): void {
   // Variable names inside calculator
-  let valueNames = [];
+  let valueNames: string[] = [];
   if(calculator.isUOP()) {
     valueNames = ['grossSalary', 'pension', 'disability', 'sickness',
     'healthContribution', 'taxBase', 'tax', 'netSalary'];
@@ -67,29 +73,30 @@ function populateMainTable(calculator) {
   {
     // Add suffix to the classnames based on the month
     let monthTableFields = tableFields.map((el) => {return el + `-${i}`});
-    let values = [];
+    let values: number[] = [];
     // Retrieve the values for each variable from the calculator
     valueNames.forEach((name) => {
       values.push(calculator.monthly[name][i]);
     });
     // Write values to the table
-    writeToTable(mainTable, monthTableFields, values);
+    writeToTable(tblMain, monthTableFields, values);
   }
 
   // Write totals
-  let values = [];
+  let values: number[] = [];
   // Retrieve the values for each variable from the calculator
   valueNames.forEach((name) => {
     values.push(calculator.annual[name]);
   });
   // Write values to the table
-  writeToTable(mainTable.tFoot, tableFields, values);
+  writeToTable(tblMain.tFoot, tableFields, values);
 }
 
-function displayValueOnTab(uopCalculator, b2bCalculator) {
+export function displayValueOnTab(uopCalculator: UOPCalculator,
+  b2bCalculator: B2BCalculator): void {
   // Display net salary on Umowa o pracę's tab
   let netSalary = formatNumber(uopCalculator.annual.netSalary/12, 0);
-  buttonUOP.innerHTML = `
+  btnUOP.innerHTML = `
   Umowa o pracę
   <div class="big-font"> ${netSalary} zł</div>
   net
@@ -97,7 +104,7 @@ function displayValueOnTab(uopCalculator, b2bCalculator) {
 
   // Display salary in hand on B2B's tab
   let salaryInHand = formatNumber(b2bCalculator.annual.salaryInHand/12, 0);
-  buttonB2B.innerHTML = `
+  btnB2B.innerHTML = `
   B2B contract
   <div class="big-font"> ${salaryInHand}  zł</div>
   in hand
@@ -105,9 +112,9 @@ function displayValueOnTab(uopCalculator, b2bCalculator) {
 }
 
 
-var toggleB2BOptions = function() {
-  containerB2BOptions.classList.toggle('is-hidden');
-  if(containerB2BOptions.classList.contains('is-hidden')) {
+export var toggleB2BOptions = function(): void {
+  ctnrB2BOptions.classList.toggle('is-hidden');
+  if(ctnrB2BOptions.classList.contains('is-hidden')) {
     btnB2BOptions.innerHTML = "Show B2B options";
   } else {
     btnB2BOptions.innerHTML = "Hide B2B options";

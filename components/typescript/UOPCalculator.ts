@@ -1,17 +1,20 @@
-/// <reference path="references.ts" />
+import {BaseCalculator, AuxVariable} from "./BaseCalculator";
 
-class UOPCalculator extends BaseCalculator{
+export class UOPCalculator extends BaseCalculator{
+  rates: AuxVariable = {};
+  tax: AuxVariable = {};
+  uopOptions: AuxVariable = {};
   constructor(){
     super();
     this.monthly.accTaxBase = new Array(12).fill(0);
     this.contract = CONTRACT.UOP;
   }
 
-  calcSalary(grossSalary, rates, taxRate, auxValues) {
+  calcSalary(grossSalary: number, rates: AuxVariable, tax: AuxVariable, uopOptions: AuxVariable) {
     this.monthly.grossSalary.fill(grossSalary);
     this.rates = rates;
-    this.taxRate = taxRate;
-    this.auxValues = auxValues;
+    this.tax = tax;
+    this.uopOptions = uopOptions;
 
     // Accumulated gross salary
     this.monthly.accGrossSalary = this.calcAccGrossSalary(this.monthly.grossSalary);
@@ -19,13 +22,13 @@ class UOPCalculator extends BaseCalculator{
     // Pension
     this.monthly.pension = this.calcPension(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.auxValues.annualLimit, this.rates.pension
+      this.uopOptions.annualLimit, this.rates.pension
     );
 
     // Disability insurance
     this.monthly.disability = this.calcDisability(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.auxValues.annualLimit, this.rates.disability
+      this.uopOptions.annualLimit, this.rates.disability
     );
 
     // Sickness insurance
@@ -51,7 +54,7 @@ class UOPCalculator extends BaseCalculator{
 
     // Tax base
     this.monthly.taxBase = super.calcTaxBase(
-      this.monthly.grossSalary, this.monthly.socialSecurity, this.auxValues.earningCost
+      this.monthly.grossSalary, this.monthly.socialSecurity, this.uopOptions.earningCost
     );
 
     // Accumulated tax base
@@ -60,7 +63,7 @@ class UOPCalculator extends BaseCalculator{
     // Tax
     this.monthly.tax = super.calcProgressiveTax(
       this.monthly.taxBase, this.monthly.accTaxBase,
-      this.monthly.healthDeductible, this.auxValues.monthlyRelief
+      this.monthly.healthDeductible, this.uopOptions.monthlyRelief
     );
 
     // Net salary
@@ -72,19 +75,22 @@ class UOPCalculator extends BaseCalculator{
     this.annual = super.calcTotals(this.annual, this.monthly);
   }
 
-  calcAccGrossSalary(grossSalary){
+  calcAccGrossSalary(grossSalary: number[]): number[]{
     return this.accumulateValue(grossSalary);
   }
 
-  calcPension(grossSalary, accGrossSalary, annualLimit, pensionRate) {
+  calcPension(grossSalary: number[], accGrossSalary: number[],
+    annualLimit: number, pensionRate: number): number[] {
     return this.calcPensionDisability(grossSalary, accGrossSalary, annualLimit, pensionRate);
   }
 
-  calcDisability(grossSalary, accGrossSalary, annualLimit, disabilityRate) {
+  calcDisability(grossSalary: number[], accGrossSalary: number[],
+    annualLimit: number, disabilityRate: number): number[] {
     return this.calcPensionDisability(grossSalary, accGrossSalary, annualLimit, disabilityRate);
   }
 
-  calcPensionDisability(grossSalary, accGrossSalary, annualLimit, rate) {
+  calcPensionDisability(grossSalary: number[], accGrossSalary: number[],
+    annualLimit: number, rate: number): number[] {
     let value = new Array(12);
 
     for(let i = 0; i < value.length; i++) {
@@ -100,7 +106,7 @@ class UOPCalculator extends BaseCalculator{
     return value;
   }
 
-  calcSickness(grossSalary, sicknessRate) {
+  calcSickness(grossSalary: number[], sicknessRate: number): number[] {
     let sickness = new Array(12);
     for(let i = 0; i < sickness.length; i++){
       sickness[i] = this.calcContribution(grossSalary[i], sicknessRate);
@@ -108,11 +114,13 @@ class UOPCalculator extends BaseCalculator{
     return sickness;
   }
 
-  calcSocialSecurity(pension, disability, sickness) {
+  calcSocialSecurity(pension: number[], disability: number[],
+    sickness: number[]): number[] {
     return pension.map((pen, i) => pen + disability[i] + sickness[i]);
   }
 
-  calcHealthContribution(grossSalary, socialSecurity, rateHealthContribution) {
+  calcHealthContribution(grossSalary: number[], socialSecurity: number[],
+    rateHealthContribution: number): number[] {
     let healthContribution = new Array(12);
     for(let i = 0; i < healthContribution.length; i++){
       let healthBase = grossSalary[i] - socialSecurity[i];

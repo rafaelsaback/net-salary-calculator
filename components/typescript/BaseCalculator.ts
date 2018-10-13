@@ -1,8 +1,20 @@
-/// <reference path="references.ts" />
+export interface Monthly {
+  [key:string]: number[];
+}
 
-class BaseCalculator {
+export interface Annual {
+  [key:string]: number;
+}
+
+export interface AuxVariable {
+  [key:string]: any;
+}
+
+export class BaseCalculator {
+  monthly: Monthly = {};
+  annual: Annual = {};
+  contract!: Symbol;
   constructor() {
-    this.monthly = {};
     this.monthly.grossSalary = new Array(12).fill(0);
     this.monthly.accGrossSalary = new Array(12).fill(0);
     this.monthly.pension = new Array(12).fill(0);
@@ -15,7 +27,6 @@ class BaseCalculator {
     this.monthly.tax = new Array(12).fill(0);
     this.monthly.netSalary = new Array(12).fill(0);
 
-    this.annual = {};
     this.annual.grossSalary = 0;
     this.annual.pension = 0;
     this.annual.disability = 0;
@@ -25,11 +36,10 @@ class BaseCalculator {
     this.annual.taxBase = 0;
     this.annual.tax = 0;
     this.annual.netSalary = 0;
-
-    this.contract;
   }
 
-  calcHealthDeductible(healthContribution, rateDeductible, rateContribution) {
+  calcHealthDeductible(healthContribution: number[], rateDeductible: number,
+    rateContribution: number): number[] {
     let healthDeductible = [];
     healthDeductible = healthContribution.map((value, i) => {
       return healthContribution[i] * (rateDeductible / rateContribution);
@@ -37,29 +47,30 @@ class BaseCalculator {
     return healthDeductible;
   }
 
-  roundNumber(number, decimals){
+  roundNumber(number: number, decimals: number): number{
     return (Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals));
   }
 
-  calcContribution(baseValue, rate){
+  calcContribution(baseValue: number, rate: number): number{
     let contribution = baseValue * rate;
     contribution = this.roundNumber(contribution, 2);
     return contribution;
   }
 
-  calcTotals(annual, monthly) {
-    let totals = {};
+  calcTotals(annual: Annual, monthly: Monthly): Annual {
+    let totals: Annual = {};
     for(let value in annual){
       totals[value] = monthly[value].reduce((a, b) => a + b, 0);
     }
     return totals;
   }
 
-  calcAccTaxBase(taxBase) {
+  calcAccTaxBase(taxBase: number[]): number[] {
     return this.accumulateValue(taxBase);
   }
 
-  calcTaxBase(grossSalary, socialSecurity, earningCost){
+  calcTaxBase(grossSalary: number[], socialSecurity: number[],
+    earningCost: number): number[]{
     let taxBase = new Array(12);
     for(let i = 0; i < taxBase.length; i++) {
       let tempTaxBase =  grossSalary[i] - socialSecurity[i] - earningCost;
@@ -68,7 +79,8 @@ class BaseCalculator {
     return taxBase;
   }
 
-  calcProgressiveTax(taxBase, accTaxBase, healthDeductible, monthlyRelief) {
+  calcProgressiveTax(taxBase: number[], accTaxBase: number[],
+    healthDeductible: number[], monthlyRelief: number): number[] {
     let tax = new Array(12);
 
     for(let i = 0; i < tax.length; i++) {
@@ -85,7 +97,7 @@ class BaseCalculator {
     return tax;
   }
 
-  calcFinalSalary(grossSalary, ...costs) {
+  calcFinalSalary(grossSalary: number[], ...costs: any): number[] {
     let finalSalary = new Array(12);
     for(let i = 0; i < finalSalary.length; i++){
       let tempFinalSalary = grossSalary[i];
@@ -101,8 +113,8 @@ class BaseCalculator {
     return finalSalary;
   }
 
-  accumulateValue(array) {
-    let accArray = [];
+  accumulateValue(array: number[]): number[] {
+    let accArray: number[] = [];
     array.reduce((a, b, i) => { return accArray[i] = a + b;}, 0);
     // Shift array by 1 element so it suits the tax logic (starting with 0)
     accArray.unshift(0);
@@ -110,11 +122,11 @@ class BaseCalculator {
     return accArray;
   }
 
-  isUOP() {
+  isUOP(): boolean {
     return (this.contract === CONTRACT.UOP);
   }
 
-  isB2B() {
+  isB2B(): boolean {
     return (this.contract === CONTRACT.B2B);
   }
 }

@@ -1,5 +1,3 @@
-/// <reference path="references.ts" />
-
 const RATES = {
   'pension': (9.76/100),
   'disability': (1.5/100),

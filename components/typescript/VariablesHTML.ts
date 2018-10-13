@@ -1,29 +1,35 @@
-/// <reference path="references.ts" />
+// Button elements
+const btnUOP: HTMLButtonElement = document.querySelector('#tab-btn-uop');
+const btnB2B: HTMLButtonElement = document.querySelector('#tab-btn-b2b');
+const btnCalculate: HTMLButtonElement = document.querySelector('#btn-calculate');
+const btnB2BOptions: HTMLButtonElement = document.querySelector('#btn-b2b-options');
 
-const buttonUOP = document.querySelector('#tab-btn-uop');
-const buttonB2B = document.querySelector('#tab-btn-b2b');
-const formInputSalary = document.querySelector('#form-input-salary');
-const tabB2B = document.getElementById('tab-b2b');
-const headerGross = document.getElementById('header-gross');
-const headerTaxBase = document.getElementById('header-tax-base');
-const headerNet = document.getElementById('header-net');
-const grossElements = document.getElementsByClassName('summary-header-gross');
-const netElements = document.getElementsByClassName('summary-header-net');
-const btnB2BOptions = document.querySelector('#btn-b2b-options');
-const containerB2BOptions = document.querySelector('#b2b-options');
-const inputCosts = document.querySelector('#costs');
-const salaryInput = document.querySelector('#input-gross-salary');
-const radioAnnually = document.querySelector('#annually');
-const vat0 = document.querySelector('#vat-0');
-const vat5 = document.querySelector('#vat-5');
-const vat8 = document.querySelector('#vat-8');
-const taxProgressive = document.querySelector('#tax-progressive');
-const noZUS = document.querySelector('#no-zus');
-const discountedZUS = document.querySelector('#discounted-zus');
-const sicknessYes = document.querySelector('#sickness-yes');
-const costs = document.querySelector('#costs');
-const calculateButton = document.querySelector('#btn-calculate');
-const tableContainer = document.querySelector('#container-results');
-const summaryTable = document.querySelector('#table-summary-1st-month');
-const summaryTable12Month = document.querySelector('#table-summary-12-month');
-const mainTable = document.querySelector('#table-main');
+// Input elements
+const inputCosts: HTMLInputElement = document.querySelector('#costs');
+const inputSalary: HTMLInputElement = document.querySelector('#input-gross-salary');
+const rdoVat0: HTMLInputElement = document.querySelector('#vat-0');
+const rdoVat5: HTMLInputElement = document.querySelector('#vat-5');
+const rdoVat8: HTMLInputElement = document.querySelector('#vat-8');
+const rdoAnnually: HTMLInputElement = document.querySelector('#annually');
+const rdoTaxProgressive: HTMLInputElement = document.querySelector('#tax-progressive');
+const rdoNoZUS: HTMLInputElement = document.querySelector('#no-zus');
+const rdoDiscountedZUS: HTMLInputElement = document.querySelector('#discounted-zus');
+const rdoSicknessYes: HTMLInputElement = document.querySelector('#sickness-yes');
+
+// Table elements
+const tblSummary: HTMLTableElement = document.querySelector('#table-summary-1st-month');
+const tblSummary12Month: HTMLTableElement = document.querySelector('#table-summary-12-month');
+const tblMain: HTMLTableElement = document.querySelector('#table-main');
+const hdrGross: HTMLTableHeaderCellElement = document.querySelector('#header-gross');
+const hdrTaxBase: HTMLTableHeaderCellElement = document.querySelector('#header-tax-base');
+const hdrNet: HTMLTableHeaderCellElement = document.querySelector('#header-net');
+
+// Others
+const labelSalary: HTMLElement = document.getElementById('form-input-salary');
+const ctnrB2B: HTMLElement = document.getElementById('tab-b2b');
+const ctnrB2BOptions: HTMLElement = document.getElementById('b2b-options');
+const ctnrResults: HTMLElement = document.getElementById('container-results');
+
+// HTML collections
+const elsGross: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-gross');
+const elsNet: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-net');

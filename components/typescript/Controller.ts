@@ -1,6 +1,15 @@
-/// <reference path="references.ts" />
+import {BaseCalculator} from './BaseCalculator';
+import {B2BCalculator, B2BOptions} from './B2BCalculator';
+import {UOPCalculator} from './UOPCalculator';
+import {
+  updateHeaderNames,
+  populateSummaryTable,
+  populateMainTable,
+  displayValueOnTab,
+  toggleB2BOptions
+} from './View';
 
-function selectContract(calculator) {
+function selectContract(calculator: BaseCalculator): void {
   // Update global variable selectedContract
   selectedContract = calculator.contract;
 
@@ -9,19 +18,19 @@ function selectContract(calculator) {
 
   if(calculator.isUOP()) {
     // Highlight UOP button
-    buttonUOP.classList.add('active');
+    btnUOP.classList.add('active');
     // Remove highlight from B2B button
-    buttonB2B.classList.remove('active');
+    btnB2B.classList.remove('active');
     // Hide B2B elements
-    tabB2B.classList.add('is-hidden');
-    containerB2BOptions.classList.add('is-hidden');
+    ctnrB2B.classList.add('is-hidden');
+    ctnrB2BOptions.classList.add('is-hidden');
   } else if (calculator.isB2B()) {
     // Highlight B2B button
-    buttonB2B.classList.add('active');
+    btnB2B.classList.add('active');
     // Remove highlight from UOP button
-    buttonUOP.classList.remove('active');
+    btnUOP.classList.remove('active');
     // Show B2B options button
-    tabB2B.classList.remove('is-hidden');
+    ctnrB2B.classList.remove('is-hidden');
   };
 
   // Update the table data in case it has already been calculated
@@ -31,75 +40,71 @@ function selectContract(calculator) {
   }
 }
 
-function formatNumber(number, precision){
-  return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-}
+function isValid(strSalary: string): boolean{
+  if(strSalary === '') return false;
+  let salary = parseFloat(strSalary);
 
-function isValid(grossSalary){
-  if(grossSalary === '') return false;
-  grossSalary = parseFloat(grossSalary);
-
-  if(grossSalary <= 0){
+  if(salary <= 0){
     alert('Please enter a positive value.');
-    salaryInput.focus();
+    inputSalary.focus();
     return false;
-  } else if(isNaN(grossSalary)) {
+  } else if(isNaN(salary)) {
     alert('Please enter a numeric value.');
-    salaryInput.focus();
+    inputSalary.focus();
     return false;
   }
-  return grossSalary;
+  return true;
 }
 
-function getB2BOptions(b2bOptions) {
+function getB2BOptions(b2bOptions: B2BOptions) {
   // VAT
   b2bOptions.vat = (() => {
-    if(vat0.checked) return 0;
-    else if(vat5.checked) return (5/100);
-    else if(vat8.checked) return (8/100);
+    if(rdoVat0.checked) return 0;
+    else if(rdoVat5.checked) return (5/100);
+    else if(rdoVat8.checked) return (8/100);
     else return (23/100);
   })();
 
   // Tax rate modality (19% or 18%/32%)
   b2bOptions.taxType = (() => {
-    if(taxProgressive.checked) return TAXTYPE.progressive;
+    if(rdoTaxProgressive.checked) return TAXTYPE.progressive;
     else return TAXTYPE.linear;
   })();
 
   // ZUS modality (no ZUS, discounted or normal)
   b2bOptions.zus = (() => {
-    if(noZUS.checked) return ZUS.noZUS;
-    else if(discountedZUS.checked) return ZUS.discountedZUS;
+    if(rdoNoZUS.checked) return ZUS.noZUS;
+    else if(rdoDiscountedZUS.checked) return ZUS.discountedZUS;
     else return ZUS.normalZUS;
   })();
 
   // Pay sickness (yes or no)
   b2bOptions.paySickness = (() => {
-    if(sicknessYes.checked) return true;
+    if(rdoSicknessYes.checked) return true;
     else return false;
   })();
 
   // Costs for running the business
   b2bOptions.costs = (() => {
-    if(costs.value.trim() != '') return costs.value;
+    if(inputCosts.value.trim() != '') return parseFloat(inputCosts.value);
     else return 0;
   })();
 
   return b2bOptions;
 }
 
-var calculate = function(contract) {
-  document.activeElement.blur();
-  let salary = salaryInput.value;
+var calculate = function(contract: Symbol): boolean {
+  inputSalary.blur();
+  let strSalary = inputSalary.value;
   // If the alary value is not valid, interrupt the code
-  if(!isValid(salary)) return false;
-  salary = parseFloat(salary);
+  if(!isValid(strSalary)) return false;
+  let salary = parseFloat(strSalary);
 
-  if(radioAnnually.checked) salary /= 12;
+  if(rdoAnnually.checked) salary /= 12;
 
   // Calculate net salary
   uopCalculator.calcSalary(salary, RATES, TAX, UOPOPTIONS);
-  let b2bOptions =  {};
+  let b2bOptions: B2BOptions;
   b2bOptions = getB2BOptions(b2bOptions);
   b2bCalculator.calcSalary(salary, b2bOptions);
 
@@ -114,14 +119,15 @@ var calculate = function(contract) {
   displayValueOnTab(uopCalculator, b2bCalculator);
 
   /* Display the table */
-  if(tableContainer.classList.contains('is-hidden')) {
-    tableContainer.classList.remove('is-hidden');
+  if(ctnrResults.classList.contains('is-hidden')) {
+    ctnrResults.classList.remove('is-hidden');
   }
   isCalculated = true;
+  return true;
 };
 
 /* Check if enter key was pressed */
-var pressedKey = function(e){
+var pressedKey = function(e: KeyboardEvent, selectedContract: Symbol): void {
   if(e.key === 'Enter'){
     calculate(selectedContract);
   }
@@ -129,12 +135,12 @@ var pressedKey = function(e){
 
 var uopCalculator = new UOPCalculator;
 var b2bCalculator = new B2BCalculator;
-var selectedContract;
+var selectedContract: Symbol;
 var isCalculated = false;
-salaryInput.focus();
-buttonUOP.addEventListener('click', function() {selectContract(uopCalculator);});
-buttonB2B.addEventListener('click', function() {selectContract(b2bCalculator);});
-buttonUOP.click();
-calculateButton.addEventListener('click', function() {calculate(selectedContract);});
-salaryInput.addEventListener('keydown', function() {pressedKey(event, selectedContract);});
-btnB2BOptions.addEventListener('click', function() {toggleB2BOptions();});
+inputSalary.focus();
+btnUOP.addEventListener('click', () => {selectContract(uopCalculator);});
+btnB2B.addEventListener('click', () => {selectContract(b2bCalculator);});
+btnUOP.click();
+btnCalculate.addEventListener('click', () => {calculate(selectedContract);});
+inputSalary.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
+btnB2BOptions.addEventListener('click', () => {toggleB2BOptions();});
