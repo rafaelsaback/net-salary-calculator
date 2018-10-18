@@ -1,11 +1,11 @@
 pathLib = require("path");
 
 module.exports = {
-  mode: 'production',
-  entry: './components/typescript/Controller.ts',
+  mode: 'development',
+  entry: './src/typescript/Controller.ts',
   output: {
     filename: 'script.js',
-    path: pathLib.join(__dirname, 'build')
+    path: pathLib.join(__dirname, 'dist')
   },
     devtool: "source-map",
   module: {
