@@ -10,8 +10,6 @@
     // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "sourceMap": true,                     /* Generates corresponding '.map' file. */
-    "outFile": "./build/script.js",                       /* Concatenate and emit output to single file. */
-    // "outDir": "./build",                        /* Redirect output structure to the directory. */
     "rootDir": "./components/typescript/",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "removeComments": true,                /* Do not emit comments to output. */
@@ -56,6 +54,7 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "outDir": "./build",
   },
   "exclude": [
       "node_modules"
