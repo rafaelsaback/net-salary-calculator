@@ -1,20 +1,16 @@
-import {BaseCalculator, AuxVariable} from "./BaseCalculator";
+import {BaseCalculator, AuxVariable, CONTRACT} from "./BaseCalculator";
 
 export class UOPCalculator extends BaseCalculator{
-  rates: AuxVariable = {};
-  tax: AuxVariable = {};
-  uopOptions: AuxVariable = {};
-  constructor(){
+  options: AuxVariable = {};
+  constructor(options: AuxVariable){
     super();
     this.monthly.accTaxBase = new Array(12).fill(0);
+    this.options = options;
     this.contract = CONTRACT.UOP;
   }
 
-  calcSalary(grossSalary: number, rates: AuxVariable, tax: AuxVariable, uopOptions: AuxVariable) {
+  calcSalary(grossSalary: number) {
     this.monthly.grossSalary.fill(grossSalary);
-    this.rates = rates;
-    this.tax = tax;
-    this.uopOptions = uopOptions;
 
     // Accumulated gross salary
     this.monthly.accGrossSalary = this.calcAccGrossSalary(this.monthly.grossSalary);
@@ -22,18 +18,18 @@ export class UOPCalculator extends BaseCalculator{
     // Pension
     this.monthly.pension = this.calcPension(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.uopOptions.annualLimit, this.rates.pension
+      this.options.annualLimit, this.options.pension
     );
 
     // Disability insurance
     this.monthly.disability = this.calcDisability(
       this.monthly.grossSalary, this.monthly.accGrossSalary,
-      this.uopOptions.annualLimit, this.rates.disability
+      this.options.annualLimit, this.options.disability
     );
 
     // Sickness insurance
     this.monthly.sickness = this.calcSickness(
-      this.monthly.grossSalary, this.rates.sickness
+      this.monthly.grossSalary, this.options.sickness
     );
 
     // Social security
@@ -43,18 +39,18 @@ export class UOPCalculator extends BaseCalculator{
 
     // Health contribution
     this.monthly.healthContribution = this.calcHealthContribution(
-      this.monthly.grossSalary, this.monthly.socialSecurity, this.rates.healthContribution
+      this.monthly.grossSalary, this.monthly.socialSecurity, this.options.healthContribution
     );
 
     // Health deductible
     this.monthly.healthDeductible = super.calcHealthDeductible(
-      this.monthly.healthContribution, this.rates.healthDeductible,
-      this.rates.healthContribution
+      this.monthly.healthContribution, this.options.healthDeductible,
+      this.options.healthContribution
     );
 
     // Tax base
     this.monthly.taxBase = super.calcTaxBase(
-      this.monthly.grossSalary, this.monthly.socialSecurity, this.uopOptions.earningCost
+      this.monthly.grossSalary, this.monthly.socialSecurity, this.options.earningCost
     );
 
     // Accumulated tax base
@@ -62,8 +58,8 @@ export class UOPCalculator extends BaseCalculator{
 
     // Tax
     this.monthly.tax = super.calcProgressiveTax(
-      this.monthly.taxBase, this.monthly.accTaxBase,
-      this.monthly.healthDeductible, this.uopOptions.monthlyRelief
+      this.monthly.taxBase, this.monthly.accTaxBase, this.options.taxThreshold,
+      this.monthly.healthDeductible, this.options.monthlyRelief
     );
 
     // Net salary

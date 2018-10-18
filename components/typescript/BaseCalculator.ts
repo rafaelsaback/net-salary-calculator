@@ -10,6 +10,17 @@ export interface AuxVariable {
   [key:string]: any;
 }
 
+export const CONTRACT = {
+  'B2B': Symbol('B2B'),
+  'UOP': Symbol('Umowa o prace')
+};
+
+export const TAXRATE = {
+  'rate18': (18/100),
+  'rate19': (19/100),
+  'rate32': (32/100),
+};
+
 export class BaseCalculator {
   monthly: Monthly = {};
   annual: Annual = {};
@@ -79,17 +90,17 @@ export class BaseCalculator {
     return taxBase;
   }
 
-  calcProgressiveTax(taxBase: number[], accTaxBase: number[],
+  calcProgressiveTax(taxBase: number[],  accTaxBase: number[], taxThreshold: number,
     healthDeductible: number[], monthlyRelief: number): number[] {
     let tax = new Array(12);
 
     for(let i = 0; i < tax.length; i++) {
       let tempTax = 0;
       // The montly relief is only applied in case the tax taxLimit has not been exceeded
-      if(accTaxBase[i] < TAX.taxLimit){
-        tempTax = (taxBase[i] * TAX.rate18) - healthDeductible[i] - monthlyRelief;
+      if(accTaxBase[i] < taxThreshold){
+        tempTax = (taxBase[i] * TAXRATE.rate18) - healthDeductible[i] - monthlyRelief;
       } else {
-        tempTax = (taxBase[i] * TAX.rate32) - healthDeductible[i];
+        tempTax = (taxBase[i] * TAXRATE.rate32) - healthDeductible[i];
       }
       tax[i] = Math.round(100*tempTax)/100;
     };

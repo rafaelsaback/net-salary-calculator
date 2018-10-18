@@ -1,4 +1,4 @@
-import {BaseCalculator} from "./BaseCalculator";
+import {BaseCalculator, CONTRACT, TAXRATE} from "./BaseCalculator";
 
 export interface B2BOptions {
   vat: number;
@@ -6,14 +6,24 @@ export interface B2BOptions {
   zus: Symbol;
   paySickness: boolean;
   costs: number;
+  taxThreshold: number;
+  healthContribution: number;
+  healthDeductible: number;
 }
 
+export const TAXTYPE = {
+  'progressive': Symbol('18%/32%'),
+  'linear': Symbol('19%')
+};
+
+export const ZUS = {
+  'noZUS': Symbol('No contributions in the first 6 months'),
+  'discountedZUS': Symbol('Lower contributions in the first 2 years'),
+  'normalZUS': Symbol('Normal contribution')
+};
+
 export class B2BCalculator extends BaseCalculator {
-  vat!: number;
-  taxType!: Symbol;
-  zus!: Symbol;
-  paySickness: boolean = true;
-  costs: number = 0;
+  options: B2BOptions;
 
   constructor() {
     super();
@@ -28,36 +38,32 @@ export class B2BCalculator extends BaseCalculator {
     this.contract = CONTRACT.B2B;
   }
 
-  calcSalary(netSalary: number, b2bOptions: B2BOptions) {
+  calcSalary(netSalary: number, options: B2BOptions) {
     this.monthly.netSalary.fill(netSalary);
-    this.vat = b2bOptions.vat;
-    this.taxType = b2bOptions.taxType;
-    this.zus = b2bOptions.zus;
-    this.paySickness = b2bOptions.paySickness;
-    this.costs = b2bOptions.costs;
+    this.options = options;
 
     // Pension
-    this.monthly.pension = this.calcPension(this.zus);
+    this.monthly.pension = this.calcPension(this.options.zus);
 
     // Disability
-    this.monthly.disability = this.calcDisability(this.zus);
+    this.monthly.disability = this.calcDisability(this.options.zus);
 
     // Sickness
-    this.monthly.sickness = this.calcSickness(this.paySickness, this.zus);
+    this.monthly.sickness = this.calcSickness(this.options.paySickness, this.options.zus);
 
     // Health contribution
     this.monthly.healthContribution = this.calcHealthContribution();
 
     // Health deductible
     this.monthly.healthDeductible = super.calcHealthDeductible(
-      this.monthly.healthContribution, RATES.healthDeductible, RATES.healthContribution
+      this.monthly.healthContribution, this.options.healthDeductible, this.options.healthContribution
     );
 
     // Accident
-    this.monthly.accident = this.calcAccident(this.zus);
+    this.monthly.accident = this.calcAccident(this.options.zus);
 
     // Labor fund
-    this.monthly.laborFund = this.calcLaborFund(this.zus);
+    this.monthly.laborFund = this.calcLaborFund(this.options.zus);
 
     // Others = accident + labor fund
     this.monthly.others = this.calcOthers(this.monthly.accident, this.monthly.laborFund);
@@ -70,21 +76,21 @@ export class B2BCalculator extends BaseCalculator {
 
     // Tax base
     this.monthly.taxBase = super.calcTaxBase(this.monthly.netSalary,
-      this.monthly.socialSecurity, this.costs
+      this.monthly.socialSecurity, this.options.costs
     );
 
     // Accumulated tax base
     this.monthly.accTaxBase = super.calcAccTaxBase(this.monthly.taxBase);
 
     // Tax
-    this.monthly.tax = this.calcTax(this.taxType, this.monthly.taxBase,
-      this.monthly.healthDeductible
+    this.monthly.tax = this.calcTax(this.options.taxType, this.monthly.taxBase,
+      this.options.taxThreshold, this.monthly.healthDeductible
     );
 
     // Salary in hand
     this.monthly.salaryInHand = super.calcFinalSalary(this.monthly.netSalary,
       this.monthly.socialSecurity, this.monthly.healthContribution,
-      this.costs, this.monthly.tax
+      this.options.costs, this.monthly.tax
     );
 
     // Annual values
@@ -143,9 +149,10 @@ export class B2BCalculator extends BaseCalculator {
     return pension.map((pen, i) => pen + disability[i] + sickness[i] + accident[i] + laborFund[i]);
   }
 
-  calcTax(taxType: Symbol, taxBase: number[], healthDeductible: number[]): number[] {
+  calcTax(taxType: Symbol, taxBase: number[], taxThreshold: number,
+    healthDeductible: number[]): number[] {
     if(taxType == TAXTYPE.progressive) {
-      return super.calcProgressiveTax(taxBase, taxBase, healthDeductible, 0);
+      return super.calcProgressiveTax(taxBase, taxBase, taxThreshold, healthDeductible, 0);
     } else {
       return this.calcLinearTax(taxBase, healthDeductible);
     }
@@ -154,7 +161,7 @@ export class B2BCalculator extends BaseCalculator {
   calcLinearTax(taxBase: number[], healthDeductible: number[]): number[] {
     let tax = new Array(12);
     for(let i = 0; i < tax.length; i++){
-      let taxBeforeDeductible = taxBase[i] * TAX.rate19;
+      let taxBeforeDeductible = taxBase[i] * TAXRATE.rate19;
       if(taxBeforeDeductible >= healthDeductible[i]){
         tax[i] = taxBeforeDeductible - healthDeductible[i];
       } else {

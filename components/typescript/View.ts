@@ -1,6 +1,44 @@
-import {BaseCalculator} from 'BaseCalculator';
-import {UOPCalculator} from 'UOPCalculator';
-import {B2BCalculator} from 'B2BCalculator';
+import {BaseCalculator, CONTRACT} from './BaseCalculator';
+import {UOPCalculator} from './UOPCalculator';
+import {B2BCalculator} from './B2BCalculator';
+import {btnUOP, btnB2B, btnB2BOptions} from './Controller';
+
+// Table elements
+const tblSummary: HTMLTableElement = document.querySelector('#table-summary-1st-month');
+const tblSummary12Month: HTMLTableElement = document.querySelector('#table-summary-12-month');
+const tblMain: HTMLTableElement = document.querySelector('#table-main');
+const hdrGross: HTMLTableHeaderCellElement = document.querySelector('#header-gross');
+const hdrTaxBase: HTMLTableHeaderCellElement = document.querySelector('#header-tax-base');
+const hdrNet: HTMLTableHeaderCellElement = document.querySelector('#header-net');
+
+// Others
+const labelSalary: HTMLElement = document.getElementById('form-input-salary');
+const ctnrB2B: HTMLElement = document.getElementById('tab-b2b');
+const ctnrB2BOptions: HTMLElement = document.getElementById('b2b-options');
+const ctnrResults: HTMLElement = document.getElementById('container-results');
+
+// HTML collections
+const elsGross: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-gross');
+const elsNet: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-net');
+
+export function switchPanel(calculator: BaseCalculator): void {
+  if(calculator.isUOP()) {
+    // Highlight UOP button
+    btnUOP.classList.add('active');
+    // Remove highlight from B2B button
+    btnB2B.classList.remove('active');
+    // Hide B2B elements
+    ctnrB2B.classList.add('is-hidden');
+    ctnrB2BOptions.classList.add('is-hidden');
+  } else if (calculator.isB2B()) {
+    // Highlight B2B button
+    btnB2B.classList.add('active');
+    // Remove highlight from UOP button
+    btnUOP.classList.remove('active');
+    // Show B2B options button
+    ctnrB2B.classList.remove('is-hidden');
+  };
+}
 
 export function updateHeaderNames(type: Symbol): void {
   if(type === CONTRACT.UOP) {
@@ -109,6 +147,10 @@ export function displayValueOnTab(uopCalculator: UOPCalculator,
   <div class="big-font"> ${salaryInHand}  zł</div>
   in hand
   `;
+}
+
+export function displayResults(): void {
+  ctnrResults.classList.remove('is-hidden');
 }
 
 

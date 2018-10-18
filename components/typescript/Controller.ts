@@ -1,13 +1,58 @@
-import {BaseCalculator} from './BaseCalculator';
-import {B2BCalculator, B2BOptions} from './B2BCalculator';
+import {
+  BaseCalculator,
+  CONTRACT} from './BaseCalculator';
+import {
+  B2BCalculator,
+  B2BOptions,
+  TAXTYPE,
+  ZUS} from './B2BCalculator';
 import {UOPCalculator} from './UOPCalculator';
 import {
+  switchPanel,
   updateHeaderNames,
   populateSummaryTable,
   populateMainTable,
   displayValueOnTab,
+  displayResults,
   toggleB2BOptions
 } from './View';
+
+const taxThreshold = 85528;
+const healthContribution = (9/100);
+const healthDeductible = (7.75/100);
+  
+const UOPOPTIONS = {
+  'annualLimit': 133290, // Annual limit for pension and disability calculations
+  'earningCost': 111.25,
+  'monthlyRelief': 46.33,
+  'taxThreshold': taxThreshold, // Tax threshold when the taxation changes from 18% to 32%
+  // Rates
+  'disability': (1.5/100),
+  'healthContribution': healthContribution,
+  'healthDeductible': healthDeductible,
+  'pension': (9.76/100),
+  'sickness': (2.45/100)
+};
+
+// HTML Variables
+
+// Button elements
+export const btnUOP: HTMLButtonElement = document.querySelector('#tab-btn-uop');
+export const btnB2B: HTMLButtonElement = document.querySelector('#tab-btn-b2b');
+export const btnB2BOptions: HTMLButtonElement = document.querySelector('#btn-b2b-options');
+const btnCalculate: HTMLButtonElement = document.querySelector('#btn-calculate');
+
+// Input elements
+const inputCosts: HTMLInputElement = document.querySelector('#costs');
+const inputSalary: HTMLInputElement = document.querySelector('#input-gross-salary');
+const rdoVat0: HTMLInputElement = document.querySelector('#vat-0');
+const rdoVat5: HTMLInputElement = document.querySelector('#vat-5');
+const rdoVat8: HTMLInputElement = document.querySelector('#vat-8');
+const rdoAnnually: HTMLInputElement = document.querySelector('#annually');
+const rdoTaxProgressive: HTMLInputElement = document.querySelector('#tax-progressive');
+const rdoNoZUS: HTMLInputElement = document.querySelector('#no-zus');
+const rdoDiscountedZUS: HTMLInputElement = document.querySelector('#discounted-zus');
+const rdoSicknessYes: HTMLInputElement = document.querySelector('#sickness-yes');
 
 function selectContract(calculator: BaseCalculator): void {
   // Update global variable selectedContract
@@ -16,22 +61,8 @@ function selectContract(calculator: BaseCalculator): void {
   // Update table titles based on contract
   updateHeaderNames(calculator.contract);
 
-  if(calculator.isUOP()) {
-    // Highlight UOP button
-    btnUOP.classList.add('active');
-    // Remove highlight from B2B button
-    btnB2B.classList.remove('active');
-    // Hide B2B elements
-    ctnrB2B.classList.add('is-hidden');
-    ctnrB2BOptions.classList.add('is-hidden');
-  } else if (calculator.isB2B()) {
-    // Highlight B2B button
-    btnB2B.classList.add('active');
-    // Remove highlight from UOP button
-    btnUOP.classList.remove('active');
-    // Show B2B options button
-    ctnrB2B.classList.remove('is-hidden');
-  };
+  // Switch between panels
+  switchPanel(calculator);
 
   // Update the table data in case it has already been calculated
   if(isCalculated) {
@@ -56,39 +87,48 @@ function isValid(strSalary: string): boolean{
   return true;
 }
 
-function getB2BOptions(b2bOptions: B2BOptions) {
+function getB2BOptions() {
+  let b2bOptions: B2BOptions = {
   // VAT
-  b2bOptions.vat = (() => {
+  "vat":(() => {
     if(rdoVat0.checked) return 0;
     else if(rdoVat5.checked) return (5/100);
     else if(rdoVat8.checked) return (8/100);
     else return (23/100);
-  })();
+  })(),
 
   // Tax rate modality (19% or 18%/32%)
-  b2bOptions.taxType = (() => {
+  "taxType": (() => {
     if(rdoTaxProgressive.checked) return TAXTYPE.progressive;
     else return TAXTYPE.linear;
-  })();
+  })(),
 
   // ZUS modality (no ZUS, discounted or normal)
-  b2bOptions.zus = (() => {
+  "zus": (() => {
     if(rdoNoZUS.checked) return ZUS.noZUS;
     else if(rdoDiscountedZUS.checked) return ZUS.discountedZUS;
     else return ZUS.normalZUS;
-  })();
+  })(),
 
   // Pay sickness (yes or no)
-  b2bOptions.paySickness = (() => {
+  "paySickness": (() => {
     if(rdoSicknessYes.checked) return true;
     else return false;
-  })();
+  })(),
 
   // Costs for running the business
-  b2bOptions.costs = (() => {
+  "costs": (() => {
     if(inputCosts.value.trim() != '') return parseFloat(inputCosts.value);
     else return 0;
-  })();
+  })(),
+
+  // Threshold for progressive tax (18%/32%)
+  "taxThreshold": taxThreshold,
+  // Rate for health contribution
+  "healthContribution": healthContribution,
+  // Rate for health deductible
+  "healthDeductible": healthDeductible
+  }
 
   return b2bOptions;
 }
@@ -103,9 +143,8 @@ var calculate = function(contract: Symbol): boolean {
   if(rdoAnnually.checked) salary /= 12;
 
   // Calculate net salary
-  uopCalculator.calcSalary(salary, RATES, TAX, UOPOPTIONS);
-  let b2bOptions: B2BOptions;
-  b2bOptions = getB2BOptions(b2bOptions);
+  uopCalculator.calcSalary(salary);
+  let b2bOptions = getB2BOptions();
   b2bCalculator.calcSalary(salary, b2bOptions);
 
   //  Populate tables with the results
@@ -117,11 +156,8 @@ var calculate = function(contract: Symbol): boolean {
     populateMainTable(b2bCalculator);
   };
   displayValueOnTab(uopCalculator, b2bCalculator);
+  displayResults();
 
-  /* Display the table */
-  if(ctnrResults.classList.contains('is-hidden')) {
-    ctnrResults.classList.remove('is-hidden');
-  }
   isCalculated = true;
   return true;
 };
@@ -133,7 +169,7 @@ var pressedKey = function(e: KeyboardEvent, selectedContract: Symbol): void {
   }
 };
 
-var uopCalculator = new UOPCalculator;
+var uopCalculator = new UOPCalculator(UOPOPTIONS);
 var b2bCalculator = new B2BCalculator;
 var selectedContract: Symbol;
 var isCalculated = false;
