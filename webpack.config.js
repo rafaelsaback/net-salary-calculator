@@ -2,7 +2,7 @@ pathLib = require("path");
 
 module.exports = {
   mode: 'development',
-  entry: './src/typescript/Controller.ts',
+  entry: './src/scripts/Controller.ts',
   output: {
     filename: 'script.js',
     path: pathLib.join(__dirname, 'dist')

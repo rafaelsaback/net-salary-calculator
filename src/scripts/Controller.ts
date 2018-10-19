@@ -1,12 +1,14 @@
+import {UOPCalculator} from './UOPCalculator';
 import {
   BaseCalculator,
-  CONTRACT} from './BaseCalculator';
+  CONTRACT
+} from './BaseCalculator';
 import {
   B2BCalculator,
   B2BOptions,
   TAXTYPE,
-  ZUS} from './B2BCalculator';
-import {UOPCalculator} from './UOPCalculator';
+  ZUS
+} from './B2BCalculator';
 import {
   switchPanel,
   updateHeaderNames,

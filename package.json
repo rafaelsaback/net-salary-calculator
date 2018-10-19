@@ -5,7 +5,7 @@
   "main": "net-salary-calculator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch src/sass/main.scss:dist/style.css",
+    "sass": "sass --watch src/styles/main.scss:dist/style.css",
     "typescript": "tsc --watch",
     "webpack": "webpack --watch",
     "live-server": "live-server --port=3000 --open=./dist",
