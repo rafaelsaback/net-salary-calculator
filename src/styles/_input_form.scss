@@ -171,16 +171,13 @@
   min-width: 200px;
   box-shadow: none;
   font-size: 24px;
+  outline: none;
 }
 
 .btn:hover {
   cursor: pointer;
   background-color: black;
   color: white;
-}
-
-.btn:active {
-  outline: none;
 }
 
 @media only screen and (min-width: 500px) {
