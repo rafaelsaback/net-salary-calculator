@@ -9,6 +9,7 @@ export interface B2BOptions {
   taxThreshold: number;
   healthContribution: number;
   healthDeductible: number;
+  monthlyRelief: number;
 }
 
 export const TAXTYPE = {
@@ -84,7 +85,7 @@ export class B2BCalculator extends BaseCalculator {
 
     // Tax
     this.monthly.tax = this.calcTax(this.options.taxType, this.monthly.taxBase,
-      this.options.taxThreshold, this.monthly.healthDeductible
+      this.options.taxThreshold, this.options.monthlyRelief, this.monthly.healthDeductible
     );
 
     // Salary in hand
@@ -149,10 +150,11 @@ export class B2BCalculator extends BaseCalculator {
     return pension.map((pen, i) => pen + disability[i] + sickness[i] + accident[i] + laborFund[i]);
   }
 
-  calcTax(taxType: Symbol, taxBase: number[], taxThreshold: number,
+  calcTax(taxType: Symbol, taxBase: number[], taxThreshold: number, monthlyRelief: number,
     healthDeductible: number[]): number[] {
     if(taxType == TAXTYPE.progressive) {
-      return super.calcProgressiveTax(taxBase, taxBase, taxThreshold, healthDeductible, 0);
+      return super.calcProgressiveTax(taxBase, taxBase, taxThreshold,
+        healthDeductible, monthlyRelief);
     } else {
       return this.calcLinearTax(taxBase, healthDeductible);
     }

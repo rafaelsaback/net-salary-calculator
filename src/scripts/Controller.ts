@@ -22,6 +22,7 @@ import {
 const taxThreshold = 85528;
 const healthContribution = (9/100);
 const healthDeductible = (7.75/100);
+const monthlyRelief = 46.33;
   
 const UOPOPTIONS = {
   'annualLimit': 133290, // Annual limit for pension and disability calculations
@@ -129,7 +130,8 @@ function getB2BOptions() {
   // Rate for health contribution
   "healthContribution": healthContribution,
   // Rate for health deductible
-  "healthDeductible": healthDeductible
+  "healthDeductible": healthDeductible,
+  "monthlyRelief": monthlyRelief
   }
 
   return b2bOptions;
