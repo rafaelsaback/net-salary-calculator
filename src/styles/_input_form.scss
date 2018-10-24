@@ -4,6 +4,7 @@
   display: block;
 }
 
+// Main container for input form
 .container-form {
   max-width: 700px;
   min-width: 270px;
@@ -14,20 +15,24 @@
   font-size: 18px;
 }
 
+// Label for input elements
 .label {
   display: inline-block;
   font-weight: bold;
   font-size: 22px;
 }
 
+// Container for input elements
 .container-input {
   margin: 2rem 0rem;
 }
 
+// Tab container
 .tab {
   text-align: center;
 }
 
+// Button Show B2B options
 .btn-b2b-options {
   display: block;
   margin: 30px auto 0;
@@ -39,6 +44,7 @@
   font-size: 22px;
 }
 
+// Tab button
 .tab-btn {
   width: 180px;
   background-color: white;
@@ -50,11 +56,13 @@
   cursor: pointer;
 }
 
+// Used for display values on tab buttons
 .big-font {
   font-size: 32px;
   margin: 2px 0;
 }
 
+// Change background color of active tab button
 .tab-btn.active {
   background-color: #2196F3;
 }
@@ -63,17 +71,9 @@
   outline: none;
 }
 
-.tab-btn-uop {
-  border-radius: 60px 0 0 60px;
-}
-
-.tab-btn-b2b {
-  border-radius: 0 60px 60px 0;
-}
-
-/*
-* Radio button styles
-*/
+// ===================
+// Radio button styles
+// ===================
 
 .container-radio {
   display: inline;
@@ -130,7 +130,9 @@
   background: white;
 }
 
-/* End Radio Button */
+// ========================
+// End Radio Buttons styles
+// ========================
 
 .input {
   // min-width: 90px;
@@ -187,6 +189,17 @@
     margin-left: 68px;
   }
 
+  // Border style for UOP tab button
+  // .tab-btn-uop {
+  .tab-btn:first-of-type {
+    border-radius: 60px 0 0 60px;
+  }
+
+  // Border style for B2B tab button
+  // .tab-btn-b2b {
+  .tab-btn:last-of-type {
+    border-radius: 0 60px 60px 0;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -196,16 +209,11 @@
     width: 225px;
   }
 
-  .tab-btn-uop {
-    border-radius: 60px;
-  }
-
-  .tab-btn-b2b {
+  .tab-btn {
     border-radius: 60px;
   }
 
   .container-radio {
     display: block;
   }
-
 }
