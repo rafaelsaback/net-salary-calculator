@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: ['./src/scripts/Controller.ts', './src/styles/main.scss'],
   output: {
-    filename: 'script.js',
+    filename: 'bundle.js',
     path: path.join(__dirname, 'dist')
   },
   devtool: "source-map",
