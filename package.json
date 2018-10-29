@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch src/styles/main.scss:dist/style.css",
     "typescript": "tsc --watch",
-    "webpack": "webpack --watch",
     "live-server": "live-server --port=3000 --open=./dist",
-    "start": "npm-run-all -p sass webpack live-server"
+    "webpack": "webpack",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "ts-loader": "^5.2.2",
     "typescript": "^3.1.2",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   }
 }

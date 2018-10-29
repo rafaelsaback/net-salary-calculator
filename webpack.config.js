@@ -24,4 +24,10 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
+    devServer: {
+        inline: true,
+        contentBase: path.join(__dirname, 'dist'),
+        port: 3000,
+        open: true
+    },
 };
