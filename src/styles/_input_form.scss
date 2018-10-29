@@ -12,14 +12,14 @@
   border-color: $black;
   padding: 1rem;
   margin: 20px auto 20px auto;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 // Label for input elements
 .label {
   display: inline-block;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 1em;
 }
 
 // Container for input elements
@@ -41,7 +41,7 @@
   background: white;
   border: none;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1em;
 }
 
 // Tab button
@@ -50,7 +50,7 @@
   background-color: white;
   border-color: black;
   display: inline-block;
-  font-size: 18px;
+  font-size: 1em;
   font-weight: bold;
   padding: 20px;
   cursor: pointer;
@@ -58,7 +58,7 @@
 
 // Used for display values on tab buttons
 .big-font {
-  font-size: 32px;
+  font-size: 1.4em;
   margin: 2px 0;
 }
 
@@ -80,7 +80,7 @@
   position: relative;
   padding-left: 35px;
   margin: 12px;
-  font-size: 22px;
+  font-size: 1em;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -140,7 +140,7 @@
   height: 50px;
   text-align: center;
   // !important statements are necessary to override the blog's style
-  font-size: 26px !important;
+  font-size: 1.5em !important;
   border-top: 0px !important;
   border-left: 0px !important;
   border-right: 0px !important;
@@ -172,7 +172,7 @@
   width: 40%;
   min-width: 200px;
   box-shadow: none;
-  font-size: 24px;
+  font-size: 1em;
   outline: none;
 }
 
