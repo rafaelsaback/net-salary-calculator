@@ -2,9 +2,9 @@
   "name": "net-salary-calculator",
   "version": "1.0.0",
   "description": "A net salary calculator for Poland.",
-  "main": "net-salary-calculator.js",
+  "main": "index.js",
   "scripts": {
-    "webpack": "webpack",
+    "build": "webpack --mode=production",
     "start": "webpack-dev-server"
   },
   "repository": {
