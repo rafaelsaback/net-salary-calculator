@@ -54,7 +54,7 @@ $light-blue: #84c7ff;
   display: inline-block;
   font-size: 1em;
   font-weight: bold;
-  padding: 20px;
+  padding: 15px;
   cursor: pointer;
 }
 
@@ -155,7 +155,8 @@ $light-blue: #84c7ff;
 
 .input {
   width: 100%;
-  height: 50px;
+  margin-top: 10px;
+  height: 40px;
   text-align: center;
   // !important statements are necessary to override the blog's style
   font-size: 1.5em !important;
@@ -187,7 +188,7 @@ $light-blue: #84c7ff;
   border-color: $black;
   background-color: $white-background;
   height: 50px;
-  width: 40%;
+  width: 25%;
   min-width: 200px;
   box-shadow: none;
   font-size: 1em;
