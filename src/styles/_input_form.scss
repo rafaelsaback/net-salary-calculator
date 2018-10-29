@@ -132,6 +132,23 @@ $light-blue: #84c7ff;
   background: white;
 }
 
+.label + .container-vertical-radio {
+  display: inline-block;
+}
+
+.vertical-radio {
+  display: block;
+  margin: 0 12px;
+}
+
+.vertical-radio + .vertical-radio {
+  margin-top: 20px;
+}
+
+.label-vertical-radio {
+  vertical-align: top;
+}
+
 // ========================
 // End Radio Buttons styles
 // ========================
@@ -184,11 +201,6 @@ $light-blue: #84c7ff;
 }
 
 @media only screen and (min-width: 500px) {
-
-  .container-zus + .container-zus {
-    display: block;
-    margin-left: 68px;
-  }
 
   // Border style for UOP tab button
   .tab-btn:first-of-type {
