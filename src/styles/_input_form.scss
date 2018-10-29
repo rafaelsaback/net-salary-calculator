@@ -1,3 +1,5 @@
+$light-blue: #84c7ff;
+
 %centralize-bold {
   font-weight: bold;
   margin: auto;
@@ -64,7 +66,7 @@
 
 // Change background color of active tab button
 .tab-btn.active {
-  background-color: #2196F3;
+  background-color: $light-blue;
 }
 
 .tab-btn:focus {
@@ -108,7 +110,7 @@
 }
 
 .container-radio input:checked ~ .label-radio {
-  background-color: #2196F3;
+  background-color: $light-blue;
 }
 
 .label-radio:after {
