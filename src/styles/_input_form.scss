@@ -135,7 +135,6 @@
 // ========================
 
 .input {
-  // min-width: 90px;
   width: 100%;
   height: 50px;
   text-align: center;
@@ -190,13 +189,11 @@
   }
 
   // Border style for UOP tab button
-  // .tab-btn-uop {
   .tab-btn:first-of-type {
     border-radius: 60px 0 0 60px;
   }
 
   // Border style for B2B tab button
-  // .tab-btn-b2b {
   .tab-btn:last-of-type {
     border-radius: 0 60px 60px 0;
   }
