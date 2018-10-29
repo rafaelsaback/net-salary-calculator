@@ -1,6 +1,4 @@
-script.js
-style.css
+dist/*.js
 *.map
 .sass-cache
-.eslintrc.js
 node_modules/
