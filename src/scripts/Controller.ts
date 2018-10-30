@@ -201,7 +201,6 @@ rdoVat0.addEventListener('click', () => {if(isCalculated) calculate(selectedCont
 rdoVat5.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
 rdoVat8.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
 rdoVat23.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
-rdoAnnually.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
 rdoTaxProgressive.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
 rdoTaxLinear.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
 rdoNoZUS.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
