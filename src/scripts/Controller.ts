@@ -16,7 +16,8 @@ import {
   populateMainTable,
   displayValueOnTab,
   displayResults,
-  toggleB2BOptions
+  toggleB2BOptions,
+  scroll
 } from './View';
 
 const taxThreshold = 85528;
@@ -43,7 +44,7 @@ const UOPOPTIONS = {
 export const btnUOP: HTMLButtonElement = document.querySelector('#tab-btn-uop');
 export const btnB2B: HTMLButtonElement = document.querySelector('#tab-btn-b2b');
 export const btnB2BOptions: HTMLButtonElement = document.querySelector('#btn-b2b-options');
-const btnCalculate: HTMLButtonElement = document.querySelector('#btn-calculate');
+export const btnCalculate: HTMLButtonElement = document.querySelector('#btn-calculate');
 
 // Input elements
 const inputCosts: HTMLInputElement = document.querySelector('#costs');
@@ -173,9 +174,14 @@ var calculate = function(contract: Symbol): boolean {
 /* Check if enter key was pressed */
 var pressedKey = function(e: KeyboardEvent, selectedContract: Symbol): void {
   if(e.key === 'Enter'){
-    calculate(selectedContract);
+    calculateThenScroll(selectedContract);
   }
 };
+
+var calculateThenScroll = function(selectedContract: Symbol) {
+    calculate(selectedContract);
+    scroll();
+}
 
 var uopCalculator = new UOPCalculator(UOPOPTIONS);
 var b2bCalculator = new B2BCalculator;
@@ -185,7 +191,7 @@ inputSalary.focus();
 btnUOP.addEventListener('click', () => {selectContract(uopCalculator);});
 btnB2B.addEventListener('click', () => {selectContract(b2bCalculator);});
 btnUOP.click();
-btnCalculate.addEventListener('click', () => {calculate(selectedContract);});
+btnCalculate.addEventListener('click', () => {calculateThenScroll(selectedContract);});
 inputSalary.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
 inputCosts.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
 btnB2BOptions.addEventListener('click', () => {toggleB2BOptions();});

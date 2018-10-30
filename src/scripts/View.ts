@@ -1,7 +1,7 @@
 import {BaseCalculator, CONTRACT} from './BaseCalculator';
 import {UOPCalculator} from './UOPCalculator';
 import {B2BCalculator} from './B2BCalculator';
-import {btnUOP, btnB2B, btnB2BOptions} from './Controller';
+import {btnUOP, btnB2B, btnB2BOptions, btnCalculate} from './Controller';
 
 // Table elements
 const tblSummary: HTMLTableElement = document.querySelector('#table-summary-1st-month');
@@ -20,6 +20,9 @@ const ctnrResults: HTMLElement = document.getElementById('container-results');
 // HTML collections
 const elsGross: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-gross');
 const elsNet: HTMLCollectionOf<Element> = document.getElementsByClassName('summary-header-net');
+
+// Checks if browser is Safari
+const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
 
 export function switchPanel(calculator: BaseCalculator): void {
   if(calculator.isUOP()) {
@@ -160,5 +163,28 @@ export var toggleB2BOptions = function(): void {
     btnB2BOptions.innerHTML = "Show B2B options";
   } else {
     btnB2BOptions.innerHTML = "Hide B2B options";
+  }
+}
+
+export function scroll() {
+  tblSummary.scrollIntoView({block: 'start', behavior: 'smooth'});
+/* Scroll into table */
+  if(window.innerWidth < 501){
+    /* Smartphone */
+    setTimeout(function(){
+      tblSummary.scrollIntoView({block: 'start', behavior: 'smooth'});
+    }, 500);
+  } else if (window.innerWidth < 1000) {
+    /* Ipad */
+    /* Safari does not support the behavior arguments for scrolIntoView */
+    setTimeout(function(){
+      btnCalculate.scrollIntoView();
+    }, 500);
+  } else if (isSafari) {
+    /* Safari on computer */
+    btnCalculate.scrollIntoView();
+  } else {
+    /* Web */
+    tblSummary.scrollIntoView({block: 'start', behavior: 'smooth'});
   }
 }
