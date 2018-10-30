@@ -51,11 +51,15 @@ const inputSalary: HTMLInputElement = document.querySelector('#input-gross-salar
 const rdoVat0: HTMLInputElement = document.querySelector('#vat-0');
 const rdoVat5: HTMLInputElement = document.querySelector('#vat-5');
 const rdoVat8: HTMLInputElement = document.querySelector('#vat-8');
+const rdoVat23: HTMLInputElement = document.querySelector('#vat-23');
 const rdoAnnually: HTMLInputElement = document.querySelector('#annually');
 const rdoTaxProgressive: HTMLInputElement = document.querySelector('#tax-progressive');
+const rdoTaxLinear: HTMLInputElement = document.querySelector('#tax-linear');
 const rdoNoZUS: HTMLInputElement = document.querySelector('#no-zus');
 const rdoDiscountedZUS: HTMLInputElement = document.querySelector('#discounted-zus');
+const rdoNormalZUS: HTMLInputElement = document.querySelector('#normal-zus');
 const rdoSicknessYes: HTMLInputElement = document.querySelector('#sickness-yes');
+const rdoSicknessNo: HTMLInputElement = document.querySelector('#sickness-no');
 
 function selectContract(calculator: BaseCalculator): void {
   // Update global variable selectedContract
@@ -185,3 +189,17 @@ btnCalculate.addEventListener('click', () => {calculate(selectedContract);});
 inputSalary.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
 inputCosts.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
 btnB2BOptions.addEventListener('click', () => {toggleB2BOptions();});
+
+// Automatically calculate when changing B2B options (only it has been already calculated once)
+rdoVat0.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoVat5.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoVat8.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoVat23.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoAnnually.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoTaxProgressive.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoTaxLinear.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoNoZUS.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoDiscountedZUS.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoNormalZUS.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoSicknessYes.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
+rdoSicknessNo.addEventListener('click', () => {if(isCalculated) calculate(selectedContract);});
