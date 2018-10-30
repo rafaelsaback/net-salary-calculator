@@ -183,4 +183,5 @@ btnB2B.addEventListener('click', () => {selectContract(b2bCalculator);});
 btnUOP.click();
 btnCalculate.addEventListener('click', () => {calculate(selectedContract);});
 inputSalary.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
+inputCosts.addEventListener('keydown', event => {pressedKey(event, selectedContract);});
 btnB2BOptions.addEventListener('click', () => {toggleB2BOptions();});
