@@ -167,7 +167,6 @@ export var toggleB2BOptions = function(): void {
 }
 
 export function scroll() {
-    tblSummary.scrollIntoView({block: 'start', behavior: 'smooth'});
     /* Scroll into table */
     if(window.innerWidth < 501){
         /* Smartphone */
@@ -185,6 +184,6 @@ export function scroll() {
         btnCalculate.scrollIntoView();
     } else {
         /* Web */
-        tblSummary.scrollIntoView({block: 'start', behavior: 'smooth'});
+        tblSummary.scrollIntoView({block: 'center', behavior: 'smooth'});
     }
 }
