@@ -1,31 +1,31 @@
 {
-  "name": "net-salary-calculator",
-  "version": "1.0.0",
-  "description": "A net salary calculator for Poland.",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack-dev-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rafaelsaback/net-salary-calculator.git"
-  },
-  "author": "Rafael Saback",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rafaelsaback/net-salary-calculator/issues"
-  },
-  "homepage": "https://github.com/rafaelsaback/net-salary-calculator#readme",
-  "devDependencies": {
-    "css-loader": "^1.0.0",
-    "node-sass": "^4.9.4",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^5.2.2",
-    "typescript": "^3.1.2",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
-  }
+    "name": "net-salary-calculator",
+    "version": "1.0.0",
+    "description": "A net salary calculator for Poland.",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --mode=production",
+        "start": "webpack-dev-server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rafaelsaback/net-salary-calculator.git"
+    },
+    "author": "Rafael Saback",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/rafaelsaback/net-salary-calculator/issues"
+    },
+    "homepage": "https://github.com/rafaelsaback/net-salary-calculator#readme",
+    "devDependencies": {
+        "css-loader": "^1.0.0",
+        "node-sass": "^4.9.4",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "ts-loader": "^5.2.2",
+        "typescript": "^3.1.2",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.10"
+    }
 }

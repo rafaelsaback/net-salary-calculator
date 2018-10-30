@@ -1,41 +1,41 @@
 import {UOPCalculator} from './UOPCalculator';
 import {
-  BaseCalculator,
-  CONTRACT
+    BaseCalculator,
+    CONTRACT
 } from './BaseCalculator';
 import {
-  B2BCalculator,
-  B2BOptions,
-  TAXTYPE,
-  ZUS
+    B2BCalculator,
+    B2BOptions,
+    TAXTYPE,
+    ZUS
 } from './B2BCalculator';
 import {
-  switchPanel,
-  updateHeaderNames,
-  populateSummaryTable,
-  populateMainTable,
-  displayValueOnTab,
-  displayResults,
-  toggleB2BOptions,
-  scroll
+    switchPanel,
+    updateHeaderNames,
+    populateSummaryTable,
+    populateMainTable,
+    displayValueOnTab,
+    displayResults,
+    toggleB2BOptions,
+    scroll
 } from './View';
 
 const taxThreshold = 85528;
 const healthContribution = (9/100);
 const healthDeductible = (7.75/100);
 const monthlyRelief = 46.33;
-  
+
 const UOPOPTIONS = {
-  'annualLimit': 133290, // Annual limit for pension and disability calculations
-  'earningCost': 111.25,
-  'monthlyRelief': 46.33,
-  'taxThreshold': taxThreshold, // Tax threshold when the taxation changes from 18% to 32%
-  // Rates
-  'disability': (1.5/100),
-  'healthContribution': healthContribution,
-  'healthDeductible': healthDeductible,
-  'pension': (9.76/100),
-  'sickness': (2.45/100)
+    'annualLimit': 133290, // Annual limit for pension and disability calculations
+    'earningCost': 111.25,
+    'monthlyRelief': 46.33,
+    'taxThreshold': taxThreshold, // Tax threshold when the taxation changes from 18% to 32%
+    // Rates
+    'disability': (1.5/100),
+    'healthContribution': healthContribution,
+    'healthDeductible': healthDeductible,
+    'pension': (9.76/100),
+    'sickness': (2.45/100)
 };
 
 // HTML Variables
@@ -63,119 +63,119 @@ const rdoSicknessYes: HTMLInputElement = document.querySelector('#sickness-yes')
 const rdoSicknessNo: HTMLInputElement = document.querySelector('#sickness-no');
 
 function selectContract(calculator: BaseCalculator): void {
-  // Update global variable selectedContract
-  selectedContract = calculator.contract;
+    // Update global variable selectedContract
+    selectedContract = calculator.contract;
 
-  // Update table titles based on contract
-  updateHeaderNames(calculator.contract);
+    // Update table titles based on contract
+    updateHeaderNames(calculator.contract);
 
-  // Switch between panels
-  switchPanel(calculator);
+    // Switch between panels
+    switchPanel(calculator);
 
-  // Update the table data in case it has already been calculated
-  if(isCalculated) {
-    populateSummaryTable(calculator);
-    populateMainTable(calculator);
-  }
+    // Update the table data in case it has already been calculated
+    if(isCalculated) {
+        populateSummaryTable(calculator);
+        populateMainTable(calculator);
+    }
 }
 
 function isValid(strSalary: string): boolean{
-  if(strSalary === '') return false;
-  let salary = parseFloat(strSalary);
+    if(strSalary === '') return false;
+    let salary = parseFloat(strSalary);
 
-  if(salary <= 0){
-    alert('Please enter a positive value.');
-    inputSalary.focus();
-    return false;
-  } else if(isNaN(salary)) {
-    alert('Please enter a numeric value.');
-    inputSalary.focus();
-    return false;
-  }
-  return true;
+    if(salary <= 0){
+        alert('Please enter a positive value.');
+        inputSalary.focus();
+        return false;
+    } else if(isNaN(salary)) {
+        alert('Please enter a numeric value.');
+        inputSalary.focus();
+        return false;
+    }
+    return true;
 }
 
 function getB2BOptions() {
-  let b2bOptions: B2BOptions = {
-  // VAT
-  "vat":(() => {
-    if(rdoVat0.checked) return 0;
-    else if(rdoVat5.checked) return (5/100);
-    else if(rdoVat8.checked) return (8/100);
-    else return (23/100);
-  })(),
+    let b2bOptions: B2BOptions = {
+        // VAT
+        "vat":(() => {
+            if(rdoVat0.checked) return 0;
+            else if(rdoVat5.checked) return (5/100);
+            else if(rdoVat8.checked) return (8/100);
+            else return (23/100);
+        })(),
 
-  // Tax rate modality (19% or 18%/32%)
-  "taxType": (() => {
-    if(rdoTaxProgressive.checked) return TAXTYPE.progressive;
-    else return TAXTYPE.linear;
-  })(),
+        // Tax rate modality (19% or 18%/32%)
+        "taxType": (() => {
+            if(rdoTaxProgressive.checked) return TAXTYPE.progressive;
+            else return TAXTYPE.linear;
+        })(),
 
-  // ZUS modality (no ZUS, discounted or normal)
-  "zus": (() => {
-    if(rdoNoZUS.checked) return ZUS.noZUS;
-    else if(rdoDiscountedZUS.checked) return ZUS.discountedZUS;
-    else return ZUS.normalZUS;
-  })(),
+        // ZUS modality (no ZUS, discounted or normal)
+        "zus": (() => {
+            if(rdoNoZUS.checked) return ZUS.noZUS;
+            else if(rdoDiscountedZUS.checked) return ZUS.discountedZUS;
+            else return ZUS.normalZUS;
+        })(),
 
-  // Pay sickness (yes or no)
-  "paySickness": (() => {
-    if(rdoSicknessYes.checked) return true;
-    else return false;
-  })(),
+        // Pay sickness (yes or no)
+        "paySickness": (() => {
+            if(rdoSicknessYes.checked) return true;
+            else return false;
+        })(),
 
-  // Costs for running the business
-  "costs": (() => {
-    if(inputCosts.value.trim() != '') return parseFloat(inputCosts.value);
-    else return 0;
-  })(),
+        // Costs for running the business
+        "costs": (() => {
+            if(inputCosts.value.trim() != '') return parseFloat(inputCosts.value);
+            else return 0;
+        })(),
 
-  // Threshold for progressive tax (18%/32%)
-  "taxThreshold": taxThreshold,
-  // Rate for health contribution
-  "healthContribution": healthContribution,
-  // Rate for health deductible
-  "healthDeductible": healthDeductible,
-  "monthlyRelief": monthlyRelief
-  }
+        // Threshold for progressive tax (18%/32%)
+        "taxThreshold": taxThreshold,
+        // Rate for health contribution
+        "healthContribution": healthContribution,
+        // Rate for health deductible
+        "healthDeductible": healthDeductible,
+        "monthlyRelief": monthlyRelief
+    }
 
-  return b2bOptions;
+    return b2bOptions;
 }
 
 var calculate = function(contract: Symbol): boolean {
-  inputSalary.blur();
-  let strSalary = inputSalary.value;
-  // If the alary value is not valid, interrupt the code
-  if(!isValid(strSalary)) return false;
-  let salary = parseFloat(strSalary);
+    inputSalary.blur();
+    let strSalary = inputSalary.value;
+    // If the alary value is not valid, interrupt the code
+    if(!isValid(strSalary)) return false;
+    let salary = parseFloat(strSalary);
 
-  if(rdoAnnually.checked) salary /= 12;
+    if(rdoAnnually.checked) salary /= 12;
 
-  // Calculate net salary
-  uopCalculator.calcSalary(salary);
-  let b2bOptions = getB2BOptions();
-  b2bCalculator.calcSalary(salary, b2bOptions);
+    // Calculate net salary
+    uopCalculator.calcSalary(salary);
+    let b2bOptions = getB2BOptions();
+    b2bCalculator.calcSalary(salary, b2bOptions);
 
-  //  Populate tables with the results
-  if(contract === CONTRACT.UOP) {
-    populateSummaryTable(uopCalculator);
-    populateMainTable(uopCalculator);
-  } else if(contract === CONTRACT.B2B) {
-    populateSummaryTable(b2bCalculator);
-    populateMainTable(b2bCalculator);
-  };
-  displayValueOnTab(uopCalculator, b2bCalculator);
-  displayResults();
+    //  Populate tables with the results
+    if(contract === CONTRACT.UOP) {
+        populateSummaryTable(uopCalculator);
+        populateMainTable(uopCalculator);
+    } else if(contract === CONTRACT.B2B) {
+        populateSummaryTable(b2bCalculator);
+        populateMainTable(b2bCalculator);
+    };
+    displayValueOnTab(uopCalculator, b2bCalculator);
+    displayResults();
 
-  isCalculated = true;
-  return true;
+    isCalculated = true;
+    return true;
 };
 
 /* Check if enter key was pressed */
 var pressedKey = function(e: KeyboardEvent, selectedContract: Symbol): void {
-  if(e.key === 'Enter'){
-    calculateThenScroll(selectedContract);
-  }
+    if(e.key === 'Enter'){
+        calculateThenScroll(selectedContract);
+    }
 };
 
 var calculateThenScroll = function(selectedContract: Symbol) {

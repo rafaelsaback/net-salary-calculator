@@ -1,76 +1,76 @@
 $light-blue: #84c7ff;
 
 %centralize-bold {
-  font-weight: bold;
-  margin: auto;
-  display: block;
+    font-weight: bold;
+    margin: auto;
+    display: block;
 }
 
 // Main container for input form
 .container-form {
-  max-width: 500px;
-  min-width: 270px;
-  border-radius: 0.5rem;
-  border-color: $black;
-  padding: 1rem;
-  margin: 20px auto 20px auto;
-  font-size: 1em;
+    max-width: 500px;
+    min-width: 270px;
+    border-radius: 0.5rem;
+    border-color: $black;
+    padding: 1rem;
+    margin: 20px auto 20px auto;
+    font-size: 1em;
 }
 
 // Label for input elements
 .label {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1em;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1em;
 }
 
 // Container for input elements
 .container-input {
-  margin: 2rem 0rem;
+    margin: 2rem 0rem;
 }
 
 // Tab container
 .tab {
-  text-align: center;
+    text-align: center;
 }
 
 // Button Show B2B options
 .btn-b2b-options {
-  display: block;
-  margin: 30px auto 0;
-  text-decoration: underline;
-  color: #0000EE;
-  background: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
+    display: block;
+    margin: 30px auto 0;
+    text-decoration: underline;
+    color: #0000EE;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 // Tab button
 .tab-btn {
-  width: 180px;
-  background-color: white;
-  border-color: black;
-  display: inline-block;
-  font-size: 1em;
-  font-weight: bold;
-  padding: 15px;
-  cursor: pointer;
+    width: 180px;
+    background-color: white;
+    border-color: black;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 15px;
+    cursor: pointer;
 }
 
 // Used for display values on tab buttons
 .big-font {
-  font-size: 1.4em;
-  margin: 2px 0;
+    font-size: 1.4em;
+    margin: 2px 0;
 }
 
 // Change background color of active tab button
 .tab-btn.active {
-  background-color: $light-blue;
+    background-color: $light-blue;
 }
 
 .tab-btn:focus {
-  outline: none;
+    outline: none;
 }
 
 // ===================
@@ -78,75 +78,75 @@ $light-blue: #84c7ff;
 // ===================
 
 .container-radio {
-  display: inline;
-  position: relative;
-  padding-left: 35px;
-  margin: 12px;
-  font-size: 1em;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: inline;
+    position: relative;
+    padding-left: 35px;
+    margin: 12px;
+    font-size: 1em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .container-radio input {
-  position: absolute;
-  opacity: 0;
+    position: absolute;
+    opacity: 0;
 }
 
 .label-radio {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
 }
 
 .container-radio:hover input ~ .label-radio {
-  background-color: #ccc;
+    background-color: #ccc;
 }
 
 .container-radio input:checked ~ .label-radio {
-  background-color: $light-blue;
+    background-color: $light-blue;
 }
 
 .label-radio:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
 
 .container-radio input:checked ~ .label-radio:after {
-  display: block;
+    display: block;
 }
 
 .container-radio .label-radio:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
 }
 
 .label + .container-vertical-radio {
-  display: inline-block;
+    display: inline-block;
 }
 
 .vertical-radio {
-  display: block;
-  margin: 0 12px;
+    display: block;
+    margin: 0 12px;
 }
 
 .vertical-radio + .vertical-radio {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .label-vertical-radio {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 // ========================
@@ -154,78 +154,78 @@ $light-blue: #84c7ff;
 // ========================
 
 .input {
-  width: 100%;
-  margin-top: 10px;
-  height: 40px;
-  text-align: center;
-  // !important statements are necessary to override the blog's style
-  font-size: 1.5em !important;
-  border-top: 0px !important;
-  border-left: 0px !important;
-  border-right: 0px !important;
-  // Hide spinner on Firefox
-  -moz-appearance:textfield;
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+    text-align: center;
+    // !important statements are necessary to override the blog's style
+    font-size: 1.5em !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    // Hide spinner on Firefox
+    -moz-appearance:textfield;
 
-  &:focus {
-    outline: none;
-    border-color: $black;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-  }
+    &:focus {
+        outline: none;
+        border-color: $black;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+    }
 
-  // Hide the arrow that shows in .form-input
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    display: none;
-    -webkit-appearance: none;
-  }
+    // Hide the arrow that shows in .form-input
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
 }
 
 .btn {
-  @extend %centralize-bold;
-  border-radius: 60px;
-  border-color: $black;
-  background-color: $white-background;
-  height: 50px;
-  width: 25%;
-  min-width: 200px;
-  box-shadow: none;
-  font-size: 1em;
-  outline: none;
+    @extend %centralize-bold;
+    border-radius: 60px;
+    border-color: $black;
+    background-color: $white-background;
+    height: 50px;
+    width: 25%;
+    min-width: 200px;
+    box-shadow: none;
+    font-size: 1em;
+    outline: none;
 }
 
 .btn:hover {
-  cursor: pointer;
-  background-color: black;
-  color: white;
+    cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 @media only screen and (min-width: 500px) {
 
-  // Border style for UOP tab button
-  .tab-btn:first-of-type {
-    border-radius: 60px 0 0 60px;
-  }
+    // Border style for UOP tab button
+    .tab-btn:first-of-type {
+        border-radius: 60px 0 0 60px;
+    }
 
-  // Border style for B2B tab button
-  .tab-btn:last-of-type {
-    border-radius: 0 60px 60px 0;
-  }
+    // Border style for B2B tab button
+    .tab-btn:last-of-type {
+        border-radius: 0 60px 60px 0;
+    }
 }
 
 @media only screen and (max-width: 500px) {
-  .tab-btn {
-    display: block;
-    margin: 10px auto;
-    width: 225px;
-  }
+    .tab-btn {
+        display: block;
+        margin: 10px auto;
+        width: 225px;
+    }
 
-  .tab-btn {
-    border-radius: 60px;
-  }
+    .tab-btn {
+        border-radius: 60px;
+    }
 
-  .container-radio {
-    display: block;
-  }
+    .container-radio {
+        display: block;
+    }
 }
