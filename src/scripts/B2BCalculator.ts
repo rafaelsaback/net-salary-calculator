@@ -84,8 +84,9 @@ export class B2BCalculator extends BaseCalculator {
     this.monthly.accTaxBase = super.calcAccTaxBase(this.monthly.taxBase);
 
     // Tax
-    this.monthly.tax = this.calcTax(this.options.taxType, this.monthly.taxBase,
-      this.options.taxThreshold, this.options.monthlyRelief, this.monthly.healthDeductible
+      this.monthly.tax = this.calcTax(this.options.taxType, this.monthly.taxBase,
+        this.monthly.accTaxBase, this.options.taxThreshold, this.options.monthlyRelief,
+        this.monthly.healthDeductible
     );
 
     // Salary in hand
@@ -150,10 +151,10 @@ export class B2BCalculator extends BaseCalculator {
     return pension.map((pen, i) => pen + disability[i] + sickness[i] + accident[i] + laborFund[i]);
   }
 
-  calcTax(taxType: Symbol, taxBase: number[], taxThreshold: number, monthlyRelief: number,
+  calcTax(taxType: Symbol, taxBase: number[], accTaxBase: number[], taxThreshold: number, monthlyRelief: number,
     healthDeductible: number[]): number[] {
     if(taxType == TAXTYPE.progressive) {
-      return super.calcProgressiveTax(taxBase, taxBase, taxThreshold,
+      return super.calcProgressiveTax(taxBase, accTaxBase, taxThreshold,
         healthDeductible, monthlyRelief);
     } else {
       return this.calcLinearTax(taxBase, healthDeductible);
