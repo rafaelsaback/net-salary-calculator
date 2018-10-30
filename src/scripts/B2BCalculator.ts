@@ -135,7 +135,7 @@ export class B2BCalculator extends BaseCalculator {
     }
 
     calcAccident(zus: Symbol): number[] {
-        return this.evalZUS(zus, 0, 11.34, 47.98);
+        return this.evalZUS(zus, 0, 10.52, 47.98);
     }
 
     calcLaborFund(zus: Symbol): number[] {
