@@ -81,20 +81,39 @@
 
                             <!-- Income tax types -->
                             <div class="container-input">
-                                <label class="label"> Income tax: </label>
+                                <label class="label">
+                                    Income tax
+                                    <span class="tooltip-container">
+                                        <span class="tooltip"> ? </span>
+                                        <div class="tooltip-text tooltip-tax">
+                                            <p> <strong> 19% </strong> - Linear tax rate </p>
+                                            <p> <strong> 18% / 32 % </strong> - Progressive tax rate
+                                            </p>
+                                        </div>
+                                    </span>
+                                </label>
                                 <label class="container-radio"> 19%
-                                    <input id='tax-linear' type="radio" name="income-tax" value="linear" checked>
+                                    <input id="tax-linear" type="radio" name="income-tax" value="linear" checked>
                                     <span class="label-radio"></span>
                                 </label>
                                 <label class="container-radio"> 18% / 32%
-                                    <input id='tax-progressive' type="radio" name="income-tax" value="progressive">
+                                    <input id="tax-progressive" type="radio" name="income-tax" value="progressive">
                                     <span class="label-radio"></span>
                                 </label>
                             </div>
 
                             <!-- ZUS Type -->
                             <div class="container-input">
-                                <label class="label label-vertical-radio"> ZUS: </label>
+                                <label class="label label-vertical-radio"> ZUS
+                                    <span class="tooltip-container">
+                                        <span class="tooltip"> ? </span>
+                                        <div class="tooltip-text tooltip-zus">
+                                            <p> <strong> No ZUS </strong> - In the first 6 months of your company, you're free from paying ZUS contributions </p>
+                                            <p> <strong> Discounted ZUS </strong> - After the first 6 months and until your company completes 2 years, you'll pay a discounted value </p>
+                                            <p> <strong> Normal  ZUS </strong> - After 2 years you pay the normal ZUS contributions </p>
+                                        </div>
+                                    </span>
+                                </label>
                                 <div class="container-vertical-radio">
                                     <label class="container-radio vertical-radio"> No ZUS - first 6 months
                                         <input id="no-zus" type="radio" name="zus" value="no-zus" checked>
@@ -113,7 +132,14 @@
 
                             <!-- Pay sickness insurance? -->
                             <div class="container-input">
-                                <label class="label"> Sickness insurance: </label>
+                                <label class="label"> Sickness insurance
+                                    <span class="tooltip-container">
+                                        <span class="tooltip"> ? </span>
+                                        <div class="tooltip-text tooltip-sickness">
+                                            <p> The sickness insurance is optional </p>
+                                        </div>
+                                    </span>
+                                </label>
                                 <label class="container-radio"> Yes
                                     <input id="sickness-yes" type="radio" name="sickness" value="yes" checked>
                                     <span class="label-radio"></span>
@@ -126,7 +152,14 @@
 
                             <!-- Deductible costs -->
                             <div class="container-input">
-                                <label class="label"> Deductible costs: </label>
+                                <label class="label"> Deductible costs
+                                    <span class="tooltip-container">
+                                        <span class="tooltip"> ? </span>
+                                        <div class="tooltip-text tooltip-costs">
+                                            <p> Costs for running the business that can be used to deduct from the tax </p>
+                                        </div>
+                                    </span>
+                                </label>
                                 <input id="costs" class="input" type="number" placeholder="0.00 PLN">
                             </div>
                         </div>

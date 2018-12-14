@@ -74,6 +74,65 @@ $light-blue: #84c7ff;
 }
 
 // ===================
+// Tooltip
+// ===================
+
+.tooltip-container {
+    position: relative;
+}
+
+// Question mark
+.tooltip {
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+    padding: 0px 5px;
+    text-align: center;
+}
+
+// Text
+.tooltip-text {
+    visibility: hidden;
+    background-color: #555;
+    width: 300px;
+    margin-left: -150px;
+    color: #fff;
+    text-align: center;
+    font-weight: normal;
+    border-radius: 6px;
+    padding: 5px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-zus {
+    width: 500px;
+    margin-left: -250px;
+}
+
+// Little arrow on the bottom
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+// Show on hover
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+// ===================
 // Radio button styles
 // ===================
 
