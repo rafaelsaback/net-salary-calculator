@@ -92,7 +92,7 @@ export class B2BCalculator extends BaseCalculator {
         // Salary in hand
         this.monthly.salaryInHand = super.calcFinalSalary(this.monthly.netSalary,
             this.monthly.socialSecurity, this.monthly.healthContribution,
-            this.options.costs, this.monthly.tax
+            this.monthly.tax
         );
 
         // Annual values
