@@ -132,6 +132,62 @@ $light-blue: #84c7ff;
   opacity: 1;
 }
 
+@media only screen and (max-width: 900px) {
+    // ZUS
+    // =========
+    .tooltip-zus {
+        margin-left: -120px;
+    }
+    // Little arrow on the bottom
+    .tooltip-container .tooltip-zus:after {
+        left: 23.8%;
+    }
+
+}
+@media only screen and (max-width: 500px) {
+
+    // Tax
+    // =========
+    .tooltip-tax {
+        margin-left: -110px;
+    }
+    // Little arrow on the bottom
+    .tooltip-container .tooltip-tax:after {
+        left: 36.5%;
+    }
+
+    // ZUS
+    // =========
+    .tooltip-zus {
+        margin-left: -60px;
+        width: 300px;
+    }
+    // Little arrow on the bottom
+    .tooltip-container .tooltip-zus:after {
+        left: 20%;
+    }
+
+    // Sickness
+    // =========
+    .tooltip-sickness {
+        margin-left: -177px;
+    }
+    // Little arrow on the bottom
+    .tooltip-container .tooltip-sickness:after {
+        left: 58.7%;
+    }
+
+    // Costs
+    // =========
+    .tooltip-costs {
+        margin-left: -157px;
+    }
+    // Little arrow on the bottom
+    .tooltip-container .tooltip-costs:after {
+        left: 52.2%;
+    }
+}
+
 // ===================
 // Radio button styles
 // ===================
