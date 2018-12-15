@@ -92,10 +92,12 @@ $light-blue: #84c7ff;
 
 // Text
 .tooltip-text {
-    visibility: hidden;
-    background-color: #555;
     width: 300px;
     margin-left: -150px;
+    bottom: 125%;
+    left: 50%;
+    visibility: hidden;
+    background-color: #555;
     color: #fff;
     text-align: center;
     font-weight: normal;
@@ -103,8 +105,6 @@ $light-blue: #84c7ff;
     padding: 5px 5px;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
-    left: 50%;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -117,10 +117,10 @@ $light-blue: #84c7ff;
 // Little arrow on the bottom
 .tooltip-container .tooltip-text::after {
   content: "";
-  position: absolute;
   top: 100%;
   left: 50%;
   margin-left: -5px;
+  position: absolute;
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
