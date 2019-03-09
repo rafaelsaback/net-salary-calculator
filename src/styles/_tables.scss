@@ -1,37 +1,37 @@
 .table {
-    border-collapse: collapse;  /* Show the borders */
-    margin: 20px auto 20px auto;
+  border-collapse: collapse;  /* Show the borders */
+  margin: 20px auto 20px auto;
 }
 
 .table * {
-    padding: 8px 2px 8px 2px;
-    font-family: sans-serif;
-    border: none;
+  padding: 8px 2px 8px 2px;
+  font-family: sans-serif;
+  border: none;
 }
 
 .tfoot {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .tbody th {
-    text-align: left;
+  text-align: left;
 }
 
 td {
-    text-align: center;
+  text-align: center;
 }
 
 .container-results {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    margin-bottom: 50px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin-bottom: 50px;
 }
 
 .is-hidden {
-    display: none;
+  display: none;
 }
 
 .highlight {
-    background: $dark-gray;
+  background: $dark-gray;
 }

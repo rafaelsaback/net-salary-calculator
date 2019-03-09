@@ -1,58 +1,57 @@
-
 .table-summary {
-    min-width: 280px;
+  min-width: 280px;
 
-    %standard-padding {
-        padding: 15px 10px;
-    }
+  %standard-padding {
+    padding: 15px 10px;
+  }
 
-    td {
-        @extend %standard-padding;
-        width: 150px;
-        min-width: 130px;
-    }
+  td {
+    @extend %standard-padding;
+    width: 150px;
+    min-width: 130px;
+  }
 
-    th {
-        @extend %standard-padding;
-        width: 220px;
-        min-width: 150px;
-    }
+  th {
+    @extend %standard-padding;
+    width: 220px;
+    min-width: 150px;
+  }
 
-    tr:nth-child(2) th,
-    tr:nth-child(3) th,
-    tr:nth-child(4) th {
-        font-weight: normal;
-    }
+  tr:nth-child(2) th,
+  tr:nth-child(3) th,
+  tr:nth-child(4) th {
+    font-weight: normal;
+  }
 
-    tr:nth-child(1) td,
-    tr:nth-child(5) td {
-        font-weight: bold;
-    }
+  tr:nth-child(1) td,
+  tr:nth-child(5) td {
+    font-weight: bold;
+  }
 
-    td {
-        text-align: right;
-    }
+  td {
+    text-align: right;
+  }
 
-    tr:nth-child(1) {
-        border-top: $thick-dark-border;
-    }
+  tr:nth-child(1) {
+    border-top: $thick-dark-border;
+  }
 
-    tr:nth-child(5) {
-        border-bottom: $thick-dark-border;
-    }
+  tr:nth-child(5) {
+    border-bottom: $thick-dark-border;
+  }
 }
 
 
 @media only screen and (min-width: 1150px) {
-    .container-summary {
-        display: flex;
-        flex-direction: row;
-    }
+  .container-summary {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .table-summary {
-        width: 100%;
-        margin: 60px auto 60px auto;
-    }
+  .table-summary {
+    width: 100%;
+    margin: 60px auto 60px auto;
+  }
 }

@@ -1,14 +1,14 @@
 @import 'variables';
 
 .container-main {
-    *, *:before, *:after {
-        box-sizing: border-box;
-        font-family: Arial;
-    }
+  *, *:before, *:after {
+    box-sizing: border-box;
+    font-family: Arial;
+  }
 
-    @import
-    'input_form.scss',
-    'tables',
-    'table_summary',
-    'table_main';
+  @import
+  'input_form.scss',
+  'tables',
+  'table_summary',
+  'table_main';
 }
