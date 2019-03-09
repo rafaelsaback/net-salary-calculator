@@ -26,16 +26,16 @@ const healthDeductible = (7.75/100);
 const monthlyRelief = 46.33;
 
 const UOPOPTIONS = {
-    'annualLimit': 133290, // Annual limit for pension and disability calculations
-    'earningCost': 111.25,
-    'monthlyRelief': 46.33,
-    'taxThreshold': taxThreshold, // Tax threshold when the taxation changes from 18% to 32%
-    // Rates
-    'disability': (1.5/100),
-    'healthContribution': healthContribution,
-    'healthDeductible': healthDeductible,
-    'pension': (9.76/100),
-    'sickness': (2.45/100)
+  'annualLimit': 133290,                    // Annual limit for pension and disability calculations
+  'earningCost': 111.25,                    // Koszt uzyskania przychodu
+  'monthlyRelief': 46.33,
+  'taxThreshold': taxThreshold,             // Tax threshold when the taxation changes from 18% to 32%
+  // Rates
+  'disability': (1.5/100),                  // rentowe
+  'healthContribution': healthContribution, // zdrowotne
+  'healthDeductible': healthDeductible,
+  'pension': (9.76/100),                    // emerytalne
+  'sickness': (2.45/100)                    // chorobowe
 };
 
 // HTML Variables
