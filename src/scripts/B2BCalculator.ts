@@ -23,6 +23,23 @@ export const ZUS = {
     'normalZUS': Symbol('Normal contribution')
 };
 
+const HEALTH_INSURANCE = 342.32;
+
+const SMALL_ZUS = {
+  PENSION: 131.76,
+  DISABILITY: 54,
+  SICKNESS: 16.54,
+  ACCIDENT: 11.27,
+};
+
+const FULL_ZUS = {
+  PENSION: 558.08,
+  DISABILITY: 228.72,
+  SICKNESS: 70.05,
+  ACCIDENT: 47.75,
+  LABOR_FUND: 70.05,
+};
+
 export class B2BCalculator extends BaseCalculator {
     options: B2BOptions;
 
@@ -117,29 +134,29 @@ export class B2BCalculator extends BaseCalculator {
     }
 
     calcPension(zus: Symbol): number[] {
-        return this.evalZUS(zus, 0, 122.98, 520.36);
+      return this.evalZUS(zus, 0, SMALL_ZUS.PENSION, FULL_ZUS.PENSION);
     }
 
     calcDisability(zus: Symbol): number[] {
-        return this.evalZUS(zus, 0, 50.40, 213.26);
+        return this.evalZUS(zus, 0, SMALL_ZUS.DISABILITY, FULL_ZUS.DISABILITY);
     }
 
     calcSickness(paySickness: boolean, zus: Symbol): number[] {
-        if(paySickness) return this.evalZUS(zus, 0, 15.44, 65.31);
-        else return new Array(12).fill(0);
+      if(paySickness) return this.evalZUS(zus, 0, SMALL_ZUS.SICKNESS, FULL_ZUS.SICKNESS);
+      else return new Array(12).fill(0);
     }
 
     calcHealthContribution(): number[] {
-        let healthArray = new Array(12).fill(319.94);
+        let healthArray = new Array(12).fill(HEALTH_INSURANCE);
         return healthArray;
     }
 
     calcAccident(zus: Symbol): number[] {
-        return this.evalZUS(zus, 0, 10.52, 47.98);
+        return this.evalZUS(zus, 0, SMALL_ZUS.ACCIDENT, FULL_ZUS.ACCIDENT);
     }
 
     calcLaborFund(zus: Symbol): number[] {
-        return this.evalZUS(zus, 0, 0, 65.31);
+        return this.evalZUS(zus, 0, 0, FULL_ZUS.LABOR_FUND);
     }
 
     calcOthers(accident: number[], laborFund: number[]): number[] {
