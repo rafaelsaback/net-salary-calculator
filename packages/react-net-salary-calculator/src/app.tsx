@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import './index.scss';
 import { Container } from '@material-ui/core';
 import InputForm from './components/input-form';
 import Results from './components/results';

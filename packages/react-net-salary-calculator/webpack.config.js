@@ -6,14 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    path: path.join(__dirname, 'dist'), // Should be an absolute path.
+    path: path.join(__dirname, 'dist'),
   },
   resolve: {
-    alias: {
-      // Creates alias 'assets' in order to import as following: 'assets/**'.
-      // This is done in order to omit such long imports: '../../../../../assets/**'
-      assets: path.join(__dirname, 'src/assets'),
-    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
@@ -22,14 +17,6 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        use: ['file-loader'],
       },
     ],
   },
