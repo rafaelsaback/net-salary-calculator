@@ -1,0 +1,1 @@
+export const LABEL_STYLE = { color: 'black', fontWeight: 'bold' };
