@@ -6,7 +6,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { handleChange } from '../../utils';
-import { LABEL_STYLE } from '../../consts';
+import { BOLD_BLACK } from '../../consts';
 
 interface InputRadioProps {
   name: string;
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     '&:not(:first-child)': {
       margin: '30px 0 0',
     },
-    '& label': LABEL_STYLE,
+    '& label': BOLD_BLACK,
   },
 });
 

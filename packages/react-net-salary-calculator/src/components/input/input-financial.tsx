@@ -6,7 +6,7 @@ import {
   FormLabel,
 } from '@material-ui/core';
 import { handleChange } from '../../utils';
-import { LABEL_STYLE } from '../../consts';
+import { BOLD_BLACK } from '../../consts';
 
 interface InputSalaryProps {
   label: string;
@@ -18,7 +18,7 @@ interface InputSalaryProps {
 const useStyles = makeStyles({
   root: {
     margin: '30px 0 0',
-    '&  label': LABEL_STYLE,
+    '&  label': BOLD_BLACK,
     '&>div': { margin: '10px 0 0' },
     '& input': { textAlign: 'center' },
   },

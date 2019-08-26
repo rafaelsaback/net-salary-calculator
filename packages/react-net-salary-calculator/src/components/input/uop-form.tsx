@@ -1,17 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import { Container } from '@material-ui/core';
-import InputPeriod from './input/input-period';
-import InputFinancial from './input/input-financial';
-import { B2BMoreOptions } from './b2b-more-options';
+import InputPeriod from './input-period';
+import InputFinancial from './input-financial';
+import { SALARY_LABEL_UOP } from '../../consts';
 
-interface B2BFormProps {
+interface UOPFormProps {
   salary: string;
   period: string;
   setSalary(value: string): void;
   setPeriod(value: string): void;
 }
 
-const B2BForm: FunctionComponent<B2BFormProps> = ({
+const UOPForm: FunctionComponent<UOPFormProps> = ({
   salary,
   period,
   setSalary,
@@ -20,15 +20,14 @@ const B2BForm: FunctionComponent<B2BFormProps> = ({
   return (
     <Container>
       <InputFinancial
-        label="Net salary (from the invoice):"
+        label={SALARY_LABEL_UOP}
         value={salary}
         setValue={setSalary}
         required={true}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />
-      <B2BMoreOptions />
     </Container>
   );
 };
 
-export default B2BForm;
+export default UOPForm;

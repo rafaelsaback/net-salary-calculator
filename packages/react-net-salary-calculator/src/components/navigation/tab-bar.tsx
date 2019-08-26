@@ -16,7 +16,6 @@ const TabBar: FunctionComponent<AppTabsProps> = ({ value, setCurrentTab }) => {
       indicatorColor="primary"
       textColor="primary"
       variant="fullWidth"
-      aria-label="full width tabs example"
     >
       <Tab disableRipple label="Umowa o pracę" />
       <Tab disableRipple label="B2B contract" />
