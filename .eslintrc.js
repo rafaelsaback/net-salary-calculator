@@ -6,6 +6,13 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
   ],
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   env: {
     browser: true, // Allows using browser globals such as document
     node: true, // Allows using node globals such as __dirname
@@ -14,9 +21,9 @@ module.exports = {
   plugins: ['react-hooks', 'prettier'],
   rules: {
     'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error', // Hooks
-    'react-hooks/exhaustive-deps': 'warn', // Hooks
-    'prettier/prettier': 'error', // Prettier
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'prettier/prettier': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',

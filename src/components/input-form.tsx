@@ -1,17 +1,28 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Container, makeStyles } from '@material-ui/core';
-import B2BForm from './b2b-form';
-import TabBar from './tab-bar';
-import TabPanel from './tab-panel';
-import UOPForm from './uop-form';
+import { Container, makeStyles, Button } from '@material-ui/core';
+import B2BForm from './input/b2b-form';
+import TabBar from './navigation/tab-bar';
+import TabPanel from './navigation/tab-panel';
+import UOPForm from './input/uop-form';
+import { BORDER_RADIUS, BOX_SHADOW } from '../consts';
 
 const useStyles = makeStyles({
   root: {
-    borderRadius: '0.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: '1rem',
     margin: '20px auto 20px auto',
-    boxShadow:
-      '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
+    ...BORDER_RADIUS,
+    ...BOX_SHADOW,
+  },
+  button: {
+    minWidth: 150,
+    margin: '20px 0 10px',
+    backgroundColor: '#1976d2',
+    '&:hover': {
+      backgroundColor: 'rgb(17, 82, 147)',
+    },
   },
 });
 
@@ -40,6 +51,14 @@ const InputForm: FunctionComponent = () => {
           setPeriod={setPeriod}
         />
       </TabPanel>
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        disableRipple
+      >
+        Calculate
+      </Button>
     </Container>
   );
 };
