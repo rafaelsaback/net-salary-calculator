@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Container } from '@material-ui/core';
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
-import { SALARY_LABEL_UOP } from '../../consts';
+import { LABELS } from '../../consts';
 
 interface UOPFormProps {
   salary: string;
@@ -20,7 +20,7 @@ const UOPForm: FunctionComponent<UOPFormProps> = ({
   return (
     <Container>
       <InputFinancial
-        label={SALARY_LABEL_UOP}
+        label={LABELS.UOP.SALARY}
         value={salary}
         setValue={setSalary}
         required={true}

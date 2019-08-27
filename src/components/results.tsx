@@ -2,14 +2,16 @@ import React, { FunctionComponent } from 'react';
 import SummaryTable from './resuts/summary-table';
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import {
-  SALARY_LABEL_UOP,
-  SALARY_LABEL_B2B,
-  END_SALARY_LABEL_UOP,
-  END_SALARY_LABEL_B2B,
-} from '../consts';
+import { LABELS } from '../consts';
+import DetailedTable from './resuts/detailed-table';
 
 const useStyles = makeStyles({
+  results: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
   summary: {
     display: 'flex',
     flexDirection: 'row',
@@ -20,22 +22,30 @@ const useStyles = makeStyles({
 const Results: FunctionComponent = () => {
   const classes = useStyles({});
   const isUOP = false;
+  const { SALARY, END_SALARY, SALARY_DTABLE, END_SALARY_DTABLE, OTHERS } = isUOP
+    ? LABELS.UOP
+    : LABELS.B2B;
 
   return (
-    <>
+    <Container className={classes.results}>
       <Container className={classes.summary}>
         <SummaryTable
           label="Summary - 1st month"
-          salaryLabel={isUOP ? SALARY_LABEL_UOP : SALARY_LABEL_B2B}
-          endSalaryLabel={isUOP ? END_SALARY_LABEL_UOP : END_SALARY_LABEL_B2B}
+          salaryLabel={SALARY}
+          endSalaryLabel={END_SALARY}
         />
         <SummaryTable
           label="Summary - 12-month average"
-          salaryLabel={isUOP ? SALARY_LABEL_UOP : SALARY_LABEL_B2B}
-          endSalaryLabel={isUOP ? END_SALARY_LABEL_UOP : END_SALARY_LABEL_B2B}
+          salaryLabel={SALARY}
+          endSalaryLabel={END_SALARY}
         />
       </Container>
-    </>
+      <DetailedTable
+        salaryLabel={SALARY_DTABLE}
+        endSalaryLabel={END_SALARY_DTABLE}
+        othersLabel={OTHERS}
+      />
+    </Container>
   );
 };
 
