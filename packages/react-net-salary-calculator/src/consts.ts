@@ -22,3 +22,8 @@ export const LABELS = {
     OTHERS: 'Others',
   },
 };
+
+export const uopParams = 'uopParams';
+export const b2bParams = 'b2bParams';
+export const uopSalaryResults = 'uopSalaryResults';
+export const b2bSalaryResults = 'b2bSalaryResults';

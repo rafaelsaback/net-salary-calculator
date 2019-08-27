@@ -1,3 +1,5 @@
+import { List, Map } from 'immutable';
+
 /* ENUMS */
 
 export enum Period {
@@ -36,43 +38,28 @@ export interface ContractLabels {
   B2B: SalaryLabels;
 }
 
-export interface UOPParams {
+export type UOPParams = ImmutableMap<{
   grossSalary: number;
   period: Period;
-}
+}>;
 
-export interface B2BParams {
+export type B2BParams = ImmutableMap<{
   netSalary: number;
   period: Period;
   tax: B2BTax;
   zus: ZUS;
   sickness: Sickness;
   costs: number;
-}
-
-type Array12x = [
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-];
+}>;
 
 interface MonthlySalaryResults {
-  salary: Array12x;
-  pension: Array12x;
-  disability: Array12x;
-  sickness: Array12x;
-  health: Array12x;
-  tax: Array12x;
-  endSalary: Array12x;
+  salary: List<number>;
+  pension: List<number>;
+  disability: List<number>;
+  sickness: List<number>;
+  health: List<number>;
+  tax: List<number>;
+  endSalary: List<number>;
 }
 
 interface AnnuallySalaryResults {
@@ -86,7 +73,7 @@ interface AnnuallySalaryResults {
 }
 
 interface UOPMonthlySalaryResults extends MonthlySalaryResults {
-  taxBase: Array12x;
+  taxBase: List<number>;
 }
 
 interface UOPAnnuallySalaryResults extends AnnuallySalaryResults {
@@ -94,19 +81,37 @@ interface UOPAnnuallySalaryResults extends AnnuallySalaryResults {
 }
 
 interface B2BMonthlySalaryResults extends MonthlySalaryResults {
-  others: Array12x;
+  others: List<number>;
 }
 
 interface B2BAnnuallySalaryResults extends AnnuallySalaryResults {
   others: number;
 }
 
-export interface UOPSalaryResults {
-  monthly: UOPMonthlySalaryResults;
-  annually: UOPAnnuallySalaryResults;
+export type UOPSalaryResults = ImmutableMap<{
+  monthly: ImmutableMap<UOPMonthlySalaryResults>;
+  annually: ImmutableMap<UOPAnnuallySalaryResults>;
+}>;
+
+export type B2BSalaryResults = ImmutableMap<{
+  monthly: ImmutableMap<B2BMonthlySalaryResults>;
+  annually: ImmutableMap<B2BAnnuallySalaryResults>;
+}>;
+
+export interface StoreState {
+  uopParams: UOPParams;
+  b2bParams: B2BParams;
+  uopSalaryResults: UOPSalaryResults;
+  b2bSalaryResults: B2BSalaryResults;
 }
 
-export interface B2BSalaryResults {
-  monthly: B2BMonthlySalaryResults;
-  annually: B2BAnnuallySalaryResults;
+export type IStoreState = ImmutableMap<StoreState>;
+
+export interface ImmutableMap<T> extends Omit<Map<string, any>, 'get' | 'set'> {
+  get<K extends keyof T>(name: K, notSetValue?: T[K]): T[K];
+  set<K extends keyof T>(key: K, value: T[K]): ImmutableMap<T>;
+}
+
+export interface CalculatorAction extends StoreState {
+  type: string;
 }
