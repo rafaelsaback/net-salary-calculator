@@ -6,8 +6,19 @@ export const BOX_SHADOW = {
 
 export const BORDER_RADIUS = { borderRadius: '0.5rem' };
 
-export const SALARY_LABEL_UOP = 'Gross salary';
-export const SALARY_LABEL_B2B = 'Net salary (from the invoice)';
-
-export const END_SALARY_LABEL_UOP = 'Net salary';
-export const END_SALARY_LABEL_B2B = 'Salary in hand';
+export const LABELS = {
+  UOP: {
+    SALARY: 'Gross salary',
+    END_SALARY: 'Net salary',
+    SALARY_DTABLE: 'Gross salary',
+    END_SALARY_DTABLE: 'Net salary',
+    OTHERS: 'Tax base',
+  },
+  B2B: {
+    SALARY: 'Net salary (from the invoice)',
+    END_SALARY: 'Salary in hand',
+    SALARY_DTABLE: 'Net salary from the invoice',
+    END_SALARY_DTABLE: 'Salary in hand',
+    OTHERS: 'Others',
+  },
+};

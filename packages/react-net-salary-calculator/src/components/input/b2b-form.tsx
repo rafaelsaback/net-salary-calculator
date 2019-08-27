@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
 import { B2BMoreOptions } from './b2b-more-options';
-import { SALARY_LABEL_B2B } from '../../consts';
+import { LABELS } from '../../consts';
 
 interface B2BFormProps {
   salary: string;
@@ -21,7 +21,7 @@ const B2BForm: FunctionComponent<B2BFormProps> = ({
   return (
     <Container>
       <InputFinancial
-        label={SALARY_LABEL_B2B}
+        label={LABELS.B2B.SALARY}
         value={salary}
         setValue={setSalary}
         required={true}
