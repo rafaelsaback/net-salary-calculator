@@ -1,17 +1,32 @@
+import { Map } from 'immutable';
 import { SET_UOP_PARAMS, SET_B2B_PARAMS, SET_SALARY_RESULT } from './actions';
+import { IStoreState, StoreState, CalculatorAction } from '../interfaces';
+import {
+  uopParams,
+  b2bParams,
+  uopSalaryResults,
+  b2bSalaryResults,
+} from '../consts';
 
-const reducer = (state = {}, action: any) => {
+const mergeUpdateState = (
+  state: IStoreState,
+  action: any,
+  paramName: keyof StoreState,
+): IStoreState => {
+  const prevConfig = state.get(paramName, Map());
+  return state.set(paramName, prevConfig.merge(action.uopParams));
+};
+
+const reducer = (state: IStoreState = Map(), action: CalculatorAction) => {
   switch (action.type) {
     case SET_UOP_PARAMS:
-      return { ...state, uopParams: action.uopParams };
+      return mergeUpdateState(state, action, uopParams);
     case SET_B2B_PARAMS:
-      return { ...state, b2bParams: action.b2bParams };
+      return mergeUpdateState(state, action, b2bParams);
     case SET_SALARY_RESULT:
-      return {
-        ...state,
-        uopSalaryResults: action.uopSalaryResults,
-        b2bSalaryResults: action.b2bSalaryResults,
-      };
+      return state
+        .set(uopSalaryResults, action.uopSalaryResults)
+        .set(b2bSalaryResults, action.b2bSalaryResults);
   }
 };
 
