@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 
 const InputForm: FunctionComponent = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [salary, setSalary] = useState('');
   const [period, setPeriod] = useState('monthly');
   const classes = useStyles({});
 
@@ -36,20 +35,10 @@ const InputForm: FunctionComponent = () => {
     <Container className={classes.root} maxWidth="xs">
       <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
       <TabPanel value={currentTab} index={0}>
-        <UOPForm
-          salary={salary}
-          setSalary={setSalary}
-          period={period}
-          setPeriod={setPeriod}
-        />
+        <UOPForm period={period} setPeriod={setPeriod} />
       </TabPanel>
       <TabPanel value={currentTab} index={1}>
-        <B2BForm
-          salary={salary}
-          setSalary={setSalary}
-          period={period}
-          setPeriod={setPeriod}
-        />
+        <B2BForm period={period} setPeriod={setPeriod} />
       </TabPanel>
       <Button
         className={classes.button}
