@@ -1,3 +1,6 @@
+import { fromJS, List } from 'immutable';
+import { IStoreState, Period, B2BTax, ZUS, Sickness, StoreState } from '../interfaces';
+
 export const BOLD_BLACK = { color: 'black', fontWeight: 'bold' };
 export const BOX_SHADOW = {
   boxShadow:
@@ -23,7 +26,42 @@ export const LABELS = {
   },
 };
 
-export const uopParams = 'uopParams';
-export const b2bParams = 'b2bParams';
-export const uopSalaryResults = 'uopSalaryResults';
-export const b2bSalaryResults = 'b2bSalaryResults';
+export const uopParamsKey = 'uopParams';
+export const b2bParamsKey = 'b2bParams';
+export const uopSalaryResultsKey = 'uopSalaryResults';
+export const b2bSalaryResultsKey = 'b2bSalaryResults';
+
+export const initialState: IStoreState = fromJS({
+  uopParams: {
+    salary: 0,
+    period: Period.Monthly,
+  },
+  b2bParams: {
+    salary: 0,
+    period: Period.Monthly,
+    tax: B2BTax.Linear,
+    zus: ZUS.No,
+    sicknes: Sickness.No,
+    costs: 0,
+  },
+  uopSalaryResults: {
+    salary: Array(12).fill(0),
+    pension: Array(12).fill(0),
+    disability: Array(12).fill(0),
+    sickness: Array(12).fill(0),
+    health: Array(12).fill(0),
+    tax: Array(12).fill(0),
+    taxBase: Array(12).fill(0),
+    endSalary: Array(12).fill(0),
+  },
+  b2bSalaryResults: {
+    salary: Array(12).fill(0),
+    pension: Array(12).fill(0),
+    disability: Array(12).fill(0),
+    sickness: Array(12).fill(0),
+    health: Array(12).fill(0),
+    tax: Array(12).fill(0),
+    taxBase: Array(12).fill(0),
+    endSalary: Array(12).fill(0),
+  },
+});

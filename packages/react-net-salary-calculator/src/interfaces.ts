@@ -39,12 +39,12 @@ export interface ContractLabels {
 }
 
 export interface UOPParams {
-  grossSalary: number;
+  salary: number;
   period: Period;
 }
 
 export interface B2BParams {
-  netSalary: number;
+  salary: number;
   period: Period;
   tax: B2BTax;
   zus: ZUS;
