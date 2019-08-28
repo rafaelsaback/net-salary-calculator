@@ -6,15 +6,15 @@ import {
 } from '../interfaces';
 
 export const SET_UOP_PARAMS = 'SET_UOP_PARAMS';
-export const SET_B2B_PARAMS = 'SET_UOP_PARAMS';
+export const SET_B2B_PARAMS = 'SET_B2B_PARAMS';
 export const SET_SALARY_RESULT = 'SET_SALARY_RESULT';
 
-export const setUOPParams = (uopParams: UOPParams) => ({
+export const setUOPParams = (uopParams: Partial<UOPParams>) => ({
   type: SET_UOP_PARAMS,
   uopParams,
 });
 
-export const setB2BParams = (b2bParams: B2BParams) => ({
+export const setB2BParams = (b2bParams: Partial<B2BParams>) => ({
   type: SET_B2B_PARAMS,
   b2bParams,
 });
