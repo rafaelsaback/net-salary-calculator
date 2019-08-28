@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BOLD_BLACK, BORDER_RADIUS, BOX_SHADOW } from '../../consts';
+import { BOLD_BLACK, BORDER_RADIUS, BOX_SHADOW } from '../../helpers/consts';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

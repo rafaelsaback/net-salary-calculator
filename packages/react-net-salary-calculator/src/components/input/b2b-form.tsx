@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
 import { B2BMoreOptions } from './b2b-more-options';
-import { LABELS } from '../../consts';
+import { LABELS } from '../../helpers/consts';
 
 interface B2BFormProps {
   salary: string;

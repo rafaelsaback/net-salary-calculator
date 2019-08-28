@@ -4,7 +4,7 @@ import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
 import TabPanel from './navigation/tab-panel';
 import UOPForm from './input/uop-form';
-import { BORDER_RADIUS, BOX_SHADOW } from '../consts';
+import { BORDER_RADIUS, BOX_SHADOW } from '../helpers/consts';
 
 const useStyles = makeStyles({
   root: {

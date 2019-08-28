@@ -6,7 +6,7 @@ import {
   b2bParams,
   uopSalaryResults,
   b2bSalaryResults,
-} from '../consts';
+} from '../helpers/consts';
 
 const mergeUpdateState = (
   state: IStoreState,

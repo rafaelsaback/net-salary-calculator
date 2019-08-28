@@ -5,8 +5,8 @@ import {
   RadioGroup,
   makeStyles,
 } from '@material-ui/core';
-import { handleChange } from '../../utils';
-import { BOLD_BLACK } from '../../consts';
+import { handleChange } from '../../helpers/utils';
+import { BOLD_BLACK } from '../../helpers/consts';
 
 interface InputRadioProps {
   name: string;

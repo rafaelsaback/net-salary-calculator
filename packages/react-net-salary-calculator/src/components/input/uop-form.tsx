@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Container } from '@material-ui/core';
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
-import { LABELS } from '../../consts';
+import { LABELS } from '../../helpers/consts';
 
 interface UOPFormProps {
   salary: string;
