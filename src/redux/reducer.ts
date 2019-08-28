@@ -6,7 +6,6 @@ import {
   b2bParamsKey,
   uopSalaryResultsKey,
   b2bSalaryResultsKey,
-  initialState,
 } from '../helpers/consts';
 
 const mergeUpdateState = (
@@ -21,10 +20,7 @@ const mergeUpdateState = (
   );
 };
 
-const reducer = (
-  state: IStoreState = initialState,
-  action: CalculatorAction,
-) => {
+const reducer = (state: IStoreState, action: CalculatorAction) => {
   switch (action.type) {
     case SET_UOP_PARAMS:
       return mergeUpdateState(state, action, uopParamsKey);
@@ -34,6 +30,8 @@ const reducer = (
       return state
         .set(uopSalaryResultsKey, action.uopSalaryResults)
         .set(b2bSalaryResultsKey, action.b2bSalaryResults);
+    default:
+      return state;
   }
 };
 
