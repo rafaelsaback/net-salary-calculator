@@ -3,24 +3,24 @@ import { List, Map } from 'immutable';
 /* ENUMS */
 
 export enum Period {
-  Monthly,
-  Annually,
+  Monthly = 'Monthly',
+  Annually = 'Annually',
 }
 
 export enum B2BTax {
-  Linear,
-  Progressive,
+  Linear = 'Linear',
+  Progressive = 'Progressive',
 }
 
 export enum ZUS {
-  No,
-  Discounted,
-  Normal,
+  No = 'No',
+  Discounted = 'Discounted',
+  Normal = 'Normal',
 }
 
 export enum Sickness {
-  Yes,
-  No,
+  Yes = 'Yes',
+  No = 'No',
 }
 
 /* TYPES & INTERFACES */
