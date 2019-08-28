@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import SummaryTable from './resuts/summary-table';
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { LABELS } from '../consts';
+import { LABELS } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
 
 const useStyles = makeStyles({
