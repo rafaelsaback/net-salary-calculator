@@ -1,5 +1,5 @@
-import { fromJS, List } from 'immutable';
-import { IStoreState, Period, B2BTax, ZUS, Sickness, StoreState } from '../interfaces';
+import { fromJS } from 'immutable';
+import { IStoreState, Period, B2BTax, ZUS, Sickness } from '../interfaces';
 
 export const BOLD_BLACK = { color: 'black', fontWeight: 'bold' };
 export const BOX_SHADOW = {
@@ -41,7 +41,7 @@ export const initialState: IStoreState = fromJS({
     period: Period.Monthly,
     tax: B2BTax.Linear,
     zus: ZUS.No,
-    sicknes: Sickness.No,
+    sickness: Sickness.No,
     costs: 0,
   },
   uopSalaryResults: {
