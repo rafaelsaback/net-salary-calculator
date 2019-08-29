@@ -13,10 +13,12 @@ import InputSickness from './input-sickness';
 import InputFinancial from './input-financial';
 import { useTax, useZUS, useSickness, useCosts } from '../../helpers/hooks';
 import { B2BTax, ZUS, Sickness } from '../../interfaces';
+import { darkGray } from '../../helpers/consts';
 
 const useStyles = makeStyles({
   root: {
     marginTop: 10,
+    color: darkGray,
   },
 });
 
@@ -30,11 +32,7 @@ export const B2BMoreOptions: FunctionComponent = () => {
 
   return (
     <ExpansionPanel className={classes.root}>
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMore />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
+      <ExpansionPanelSummary expandIcon={<ExpandMore />} id="panel1a-header">
         <Typography>More options</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{ flexDirection: 'column' }}>

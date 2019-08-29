@@ -5,7 +5,7 @@ import {
   RadioGroup,
   makeStyles,
 } from '@material-ui/core';
-import { BOLD_BLACK } from '../../helpers/consts';
+import { BOLD_DARK_GRAY, darkGray } from '../../helpers/consts';
 
 interface InputRadioProps {
   name: string;
@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     '&:not(:first-child)': {
       margin: '30px 0 0',
     },
-    '& label': BOLD_BLACK,
+    '& label': { fontSize: '0.825rem', ...BOLD_DARK_GRAY },
+    '& .MuiFormControlLabel-label': { color: darkGray },
   },
 });
 

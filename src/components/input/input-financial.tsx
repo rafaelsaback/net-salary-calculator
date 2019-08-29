@@ -5,7 +5,7 @@ import {
   FormControl,
   FormLabel,
 } from '@material-ui/core';
-import { BOLD_BLACK } from '../../helpers/consts';
+import { BOLD_DARK_GRAY } from '../../helpers/consts';
 
 interface InputSalaryProps {
   label: string;
@@ -17,7 +17,7 @@ interface InputSalaryProps {
 const useStyles = makeStyles({
   root: {
     margin: '30px 0 0',
-    '&  label': BOLD_BLACK,
+    '& label': { fontSize: '0.825rem', ...BOLD_DARK_GRAY },
     '&>div': { margin: '10px 0 0' },
     '& input': { textAlign: 'center' },
   },
