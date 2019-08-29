@@ -4,25 +4,19 @@ import { Container } from '@material-ui/core';
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
 import { LABELS } from '../../helpers/consts';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectUOPParam } from '../../helpers/selectors';
-import { setSalary } from '../../helpers/utils';
+import { useSalary, usePeriod } from '../../helpers/hooks';
+import { Period } from '../../interfaces';
 
-interface UOPFormProps {
-  period: string;
-  setPeriod(value: string): void;
-}
-
-const UOPForm: FunctionComponent<UOPFormProps> = ({ period, setPeriod }) => {
-  const salary = useSelector(selectUOPParam('salary')) || '';
-  const dispatch = useDispatch();
+const UOPForm: FunctionComponent = () => {
+  const [salary, setSalary] = useSalary('');
+  const [period, setPeriod] = usePeriod(Period.Monthly);
 
   return (
     <Container>
       <InputFinancial
         label={LABELS.UOP.SALARY}
-        value={salary.toString()}
-        setValue={setSalary(dispatch)}
+        value={salary}
+        setValue={setSalary}
         required={true}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />

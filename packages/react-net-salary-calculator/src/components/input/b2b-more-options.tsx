@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, Dispatch } from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -11,10 +11,8 @@ import InputIncomeTax from './input-income-tax';
 import InputZUS from './input-zus';
 import InputSickness from './input-sickness';
 import InputFinancial from './input-financial';
-import { setNumberValue } from '../../helpers/utils';
-import { setB2BParams } from '../../redux/actions';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectB2BParam } from '../../helpers/selectors';
+import { useTax, useZUS, useSickness, useCosts } from '../../helpers/hooks';
+import { B2BTax, ZUS, Sickness } from '../../interfaces';
 
 const useStyles = makeStyles({
   root: {
@@ -22,16 +20,13 @@ const useStyles = makeStyles({
   },
 });
 
-const setCosts = (dispatch: Dispatch<any>) =>
-  setNumberValue(dispatch, [setB2BParams], 'costs');
-
 export const B2BMoreOptions: FunctionComponent = () => {
-  const [tax, setTax] = useState('linear');
-  const [zus, setZUS] = useState('no-zus');
-  const [sickness, setSickness] = useState('no');
+  const [tax, setTax] = useTax(B2BTax.Linear);
+  const [zus, setZUS] = useZUS(ZUS.No);
+  const [sickness, setSickness] = useSickness(Sickness.No);
+  const [costs, setCosts] = useCosts('');
+
   const classes = useStyles({});
-  const costs = useSelector(selectB2BParam('costs')) || '';
-  const dispatch = useDispatch();
 
   return (
     <ExpansionPanel className={classes.root}>
@@ -48,8 +43,8 @@ export const B2BMoreOptions: FunctionComponent = () => {
         <InputSickness sickness={sickness} setSickness={setSickness} />
         <InputFinancial
           label="Deductible costs"
-          value={costs.toString()}
-          setValue={setCosts(dispatch)}
+          value={costs}
+          setValue={setCosts}
           required={false}
         />
       </ExpansionPanelDetails>

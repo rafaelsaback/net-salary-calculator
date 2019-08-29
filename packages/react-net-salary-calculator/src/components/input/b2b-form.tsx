@@ -5,25 +5,19 @@ import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
 import { B2BMoreOptions } from './b2b-more-options';
 import { LABELS } from '../../helpers/consts';
-import { setSalary } from '../../helpers/utils';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectB2BParam } from '../../helpers/selectors';
+import { useSalary, usePeriod } from '../../helpers/hooks';
+import { Period } from '../../interfaces';
 
-interface B2BFormProps {
-  period: string;
-  setPeriod(value: string): void;
-}
-
-const B2BForm: FunctionComponent<B2BFormProps> = ({ period, setPeriod }) => {
-  const salary = useSelector(selectB2BParam('salary')) || '';
-  const dispatch = useDispatch();
+const B2BForm: FunctionComponent = () => {
+  const [salary, setSalary] = useSalary('');
+  const [period, setPeriod] = usePeriod(Period.Monthly);
 
   return (
     <Container>
       <InputFinancial
         label={LABELS.B2B.SALARY}
-        value={salary.toString()}
-        setValue={setSalary(dispatch)}
+        value={salary}
+        setValue={setSalary}
         required={true}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />

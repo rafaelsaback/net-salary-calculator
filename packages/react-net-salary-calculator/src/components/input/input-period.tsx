@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { FormControlLabel, Radio } from '@material-ui/core';
 import InputRadio from './input-radio';
+import { Period } from '../../interfaces';
 
 interface InputPeriodProps {
   period: string;
-  setPeriod(value: string): void;
+  setPeriod(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 const InputPeriod: FunctionComponent<InputPeriodProps> = ({
@@ -17,10 +18,18 @@ const InputPeriod: FunctionComponent<InputPeriodProps> = ({
     name="period"
     label="Period"
     value={period}
-    setFunction={setPeriod}
+    setValue={setPeriod}
   >
-    <FormControlLabel value="monthly" control={<Radio />} label="Monthly" />
-    <FormControlLabel value="yearly" control={<Radio />} label="Yearly" />
+    <FormControlLabel
+      value={Period.Monthly}
+      control={<Radio />}
+      label="Monthly"
+    />
+    <FormControlLabel
+      value={Period.Annually}
+      control={<Radio />}
+      label="Annualy"
+    />
   </InputRadio>
 );
 
