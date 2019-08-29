@@ -28,17 +28,16 @@ const useStyles = makeStyles({
 
 const InputForm: FunctionComponent = () => {
   const [currentTab, setCurrentTab] = useState(0);
-  const [period, setPeriod] = useState('monthly');
   const classes = useStyles({});
 
   return (
     <Container className={classes.root} maxWidth="xs">
       <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
       <TabPanel value={currentTab} index={0}>
-        <UOPForm period={period} setPeriod={setPeriod} />
+        <UOPForm />
       </TabPanel>
       <TabPanel value={currentTab} index={1}>
-        <B2BForm period={period} setPeriod={setPeriod} />
+        <B2BForm />
       </TabPanel>
       <Button
         className={classes.button}

@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { FormControlLabel, Radio } from '@material-ui/core';
 import InputRadio from './input-radio';
+import { B2BTax } from '../../interfaces';
 
 interface InputIncomeTaxProps {
   tax: string;
-  setTax(value: string): void;
+  setTax(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 const InputIncomeTax: FunctionComponent<InputIncomeTaxProps> = ({
@@ -17,11 +18,11 @@ const InputIncomeTax: FunctionComponent<InputIncomeTaxProps> = ({
     name="tax"
     label="Income tax"
     value={tax}
-    setFunction={setTax}
+    setValue={setTax}
   >
-    <FormControlLabel value="linear" control={<Radio />} label="19%" />
+    <FormControlLabel value={B2BTax.Linear} control={<Radio />} label="19%" />
     <FormControlLabel
-      value="progressive"
+      value={B2BTax.Progressive}
       control={<Radio />}
       label="18% / 32%"
     />

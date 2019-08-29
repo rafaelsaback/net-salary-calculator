@@ -1,18 +1,17 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import {
   FormControl,
   FormLabel,
   RadioGroup,
   makeStyles,
 } from '@material-ui/core';
-import { handleChange } from '../../helpers/utils';
 import { BOLD_BLACK } from '../../helpers/consts';
 
 interface InputRadioProps {
   name: string;
   label: string;
   value: string;
-  setFunction(value: string): void;
+  setValue(event: ChangeEvent<HTMLInputElement>): void;
   row?: boolean;
   required?: boolean;
 }
@@ -30,7 +29,7 @@ const InputRadio: FunctionComponent<InputRadioProps> = ({
   name,
   label,
   value,
-  setFunction,
+  setValue,
   row = false,
   required = false,
   children,
@@ -49,7 +48,7 @@ const InputRadio: FunctionComponent<InputRadioProps> = ({
         aria-label="period"
         name={name}
         value={value}
-        onChange={handleChange(setFunction)}
+        onChange={setValue}
         row={row}
       >
         {children}

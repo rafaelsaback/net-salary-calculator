@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import { FormControlLabel, Radio } from '@material-ui/core';
 import InputRadio from './input-radio';
+import { Sickness } from '../../interfaces';
 
 interface InputSicknessProps {
   sickness: string;
-  setSickness(value: string): void;
+  setSickness(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 const InputSickness: FunctionComponent<InputSicknessProps> = ({
@@ -17,10 +18,10 @@ const InputSickness: FunctionComponent<InputSicknessProps> = ({
     name="sickness"
     label="Sickness insurance"
     value={sickness}
-    setFunction={setSickness}
+    setValue={setSickness}
   >
-    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-    <FormControlLabel value="no" control={<Radio />} label="No" />
+    <FormControlLabel value={Sickness.No} control={<Radio />} label="No" />
+    <FormControlLabel value={Sickness.Yes} control={<Radio />} label="Yes" />
   </InputRadio>
 );
 
