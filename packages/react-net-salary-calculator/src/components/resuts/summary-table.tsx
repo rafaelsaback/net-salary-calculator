@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BOLD_BLACK, BORDER_RADIUS, BOX_SHADOW } from '../../helpers/consts';
+import { BORDER_RADIUS, BOX_SHADOW, darkGray } from '../../helpers/consts';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -21,8 +21,9 @@ const useStyles = makeStyles({
     margin: 20,
     ...BORDER_RADIUS,
     ...BOX_SHADOW,
+    '& td, & th': { color: darkGray },
+    '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
   },
-  head: { '& *': { ...BOLD_BLACK, fontSize: '0.825rem' } },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
 });
 
@@ -35,7 +36,7 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
 
   return (
     <Table className={classes.table}>
-      <TableHead className={classes.head}>
+      <TableHead>
         <TableRow>
           <TableCell align="center" colSpan={2}>
             {label}

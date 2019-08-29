@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable';
 import { IStoreState, Period, B2BTax, ZUS, Sickness } from '../interfaces';
 
-export const BOLD_BLACK = { color: 'black', fontWeight: 'bold' };
+export const darkGray = '#444444';
+export const BOLD_DARK_GRAY = { color: darkGray, fontWeight: 'bold' };
 export const BOX_SHADOW = {
   boxShadow:
     '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
@@ -25,6 +26,21 @@ export const LABELS = {
     OTHERS: 'Others',
   },
 };
+
+export const Months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 export const uopParamsKey = 'uopParams';
 export const b2bParamsKey = 'b2bParams';

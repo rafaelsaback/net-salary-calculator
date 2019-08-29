@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BOLD_BLACK, BORDER_RADIUS, BOX_SHADOW } from '../../helpers/consts';
+import { BORDER_RADIUS, BOX_SHADOW, darkGray } from '../../helpers/consts';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,7 +18,6 @@ const useStyles = makeStyles({
   table: {
     overflowX: 'auto',
     margin: 20,
-    tableLayout: 'fixed',
     maxWidth: 884,
     ...BORDER_RADIUS,
     ...BOX_SHADOW,
@@ -26,21 +25,18 @@ const useStyles = makeStyles({
       width: '94px',
       padding: '8px 2px',
       wordWrap: 'break-word',
+      color: darkGray,
     },
+    '& th, & tfoot td': { fontWeight: 'bold', fontSize: '0.825rem' },
   },
-  head: {
-    '& *': { ...BOLD_BLACK, fontSize: '0.825rem' },
-  },
-  // salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
 });
 
 const getTableHead = (
   salaryLabel: string,
   othersLabel: string,
   endSalaryLabel: string,
-  classes: any,
 ) => (
-  <TableHead className={classes.head}>
+  <TableHead>
     <TableRow>
       <TableCell align="center" rowSpan={2}>
         Month
@@ -70,9 +66,9 @@ const getTableHead = (
   </TableHead>
 );
 
-const getTableBody = (classes: any) => (
+const getTableBody = () => (
   <TableBody>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -83,7 +79,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -94,7 +90,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -105,7 +101,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -116,7 +112,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -127,7 +123,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -138,7 +134,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -149,7 +145,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -160,7 +156,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -171,7 +167,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -182,7 +178,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -193,7 +189,7 @@ const getTableBody = (classes: any) => (
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
     </TableRow>
-    <TableRow className={classes.salaryRow}>
+    <TableRow>
       <TableCell align="center">January</TableCell>
       <TableCell align="center">1000</TableCell>
       <TableCell align="center">1000</TableCell>
@@ -232,8 +228,8 @@ const DetailedTable: FunctionComponent<DetailedTableProps> = ({
 
   return (
     <Table className={classes.table}>
-      {getTableHead(salaryLabel, othersLabel, endSalaryLabel, classes)}
-      {getTableBody(classes)}
+      {getTableHead(salaryLabel, othersLabel, endSalaryLabel)}
+      {getTableBody()}
       {getTableFooter()}
     </Table>
   );
