@@ -23,6 +23,11 @@ export enum Sickness {
   No = 'NO',
 }
 
+export enum ContractType {
+  UOP = 'UOP',
+  B2B = 'B2B',
+}
+
 /* TYPES & INTERFACES */
 
 export interface SalaryLabels {
@@ -79,12 +84,14 @@ export type IUOPParams = ImmutableMap<UOPParams>;
 export type IB2BParams = ImmutableMap<B2BParams>;
 export type IUOPSalaryResults = ImmutableMap<UOPSalaryResults>;
 export type IB2BSalaryResults = ImmutableMap<B2BSalaryResults>;
+export type IContractType = ImmutableMap<ContractType>;
 
 export interface StoreState {
   uopParams: IUOPParams;
   b2bParams: IB2BParams;
   uopSalaryResults: IUOPSalaryResults;
   b2bSalaryResults: IB2BSalaryResults;
+  contractType: IContractType;
 }
 
 export type IStoreState = ImmutableMap<StoreState>;
