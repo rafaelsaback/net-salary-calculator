@@ -1,11 +1,17 @@
 import { Map, fromJS, get } from 'immutable';
-import { SET_UOP_PARAMS, SET_B2B_PARAMS, SET_SALARY_RESULT } from './actions';
+import {
+  SET_UOP_PARAMS,
+  SET_B2B_PARAMS,
+  SET_SALARY_RESULT,
+  SET_CONTRACT_TYPE,
+} from './actions';
 import { IStoreState, StoreState, CalculatorAction } from '../interfaces';
 import {
   uopParamsKey,
   b2bParamsKey,
   uopSalaryResultsKey,
   b2bSalaryResultsKey,
+  contractTypeKey,
 } from '../helpers/consts';
 
 const mergeUpdateState = (
@@ -30,6 +36,8 @@ const reducer = (state: IStoreState, action: CalculatorAction) => {
       return state
         .set(uopSalaryResultsKey, action.uopSalaryResults)
         .set(b2bSalaryResultsKey, action.b2bSalaryResults);
+    case SET_CONTRACT_TYPE:
+      return state.set(contractTypeKey, action.contractType);
     default:
       return state;
   }
