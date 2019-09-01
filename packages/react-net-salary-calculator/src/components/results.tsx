@@ -6,7 +6,7 @@ import { LABELS } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
 import { useSelector } from 'react-redux';
 import { selectContractType, selectSalaryResults } from '../helpers/selectors';
-import { calcAverage } from '../helpers/utils';
+import { calcAverage, isUOP } from '../helpers/utils';
 
 const useStyles = makeStyles({
   results: {
@@ -26,10 +26,13 @@ const Results: FunctionComponent = () => {
   const classes = useStyles({});
   const contractType = useSelector(selectContractType);
   const salaryResults = useSelector(selectSalaryResults(contractType));
-  const isUOP = false;
-  const { SALARY, END_SALARY, SALARY_DTABLE, END_SALARY_DTABLE, OTHERS } = isUOP
-    ? LABELS.UOP
-    : LABELS.B2B;
+  const {
+    SALARY,
+    END_SALARY,
+    SALARY_DTABLE,
+    END_SALARY_DTABLE,
+    OTHERS,
+  } = isUOP(contractType) ? LABELS.UOP : LABELS.B2B;
 
   const socialSecurityAvg = calcAverage(salaryResults.get('socialSecurity'));
   const healthAvg = calcAverage(salaryResults.get('healthContribution'));

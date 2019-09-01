@@ -2,6 +2,7 @@ import { ChangeEvent, Dispatch } from 'react';
 import { compose } from 'redux';
 import { setUOPParams, setB2BParams } from '../redux/actions';
 import { List } from 'immutable';
+import { ContractType } from '../interfaces';
 
 export const handleChange = (setFunction: (value: string) => void) => (
   event: ChangeEvent<HTMLInputElement>,
@@ -78,3 +79,6 @@ export const calcAverage = (list: List<number>): number => calcTotal(list) / 12;
 export const formatNumber = (number: number, precision = 0): string => {
   return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 };
+
+export const isUOP = (contractType: ContractType): boolean =>
+  contractType === ContractType.UOP;
