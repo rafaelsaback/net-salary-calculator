@@ -1,5 +1,12 @@
 import { fromJS } from 'immutable';
-import { IStoreState, Period, B2BTax, ZUS, Sickness } from '../interfaces';
+import {
+  IStoreState,
+  Period,
+  B2BTax,
+  ZUS,
+  Sickness,
+  ContractType,
+} from '../interfaces';
 
 export const darkGray = '#444444';
 export const BOLD_DARK_GRAY = { color: darkGray, fontWeight: 'bold' };
@@ -47,8 +54,11 @@ export const b2bParamsKey = 'b2bParams';
 export const uopSalaryResultsKey = 'uopSalaryResults';
 export const b2bSalaryResultsKey = 'b2bSalaryResults';
 export const contractTypeKey = 'contractType';
+export const showResultsKey = 'showResults';
 
 export const initialState: IStoreState = fromJS({
+  contractType: ContractType.UOP,
+  showResults: false,
   uopParams: {
     salary: 0,
     period: Period.Monthly,
@@ -66,19 +76,24 @@ export const initialState: IStoreState = fromJS({
     pension: Array(12).fill(0),
     disability: Array(12).fill(0),
     sickness: Array(12).fill(0),
-    health: Array(12).fill(0),
-    tax: Array(12).fill(0),
+    healthContribution: Array(12).fill(0),
+    healthDeductible: Array(12).fill(0),
     taxBase: Array(12).fill(0),
+    tax: Array(12).fill(0),
     endSalary: Array(12).fill(0),
   },
   b2bSalaryResults: {
-    salary: Array(12).fill(0),
+    salary: 0,
     pension: Array(12).fill(0),
     disability: Array(12).fill(0),
     sickness: Array(12).fill(0),
-    health: Array(12).fill(0),
-    tax: Array(12).fill(0),
+    healthContribution: Array(12).fill(0),
+    healthDeductible: Array(12).fill(0),
+    laborFund: Array(12).fill(0),
+    accident: Array(12).fill(0),
+    others: Array(12).fill(0),
     taxBase: Array(12).fill(0),
+    tax: Array(12).fill(0),
     endSalary: Array(12).fill(0),
   },
 });

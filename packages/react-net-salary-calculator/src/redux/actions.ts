@@ -10,6 +10,7 @@ export const SET_UOP_PARAMS = 'SET_UOP_PARAMS';
 export const SET_B2B_PARAMS = 'SET_B2B_PARAMS';
 export const SET_SALARY_RESULT = 'SET_SALARY_RESULT';
 export const SET_CONTRACT_TYPE = 'SET_CONTRACT_TYPE';
+export const SHOW_RESULTS = 'SHOW_RESULTS';
 
 export const setUOPParams = (uopParams: Partial<UOPParams>) => ({
   type: SET_UOP_PARAMS,
@@ -33,4 +34,9 @@ export const setSalaryResult = (
 export const setContractType = (contractType: ContractType) => ({
   type: SET_CONTRACT_TYPE,
   contractType,
+});
+
+export const showResults = () => ({
+  type: SHOW_RESULTS,
+  showResults: true,
 });

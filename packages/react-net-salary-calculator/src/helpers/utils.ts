@@ -1,6 +1,7 @@
 import { ChangeEvent, Dispatch } from 'react';
 import { compose } from 'redux';
 import { setUOPParams, setB2BParams } from '../redux/actions';
+import { List } from 'immutable';
 
 export const handleChange = (setFunction: (value: string) => void) => (
   event: ChangeEvent<HTMLInputElement>,
@@ -68,3 +69,12 @@ export const dispatchSickness = (dispatch: Dispatch<any>) =>
 
 export const dispatchCosts = (dispatch: Dispatch<any>) =>
   dispatchNumberValue(dispatch, [setB2BParams], 'costs');
+
+export const calcTotal = (list: List<number>): number =>
+  list.reduce((a, b) => a + b, 0);
+
+export const calcAverage = (list: List<number>): number => calcTotal(list) / 12;
+
+export const formatNumber = (number: number, precision = 0): string => {
+  return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+};

@@ -6,11 +6,17 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { formatNumber } from '../../helpers/utils';
 
 interface SummaryTableProps {
   label: string;
   salaryLabel: string;
   endSalaryLabel: string;
+  salary: number;
+  socialSecurity: number;
+  health: number;
+  tax: number;
+  endSalary: number;
 }
 
 const useStyles = makeStyles({
@@ -31,6 +37,11 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
   label,
   salaryLabel,
   endSalaryLabel,
+  salary,
+  socialSecurity,
+  health,
+  tax,
+  endSalary,
 }) => {
   const classes = useStyles({});
 
@@ -46,23 +57,23 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
       <TableBody>
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{salaryLabel}</TableCell>
-          <TableCell align="right">1000</TableCell>
+          <TableCell align="right">{formatNumber(salary)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Social security</TableCell>
-          <TableCell align="right">1000</TableCell>
+          <TableCell align="right">{formatNumber(socialSecurity)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Health</TableCell>
-          <TableCell align="right">1000</TableCell>
+          <TableCell align="right">{formatNumber(health)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Tax</TableCell>
-          <TableCell align="right">1000</TableCell>
+          <TableCell align="right">{formatNumber(tax)}</TableCell>
         </TableRow>
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{endSalaryLabel}</TableCell>
-          <TableCell align="right">1000</TableCell>
+          <TableCell align="right">{formatNumber(endSalary)}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
