@@ -1,8 +1,8 @@
 import {
   UOPParams,
   B2BParams,
-  UOPSalaryResults,
-  B2BSalaryResults,
+  IUOPSalaryResults,
+  IB2BSalaryResults,
   ContractType,
 } from '../interfaces';
 
@@ -22,8 +22,8 @@ export const setB2BParams = (b2bParams: Partial<B2BParams>) => ({
 });
 
 export const setSalaryResult = (
-  uopSalaryResults: UOPSalaryResults,
-  b2bSalaryResults: B2BSalaryResults,
+  uopSalaryResults: IUOPSalaryResults,
+  b2bSalaryResults: IB2BSalaryResults,
 ) => ({
   type: SET_SALARY_RESULT,
   uopSalaryResults,

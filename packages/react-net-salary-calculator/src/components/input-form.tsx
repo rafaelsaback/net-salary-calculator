@@ -1,13 +1,22 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  FormEvent,
+  Dispatch,
+} from 'react';
+import { Map } from 'immutable';
 import { Container, makeStyles, Button } from '@material-ui/core';
 import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
 import TabPanel from './navigation/tab-panel';
 import UOPForm from './input/uop-form';
 import { BORDER_RADIUS, BOX_SHADOW } from '../helpers/consts';
-import { setContractType } from '../redux/actions';
-import { ContractType } from '../interfaces';
-import { useDispatch } from 'react-redux';
+import { setContractType, setSalaryResult } from '../redux/actions';
+import { ContractType, IUOPParams } from '../interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateUOPSalary } from '../salary-calculations/uop-calculator';
+import { selectUOPParams } from '../helpers/selectors';
 
 const useStyles = makeStyles({
   root: {
@@ -29,10 +38,20 @@ const useStyles = makeStyles({
   },
 });
 
+const handleSubmit = (dispatch: Dispatch<any>, uopParams: IUOPParams) => (
+  event: FormEvent<HTMLFormElement>,
+) => {
+  event.preventDefault();
+
+  const uopSalaryResults = calculateUOPSalary(uopParams);
+  dispatch(setSalaryResult(uopSalaryResults, Map()));
+};
+
 const InputForm: FunctionComponent = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles({});
+  const uopParams = useSelector(selectUOPParams);
 
   useEffect(() => {
     const contractType = currentTab ? ContractType.B2B : ContractType.UOP;
@@ -40,22 +59,28 @@ const InputForm: FunctionComponent = () => {
   }, [currentTab, dispatch]);
 
   return (
-    <Container className={classes.root} maxWidth="xs">
-      <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
-      <TabPanel value={currentTab} index={0}>
-        <UOPForm />
-      </TabPanel>
-      <TabPanel value={currentTab} index={1}>
-        <B2BForm />
-      </TabPanel>
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        disableRipple
+    <Container maxWidth="xs">
+      <form
+        className={classes.root}
+        onSubmit={handleSubmit(dispatch, uopParams)}
       >
-        Calculate
-      </Button>
+        <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
+        <TabPanel value={currentTab} index={0}>
+          <UOPForm />
+        </TabPanel>
+        <TabPanel value={currentTab} index={1}>
+          <B2BForm />
+        </TabPanel>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          disableRipple
+          type="submit"
+        >
+          Calculate
+        </Button>
+      </form>
     </Container>
   );
 };

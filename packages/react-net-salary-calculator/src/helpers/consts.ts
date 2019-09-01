@@ -62,7 +62,7 @@ export const initialState: IStoreState = fromJS({
     costs: 0,
   },
   uopSalaryResults: {
-    salary: Array(12).fill(0),
+    salary: 0,
     pension: Array(12).fill(0),
     disability: Array(12).fill(0),
     sickness: Array(12).fill(0),
@@ -82,3 +82,18 @@ export const initialState: IStoreState = fromJS({
     endSalary: Array(12).fill(0),
   },
 });
+
+export const TAX_THRESHOLD = 85528;
+export const HEALTH_CONTRIBUTION_RATE = 9 / 100;
+export const HEALTH_DEDUCTIBLE_RATE = 7.75 / 100;
+export const MONTHLY_RELIEF = 46.33;
+
+// UOP
+export const ANNUAL_LIMIT = 133290; // Annual limit for pension and disability calculations
+export const EARNING_COST = 111.25; // Koszt uzyskania przychodu
+export const DISABILITY_RATE = 1.5 / 100; // rentowe
+export const PENSION_RATE = 9.76 / 100; // emerytalne
+export const SICKNESS_RATE = 2.45 / 100; // chorobowe
+
+export const RATE_18 = 0.18;
+export const RATE_32 = 0.32;
