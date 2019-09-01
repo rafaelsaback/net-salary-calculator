@@ -4,6 +4,9 @@ import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { LABELS } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
+import { useSelector } from 'react-redux';
+import { selectContractType, selectSalaryResults } from '../helpers/selectors';
+import { calcAverage } from '../helpers/utils';
 
 const useStyles = makeStyles({
   results: {
@@ -21,10 +24,17 @@ const useStyles = makeStyles({
 
 const Results: FunctionComponent = () => {
   const classes = useStyles({});
+  const contractType = useSelector(selectContractType);
+  const salaryResults = useSelector(selectSalaryResults(contractType));
   const isUOP = false;
   const { SALARY, END_SALARY, SALARY_DTABLE, END_SALARY_DTABLE, OTHERS } = isUOP
     ? LABELS.UOP
     : LABELS.B2B;
+
+  const socialSecurityAvg = calcAverage(salaryResults.get('socialSecurity'));
+  const healthAvg = calcAverage(salaryResults.get('healthContribution'));
+  const taxAvg = calcAverage(salaryResults.get('tax'));
+  const endSalaryAvg = calcAverage(salaryResults.get('endSalary'));
 
   return (
     <Container className={classes.results}>
@@ -33,11 +43,21 @@ const Results: FunctionComponent = () => {
           label="Summary - 1st month"
           salaryLabel={SALARY}
           endSalaryLabel={END_SALARY}
+          salary={salaryResults.get('salary')}
+          socialSecurity={salaryResults.get('socialSecurity').first()}
+          health={salaryResults.get('healthContribution').first()}
+          tax={salaryResults.get('tax').first()}
+          endSalary={salaryResults.get('endSalary').first()}
         />
         <SummaryTable
           label="Summary - 12-month average"
           salaryLabel={SALARY}
           endSalaryLabel={END_SALARY}
+          salary={salaryResults.get('salary')}
+          socialSecurity={socialSecurityAvg}
+          health={healthAvg}
+          tax={taxAvg}
+          endSalary={endSalaryAvg}
         />
       </Container>
       <DetailedTable
