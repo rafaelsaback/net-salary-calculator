@@ -96,4 +96,5 @@ export const PENSION_RATE = 9.76 / 100; // emerytalne
 export const SICKNESS_RATE = 2.45 / 100; // chorobowe
 
 export const RATE_18 = 0.18;
+export const RATE_19 = 0.19;
 export const RATE_32 = 0.32;

@@ -1,5 +1,5 @@
 import { Map, List } from 'immutable';
-import { Period, IUOPSalaryResults, IUOPParams } from '../interfaces';
+import { IUOPSalaryResults, IUOPParams, Period } from '../interfaces';
 import { compose } from 'redux';
 import {
   ANNUAL_LIMIT,
@@ -7,10 +7,14 @@ import {
   DISABILITY_RATE,
   SICKNESS_RATE,
   HEALTH_CONTRIBUTION_RATE,
-  HEALTH_DEDUCTIBLE_RATE,
   EARNING_COST,
 } from '../helpers/consts';
-import { roundNumber, calcProgressiveTax } from './base-calculator';
+import {
+  roundNumber,
+  calcProgressiveTaxList,
+  calcHealthDeductibleList,
+  calcTaxBaseList,
+} from './base-calculator';
 
 const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   const grossSalary = salaryResults.get('salary');
@@ -30,14 +34,22 @@ const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   return salaryResults.set('endSalary', endSalary);
 };
 
+export const calcProgressiveTax = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  const taxBase = salaryResults.get('taxBase');
+  const healthDeductible = salaryResults.get('healthDeductible');
+
+  const tax = calcProgressiveTaxList(taxBase, healthDeductible);
+
+  return salaryResults.set('tax', tax);
+};
+
 const calcTaxBase = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   const grossSalary = salaryResults.get('salary');
   const socialSecurity = salaryResults.get('socialSecurity');
 
-  const taxBase = List(Array(12)).map((_, i) => {
-    const taxBaseValue = grossSalary - socialSecurity.get(i) - EARNING_COST;
-    return roundNumber(taxBaseValue, 0);
-  });
+  const taxBase = calcTaxBaseList(grossSalary, socialSecurity, EARNING_COST);
 
   return salaryResults.set('taxBase', taxBase);
 };
@@ -46,10 +58,7 @@ const calcHealthDeductible = (
   salaryResults: IUOPSalaryResults,
 ): IUOPSalaryResults => {
   const healthContribution = salaryResults.get('healthContribution');
-
-  const healthDeductible = healthContribution.map(
-    (value) => value * (HEALTH_DEDUCTIBLE_RATE / HEALTH_CONTRIBUTION_RATE),
-  );
+  const healthDeductible = calcHealthDeductibleList(healthContribution);
 
   return salaryResults.set('healthDeductible', healthDeductible);
 };
@@ -155,7 +164,7 @@ const calcMonthlyGrossSalary = (
   return salaryResults.set('salary', monthlyGrossSalary);
 };
 
-export const calculateUOPSalary = (uopParams: IUOPParams) =>
+export const calculateUOPSalary = (uopParams: IUOPParams): IUOPSalaryResults =>
   compose(
     calcEndSalary,
     calcProgressiveTax,

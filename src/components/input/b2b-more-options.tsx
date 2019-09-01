@@ -11,7 +11,7 @@ import InputIncomeTax from './input-income-tax';
 import InputZUS from './input-zus';
 import InputSickness from './input-sickness';
 import InputFinancial from './input-financial';
-import { useTax, useZUS, useSickness, useCosts } from '../../helpers/hooks';
+import { useTaxType, useZUS, useSickness, useCosts } from '../../helpers/hooks';
 import { B2BTax, ZUS, Sickness } from '../../interfaces';
 import { darkGray } from '../../helpers/consts';
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 export const B2BMoreOptions: FunctionComponent = () => {
-  const [tax, setTax] = useTax(B2BTax.Linear);
+  const [taxType, setTaxType] = useTaxType(B2BTax.Linear);
   const [zus, setZUS] = useZUS(ZUS.No);
   const [sickness, setSickness] = useSickness(Sickness.No);
   const [costs, setCosts] = useCosts('');
@@ -36,7 +36,7 @@ export const B2BMoreOptions: FunctionComponent = () => {
         <Typography>More options</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
-        <InputIncomeTax tax={tax} setTax={setTax} />
+        <InputIncomeTax taxType={taxType} setTaxType={setTaxType} />
         <InputZUS zus={zus} setZUS={setZUS} />
         <InputSickness sickness={sickness} setSickness={setSickness} />
         <InputFinancial

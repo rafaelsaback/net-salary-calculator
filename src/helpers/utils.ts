@@ -57,8 +57,8 @@ export const dispatchSalary = (dispatch: Dispatch<any>) =>
 export const dispatchPeriod = (dispatch: Dispatch<any>) =>
   dispatchStringValue(dispatch, [setUOPParams, setB2BParams], 'period');
 
-export const dispatchTax = (dispatch: Dispatch<any>) =>
-  dispatchStringValue(dispatch, [setB2BParams], 'tax');
+export const dispatchTaxType = (dispatch: Dispatch<any>) =>
+  dispatchStringValue(dispatch, [setB2BParams], 'taxType');
 
 export const dispatchZUS = (dispatch: Dispatch<any>) =>
   dispatchStringValue(dispatch, [setB2BParams], 'zus');

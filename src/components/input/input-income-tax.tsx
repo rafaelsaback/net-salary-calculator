@@ -4,21 +4,21 @@ import InputRadio from './input-radio';
 import { B2BTax } from '../../interfaces';
 
 interface InputIncomeTaxProps {
-  tax: string;
-  setTax(event: ChangeEvent<HTMLInputElement>): void;
+  taxType: string;
+  setTaxType(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 const InputIncomeTax: FunctionComponent<InputIncomeTaxProps> = ({
-  tax,
-  setTax,
+  taxType,
+  setTaxType,
 }) => (
   <InputRadio
     required
     row
     name="tax"
     label="Income tax"
-    value={tax}
-    setValue={setTax}
+    value={taxType}
+    setValue={setTaxType}
   >
     <FormControlLabel value={B2BTax.Linear} control={<Radio />} label="19%" />
     <FormControlLabel

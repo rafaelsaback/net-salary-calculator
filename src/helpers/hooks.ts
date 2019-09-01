@@ -4,7 +4,7 @@ import {
   dispatchSalary,
   dispatchCosts,
   dispatchPeriod,
-  dispatchTax,
+  dispatchTaxType,
   dispatchZUS,
   dispatchSickness,
 } from './utils';
@@ -41,8 +41,8 @@ export const useSalary = (defaultValue: string | number): UseFormReturn =>
 export const usePeriod = (defaultValue: Period): UseFormReturn =>
   useForm(defaultValue, selectUOPParam('period'), dispatchPeriod);
 
-export const useTax = (defaultValue: B2BTax): UseFormReturn =>
-  useForm(defaultValue, selectB2BParam('tax'), dispatchTax);
+export const useTaxType = (defaultValue: B2BTax): UseFormReturn =>
+  useForm(defaultValue, selectB2BParam('taxType'), dispatchTaxType);
 
 export const useZUS = (defaultValue: ZUS): UseFormReturn =>
   useForm(defaultValue, selectB2BParam('zus'), dispatchZUS);
