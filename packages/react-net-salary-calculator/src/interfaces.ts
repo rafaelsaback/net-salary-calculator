@@ -51,7 +51,7 @@ export interface UOPParams {
 export interface B2BParams {
   salary: number;
   period: Period;
-  tax: B2BTax;
+  taxType: B2BTax;
   zus: ZUS;
   sickness: Sickness;
   costs: number;
@@ -75,6 +75,8 @@ export interface UOPSalaryResults extends SalaryResults {
 }
 
 export interface B2BSalaryResults extends SalaryResults {
+  laborFund: List<number>;
+  accident: List<number>;
   others: List<number>;
 }
 

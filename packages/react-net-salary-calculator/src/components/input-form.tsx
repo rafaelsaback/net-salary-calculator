@@ -5,7 +5,6 @@ import React, {
   FormEvent,
   Dispatch,
 } from 'react';
-import { Map } from 'immutable';
 import { Container, makeStyles, Button } from '@material-ui/core';
 import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
@@ -13,10 +12,11 @@ import TabPanel from './navigation/tab-panel';
 import UOPForm from './input/uop-form';
 import { BORDER_RADIUS, BOX_SHADOW } from '../helpers/consts';
 import { setContractType, setSalaryResult } from '../redux/actions';
-import { ContractType, IUOPParams } from '../interfaces';
+import { ContractType, IUOPParams, IB2BParams } from '../interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateUOPSalary } from '../salary-calculations/uop-calculator';
-import { selectUOPParams } from '../helpers/selectors';
+import { selectUOPParams, selectB2BParams } from '../helpers/selectors';
+import { calculateB2BSalary } from '../salary-calculations/b2b-calculator';
 
 const useStyles = makeStyles({
   root: {
@@ -38,13 +38,16 @@ const useStyles = makeStyles({
   },
 });
 
-const handleSubmit = (dispatch: Dispatch<any>, uopParams: IUOPParams) => (
-  event: FormEvent<HTMLFormElement>,
-) => {
+const handleSubmit = (
+  dispatch: Dispatch<any>,
+  uopParams: IUOPParams,
+  b2bParams: IB2BParams,
+) => (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   const uopSalaryResults = calculateUOPSalary(uopParams);
-  dispatch(setSalaryResult(uopSalaryResults, Map()));
+  const b2bSalaryResults = calculateB2BSalary(b2bParams);
+  dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
 };
 
 const InputForm: FunctionComponent = () => {
@@ -52,6 +55,7 @@ const InputForm: FunctionComponent = () => {
   const dispatch = useDispatch();
   const classes = useStyles({});
   const uopParams = useSelector(selectUOPParams);
+  const b2bParams = useSelector(selectB2BParams);
 
   useEffect(() => {
     const contractType = currentTab ? ContractType.B2B : ContractType.UOP;
@@ -62,7 +66,7 @@ const InputForm: FunctionComponent = () => {
     <Container maxWidth="xs">
       <form
         className={classes.root}
-        onSubmit={handleSubmit(dispatch, uopParams)}
+        onSubmit={handleSubmit(dispatch, uopParams, b2bParams)}
       >
         <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
         <TabPanel value={currentTab} index={0}>
