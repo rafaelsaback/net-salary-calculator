@@ -58,11 +58,14 @@ export interface B2BParams {
 }
 
 interface SalaryResults {
-  salary: List<number>;
+  salary: number;
   pension: List<number>;
   disability: List<number>;
   sickness: List<number>;
-  health: List<number>;
+  socialSecurity: List<number>;
+  healthContribution: List<number>;
+  healthDeductible: List<number>;
+  taxBase: List<number>;
   tax: List<number>;
   endSalary: List<number>;
 }

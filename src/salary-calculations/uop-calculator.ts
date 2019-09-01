@@ -1,0 +1,171 @@
+import { Map, List } from 'immutable';
+import { Period, IUOPSalaryResults, IUOPParams } from '../interfaces';
+import { compose } from 'redux';
+import {
+  ANNUAL_LIMIT,
+  PENSION_RATE,
+  DISABILITY_RATE,
+  SICKNESS_RATE,
+  HEALTH_CONTRIBUTION_RATE,
+  HEALTH_DEDUCTIBLE_RATE,
+  EARNING_COST,
+} from '../helpers/consts';
+import { roundNumber, calcProgressiveTax } from './base-calculator';
+
+const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+  const socialSecurity = salaryResults.get('socialSecurity');
+  const healthContribution = salaryResults.get('healthContribution');
+  const tax = salaryResults.get('tax');
+
+  const endSalary = List(Array(12)).map((_, i) => {
+    const endSalaryValue =
+      grossSalary -
+      socialSecurity.get(i) -
+      healthContribution.get(i) -
+      tax.get(i);
+    return roundNumber(endSalaryValue, 2);
+  });
+
+  return salaryResults.set('endSalary', endSalary);
+};
+
+const calcTaxBase = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+  const socialSecurity = salaryResults.get('socialSecurity');
+
+  const taxBase = List(Array(12)).map((_, i) => {
+    const taxBaseValue = grossSalary - socialSecurity.get(i) - EARNING_COST;
+    return roundNumber(taxBaseValue, 0);
+  });
+
+  return salaryResults.set('taxBase', taxBase);
+};
+
+const calcHealthDeductible = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  const healthContribution = salaryResults.get('healthContribution');
+
+  const healthDeductible = healthContribution.map(
+    (value) => value * (HEALTH_DEDUCTIBLE_RATE / HEALTH_CONTRIBUTION_RATE),
+  );
+
+  return salaryResults.set('healthDeductible', healthDeductible);
+};
+
+const calcHealthContribution = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+  const socialSecurity = salaryResults.get('socialSecurity');
+
+  const healthContribution = List(Array(12)).map((_, i) => {
+    const healthBase = grossSalary - socialSecurity.get(i);
+
+    return healthBase * HEALTH_CONTRIBUTION_RATE;
+  });
+
+  return salaryResults.set('healthContribution', healthContribution);
+};
+
+const calcSocialSecurity = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  const pension = salaryResults.get('pension');
+  const disability = salaryResults.get('disability');
+  const sickness = salaryResults.get('sickness');
+
+  const socialSecurity = List(Array(12)).map(
+    (_, i) => pension.get(i) + disability.get(i) + sickness.get(i),
+  );
+
+  return salaryResults.set('socialSecurity', socialSecurity);
+};
+
+const calcSickness = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+  const sickness = List(Array(12)).map(() => grossSalary * SICKNESS_RATE);
+
+  return salaryResults.set('sickness', sickness);
+};
+
+const calcPensionDisability = (grossSalary: number, rate: number) => (
+  _: number,
+  index: number,
+) => {
+  const accGrossSalary = grossSalary * index;
+  const nextAccGrossSalary = grossSalary * (index + 1);
+
+  if (nextAccGrossSalary < ANNUAL_LIMIT) {
+    return grossSalary * rate;
+  } else if (accGrossSalary < ANNUAL_LIMIT) {
+    const baseGrossSalary = ANNUAL_LIMIT - accGrossSalary;
+    return baseGrossSalary * rate;
+  }
+
+  return 0;
+};
+
+const calcDisability = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+
+  const disability = List(Array(12)).map(
+    calcPensionDisability(grossSalary, DISABILITY_RATE),
+  );
+
+  return salaryResults.set('disability', disability);
+};
+
+const calcPension = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
+  const grossSalary = salaryResults.get('salary');
+
+  const pension = List(Array(12)).map(
+    calcPensionDisability(grossSalary, PENSION_RATE),
+  );
+
+  return salaryResults.set('pension', pension);
+};
+
+const initializeFields = (
+  salaryResults: IUOPSalaryResults,
+): IUOPSalaryResults => {
+  return salaryResults
+    .set('pension', List(Array(12).fill(0)))
+    .set('disability', List(Array(12).fill(0)))
+    .set('sickness', List(Array(12).fill(0)))
+    .set('socialSecurity', List(Array(12).fill(0)))
+    .set('healthContribution', List(Array(12).fill(0)))
+    .set('healthDeductible', List(Array(12).fill(0)))
+    .set('taxBase', List(Array(12).fill(0)))
+    .set('tax', List(Array(12).fill(0)))
+    .set('endSalary', List(Array(12).fill(0)));
+};
+
+const calcMonthlyGrossSalary = (
+  grossSalary: number,
+  period: Period,
+): IUOPSalaryResults => {
+  const salaryResults: IUOPSalaryResults = Map();
+  const monthlyGrossSalary =
+    period === Period.Monthly ? grossSalary : grossSalary / 12;
+
+  return salaryResults.set('salary', monthlyGrossSalary);
+};
+
+export const calculateUOPSalary = (uopParams: IUOPParams) =>
+  compose(
+    calcEndSalary,
+    calcProgressiveTax,
+    calcTaxBase,
+    calcHealthDeductible,
+    calcHealthContribution,
+    calcSocialSecurity,
+    calcSickness,
+    calcDisability,
+    calcPension,
+    initializeFields,
+    calcMonthlyGrossSalary,
+  )(uopParams.get('salary'), uopParams.get('period'));
