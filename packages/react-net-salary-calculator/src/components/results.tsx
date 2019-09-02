@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import SummaryTable from './resuts/summary-table';
-import { Container, useMediaQuery } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { LABELS } from '../helpers/consts';
+import { LABELS, mobileMediaValue, desktopMediaValue } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
 import { useSelector } from 'react-redux';
 import { selectContractType, selectSalaryResults } from '../helpers/selectors';
 import { calcAverage, isUOP } from '../helpers/utils';
 import classNames from 'classnames';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Container from '@material-ui/core/Container';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles({
   results: {
@@ -17,10 +18,15 @@ const useStyles = makeStyles({
     alignItems: 'center',
     cursor: 'default',
   },
-  summaryContainer: {
+  summaryContainerDesktop: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  summaryContainerTablet: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   mobileContainer: {
     paddingLeft: 0,
@@ -30,14 +36,15 @@ const useStyles = makeStyles({
 
 const Results: FunctionComponent = () => {
   const classes = useStyles({});
-  const matchesDesktop = useMediaQuery('(min-width:1150px)');
-  const matchesMobile = useMediaQuery('(max-width:500px)');
+  const matchesDesktop = useMediaQuery(desktopMediaValue);
+  const matchesMobile = useMediaQuery(mobileMediaValue);
   const resultsContainerClasses = classNames({
     [classes.results]: true,
     [classes.mobileContainer]: matchesMobile,
   });
   const summaryContainerClasses = classNames({
-    [classes.summaryContainer]: matchesDesktop,
+    [classes.summaryContainerDesktop]: matchesDesktop,
+    [classes.summaryContainerTablet]: !matchesDesktop,
   });
 
   const contractType = useSelector(selectContractType);

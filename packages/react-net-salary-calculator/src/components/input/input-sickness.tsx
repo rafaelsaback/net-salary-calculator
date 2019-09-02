@@ -1,7 +1,8 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
-import { FormControlLabel, Radio } from '@material-ui/core';
 import InputRadio from './input-radio';
 import { Sickness } from '../../interfaces';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 
 interface InputSicknessProps {
   sickness: string;

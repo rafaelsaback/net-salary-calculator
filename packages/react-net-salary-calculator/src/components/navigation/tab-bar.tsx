@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
-import { Tab, Tabs } from '@material-ui/core';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 interface AppTabsProps {
   value: any;

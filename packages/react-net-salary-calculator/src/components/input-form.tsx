@@ -5,7 +5,6 @@ import React, {
   FormEvent,
   Dispatch,
 } from 'react';
-import { Container, makeStyles, Button } from '@material-ui/core';
 import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
 import TabPanel from './navigation/tab-panel';
@@ -21,6 +20,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { calculateUOPSalary } from '../salary-calculations/uop-calculator';
 import { selectUOPParams, selectB2BParams } from '../helpers/selectors';
 import { calculateB2BSalary } from '../salary-calculations/b2b-calculator';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -49,10 +51,14 @@ const handleSubmit = (
 ) => (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
-  const uopSalaryResults = calculateUOPSalary(uopParams);
-  const b2bSalaryResults = calculateB2BSalary(b2bParams);
-  dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
-  dispatch(showResults());
+  const salary = uopParams.get('salary');
+
+  if (salary > 0) {
+    const uopSalaryResults = calculateUOPSalary(uopParams);
+    const b2bSalaryResults = calculateB2BSalary(b2bParams);
+    dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
+    dispatch(showResults());
+  }
 };
 
 const InputForm: FunctionComponent = () => {

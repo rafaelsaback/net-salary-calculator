@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Container } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
 
 import InputPeriod from './input-period';
 import InputFinancial from './input-financial';
