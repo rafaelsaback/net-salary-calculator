@@ -1,17 +1,31 @@
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BORDER_RADIUS, BOX_SHADOW, darkGray } from '../../helpers/consts';
+import {
+  BORDER_RADIUS,
+  BOX_SHADOW,
+  darkGray,
+  MONTHS,
+} from '../../helpers/consts';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { TableFooter } from '@material-ui/core';
+import { ContractType, SalaryResults } from '../../interfaces';
+import {
+  isUOP,
+  isB2BSalaryResults,
+  calcTotal,
+  formatNumber,
+} from '../../helpers/utils';
 
 interface DetailedTableProps {
   salaryLabel: string;
   othersLabel: string;
   endSalaryLabel: string;
+  salaryResults: SalaryResults;
+  contractType: ContractType;
 }
 
 const useStyles = makeStyles({
@@ -66,171 +80,100 @@ const getTableHead = (
   </TableHead>
 );
 
-const getTableBody = () => (
-  <TableBody>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell align="center">January</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-  </TableBody>
-);
+const getTableBody = (
+  contractType: ContractType,
+  salaryResults: SalaryResults,
+) => {
+  const salary = salaryResults.get('salary');
+  const pension = salaryResults.get('pension');
+  const disability = salaryResults.get('disability');
+  const sickness = salaryResults.get('sickness');
+  const health = salaryResults.get('healthContribution');
+  const taxBase = salaryResults.get('taxBase');
+  const others = isB2BSalaryResults(salaryResults)
+    ? salaryResults.get('others')
+    : undefined;
+  const tax = salaryResults.get('tax');
+  const endSalary = salaryResults.get('endSalary');
 
-const getTableFooter = () => (
-  <TableFooter>
-    <TableRow>
-      <TableCell align="center">Total</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-      <TableCell align="center">1000</TableCell>
-    </TableRow>
-  </TableFooter>
-);
+  return (
+    <TableBody>
+      {MONTHS.map((month, i) => (
+        <TableRow key={month}>
+          <TableCell align="center">{month}</TableCell>
+          <TableCell align="center">{formatNumber(salary)}</TableCell>
+          <TableCell align="center">{formatNumber(pension.get(i))}</TableCell>
+          <TableCell align="center">
+            {formatNumber(disability.get(i))}
+          </TableCell>
+          <TableCell align="center">{formatNumber(sickness.get(i))}</TableCell>
+          <TableCell align="center">{formatNumber(health.get(i))}</TableCell>
+          <TableCell align="center">
+            {formatNumber(isUOP(contractType) ? taxBase.get(i) : others.get(i))}
+          </TableCell>
+          <TableCell align="center">{formatNumber(tax.get(i))}</TableCell>
+          <TableCell align="center">{formatNumber(endSalary.get(i))}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  );
+};
+
+const getTableFooter = (
+  contractType: ContractType,
+  salaryResults: SalaryResults,
+) => {
+  const salary = salaryResults.get('salary');
+  const pension = salaryResults.get('pension');
+  const disability = salaryResults.get('disability');
+  const sickness = salaryResults.get('sickness');
+  const health = salaryResults.get('healthContribution');
+  const taxBase = salaryResults.get('taxBase');
+  const others = isB2BSalaryResults(salaryResults)
+    ? salaryResults.get('others')
+    : undefined;
+  const tax = salaryResults.get('tax');
+  const endSalary = salaryResults.get('endSalary');
+
+  return (
+    <TableFooter>
+      <TableRow>
+        <TableCell align="center">Total</TableCell>
+        <TableCell align="center">{formatNumber(salary * 12)}</TableCell>
+        <TableCell align="center">{formatNumber(calcTotal(pension))}</TableCell>
+        <TableCell align="center">
+          {formatNumber(calcTotal(disability))}
+        </TableCell>
+        <TableCell align="center">
+          {formatNumber(calcTotal(sickness))}
+        </TableCell>
+        <TableCell align="center">{formatNumber(calcTotal(health))}</TableCell>
+        <TableCell align="center">
+          {formatNumber(calcTotal(isUOP(contractType) ? taxBase : others))}
+        </TableCell>
+        <TableCell align="center">{formatNumber(calcTotal(tax))}</TableCell>
+        <TableCell align="center">
+          {formatNumber(calcTotal(endSalary))}
+        </TableCell>
+      </TableRow>
+    </TableFooter>
+  );
+};
 
 const DetailedTable: FunctionComponent<DetailedTableProps> = ({
   salaryLabel,
   othersLabel,
   endSalaryLabel,
+  contractType,
+  salaryResults,
 }) => {
   const classes = useStyles({});
 
   return (
     <Table className={classes.table}>
       {getTableHead(salaryLabel, othersLabel, endSalaryLabel)}
-      {getTableBody()}
-      {getTableFooter()}
+      {getTableBody(contractType, salaryResults)}
+      {getTableFooter(contractType, salaryResults)}
     </Table>
   );
 };
