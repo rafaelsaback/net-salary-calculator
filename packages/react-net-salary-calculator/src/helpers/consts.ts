@@ -34,7 +34,7 @@ export const LABELS = {
   },
 };
 
-export const Months = [
+export const MONTHS = [
   'January',
   'February',
   'March',

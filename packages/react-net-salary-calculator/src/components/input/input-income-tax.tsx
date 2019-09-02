@@ -8,17 +8,28 @@ interface InputIncomeTaxProps {
   setTaxType(event: ChangeEvent<HTMLInputElement>): void;
 }
 
+const TaxHelptip = (
+  <div>
+    <p>
+      <strong> 19% </strong> - Linear tax rate{' '}
+    </p>
+    <p>
+      <strong> 18% / 32 % </strong> - Progressive tax rate
+    </p>
+  </div>
+);
+
 const InputIncomeTax: FunctionComponent<InputIncomeTaxProps> = ({
   taxType,
   setTaxType,
 }) => (
   <InputRadio
-    required
     row
     name="tax"
     label="Income tax"
     value={taxType}
     setValue={setTaxType}
+    helptipMsg={TaxHelptip}
   >
     <FormControlLabel value={B2BTax.Linear} control={<Radio />} label="19%" />
     <FormControlLabel

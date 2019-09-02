@@ -17,7 +17,6 @@ const UOPForm: FunctionComponent = () => {
         label={LABELS.UOP.SALARY}
         value={salary}
         setValue={setSalary}
-        required={true}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />
     </Container>

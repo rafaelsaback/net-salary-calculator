@@ -6,12 +6,14 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { BOLD_DARK_GRAY, darkGray } from '../../helpers/consts';
+import Helptip from '../help-tip';
 
 interface InputRadioProps {
   name: string;
   label: string;
   value: string;
   setValue(event: ChangeEvent<HTMLInputElement>): void;
+  helptipMsg?: React.ReactNode;
   row?: boolean;
   required?: boolean;
 }
@@ -31,20 +33,18 @@ const InputRadio: FunctionComponent<InputRadioProps> = ({
   label,
   value,
   setValue,
+  helptipMsg,
   row = false,
-  required = false,
   children,
 }) => {
   const classes = useStyles({});
 
   return (
-    <FormControl
-      className={classes.root}
-      required={required}
-      component="fieldset"
-      fullWidth
-    >
-      <FormLabel component="label">{label}</FormLabel>
+    <FormControl className={classes.root} component="fieldset" fullWidth>
+      <FormLabel component="label">
+        {label}
+        {helptipMsg && <Helptip title={helptipMsg} />}
+      </FormLabel>
       <RadioGroup
         aria-label="period"
         name={name}

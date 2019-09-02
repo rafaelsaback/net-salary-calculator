@@ -13,7 +13,6 @@ const InputPeriod: FunctionComponent<InputPeriodProps> = ({
   setPeriod,
 }) => (
   <InputRadio
-    required
     row
     name="period"
     label="Period"

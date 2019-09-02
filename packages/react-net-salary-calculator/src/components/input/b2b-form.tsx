@@ -18,7 +18,6 @@ const B2BForm: FunctionComponent = () => {
         label={LABELS.B2B.SALARY}
         value={salary}
         setValue={setSalary}
-        required={true}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />
       <B2BMoreOptions />

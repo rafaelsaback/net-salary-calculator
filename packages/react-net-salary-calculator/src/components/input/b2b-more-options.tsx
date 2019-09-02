@@ -22,6 +22,10 @@ const useStyles = makeStyles({
   },
 });
 
+const costHelptip = (
+  <p>Costs for running the business that can be used to deduct from the tax </p>
+);
+
 export const B2BMoreOptions: FunctionComponent = () => {
   const [taxType, setTaxType] = useTaxType(B2BTax.Linear);
   const [zus, setZUS] = useZUS(ZUS.No);
@@ -43,7 +47,7 @@ export const B2BMoreOptions: FunctionComponent = () => {
           label="Deductible costs"
           value={costs}
           setValue={setCosts}
-          required={false}
+          helptipMsg={costHelptip}
         />
       </ExpansionPanelDetails>
     </ExpansionPanel>

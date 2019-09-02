@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { formatNumber } from '../../helpers/utils';
+import { useMediaQuery } from '@material-ui/core';
+import classNames from 'classnames';
 
 interface SummaryTableProps {
   label: string;
@@ -21,7 +23,6 @@ interface SummaryTableProps {
 
 const useStyles = makeStyles({
   table: {
-    overflowX: 'auto',
     minWidth: 280,
     maxWidth: 370,
     margin: 20,
@@ -31,6 +32,10 @@ const useStyles = makeStyles({
     '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
   },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
+  mobileTable: {
+    width: '100%',
+    margin: '60px auto 60px auto',
+  },
 });
 
 const SummaryTable: FunctionComponent<SummaryTableProps> = ({
@@ -44,9 +49,14 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
   endSalary,
 }) => {
   const classes = useStyles({});
+  const matchesMobile = useMediaQuery('(max-width:500px)');
+  const tableClasses = classNames({
+    [classes.table]: true,
+    [classes.mobileTable]: matchesMobile,
+  });
 
   return (
-    <Table className={classes.table}>
+    <Table className={tableClasses}>
       <TableHead>
         <TableRow>
           <TableCell align="center" colSpan={2}>
