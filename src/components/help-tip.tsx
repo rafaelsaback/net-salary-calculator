@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import makeStyles from '@material-ui/styles/makeStyles';
+import withStyles from '@material-ui/styles/withStyles';
 import Tooltip from '@material-ui/core/Tooltip';
 import { darkGray, BOX_SHADOW } from '../helpers/consts';
-import { withStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   questionMark: {

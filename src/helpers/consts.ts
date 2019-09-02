@@ -34,6 +34,10 @@ export const LABELS = {
   },
 };
 
+export const desktopMediaValue = '(min-width:1150px)';
+export const tabletMediaValue = '(max-width:900px)';
+export const mobileMediaValue = '(max-width:550px)';
+
 export const MONTHS = [
   'January',
   'February',

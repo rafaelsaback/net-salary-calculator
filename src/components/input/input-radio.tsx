@@ -1,12 +1,10 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  makeStyles,
-} from '@material-ui/core';
 import { BOLD_DARK_GRAY, darkGray } from '../../helpers/consts';
 import Helptip from '../help-tip';
+import makeStyles from '@material-ui/styles/makeStyles';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 interface InputRadioProps {
   name: string;

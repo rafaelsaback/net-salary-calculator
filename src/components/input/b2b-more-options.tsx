@@ -1,12 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  Typography,
-  ExpansionPanelDetails,
-  makeStyles,
-} from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import InputIncomeTax from './input-income-tax';
 import InputZUS from './input-zus';
 import InputSickness from './input-sickness';
@@ -14,6 +7,11 @@ import InputFinancial from './input-financial';
 import { useTaxType, useZUS, useSickness, useCosts } from '../../helpers/hooks';
 import { B2BTax, ZUS, Sickness } from '../../interfaces';
 import { darkGray } from '../../helpers/consts';
+import makeStyles from '@material-ui/styles/makeStyles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 const useStyles = makeStyles({
   root: {

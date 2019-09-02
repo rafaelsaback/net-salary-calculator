@@ -1,12 +1,10 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
-import {
-  TextField,
-  makeStyles,
-  FormControl,
-  FormLabel,
-} from '@material-ui/core';
 import { BOLD_DARK_GRAY } from '../../helpers/consts';
 import Helptip from '../help-tip';
+import makeStyles from '@material-ui/styles/makeStyles';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
 
 interface InputSalaryProps {
   label: string;

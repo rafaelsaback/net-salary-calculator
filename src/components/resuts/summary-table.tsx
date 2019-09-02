@@ -1,14 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { BORDER_RADIUS, BOX_SHADOW, darkGray } from '../../helpers/consts';
+import {
+  BORDER_RADIUS,
+  BOX_SHADOW,
+  darkGray,
+  mobileMediaValue,
+} from '../../helpers/consts';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { formatNumber } from '../../helpers/utils';
-import { useMediaQuery } from '@material-ui/core';
 import classNames from 'classnames';
+import makeStyles from '@material-ui/styles/makeStyles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 interface SummaryTableProps {
   label: string;
@@ -34,7 +39,8 @@ const useStyles = makeStyles({
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
   mobileTable: {
     width: '100%',
-    margin: '60px auto 60px auto',
+    margin: '0 auto 60px auto',
+    '&:first-child': { marginTop: '60px' },
   },
 });
 
@@ -49,7 +55,7 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
   endSalary,
 }) => {
   const classes = useStyles({});
-  const matchesMobile = useMediaQuery('(max-width:500px)');
+  const matchesMobile = useMediaQuery(mobileMediaValue);
   const tableClasses = classNames({
     [classes.table]: true,
     [classes.mobileTable]: matchesMobile,
