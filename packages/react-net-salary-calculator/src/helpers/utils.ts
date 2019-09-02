@@ -2,7 +2,11 @@ import { ChangeEvent, Dispatch } from 'react';
 import { compose } from 'redux';
 import { setUOPParams, setB2BParams } from '../redux/actions';
 import { List } from 'immutable';
-import { ContractType } from '../interfaces';
+import {
+  ContractType,
+  IUOPSalaryResults,
+  IB2BSalaryResults,
+} from '../interfaces';
 
 export const handleChange = (setFunction: (value: string) => void) => (
   event: ChangeEvent<HTMLInputElement>,
@@ -82,3 +86,9 @@ export const formatNumber = (number: number, precision = 0): string => {
 
 export const isUOP = (contractType: ContractType): boolean =>
   contractType === ContractType.UOP;
+
+export const isB2BSalaryResults = (
+  salaryResults: IUOPSalaryResults | IB2BSalaryResults,
+): salaryResults is IB2BSalaryResults => {
+  return (salaryResults as IB2BSalaryResults).get('others') !== undefined;
+};
