@@ -5,7 +5,7 @@ import {
   IB2BParams,
   UOPParams,
   B2BParams,
-  SalaryResults,
+  BaseSalaryResults,
   IUOPSalaryResults,
   B2BSalaryResults,
   IB2BSalaryResults,
@@ -40,7 +40,7 @@ export const selectB2BParam = (param: keyof B2BParams) =>
     (params: IB2BParams) => params.get(param),
   );
 
-export const selectUOPSalaryResult = (param: keyof SalaryResults) =>
+export const selectUOPSalaryResult = (param: keyof BaseSalaryResults) =>
   createSelector(
     selectUOPSalaryResults,
     (salaryResults: IUOPSalaryResults) => salaryResults.get(param),

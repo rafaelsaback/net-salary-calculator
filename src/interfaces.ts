@@ -57,7 +57,7 @@ export interface B2BParams {
   costs: number;
 }
 
-export interface SalaryResults {
+export interface BaseSalaryResults {
   salary: number;
   pension: List<number>;
   disability: List<number>;
@@ -70,7 +70,7 @@ export interface SalaryResults {
   endSalary: List<number>;
 }
 
-export interface B2BSalaryResults extends SalaryResults {
+export interface B2BSalaryResults extends BaseSalaryResults {
   laborFund: List<number>;
   accident: List<number>;
   others: List<number>;
@@ -83,8 +83,9 @@ export interface ImmutableMap<T> extends Omit<Map<string, any>, 'get' | 'set'> {
 
 export type IUOPParams = ImmutableMap<UOPParams>;
 export type IB2BParams = ImmutableMap<B2BParams>;
-export type IUOPSalaryResults = ImmutableMap<SalaryResults>;
+export type IUOPSalaryResults = ImmutableMap<BaseSalaryResults>;
 export type IB2BSalaryResults = ImmutableMap<B2BSalaryResults>;
+export type SalaryResults = IUOPSalaryResults | IB2BSalaryResults;
 
 export interface StoreState {
   contractType: ContractType;

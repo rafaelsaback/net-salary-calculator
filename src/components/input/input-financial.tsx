@@ -6,12 +6,13 @@ import {
   FormLabel,
 } from '@material-ui/core';
 import { BOLD_DARK_GRAY } from '../../helpers/consts';
+import Helptip from '../help-tip';
 
 interface InputSalaryProps {
   label: string;
   value: string;
   setValue(event: ChangeEvent<HTMLInputElement>): void;
-  required: boolean;
+  helptipMsg?: React.ReactNode;
 }
 
 const useStyles = makeStyles({
@@ -27,18 +28,16 @@ const InputFinancial: FunctionComponent<InputSalaryProps> = ({
   label,
   value,
   setValue,
-  required,
+  helptipMsg,
 }) => {
   const classes = useStyles({});
 
   return (
-    <FormControl
-      className={classes.root}
-      required={required}
-      component="fieldset"
-      fullWidth
-    >
-      <FormLabel component="label">{label}</FormLabel>
+    <FormControl className={classes.root} component="fieldset" fullWidth>
+      <FormLabel component="label">
+        {label}
+        {helptipMsg && <Helptip title={helptipMsg} />}
+      </FormLabel>
       <TextField
         value={value}
         placeholder={'0.00 PLN'}

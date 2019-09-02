@@ -8,17 +8,19 @@ interface InputSicknessProps {
   setSickness(event: ChangeEvent<HTMLInputElement>): void;
 }
 
+const sicknessHelptip = <p> The sickness insurance is optional </p>;
+
 const InputSickness: FunctionComponent<InputSicknessProps> = ({
   sickness,
   setSickness,
 }) => (
   <InputRadio
-    required
     row
     name="sickness"
     label="Sickness insurance"
     value={sickness}
     setValue={setSickness}
+    helptipMsg={sicknessHelptip}
   >
     <FormControlLabel value={Sickness.No} control={<Radio />} label="No" />
     <FormControlLabel value={Sickness.Yes} control={<Radio />} label="Yes" />

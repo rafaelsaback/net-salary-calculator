@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import SummaryTable from './resuts/summary-table';
-import { Container } from '@material-ui/core';
+import { Container, useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { LABELS } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
 import { useSelector } from 'react-redux';
 import { selectContractType, selectSalaryResults } from '../helpers/selectors';
 import { calcAverage, isUOP } from '../helpers/utils';
+import classNames from 'classnames';
 
 const useStyles = makeStyles({
   results: {
@@ -14,16 +15,31 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    cursor: 'default',
   },
-  summary: {
+  summaryContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  mobileContainer: {
+    paddingLeft: 0,
+    paddingRight: 0,
   },
 });
 
 const Results: FunctionComponent = () => {
   const classes = useStyles({});
+  const matchesDesktop = useMediaQuery('(min-width:1150px)');
+  const matchesMobile = useMediaQuery('(max-width:500px)');
+  const resultsContainerClasses = classNames({
+    [classes.results]: true,
+    [classes.mobileContainer]: matchesMobile,
+  });
+  const summaryContainerClasses = classNames({
+    [classes.summaryContainer]: matchesDesktop,
+  });
+
   const contractType = useSelector(selectContractType);
   const salaryResults = useSelector(selectSalaryResults(contractType));
   const {
@@ -40,8 +56,8 @@ const Results: FunctionComponent = () => {
   const endSalaryAvg = calcAverage(salaryResults.get('endSalary'));
 
   return (
-    <Container className={classes.results}>
-      <Container className={classes.summary}>
+    <Container className={resultsContainerClasses}>
+      <Container className={summaryContainerClasses}>
         <SummaryTable
           label="Summary - 1st month"
           salaryLabel={SALARY}
@@ -67,6 +83,8 @@ const Results: FunctionComponent = () => {
         salaryLabel={SALARY_DTABLE}
         endSalaryLabel={END_SALARY_DTABLE}
         othersLabel={OTHERS}
+        contractType={contractType}
+        salaryResults={salaryResults}
       />
     </Container>
   );
