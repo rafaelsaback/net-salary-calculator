@@ -60,7 +60,6 @@
     "@types/classnames": "^2.2.9",
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
-    "lodash-es": "^4.17.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
