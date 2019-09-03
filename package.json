@@ -1,7 +1,7 @@
 {
   "name": "project",
   "version": "1.0.0",
-  "description": "This is a simple React template project.",
+  "description": "A net salary calculator for Poland. Calculate the end salary both for umowa o pracę and b2b contracts.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafaelsaback/front-end-template-project.git"
+    "url": "git+https://github.com/rafaelsaback/net-salary-calculator.git"
   },
   "author": "Rafael Saback",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rafaelsaback/front-end-template-project/issues"
+    "url": "https://github.com/rafaelsaback/net-salary-calculator/issues"
   },
-  "homepage": "https://github.com/rafaelsaback/front-end-template-project#readme",
+  "homepage": "https://github.com/rafaelsaback/net-salary-calculator#readme",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
