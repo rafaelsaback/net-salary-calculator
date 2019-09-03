@@ -52,14 +52,6 @@ export const MONTHS = [
   'November',
   'December',
 ];
-
-export const uopParamsKey = 'uopParams';
-export const b2bParamsKey = 'b2bParams';
-export const uopSalaryResultsKey = 'uopSalaryResults';
-export const b2bSalaryResultsKey = 'b2bSalaryResults';
-export const contractTypeKey = 'contractType';
-export const showResultsKey = 'showResults';
-
 export const initialState: IStoreState = fromJS({
   contractType: ContractType.UOP,
   showResults: false,

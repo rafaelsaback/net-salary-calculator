@@ -12,14 +12,6 @@ import {
   CalculatorAction,
   ImmutableMap,
 } from '../interfaces';
-import {
-  uopParamsKey,
-  b2bParamsKey,
-  uopSalaryResultsKey,
-  b2bSalaryResultsKey,
-  contractTypeKey,
-  showResultsKey,
-} from '../helpers/consts';
 
 const mergeUpdateState = (
   state: IStoreState,
@@ -36,17 +28,17 @@ const mergeUpdateState = (
 const reducer = (state: IStoreState, action: CalculatorAction) => {
   switch (action.type) {
     case SET_UOP_PARAMS:
-      return mergeUpdateState(state, action, uopParamsKey);
+      return mergeUpdateState(state, action, 'uopParams');
     case SET_B2B_PARAMS:
-      return mergeUpdateState(state, action, b2bParamsKey);
+      return mergeUpdateState(state, action, 'b2bParams');
     case SET_SALARY_RESULT:
       return state
-        .set(uopSalaryResultsKey, action.uopSalaryResults)
-        .set(b2bSalaryResultsKey, action.b2bSalaryResults);
+        .set('uopSalaryResults', action.uopSalaryResults)
+        .set('b2bSalaryResults', action.b2bSalaryResults);
     case SET_CONTRACT_TYPE:
-      return state.set(contractTypeKey, action.contractType);
+      return state.set('contractType', action.contractType);
     case SHOW_RESULTS:
-      return state.set(showResultsKey, action.showResults);
+      return state.set('showResults', action.showResults);
     default:
       return state;
   }
