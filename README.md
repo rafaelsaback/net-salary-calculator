@@ -4,10 +4,12 @@ The net salary calculator can be used for umowa o pracę and B2B contracts. It's
 
 https://partnersontheroad.com/net-salary-calculator-poland/
 
-# Tools & Technologies
+# Tech stack
 
-* HTML, CSS & JavaScript
-* Sass
-* TypeScript
-* Webpack
-* npm
+- React/Hooks API
+- Redux
+- TypeScript
+- Immutable.js
+- Material UI
+- Webpack + Babel
+- ESLint + Prettier
