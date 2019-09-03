@@ -50,6 +50,9 @@ const handleSubmit = (
   b2bParams: IB2BParams,
 ) => (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
+  /* Lastpass was throwing an exception when the user used enter to submit the form.
+     stopPropagation() avoids that the event reaches Lastpass */
+  event.stopPropagation();
 
   const salary = uopParams.get('salary');
 
@@ -77,7 +80,10 @@ const InputForm: FunctionComponent = () => {
     <Container maxWidth="xs">
       <form
         className={classes.root}
-        onSubmit={handleSubmit(dispatch, uopParams, b2bParams)}
+        /* Lastpass was throwing an exception when the user used enter to submit the form.
+           Using onSubmitCapure instead of onSubmit makes sure the code catches the event
+           before Lastpasss */
+        onSubmitCapture={handleSubmit(dispatch, uopParams, b2bParams)}
       >
         <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
         <TabPanel value={currentTab} index={0}>
