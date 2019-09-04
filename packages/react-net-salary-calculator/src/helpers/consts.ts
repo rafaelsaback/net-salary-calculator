@@ -55,6 +55,7 @@ export const MONTHS = [
 export const initialState: IStoreState = fromJS({
   contractType: ContractType.UOP,
   showResults: false,
+  submitted: false,
   uopParams: {
     salary: 0,
     period: Period.Monthly,
@@ -109,3 +110,5 @@ export const SICKNESS_RATE = 2.45 / 100; // chorobowe
 export const RATE_18 = 0.18;
 export const RATE_19 = 0.19;
 export const RATE_32 = 0.32;
+
+export const MINIMUM_WAGE = 2250;

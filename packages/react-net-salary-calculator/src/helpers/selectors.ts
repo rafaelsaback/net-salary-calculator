@@ -22,6 +22,8 @@ export const selectContractType = (state: IStoreState) =>
 export const selectShowResults = (state: IStoreState) =>
   state.get('showResults');
 
+export const selectSubmitted = (state: IStoreState) => state.get('submitted');
+
 export const selectUOPSalaryResults = (state: IStoreState) =>
   state.get('uopSalaryResults');
 

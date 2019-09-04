@@ -90,6 +90,7 @@ export type SalaryResults = IUOPSalaryResults | IB2BSalaryResults;
 export interface StoreState {
   contractType: ContractType;
   showResults: boolean;
+  submitted: boolean;
   uopParams: IUOPParams;
   b2bParams: IB2BParams;
   uopSalaryResults: IUOPSalaryResults;

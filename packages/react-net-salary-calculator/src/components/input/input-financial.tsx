@@ -6,10 +6,12 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 
-interface InputSalaryProps {
+interface InputFinancialProps {
   label: string;
   value: string;
   setValue(event: ChangeEvent<HTMLInputElement>): void;
+  error?: boolean;
+  errorMsg?: string;
   helptipMsg?: React.ReactNode;
 }
 
@@ -22,11 +24,13 @@ const useStyles = makeStyles({
   },
 });
 
-const InputFinancial: FunctionComponent<InputSalaryProps> = ({
+const InputFinancial: FunctionComponent<InputFinancialProps> = ({
   label,
   value,
   setValue,
   helptipMsg,
+  error = false,
+  errorMsg = '',
 }) => {
   const classes = useStyles({});
 
@@ -41,6 +45,8 @@ const InputFinancial: FunctionComponent<InputSalaryProps> = ({
         placeholder={'0.00 PLN'}
         onChange={setValue}
         margin="normal"
+        error={error}
+        helperText={errorMsg}
         fullWidth
       />
     </FormControl>

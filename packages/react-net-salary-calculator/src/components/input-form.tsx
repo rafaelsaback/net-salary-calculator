@@ -4,16 +4,18 @@ import React, {
   useEffect,
   FormEvent,
   Dispatch,
+  useCallback,
 } from 'react';
 import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
 import TabPanel from './navigation/tab-panel';
 import UOPForm from './input/uop-form';
-import { BORDER_RADIUS, BOX_SHADOW } from '../helpers/consts';
+import { BORDER_RADIUS, BOX_SHADOW, MINIMUM_WAGE } from '../helpers/consts';
 import {
   setContractType,
   setSalaryResult,
   showResults,
+  setSubmitted,
 } from '../redux/actions';
 import { ContractType, IUOPParams, IB2BParams } from '../interfaces';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,10 +55,13 @@ const calculateSalaryResults = (
   uopParams: IUOPParams,
   b2bParams: IB2BParams,
 ) => {
-  const uopSalaryResults = calculateUOPSalary(uopParams);
-  const b2bSalaryResults = calculateB2BSalary(b2bParams);
-  dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
-  dispatch(showResults());
+  const salary = uopParams.get('salary');
+  if (salary >= MINIMUM_WAGE) {
+    const uopSalaryResults = calculateUOPSalary(uopParams);
+    const b2bSalaryResults = calculateB2BSalary(b2bParams);
+    dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
+    dispatch(showResults());
+  }
 };
 
 const handleSubmit = (
@@ -69,10 +74,8 @@ const handleSubmit = (
      stopPropagation() avoids that the event reaches Lastpass */
   event.stopPropagation();
 
-  const salary = uopParams.get('salary');
-  if (salary > 0) {
-    calculateSalaryResults(dispatch, uopParams, b2bParams);
-  }
+  dispatch(setSubmitted());
+  calculateSalaryResults(dispatch, uopParams, b2bParams);
 };
 
 const InputForm: FunctionComponent = () => {
@@ -94,6 +97,12 @@ const InputForm: FunctionComponent = () => {
     }
   }, [showResults, uopParams, b2bParams, dispatch]);
 
+  const onSubmit = useCallback(handleSubmit(dispatch, uopParams, b2bParams), [
+    dispatch,
+    uopParams,
+    b2bParams,
+  ]);
+
   return (
     <Container maxWidth="xs">
       <form
@@ -101,7 +110,7 @@ const InputForm: FunctionComponent = () => {
         /* Lastpass was throwing an exception when the user used enter to submit the form.
            Using onSubmitCapure instead of onSubmit makes sure the code catches the event
            before Lastpasss */
-        onSubmitCapture={handleSubmit(dispatch, uopParams, b2bParams)}
+        onSubmitCapture={onSubmit}
       >
         <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
         <TabPanel value={currentTab} index={0}>
