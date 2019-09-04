@@ -5,6 +5,7 @@ import {
   SET_SALARY_RESULT,
   SET_CONTRACT_TYPE,
   SHOW_RESULTS,
+  SET_SUBMITTED,
 } from './actions';
 import {
   IStoreState,
@@ -39,6 +40,8 @@ const reducer = (state: IStoreState, action: CalculatorAction) => {
       return state.set('contractType', action.contractType);
     case SHOW_RESULTS:
       return state.set('showResults', action.showResults);
+    case SET_SUBMITTED:
+      return state.set('submitted', action.submitted);
     default:
       return state;
   }

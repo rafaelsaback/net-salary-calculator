@@ -2,10 +2,10 @@ import React, { FunctionComponent } from 'react';
 import Container from '@material-ui/core/Container';
 
 import InputPeriod from './input-period';
-import InputFinancial from './input-financial';
 import { LABELS } from '../../helpers/consts';
 import { useSalary, usePeriod } from '../../helpers/hooks';
 import { Period } from '../../interfaces';
+import InputSalary from './input-salary';
 
 const UOPForm: FunctionComponent = () => {
   const [salary, setSalary] = useSalary('');
@@ -13,10 +13,10 @@ const UOPForm: FunctionComponent = () => {
 
   return (
     <Container>
-      <InputFinancial
+      <InputSalary
         label={LABELS.UOP.SALARY}
-        value={salary}
-        setValue={setSalary}
+        salary={salary}
+        setSalary={setSalary}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />
     </Container>

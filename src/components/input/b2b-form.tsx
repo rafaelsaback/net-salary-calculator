@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import Container from '@material-ui/core/Container';
 
 import InputPeriod from './input-period';
-import InputFinancial from './input-financial';
 import { B2BMoreOptions } from './b2b-more-options';
 import { LABELS } from '../../helpers/consts';
 import { useSalary, usePeriod } from '../../helpers/hooks';
 import { Period } from '../../interfaces';
+import InputSalary from './input-salary';
 
 const B2BForm: FunctionComponent = () => {
   const [salary, setSalary] = useSalary('');
@@ -14,10 +14,10 @@ const B2BForm: FunctionComponent = () => {
 
   return (
     <Container>
-      <InputFinancial
+      <InputSalary
         label={LABELS.B2B.SALARY}
-        value={salary}
-        setValue={setSalary}
+        salary={salary}
+        setSalary={setSalary}
       />
       <InputPeriod period={period} setPeriod={setPeriod} />
       <B2BMoreOptions />
