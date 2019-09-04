@@ -18,7 +18,11 @@ import {
 import { ContractType, IUOPParams, IB2BParams } from '../interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateUOPSalary } from '../salary-calculations/uop-calculator';
-import { selectUOPParams, selectB2BParams } from '../helpers/selectors';
+import {
+  selectUOPParams,
+  selectB2BParams,
+  selectShowResults,
+} from '../helpers/selectors';
 import { calculateB2BSalary } from '../salary-calculations/b2b-calculator';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from '@material-ui/core/Container';
@@ -44,6 +48,17 @@ const useStyles = makeStyles({
   },
 });
 
+const calculateSalaryResults = (
+  dispatch: Dispatch<any>,
+  uopParams: IUOPParams,
+  b2bParams: IB2BParams,
+) => {
+  const uopSalaryResults = calculateUOPSalary(uopParams);
+  const b2bSalaryResults = calculateB2BSalary(b2bParams);
+  dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
+  dispatch(showResults());
+};
+
 const handleSubmit = (
   dispatch: Dispatch<any>,
   uopParams: IUOPParams,
@@ -57,10 +72,7 @@ const handleSubmit = (
   const salary = uopParams.get('salary');
 
   if (salary > 0) {
-    const uopSalaryResults = calculateUOPSalary(uopParams);
-    const b2bSalaryResults = calculateB2BSalary(b2bParams);
-    dispatch(setSalaryResult(uopSalaryResults, b2bSalaryResults));
-    dispatch(showResults());
+    calculateSalaryResults(dispatch, uopParams, b2bParams);
   }
 };
 
@@ -70,11 +82,18 @@ const InputForm: FunctionComponent = () => {
   const classes = useStyles({});
   const uopParams = useSelector(selectUOPParams);
   const b2bParams = useSelector(selectB2BParams);
+  const showResults = useSelector(selectShowResults);
 
   useEffect(() => {
     const contractType = currentTab ? ContractType.B2B : ContractType.UOP;
     dispatch(setContractType(contractType));
   }, [currentTab, dispatch]);
+
+  useEffect(() => {
+    if (showResults) {
+      calculateSalaryResults(dispatch, uopParams, b2bParams);
+    }
+  }, [showResults, uopParams, b2bParams, dispatch]);
 
   return (
     <Container maxWidth="xs">
