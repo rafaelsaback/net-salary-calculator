@@ -28,7 +28,7 @@ const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
       socialSecurity.get(i) -
       healthContribution.get(i) -
       tax.get(i);
-    return roundNumber(endSalaryValue, 2);
+    return roundNumber(Math.max(0, endSalaryValue), 2);
   });
 
   return salaryResults.set('endSalary', endSalary);
@@ -161,7 +161,7 @@ const calcMonthlyGrossSalary = (
   const monthlyGrossSalary =
     period === Period.Monthly ? grossSalary : grossSalary / 12;
 
-  return salaryResults.set('salary', monthlyGrossSalary);
+  return salaryResults.set('salary', monthlyGrossSalary || 0);
 };
 
 export const calculateUOPSalary = (uopParams: IUOPParams): IUOPSalaryResults =>
