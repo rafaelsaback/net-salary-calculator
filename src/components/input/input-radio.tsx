@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import { BOLD_DARK_GRAY, darkGray } from '../../helpers/consts';
-import Helptip from '../help-tip';
+import Helptip from './help-tip';
 import makeStyles from '@material-ui/styles/makeStyles';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
