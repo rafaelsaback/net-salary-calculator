@@ -64,7 +64,7 @@ const calcEndSalary = (salaryResults: IB2BSalaryResults): IB2BSalaryResults => {
       socialSecurity.get(i) -
       healthContribution.get(i) -
       tax.get(i);
-    return roundNumber(endSalaryValue, 2);
+    return roundNumber(Math.max(0, endSalaryValue), 2);
   });
 
   return salaryResults.set('endSalary', endSalary);
@@ -82,10 +82,8 @@ const calcTax = (b2bParams: IB2BParams) => (
     return salaryResults.set('tax', tax);
   } else {
     const tax = taxBase.map((taxBaseValue, i) => {
-      const taxBeforeDeductible = taxBaseValue * RATE_19;
-      return taxBeforeDeductible >= healthDeductible.get(i)
-        ? taxBeforeDeductible - healthDeductible.get(i)
-        : 0;
+      const taxValue = taxBaseValue * RATE_19 - healthDeductible.get(i);
+      return Math.max(0, taxValue);
     });
 
     return salaryResults.set('tax', tax);
@@ -237,7 +235,7 @@ const calcMonthlyGrossSalary = (
   const monthlyGrossSalary =
     period === Period.Monthly ? grossSalary : grossSalary / 12;
 
-  return salaryResults.set('salary', monthlyGrossSalary);
+  return salaryResults.set('salary', monthlyGrossSalary || 0);
 };
 
 export const calculateB2BSalary = (b2bParams: IB2BParams): IB2BSalaryResults =>

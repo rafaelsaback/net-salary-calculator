@@ -70,7 +70,6 @@ const handleSubmit = (
   event.stopPropagation();
 
   const salary = uopParams.get('salary');
-
   if (salary > 0) {
     calculateSalaryResults(dispatch, uopParams, b2bParams);
   }

@@ -32,10 +32,10 @@ export const calcProgressiveTaxList = (
     if (accTaxBase.get(i) < TAX_THRESHOLD) {
       const taxValue =
         taxBase.get(i) * RATE_18 - healthDeductible.get(i) - MONTHLY_RELIEF;
-      return roundNumber(taxValue, 2);
+      return roundNumber(Math.max(0, taxValue), 2);
     }
     const taxValue = taxBase.get(i) * RATE_32 - healthDeductible.get(i);
-    return roundNumber(taxValue, 2);
+    return roundNumber(Math.max(0, taxValue), 2);
   });
 
   return tax;
