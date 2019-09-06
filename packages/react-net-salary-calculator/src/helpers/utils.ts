@@ -34,7 +34,7 @@ const dispatchValue = (
   compose(
     multipleDispatch(dispatch, actionCreators),
     createPayload(key),
-  )(value);
+  )(value || 0);
 
 export const dispatchNumberValue = (
   dispatch: Dispatch<any>,
@@ -86,6 +86,9 @@ export const formatNumber = (number: number, precision = 0): string => {
 
 export const isUOP = (contractType: ContractType): boolean =>
   contractType === ContractType.UOP;
+
+export const isB2B = (contractType: ContractType): boolean =>
+  contractType === ContractType.B2B;
 
 export const isB2BSalaryResults = (
   salaryResults: IUOPSalaryResults | IB2BSalaryResults,
