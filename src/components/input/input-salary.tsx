@@ -9,11 +9,7 @@ import InputFinancial from './input-financial';
 import { MINIMUM_WAGE } from '../../helpers/consts';
 import { compose } from 'redux';
 import { stringToValue, eventToString } from '../../helpers/utils';
-import {
-  selectShowResults,
-  selectSubmitted,
-  selectUOPParam,
-} from '../../helpers/selectors';
+import { selectSubmitted } from '../../helpers/selectors';
 import { useSelector } from 'react-redux';
 
 interface InputSalaryProps {
