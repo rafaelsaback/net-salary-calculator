@@ -74,6 +74,7 @@ export interface B2BSalaryResults extends BaseSalaryResults {
   laborFund: List<number>;
   accident: List<number>;
   others: List<number>;
+  costs: number;
 }
 
 export interface ImmutableMap<T> extends Omit<Map<string, any>, 'get' | 'set'> {

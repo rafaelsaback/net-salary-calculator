@@ -138,21 +138,6 @@ const calcPension = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   return salaryResults.set('pension', pension);
 };
 
-const initializeFields = (
-  salaryResults: IUOPSalaryResults,
-): IUOPSalaryResults => {
-  return salaryResults
-    .set('pension', List(Array(12).fill(0)))
-    .set('disability', List(Array(12).fill(0)))
-    .set('sickness', List(Array(12).fill(0)))
-    .set('socialSecurity', List(Array(12).fill(0)))
-    .set('healthContribution', List(Array(12).fill(0)))
-    .set('healthDeductible', List(Array(12).fill(0)))
-    .set('taxBase', List(Array(12).fill(0)))
-    .set('tax', List(Array(12).fill(0)))
-    .set('endSalary', List(Array(12).fill(0)));
-};
-
 const calcMonthlyGrossSalary = (
   grossSalary: number,
   period: Period,
@@ -175,6 +160,5 @@ export const calculateUOPSalary = (uopParams: IUOPParams): IUOPSalaryResults =>
     calcSickness,
     calcDisability,
     calcPension,
-    initializeFields,
     calcMonthlyGrossSalary,
   )(uopParams.get('salary'), uopParams.get('period'));

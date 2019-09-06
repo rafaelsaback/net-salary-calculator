@@ -174,7 +174,7 @@ const calcSickness = (b2bParams: IB2BParams) => (
   const paySickness = b2bParams.get('sickness');
 
   if (paySickness === Sickness.No) {
-    return salaryResults;
+    return salaryResults.set('sickness', List(Array(12).fill(0)));
   }
 
   const sickness = evalZUS(
@@ -212,19 +212,12 @@ const calcPension = (b2bParams: IB2BParams) => (
   return salaryResults.set('pension', pension);
 };
 
-const initializeFields = (
+const setCosts = (b2bParams: IB2BParams) => (
   salaryResults: IB2BSalaryResults,
 ): IB2BSalaryResults => {
-  return salaryResults
-    .set('pension', List(Array(12).fill(0)))
-    .set('disability', List(Array(12).fill(0)))
-    .set('sickness', List(Array(12).fill(0)))
-    .set('socialSecurity', List(Array(12).fill(0)))
-    .set('healthContribution', List(Array(12).fill(0)))
-    .set('healthDeductible', List(Array(12).fill(0)))
-    .set('taxBase', List(Array(12).fill(0)))
-    .set('tax', List(Array(12).fill(0)))
-    .set('endSalary', List(Array(12).fill(0)));
+  const costs = b2bParams.get('costs');
+
+  return salaryResults.set('costs', costs);
 };
 
 const calcMonthlyGrossSalary = (
@@ -252,6 +245,6 @@ export const calculateB2BSalary = (b2bParams: IB2BParams): IB2BSalaryResults =>
     calcSickness(b2bParams),
     calcDisability(b2bParams),
     calcPension(b2bParams),
-    initializeFields,
+    setCosts(b2bParams),
     calcMonthlyGrossSalary,
   )(b2bParams.get('salary'), b2bParams.get('period'));
