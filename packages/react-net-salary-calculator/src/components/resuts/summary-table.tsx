@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     '& td, & th': { color: darkGray },
     '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
   },
+  valueColumn: { minWidth: '80px' },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
   mobileTable: {
     width: '100%',
@@ -73,23 +74,33 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
       <TableBody>
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{salaryLabel}</TableCell>
-          <TableCell align="right">{formatNumber(salary)}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(salary)}
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Social security</TableCell>
-          <TableCell align="right">{formatNumber(socialSecurity)}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(socialSecurity)}
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Health</TableCell>
-          <TableCell align="right">{formatNumber(health)}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(health)}
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Tax</TableCell>
-          <TableCell align="right">{formatNumber(tax)}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(tax)}
+          </TableCell>
         </TableRow>
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{endSalaryLabel}</TableCell>
-          <TableCell align="right">{formatNumber(endSalary)}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(endSalary)}
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>
