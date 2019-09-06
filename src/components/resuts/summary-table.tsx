@@ -24,6 +24,7 @@ interface SummaryTableProps {
   health: number;
   tax: number;
   endSalary: number;
+  costs?: number;
 }
 
 const useStyles = makeStyles({
@@ -54,6 +55,7 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
   health,
   tax,
   endSalary,
+  costs,
 }) => {
   const classes = useStyles({});
   const matchesMobile = useMediaQuery(mobileMediaValue);
@@ -96,6 +98,14 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
             {formatNumber(tax)}
           </TableCell>
         </TableRow>
+        {costs !== undefined && (
+          <TableRow>
+            <TableCell align="left">Costs</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(costs)}
+            </TableCell>
+          </TableRow>
+        )}
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{endSalaryLabel}</TableCell>
           <TableCell className={classes.valueColumn} align="right">
