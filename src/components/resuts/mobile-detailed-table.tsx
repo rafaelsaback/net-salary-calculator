@@ -40,6 +40,7 @@ const useStyles = makeStyles({
     '& td, & th': { color: darkGray },
     '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
   },
+  valueColumn: { minWidth: '80px' },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
   mobileTable: {
     width: '100%',
@@ -80,35 +81,51 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
         <TableBody>
           <TableRow className={classes.salaryRow}>
             <TableCell align="left">{salaryLabel}</TableCell>
-            <TableCell align="right">{formatNumber(salary)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(salary)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Pension</TableCell>
-            <TableCell align="right">{formatNumber(pension)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(pension)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Disability</TableCell>
-            <TableCell align="right">{formatNumber(disability)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(disability)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Sickness</TableCell>
-            <TableCell align="right">{formatNumber(sickness)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(sickness)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Health</TableCell>
-            <TableCell align="right">{formatNumber(health)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(health)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Tax base</TableCell>
-            <TableCell align="right">{formatNumber(others)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(others)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Tax</TableCell>
-            <TableCell align="right">{formatNumber(tax)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(tax)}
+            </TableCell>
           </TableRow>
           <TableRow className={classes.salaryRow}>
             <TableCell align="left">{endSalaryLabel}</TableCell>
-            <TableCell align="right">{formatNumber(endSalary)}</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(endSalary)}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
