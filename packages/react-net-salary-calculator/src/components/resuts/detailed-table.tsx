@@ -18,6 +18,7 @@ import {
   isB2BSalaryResults,
   calcTotal,
   formatNumber,
+  isB2B,
 } from '../../helpers/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -210,20 +211,36 @@ const getMobileTables = (
       {MONTHS.map((month, i) => (
         <MobileDetailedTable
           key={month}
+          header={month}
           salaryLabel={salaryLabel}
           endSalaryLabel={endSalaryLabel}
-          month={month}
           salary={salary}
           pension={pension.get(i)}
           disability={disability.get(i)}
           sickness={sickness.get(i)}
           health={health.get(i)}
-          others={isUOP(contractType) ? taxBase.get(i) : others.get(i)}
+          taxBase={isUOP(contractType) ? taxBase.get(i) : undefined}
+          others={isB2B(contractType) ? others.get(i) : undefined}
           tax={tax.get(i)}
           costs={costs}
           endSalary={endSalary.get(i)}
         />
       ))}
+      <MobileDetailedTable
+        header="Total"
+        salaryLabel={salaryLabel}
+        endSalaryLabel={endSalaryLabel}
+        salary={salary * 12}
+        pension={calcTotal(pension)}
+        disability={calcTotal(disability)}
+        sickness={calcTotal(sickness)}
+        health={calcTotal(health)}
+        taxBase={isUOP(contractType) ? calcTotal(taxBase) : undefined}
+        others={isB2B(contractType) ? calcTotal(others) : undefined}
+        tax={calcTotal(tax)}
+        costs={costs !== undefined ? costs * 12 : costs}
+        endSalary={calcTotal(endSalary)}
+      />
     </>
   );
 };
