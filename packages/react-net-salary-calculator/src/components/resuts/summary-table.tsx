@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     ...BOX_SHADOW,
     '& td, & th': { color: darkGray },
     '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
+    '& *': { borderTop: 'none', borderLeft: 'none', borderRight: 'none' },
   },
   valueColumn: { minWidth: '80px' },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },

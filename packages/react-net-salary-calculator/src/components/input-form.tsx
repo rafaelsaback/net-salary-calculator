@@ -31,7 +31,8 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
-  root: {
+  root: { padding: 0 },
+  form: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -104,9 +105,9 @@ const InputForm: FunctionComponent = () => {
   ]);
 
   return (
-    <Container maxWidth="xs">
+    <Container className={classes.root} maxWidth="xs">
       <form
-        className={classes.root}
+        className={classes.form}
         /* Lastpass was throwing an exception when the user used enter to submit the form.
            Using onSubmitCapure instead of onSubmit makes sure the code catches the event
            before Lastpasss */

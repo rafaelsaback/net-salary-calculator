@@ -48,6 +48,7 @@ const useStyles = makeStyles({
       color: darkGray,
     },
     '& th, & tfoot td': { fontWeight: 'bold', fontSize: '0.825rem' },
+    '& *': { borderTop: 'none', borderLeft: 'none', borderRight: 'none' },
   },
   hideOnTablet: { display: 'none' },
 });
@@ -198,6 +199,9 @@ const getMobileTables = (
   const others = isB2BSalaryResults(salaryResults)
     ? salaryResults.get('others')
     : undefined;
+  const costs = isB2BSalaryResults(salaryResults)
+    ? salaryResults.get('costs')
+    : undefined;
   const tax = salaryResults.get('tax');
   const endSalary = salaryResults.get('endSalary');
 
@@ -216,6 +220,7 @@ const getMobileTables = (
           health={health.get(i)}
           others={isUOP(contractType) ? taxBase.get(i) : others.get(i)}
           tax={tax.get(i)}
+          costs={costs}
           endSalary={endSalary.get(i)}
         />
       ))}

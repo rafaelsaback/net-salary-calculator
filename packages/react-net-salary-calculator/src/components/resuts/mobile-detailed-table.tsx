@@ -12,7 +12,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { formatNumber } from '../../helpers/utils';
 import makeStyles from '@material-ui/styles/makeStyles';
-import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import classNames from 'classnames';
 
@@ -27,6 +26,7 @@ interface MobileDetailedTableProps {
   health: number;
   others: number;
   tax: number;
+  costs: number;
   endSalary: number;
 }
 
@@ -39,6 +39,7 @@ const useStyles = makeStyles({
     ...BOX_SHADOW,
     '& td, & th': { color: darkGray },
     '& th': { fontWeight: 'bold', fontSize: '0.825rem' },
+    '& *': { borderTop: 'none', borderLeft: 'none', borderRight: 'none' },
   },
   valueColumn: { minWidth: '80px' },
   salaryRow: { '& *': { backgroundColor: '#f0f0f0' } },
@@ -59,6 +60,7 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
   health,
   others,
   tax,
+  costs,
   endSalary,
 }) => {
   const classes = useStyles({});
@@ -69,67 +71,73 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
   });
 
   return (
-    <Container>
-      <Table className={tableClasses}>
-        <TableHead>
+    <Table className={tableClasses}>
+      <TableHead>
+        <TableRow>
+          <TableCell align="center" colSpan={2}>
+            {month}
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow className={classes.salaryRow}>
+          <TableCell align="left">{salaryLabel}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(salary)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Pension</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(pension)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Disability</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(disability)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Sickness</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(sickness)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Health</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(health)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Tax base</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(others)}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="left">Tax</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(tax)}
+          </TableCell>
+        </TableRow>
+        {costs !== undefined && (
           <TableRow>
-            <TableCell align="center" colSpan={2}>
-              {month}
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow className={classes.salaryRow}>
-            <TableCell align="left">{salaryLabel}</TableCell>
+            <TableCell align="left">Costs</TableCell>
             <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(salary)}
+              {formatNumber(costs)}
             </TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell align="left">Pension</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(pension)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell align="left">Disability</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(disability)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell align="left">Sickness</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(sickness)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell align="left">Health</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(health)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell align="left">Tax base</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(others)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell align="left">Tax</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(tax)}
-            </TableCell>
-          </TableRow>
-          <TableRow className={classes.salaryRow}>
-            <TableCell align="left">{endSalaryLabel}</TableCell>
-            <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(endSalary)}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </Container>
+        )}
+        <TableRow className={classes.salaryRow}>
+          <TableCell align="left">{endSalaryLabel}</TableCell>
+          <TableCell className={classes.valueColumn} align="right">
+            {formatNumber(endSalary)}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
