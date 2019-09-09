@@ -52,8 +52,8 @@ const TabBar: FunctionComponent<AppTabsProps> = ({ value, setCurrentTab }) => {
       textColor="primary"
       variant="standard"
     >
-      <Tab disableRipple label={createLabel(uopLabel, uopEndSalary, classes)} />
-      <Tab disableRipple label={createLabel(b2bLabel, b2bEndSalary, classes)} />
+      <Tab label={createLabel(uopLabel, uopEndSalary, classes)} />
+      <Tab label={createLabel(b2bLabel, b2bEndSalary, classes)} />
     </Tabs>
   );
 };

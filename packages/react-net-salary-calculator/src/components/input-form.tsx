@@ -125,7 +125,6 @@ const InputForm: FunctionComponent = () => {
           className={classes.button}
           variant="contained"
           color="primary"
-          disableRipple
           type="submit"
         >
           Calculate
