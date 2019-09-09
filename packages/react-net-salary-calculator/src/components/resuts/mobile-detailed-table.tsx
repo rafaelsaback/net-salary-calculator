@@ -16,7 +16,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import classNames from 'classnames';
 
 interface MobileDetailedTableProps {
-  month: string;
+  header: string;
   salaryLabel: string;
   endSalaryLabel: string;
   salary: number;
@@ -25,6 +25,7 @@ interface MobileDetailedTableProps {
   sickness: number;
   health: number;
   others: number;
+  taxBase: number;
   tax: number;
   costs: number;
   endSalary: number;
@@ -50,7 +51,7 @@ const useStyles = makeStyles({
 });
 
 const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
-  month,
+  header,
   salaryLabel,
   endSalaryLabel,
   salary,
@@ -59,6 +60,7 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
   sickness,
   health,
   others,
+  taxBase,
   tax,
   costs,
   endSalary,
@@ -75,7 +77,7 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
       <TableHead>
         <TableRow>
           <TableCell align="center" colSpan={2}>
-            {month}
+            {header}
           </TableCell>
         </TableRow>
       </TableHead>
@@ -110,12 +112,22 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
             {formatNumber(health)}
           </TableCell>
         </TableRow>
-        <TableRow>
-          <TableCell align="left">Tax base</TableCell>
-          <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(others)}
-          </TableCell>
-        </TableRow>
+        {taxBase !== undefined && (
+          <TableRow>
+            <TableCell align="left">Tax base</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(taxBase)}
+            </TableCell>
+          </TableRow>
+        )}
+        {others !== undefined && (
+          <TableRow>
+            <TableCell align="left">Others</TableCell>
+            <TableCell className={classes.valueColumn} align="right">
+              {formatNumber(others)}
+            </TableCell>
+          </TableRow>
+        )}
         <TableRow>
           <TableCell align="left">Tax</TableCell>
           <TableCell className={classes.valueColumn} align="right">
