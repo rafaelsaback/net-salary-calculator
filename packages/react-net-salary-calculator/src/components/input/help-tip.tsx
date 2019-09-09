@@ -29,7 +29,7 @@ const DarkTooltip = withStyles({
     color: 'white',
     fontSize: '12px',
     fontWeight: 'normal',
-    padding: '3px',
+    padding: '10px 20px',
     ...BOX_SHADOW,
   },
 })(Tooltip);
