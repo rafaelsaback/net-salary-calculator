@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -27,6 +26,5 @@ module.exports = {
     }),
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin(),
   ],
 };
