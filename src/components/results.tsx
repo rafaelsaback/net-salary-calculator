@@ -4,12 +4,11 @@ import { LABELS, mobileMediaValue, desktopMediaValue } from '../helpers/consts';
 import DetailedTable from './resuts/detailed-table';
 import { useSelector } from 'react-redux';
 import { selectContractType, selectSalaryResults } from '../helpers/selectors';
-import { calcAverage, isUOP, isB2B } from '../helpers/utils';
+import { calcAverage, isUOP, isB2BSalaryResults } from '../helpers/utils';
 import classNames from 'classnames';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { IB2BSalaryResults } from '../interfaces';
 
 const useStyles = makeStyles({
   results: {
@@ -46,6 +45,7 @@ const Results: FunctionComponent = () => {
   const summaryContainerClasses = classNames({
     [classes.summaryContainerDesktop]: matchesDesktop,
     [classes.summaryContainerTablet]: !matchesDesktop,
+    [classes.mobileContainer]: matchesMobile,
   });
 
   const contractType = useSelector(selectContractType);
@@ -62,8 +62,8 @@ const Results: FunctionComponent = () => {
   const healthAvg = calcAverage(salaryResults.get('healthContribution'));
   const taxAvg = calcAverage(salaryResults.get('tax'));
   const endSalaryAvg = calcAverage(salaryResults.get('endSalary'));
-  const costs = isB2B(contractType)
-    ? (salaryResults as IB2BSalaryResults).get('costs')
+  const costs = isB2BSalaryResults(salaryResults)
+    ? salaryResults.get('costs')
     : undefined;
 
   return (

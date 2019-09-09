@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     margin: '30px 0 0',
     '& label': { fontSize: '0.825rem', ...BOLD_DARK_GRAY },
     '&>div': { margin: '10px 0 0' },
-    '& input': { textAlign: 'center' },
+    '& input': { textAlign: 'center', border: 'none' },
   },
 });
 
