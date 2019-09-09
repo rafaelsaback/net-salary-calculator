@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     '&:not(:first-child)': {
       margin: '30px 0 0',
     },
-    '& label': { fontSize: '0.825rem', ...BOLD_DARK_GRAY },
+    '& label': { fontSize: '0.825rem', ...BOLD_DARK_GRAY, padding: '0 0 10px' },
     '& .MuiFormControlLabel-label': { color: darkGray },
   },
 });
