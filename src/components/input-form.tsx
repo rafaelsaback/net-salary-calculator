@@ -111,6 +111,7 @@ const InputForm: FunctionComponent = () => {
         /* Lastpass was throwing an exception when the user used enter to submit the form.
            Using onSubmitCapure instead of onSubmit makes sure the code catches the event
            before Lastpasss */
+        /* Adding 'type="number"' to input-financial has broken this fix */
         onSubmitCapture={onSubmit}
       >
         <TabBar value={currentTab} setCurrentTab={setCurrentTab} />
