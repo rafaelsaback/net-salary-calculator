@@ -15,8 +15,11 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 10,
+    margin: 10,
     color: darkGray,
+  },
+  panelSummary: {
+    marginBottom: 10,
   },
 });
 
@@ -34,7 +37,11 @@ export const B2BMoreOptions: FunctionComponent = () => {
 
   return (
     <ExpansionPanel className={classes.root}>
-      <ExpansionPanelSummary expandIcon={<ExpandMore />} id="panel1a-header">
+      <ExpansionPanelSummary
+        className={classes.panelSummary}
+        expandIcon={<ExpandMore />}
+        id="panel1a-header"
+      >
         <Typography>More options</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{ flexDirection: 'column' }}>

@@ -11,12 +11,11 @@ const useStyles = makeStyles({
     borderRadius: '50%',
     paddingLeft: '2px',
     paddingRight: '4px',
-    marginLeft: '5px',
     textAlign: 'center',
     fontSize: 'smaller',
   },
-  tooltipContainer: {
-    backgroundColor: darkGray,
+  clickable: {
+    padding: '10px',
   },
 });
 
@@ -30,6 +29,7 @@ const DarkTooltip = withStyles({
     color: 'white',
     fontSize: '12px',
     fontWeight: 'normal',
+    padding: '3px',
     ...BOX_SHADOW,
   },
 })(Tooltip);
@@ -38,8 +38,10 @@ const Helptip: FunctionComponent<HelptipProps> = ({ title }) => {
   const classes = useStyles({});
 
   return (
-    <DarkTooltip title={title}>
-      <span className={classes.questionMark}> ? </span>
+    <DarkTooltip title={title} enterTouchDelay={100}>
+      <span className={classes.clickable}>
+        <span className={classes.questionMark}> ? </span>
+      </span>
     </DarkTooltip>
   );
 };
