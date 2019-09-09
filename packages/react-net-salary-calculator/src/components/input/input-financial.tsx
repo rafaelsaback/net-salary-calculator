@@ -47,6 +47,7 @@ const InputFinancial: FunctionComponent<InputFinancialProps> = ({
         margin="normal"
         error={error}
         helperText={errorMsg}
+        type="number"
         fullWidth
       />
     </FormControl>
