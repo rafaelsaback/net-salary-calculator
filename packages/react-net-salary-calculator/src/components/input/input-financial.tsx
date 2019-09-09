@@ -1,4 +1,10 @@
-import React, { FunctionComponent, ChangeEvent } from 'react';
+import React, {
+  FunctionComponent,
+  ChangeEvent,
+  useRef,
+  MutableRefObject,
+  KeyboardEvent,
+} from 'react';
 import { BOLD_DARK_GRAY } from '../../helpers/consts';
 import Helptip from './help-tip';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -24,6 +30,14 @@ const useStyles = makeStyles({
   },
 });
 
+const handleKeyPress = (ref: MutableRefObject<any>) => (
+  event: KeyboardEvent<HTMLDivElement>,
+) => {
+  if (event.key === 'Enter' && event.charCode === 13) {
+    ref.current.querySelector('input').blur();
+  }
+};
+
 const InputFinancial: FunctionComponent<InputFinancialProps> = ({
   label,
   value,
@@ -33,6 +47,7 @@ const InputFinancial: FunctionComponent<InputFinancialProps> = ({
   errorMsg = '',
 }) => {
   const classes = useStyles({});
+  const ref = useRef(null);
 
   return (
     <FormControl className={classes.root} component="fieldset" fullWidth>
@@ -44,10 +59,12 @@ const InputFinancial: FunctionComponent<InputFinancialProps> = ({
         value={value}
         placeholder={'0.00 PLN'}
         onChange={setValue}
+        onKeyPress={handleKeyPress(ref)}
         margin="normal"
         error={error}
         helperText={errorMsg}
         type="number"
+        ref={ref}
         fullWidth
       />
     </FormControl>
