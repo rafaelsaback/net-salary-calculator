@@ -14,24 +14,12 @@ import {
   roundNumber,
 } from './base-calculator';
 import { compose } from 'redux';
-import { RATE_19 } from '../helpers/consts';
-
-const HEALTH_INSURANCE = 342.32;
-
-const SMALL_ZUS = {
-  PENSION: 131.76,
-  DISABILITY: 54,
-  SICKNESS: 16.54,
-  ACCIDENT: 11.27,
-};
-
-const NORMAL_ZUS = {
-  PENSION: 558.08,
-  DISABILITY: 228.72,
-  SICKNESS: 70.05,
-  ACCIDENT: 47.75,
-  LABOR_FUND: 70.05,
-};
+import {
+  RATE_19,
+  NORMAL_ZUS,
+  SMALL_ZUS,
+  HEALTH_INSURANCE,
+} from '../helpers/consts';
 
 const evalZUS = (
   zus: ZUS,
