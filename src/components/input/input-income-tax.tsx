@@ -15,7 +15,7 @@ const TaxHelptip = (
       <strong> 19% </strong> - Linear tax rate{' '}
     </p>
     <p>
-      <strong> 18% / 32 % </strong> - Progressive tax rate
+      <strong> 17% / 32 % </strong> - Progressive tax rate
     </p>
   </div>
 );
@@ -36,7 +36,7 @@ const InputIncomeTax: FunctionComponent<InputIncomeTaxProps> = ({
     <FormControlLabel
       value={B2BTax.Progressive}
       control={<Radio />}
-      label="18% / 32%"
+      label="17% / 32%"
     />
   </InputRadio>
 );
