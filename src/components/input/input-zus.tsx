@@ -16,12 +16,12 @@ const zusHelptip = (
       you&apos;re free from paying ZUS contributions
     </p>
     <p>
-      <strong> Discounted ZUS </strong> - After the first 6 months and until
-      your company completes 2 years, you&apos;ll pay discounted values
+      <strong> Discounted ZUS </strong> - For the next 2 years, you&apos;ll pay
+      discounted values
     </p>
     <p>
-      <strong> Normal ZUS </strong> - After 2 years you pay the normal ZUS
-      contributions
+      <strong> Normal ZUS </strong> - After 2 years and a half, you pay the
+      normal ZUS contributions
     </p>
   </div>
 );
