@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import {
   TAX_THRESHOLD,
-  RATE_18,
+  RATE_17,
   MONTHLY_RELIEF,
   RATE_32,
   HEALTH_DEDUCTIBLE_RATE,
@@ -31,7 +31,7 @@ export const calcProgressiveTaxList = (
   const tax = List(Array(12)).map((_, i) => {
     if (accTaxBase.get(i) < TAX_THRESHOLD) {
       const taxValue =
-        taxBase.get(i) * RATE_18 - healthDeductible.get(i) - MONTHLY_RELIEF;
+        taxBase.get(i) * RATE_17 - healthDeductible.get(i) - MONTHLY_RELIEF;
       return roundNumber(Math.max(0, taxValue), 2);
     }
     const taxValue = taxBase.get(i) * RATE_32 - healthDeductible.get(i);
