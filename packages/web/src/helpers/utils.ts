@@ -6,6 +6,8 @@ import {
   ContractType,
   IUOPSalaryResults,
   IB2BSalaryResults,
+  UOPSalaryResults,
+  B2BSalaryResults,
 } from '../interfaces';
 
 export const handleChange = (setFunction: (value: string) => void) => (
@@ -52,10 +54,7 @@ export const dispatchStringValue = (
   actionCreators: any[],
   key: string,
 ) => (event: ChangeEvent<HTMLInputElement>) =>
-  compose(
-    dispatchValue(dispatch, actionCreators, key),
-    eventToString,
-  )(event);
+  compose(dispatchValue(dispatch, actionCreators, key), eventToString)(event);
 
 export const dispatchSalary = (dispatch: Dispatch<any>) =>
   dispatchNumberValue(dispatch, [setUOPParams, setB2BParams], 'salary');
@@ -95,3 +94,7 @@ export const isB2BSalaryResults = (
 ): salaryResults is IB2BSalaryResults => {
   return (salaryResults as IB2BSalaryResults).get('others') !== undefined;
 };
+
+export const isB2BxSalaryResults = (
+  salaryResults: UOPSalaryResults | B2BSalaryResults,
+): salaryResults is B2BSalaryResults => 'others' in salaryResults;

@@ -70,6 +70,8 @@ export interface BaseSalaryResults {
   endSalary: List<number>;
 }
 
+export type UOPSalaryResults = BaseSalaryResults;
+
 export interface B2BSalaryResults extends BaseSalaryResults {
   laborFund: List<number>;
   accident: List<number>;

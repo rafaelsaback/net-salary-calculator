@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { BaseSalaryResults } from '../interfaces';
 
 const useStyles = makeStyles({
   results: {
@@ -97,7 +98,7 @@ const Results: FunctionComponent = () => {
         endSalaryLabel={END_SALARY_DTABLE}
         othersLabel={OTHERS}
         contractType={contractType}
-        salaryResults={salaryResults}
+        salaryResults={salaryResults.toJS() as BaseSalaryResults}
       />
     </Container>
   );
