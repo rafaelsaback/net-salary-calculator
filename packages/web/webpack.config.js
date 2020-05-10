@@ -1,33 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const merge = require('webpack-merge');
+const webpackConfig = require('../../webpack.config');
 
-module.exports = {
+module.exports = merge(webpackConfig, {
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(j|t)sx?$/,
-        loader: 'babel-loader',
-        options: {
-          rootMode: 'upward',
-        },
-        exclude: /node_modules/,
-      },
-    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    new ForkTsCheckerWebpackPlugin(),
-    new CleanWebpackPlugin(),
   ],
-};
+});
