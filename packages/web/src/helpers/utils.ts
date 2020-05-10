@@ -98,3 +98,7 @@ export const isB2BSalaryResults = (
 export const isB2BxSalaryResults = (
   salaryResults: UOPSalaryResults | B2BSalaryResults,
 ): salaryResults is B2BSalaryResults => 'others' in salaryResults;
+
+export const isUOPxSalaryResults = (
+  salaryResults: UOPSalaryResults | B2BSalaryResults,
+): salaryResults is UOPSalaryResults => !isB2BxSalaryResults(salaryResults);

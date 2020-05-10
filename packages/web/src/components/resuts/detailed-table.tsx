@@ -12,13 +12,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { BaseSalaryResults, ContractType } from '../../interfaces';
+import { BaseSalaryResults } from '../../interfaces';
 import {
   calcTotal,
   formatNumber,
-  isB2B,
   isB2BxSalaryResults,
-  isUOP,
+  isUOPxSalaryResults,
 } from '../../helpers/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -31,7 +30,6 @@ interface DetailedTableProps {
   othersLabel: string;
   endSalaryLabel: string;
   salaryResults: BaseSalaryResults;
-  contractType: ContractType;
 }
 
 const useStyles = makeStyles({
@@ -96,165 +94,163 @@ const getTableHead = (
 );
 
 const getTableBody = (
-  contractType: ContractType,
   salaryResults: BaseSalaryResults,
   classes: any,
   matchesTablet: boolean,
-) => {
-  const others = isB2BxSalaryResults(salaryResults)
-    ? salaryResults.others
-    : undefined;
-
-  return (
-    <TableBody>
-      {MONTHS.map((month, i) => (
-        <TableRow key={month}>
-          <TableCell align="center">{month}</TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.salary)}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.pension[i])}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.disability[i])}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.sickness[i])}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.healthContribution[i])}
-          </TableCell>
-          <TableCell
-            align="center"
-            className={matchesTablet ? classes.hideOnTablet : ''}
-          >
-            {formatNumber(
-              isUOP(contractType) ? salaryResults.taxBase[i] : others[i],
-            )}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.tax[i])}
-          </TableCell>
-          <TableCell align="center">
-            {formatNumber(salaryResults.endSalary[i])}
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  );
-};
-
-const getTableFooter = (
-  contractType: ContractType,
-  salaryResults: BaseSalaryResults,
-  classes: any,
-  matchesTablet: boolean,
-) => {
-  const others = isB2BxSalaryResults(salaryResults)
-    ? salaryResults.others
-    : undefined;
-
-  return (
-    <TableFooter>
-      <TableRow>
-        <TableCell align="center">Total</TableCell>
+) => (
+  <TableBody>
+    {MONTHS.map((month, i) => (
+      <TableRow key={month}>
+        <TableCell align="center">{month}</TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.salary * 12)}
+          {formatNumber(salaryResults.salary)}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.pension))}
+          {formatNumber(salaryResults.pension[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.disability))}
+          {formatNumber(salaryResults.disability[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.sickness))}
+          {formatNumber(salaryResults.sickness[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.healthContribution))}
+          {formatNumber(salaryResults.healthContribution[i])}
         </TableCell>
         <TableCell
           align="center"
           className={matchesTablet ? classes.hideOnTablet : ''}
         >
           {formatNumber(
-            calcTotal(isUOP(contractType) ? salaryResults.taxBase : others),
+            isB2BxSalaryResults(salaryResults)
+              ? salaryResults.others[i]
+              : salaryResults.taxBase[i],
           )}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.tax))}
+          {formatNumber(salaryResults.tax[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(calcTotal(salaryResults.endSalary))}
+          {formatNumber(salaryResults.endSalary[i])}
         </TableCell>
       </TableRow>
-    </TableFooter>
-  );
-};
+    ))}
+  </TableBody>
+);
+
+const getTableFooter = (
+  salaryResults: BaseSalaryResults,
+  classes: any,
+  matchesTablet: boolean,
+) => (
+  <TableFooter>
+    <TableRow>
+      <TableCell align="center">Total</TableCell>
+      <TableCell align="center">
+        {formatNumber(salaryResults.salary * 12)}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.pension))}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.disability))}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.sickness))}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.healthContribution))}
+      </TableCell>
+      <TableCell
+        align="center"
+        className={matchesTablet ? classes.hideOnTablet : ''}
+      >
+        {formatNumber(
+          calcTotal(
+            isB2BxSalaryResults(salaryResults)
+              ? salaryResults.others
+              : salaryResults.taxBase,
+          ),
+        )}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.tax))}
+      </TableCell>
+      <TableCell align="center">
+        {formatNumber(calcTotal(salaryResults.endSalary))}
+      </TableCell>
+    </TableRow>
+  </TableFooter>
+);
 
 const getMobileTables = (
-  contractType: ContractType,
   salaryResults: BaseSalaryResults,
   salaryLabel: string,
   endSalaryLabel: string,
-) => {
-  const others = isB2BxSalaryResults(salaryResults)
-    ? salaryResults.others
-    : undefined;
-
-  return (
-    <>
-      {MONTHS.map((month, i) => (
-        <MobileDetailedTable
-          key={month}
-          header={month}
-          salaryLabel={salaryLabel}
-          endSalaryLabel={endSalaryLabel}
-          salary={salaryResults.salary}
-          pension={salaryResults.pension[i]}
-          disability={salaryResults.disability[i]}
-          sickness={salaryResults.sickness[i]}
-          health={salaryResults.healthContribution[i]}
-          taxBase={isUOP(contractType) ? salaryResults.taxBase[i] : undefined}
-          others={isB2B(contractType) ? others[i] : undefined}
-          tax={salaryResults.tax[i]}
-          costs={
-            isB2BxSalaryResults(salaryResults) ? salaryResults.costs : undefined
-          }
-          endSalary={salaryResults.endSalary[i]}
-        />
-      ))}
+) => (
+  <>
+    {MONTHS.map((month, i) => (
       <MobileDetailedTable
-        header="Total"
+        key={month}
+        header={month}
         salaryLabel={salaryLabel}
         endSalaryLabel={endSalaryLabel}
-        salary={salaryResults.salary * 12}
-        pension={calcTotal(salaryResults.pension)}
-        disability={calcTotal(salaryResults.disability)}
-        sickness={calcTotal(salaryResults.sickness)}
-        health={calcTotal(salaryResults.healthContribution)}
+        salary={salaryResults.salary}
+        pension={salaryResults.pension[i]}
+        disability={salaryResults.disability[i]}
+        sickness={salaryResults.sickness[i]}
+        health={salaryResults.healthContribution[i]}
         taxBase={
-          isUOP(contractType) ? calcTotal(salaryResults.taxBase) : undefined
-        }
-        others={isB2B(contractType) ? calcTotal(others) : undefined}
-        tax={calcTotal(salaryResults.tax)}
-        costs={
-          isB2BxSalaryResults(salaryResults)
-            ? salaryResults.costs * 12
+          isUOPxSalaryResults(salaryResults)
+            ? salaryResults.taxBase[i]
             : undefined
         }
-        endSalary={calcTotal(salaryResults.endSalary)}
+        others={
+          isB2BxSalaryResults(salaryResults)
+            ? salaryResults.others[i]
+            : undefined
+        }
+        tax={salaryResults.tax[i]}
+        costs={
+          isB2BxSalaryResults(salaryResults) ? salaryResults.costs : undefined
+        }
+        endSalary={salaryResults.endSalary[i]}
       />
-    </>
-  );
-};
+    ))}
+    <MobileDetailedTable
+      header="Total"
+      salaryLabel={salaryLabel}
+      endSalaryLabel={endSalaryLabel}
+      salary={salaryResults.salary * 12}
+      pension={calcTotal(salaryResults.pension)}
+      disability={calcTotal(salaryResults.disability)}
+      sickness={calcTotal(salaryResults.sickness)}
+      health={calcTotal(salaryResults.healthContribution)}
+      taxBase={
+        isUOPxSalaryResults(salaryResults)
+          ? calcTotal(salaryResults.taxBase)
+          : undefined
+      }
+      others={
+        isB2BxSalaryResults(salaryResults)
+          ? calcTotal(salaryResults.others)
+          : undefined
+      }
+      tax={calcTotal(salaryResults.tax)}
+      costs={
+        isB2BxSalaryResults(salaryResults)
+          ? salaryResults.costs * 12
+          : undefined
+      }
+      endSalary={calcTotal(salaryResults.endSalary)}
+    />
+  </>
+);
 
 const DetailedTable: FunctionComponent<DetailedTableProps> = ({
   salaryLabel,
   othersLabel,
   endSalaryLabel,
-  contractType,
   salaryResults,
 }) => {
   const classes = useStyles({});
@@ -265,7 +261,7 @@ const DetailedTable: FunctionComponent<DetailedTableProps> = ({
   });
 
   return matchesMobile ? (
-    getMobileTables(contractType, salaryResults, salaryLabel, endSalaryLabel)
+    getMobileTables(salaryResults, salaryLabel, endSalaryLabel)
   ) : (
     <Table className={tableClasses}>
       {getTableHead(
@@ -275,8 +271,8 @@ const DetailedTable: FunctionComponent<DetailedTableProps> = ({
         classes,
         matchesTablet,
       )}
-      {getTableBody(contractType, salaryResults, classes, matchesTablet)}
-      {getTableFooter(contractType, salaryResults, classes, matchesTablet)}
+      {getTableBody(salaryResults, classes, matchesTablet)}
+      {getTableFooter(salaryResults, classes, matchesTablet)}
     </Table>
   );
 };

@@ -97,7 +97,6 @@ const Results: FunctionComponent = () => {
         salaryLabel={SALARY_DTABLE}
         endSalaryLabel={END_SALARY_DTABLE}
         othersLabel={OTHERS}
-        contractType={contractType}
         salaryResults={salaryResults.toJS() as BaseSalaryResults}
       />
     </Container>
