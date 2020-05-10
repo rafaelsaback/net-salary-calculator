@@ -50,6 +50,7 @@ const Results: FunctionComponent = () => {
   });
 
   const contractType = useSelector(selectContractType);
+  // TODO Refactor selectSalaryResults so that it returns a JS object
   const salaryResults = useSelector(selectSalaryResults(contractType));
   const {
     SALARY,
