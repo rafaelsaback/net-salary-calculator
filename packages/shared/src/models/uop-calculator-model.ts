@@ -1,5 +1,9 @@
 import { Map, List } from 'immutable';
-import { IUOPSalaryResults, IUOPParams, Period } from '../interfaces';
+import {
+  IUOPSalaryResults,
+  IUOPParams,
+  Period,
+} from '../../../web/src/interfaces';
 import { compose } from 'redux';
 import {
   ANNUAL_LIMIT,
@@ -8,13 +12,13 @@ import {
   SICKNESS_RATE,
   HEALTH_CONTRIBUTION_RATE,
   EARNING_COST,
-} from '../helpers/consts';
+} from '../../../web/src/helpers/consts';
 import {
   roundNumber,
   calcProgressiveTaxList,
   calcHealthDeductibleList,
   calcTaxBaseList,
-} from './base-calculator';
+} from './base-calculator-model';
 
 const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   const grossSalary = salaryResults.get('salary');

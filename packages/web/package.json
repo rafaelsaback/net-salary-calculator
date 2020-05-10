@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@nsc/web",
   "version": "1.0.0",
   "description": "A net salary calculator for Poland. Calculate the end salary both for umowa o pracę and b2b contracts.",
   "main": "index.ts",
@@ -42,7 +42,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "shared": "1.0.0",
+    "@nsc/shared": "1.0.0",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@types/classnames": "^2.2.10",

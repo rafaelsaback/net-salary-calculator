@@ -6,20 +6,20 @@ import {
   Sickness,
   B2BTax,
   Period,
-} from '../interfaces';
+} from '../../../web/src/interfaces';
 import {
   calcHealthDeductibleList,
   calcTaxBaseList,
   calcProgressiveTaxList,
   roundNumber,
-} from './base-calculator';
+} from './base-calculator-model';
 import { compose } from 'redux';
 import {
   RATE_19,
   NORMAL_ZUS,
   SMALL_ZUS,
   HEALTH_INSURANCE,
-} from '../helpers/consts';
+} from '../../../web/src/helpers/consts';
 
 const evalZUS = (
   zus: ZUS,

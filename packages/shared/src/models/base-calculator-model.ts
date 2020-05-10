@@ -6,7 +6,7 @@ import {
   RATE_32,
   HEALTH_DEDUCTIBLE_RATE,
   HEALTH_CONTRIBUTION_RATE,
-} from '../helpers/consts';
+} from '../../../web/src/helpers/consts';
 
 export const roundNumber = (number: number, decimals: number): number => {
   return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals);

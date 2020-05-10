@@ -19,13 +19,13 @@ import {
 } from '../redux/actions';
 import { ContractType, IUOPParams, IB2BParams } from '../interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateUOPSalary } from '../models/uop-calculator';
+import { calculateUOPSalary } from '@nsc/shared/src/models/uop-calculator-model';
 import {
   selectUOPParams,
   selectB2BParams,
   selectShowResults,
 } from '../helpers/selectors';
-import { calculateB2BSalary } from '../models/b2b-calculator';
+import { calculateB2BSalary } from '@nsc/shared/src/models/b2b-calculator-model';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
