@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "keyofStringsOnly": true,
+    "lib": ["dom", "esnext"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "outDir": "./dist/",
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "skipLibCheck": true
+  }
+}
