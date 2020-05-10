@@ -16,6 +16,9 @@ module.exports = {
       {
         test: /\.(j|t)sx?$/,
         loader: 'babel-loader',
+        options: {
+          rootMode: 'upward',
+        },
         exclude: /node_modules/,
       },
     ],
