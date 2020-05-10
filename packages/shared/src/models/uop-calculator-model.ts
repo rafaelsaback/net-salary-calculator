@@ -4,7 +4,7 @@ import {
   IUOPParams,
   Period,
 } from '../../../web/src/interfaces';
-import { compose } from 'redux';
+import flowRight from 'lodash-es/flowRight';
 import {
   ANNUAL_LIMIT,
   PENSION_RATE,
@@ -154,7 +154,7 @@ const calcMonthlyGrossSalary = (
 };
 
 export const calculateUOPSalary = (uopParams: IUOPParams): IUOPSalaryResults =>
-  compose(
+  flowRight(
     calcEndSalary,
     calcProgressiveTax,
     calcTaxBase,

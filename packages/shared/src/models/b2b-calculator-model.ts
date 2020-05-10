@@ -13,7 +13,7 @@ import {
   calcProgressiveTaxList,
   roundNumber,
 } from './base-calculator-model';
-import { compose } from 'redux';
+import flowRight from 'lodash-es/flowRight';
 import {
   RATE_19,
   NORMAL_ZUS,
@@ -220,7 +220,7 @@ const calcMonthlyGrossSalary = (
 };
 
 export const calculateB2BSalary = (b2bParams: IB2BParams): IB2BSalaryResults =>
-  compose(
+  flowRight(
     calcEndSalary,
     calcTax(b2bParams),
     calcTaxBase(b2bParams),
