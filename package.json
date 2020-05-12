@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "start:web": "cd packages/web && npm start",
-    "clean:all": "rm -rf node_modules && lerna clean"
+    "start:mobile": "cd packages/mobile && npm start",
+    "clean:all": "rm -rf node_modules && lerna clean -y",
+    "install:all": "npm install && lerna bootstrap"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
