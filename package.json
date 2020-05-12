@@ -5,7 +5,7 @@
     "start:web": "cd packages/web && npm start",
     "start:mobile": "cd packages/mobile && npm start",
     "clean:all": "rm -rf node_modules && lerna clean -y",
-    "install:all": "npm install && lerna bootstrap && rn-link",
+    "install:all": "npm install && lerna bootstrap && npm run rn-link",
     "rn-link": "cd packages/mobile && npx react-native link"
   },
   "devDependencies": {
