@@ -1,12 +1,27 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import React from 'react';
-import styles from './app-entry.style';
+import { Container, Content, Tab, Tabs } from 'native-base';
+
+const styles = StyleSheet.create({
+  mainContainer: { paddingTop: 25 },
+});
 
 const AppEntry: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <Container style={styles.mainContainer}>
+      <Tabs scrollWithoutAnimation tabBarPosition={'bottom'}>
+        <Tab heading="Umowa o Pracę">
+          <Content>
+            <Text>Umowa o pracę</Text>
+          </Content>
+        </Tab>
+        <Tab heading="B2B Contract">
+          <Content>
+            <Text>B2B AAAA Contract</Text>
+          </Content>
+        </Tab>
+      </Tabs>
+    </Container>
   );
 };
 
