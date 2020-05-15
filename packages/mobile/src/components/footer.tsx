@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   footer: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Footer = () => (
+export const Footer: React.FC = () => (
   <View style={styles.footer}>
     <Text>ADS</Text>
   </View>

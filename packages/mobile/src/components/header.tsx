@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   header: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Header = () => (
+export const Header: React.FC = () => (
   <View style={styles.header}>
     <Text>Header</Text>
   </View>

@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Body } from './components/body';
+import { SalaryInputContainer } from './components/salary-input-container';
+import { ContractSelector } from './components/contract-selector';
 
 const styles = StyleSheet.create({
   mainContainer: { display: 'flex', flex: 1 },
@@ -29,7 +31,8 @@ const AppEntry: React.FC = () => {
       <View style={styles.contentContainer}>
         <Header />
         <Body>
-          <Text>Body</Text>
+          <SalaryInputContainer />
+          <ContractSelector />
         </Body>
         <Footer />
       </View>

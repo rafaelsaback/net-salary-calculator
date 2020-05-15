@@ -1,8 +1,13 @@
-import { StyleSheet, View } from 'react-native';
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
-  body: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  body: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    paddingVertical: 10,
+  },
 });
 
 export const Body: React.FC = ({ children }) => (
