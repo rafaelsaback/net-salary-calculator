@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from './button';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 10,
     backgroundColor: 'white',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     shadowOpacity: 0.25,
     shadowRadius: 4,
@@ -17,5 +18,12 @@ const styles = StyleSheet.create({
 export const SalaryInputContainer: React.FC = () => (
   <View style={styles.container}>
     <Text>Gross Salary</Text>
+    <Text>Salary Input</Text>
+    <Text>Period Selector</Text>
+    <Button
+      onPress={() => {
+        return;
+      }}
+    />
   </View>
 );

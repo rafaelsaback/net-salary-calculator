@@ -1,12 +1,14 @@
-import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import { Header } from './components/header';
-import { Footer } from './components/footer';
-import { Body } from './components/body';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/home-screen/home-screen';
+import { appTheme } from './theme';
+import { ReactNavHeader } from './components/header';
+import { Footer } from './components/footer';
 
 const styles = StyleSheet.create({
-  mainContainer: { display: 'flex', flex: 1 },
+  mainContainer: { flex: 1 },
   backgroundContainer: {
     position: 'absolute',
     top: 0,
@@ -20,6 +22,8 @@ const styles = StyleSheet.create({
   footer: { backgroundColor: 'rgba(220, 20, 60, 0.1)' },
 });
 
+const { Navigator, Screen } = createStackNavigator();
+
 const AppEntry: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
@@ -27,13 +31,16 @@ const AppEntry: React.FC = () => {
         <View style={styles.whiteBackground} />
         <View style={styles.redBackground} />
       </View>
-      <View style={styles.contentContainer}>
-        <Header />
-        <Body>
-          <HomeScreen />
-        </Body>
-        <Footer />
-      </View>
+      <NavigationContainer theme={appTheme}>
+        <Navigator initialRouteName="Home">
+          <Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: '', header: ReactNavHeader }}
+          />
+        </Navigator>
+      </NavigationContainer>
+      <Footer />
     </View>
   );
 };

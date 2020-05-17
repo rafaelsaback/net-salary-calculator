@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackHeaderProps } from '@react-navigation/stack';
 
 const styles = StyleSheet.create({
   header: {
@@ -17,3 +18,5 @@ export const Header: React.FC = () => (
     <Text>Header</Text>
   </View>
 );
+
+export const ReactNavHeader: React.FC<StackHeaderProps> = () => <Header />;
