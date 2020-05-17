@@ -5,10 +5,7 @@ import { B2BSelector } from './b2b-selector';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 30,
   },
 });
 

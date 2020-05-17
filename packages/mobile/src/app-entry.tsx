@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/home-screen/home-screen';
-import { appTheme } from './theme';
+import { appThemeReactNavigation } from './theme';
 import { ReactNavHeader } from './components/header';
 import { Footer } from './components/footer';
 
@@ -31,7 +31,7 @@ const AppEntry: React.FC = () => {
         <View style={styles.whiteBackground} />
         <View style={styles.redBackground} />
       </View>
-      <NavigationContainer theme={appTheme}>
+      <NavigationContainer theme={appThemeReactNavigation}>
         <Navigator initialRouteName="Home">
           <Screen
             name="Home"

@@ -1,17 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { appTheme } from '../theme';
+import { appTheme, appThemeReactNavigation } from '../theme';
 
 const styles = StyleSheet.create({
   button: {
+    justifyContent: 'center',
+    alignSelf: 'center',
     height: 50,
     width: 250,
-    backgroundColor: appTheme.colors.primary,
-    justifyContent: 'center',
-    borderRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    backgroundColor: appThemeReactNavigation.colors.primary,
+    borderRadius: appTheme.borderRadius,
+    ...appTheme.btnBackgroundShadow,
   },
   buttonText: {
     color: 'white',
