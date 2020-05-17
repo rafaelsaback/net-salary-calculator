@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   },
   currency: {
     flex: 1,
+    marginLeft: 5,
     color: appTheme.primaryTextColor,
     fontWeight: 'bold',
     fontSize: 18,
@@ -33,6 +34,6 @@ const styles = StyleSheet.create({
 export const SalaryInput: React.FC = () => (
   <View style={styles.container}>
     <Text style={styles.currency}>PLN</Text>
-    <Text style={styles.value}>100 000</Text>
+    <Text style={styles.value}>120 000</Text>
   </View>
 );

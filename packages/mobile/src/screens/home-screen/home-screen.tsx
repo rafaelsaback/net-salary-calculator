@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components/button';
 import { appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
+import { PeriodSelector } from '../../components/period-selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +29,7 @@ export const HomeScreen: React.FC = () => (
     <View style={styles.container}>
       <Text style={styles.grossSalary}>Gross Salary</Text>
       <SalaryInput />
-      <Text>Period Selector</Text>
+      <PeriodSelector />
       <ContractSelector />
       <Button
         onPress={() => {

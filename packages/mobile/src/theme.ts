@@ -16,6 +16,7 @@ export const appThemeReactNavigation = {
 export const appTheme = {
   primaryColor,
   primaryTextColor,
+  secondaryTextColor: '#818181',
   borderRadius: 10,
   btnBackgroundShadow: {
     shadowOffset: { width: 0, height: 4 },
