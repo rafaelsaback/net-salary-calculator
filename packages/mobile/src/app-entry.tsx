@@ -3,8 +3,7 @@ import React from 'react';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Body } from './components/body';
-import { SalaryInputContainer } from './components/salary-input-container';
-import { ContractSelector } from './components/contract-selector';
+import { HomeScreen } from './screens/home-screen/home-screen';
 
 const styles = StyleSheet.create({
   mainContainer: { display: 'flex', flex: 1 },
@@ -31,8 +30,7 @@ const AppEntry: React.FC = () => {
       <View style={styles.contentContainer}>
         <Header />
         <Body>
-          <SalaryInputContainer />
-          <ContractSelector />
+          <HomeScreen />
         </Body>
         <Footer />
       </View>
