@@ -1,4 +1,4 @@
-import { ContractSelector } from './components/contract-selector';
+import { ContractSelector, ContractType } from './components/contract-selector';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components/button';
@@ -46,11 +46,15 @@ export const HomeScreen: React.FC = () => (
     </View>
     <View>
       <ContractSelector
+        contractType={ContractType.Employment}
         textFirstLine="Employment Contract"
         textSecondLine="(Umowa o Pracę)"
         active
       />
-      <ContractSelector textFirstLine="B2B Contract" active={false} />
+      <ContractSelector
+        contractType={ContractType.B2B}
+        textFirstLine="B2B Contract"
+      />
     </View>
   </View>
 );

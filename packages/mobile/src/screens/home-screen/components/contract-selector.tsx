@@ -1,72 +1,75 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { appTheme } from '../../../theme';
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    marginHorizontal: 30,
-    height: 100,
-    marginVertical: 10,
-  },
-  textContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  activeText: {
-    color: appTheme.primaryBlackColor,
-    fontSize: 16,
-  },
-  activeImageContainer: {
-    flex: 1,
-    backgroundColor: '#E5F3FF',
-    borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
-  },
-  inactiveText: {
-    color: appTheme.secondaryBlackColor,
-    fontSize: 16,
-  },
-  inactiveImageContainer: {
-    flex: 1,
-    backgroundColor: '#F1F1F1',
-    borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
-  },
-});
+import React, { ReactNode } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { contractSelectorStyles } from './contract-selector.style';
 
 interface ContractSelector {
+  contractType: ContractType;
   textFirstLine: string;
-  textSecondLine?: string;
+  textSecondLine?: string | ReactNode;
   active?: boolean;
 }
 
+export enum ContractType {
+  Employment = 'Employment',
+  B2B = 'B2B',
+}
+
 export const ContractSelector: React.FC<ContractSelector> = ({
+  contractType,
   textFirstLine,
   textSecondLine,
   active,
-}) => (
-  <TouchableOpacity>
-    <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={active ? styles.activeText : styles.inactiveText}>
-          {textFirstLine}
-        </Text>
-        {textSecondLine && (
-          <Text style={active ? styles.activeText : styles.inactiveText}>
-            {textSecondLine}
-          </Text>
-        )}
+}) => {
+  const imgContainerStyle = StyleSheet.flatten([
+    contractSelectorStyles.imageContainer,
+    active
+      ? contractSelectorStyles.activeImageContainer
+      : contractSelectorStyles.inactiveImageContainer,
+  ]);
+
+  const textStyle = StyleSheet.flatten([
+    contractSelectorStyles.text,
+    active
+      ? contractSelectorStyles.activeText
+      : contractSelectorStyles.inactiveText,
+  ]);
+
+  const buildImgPath = active ? 'building.png' : 'building-grayscale.png';
+  const arrowImgPath = active
+    ? 'arrow-left-right.png'
+    : 'arrow-left-right-grayscale.png';
+  const employeeImgPath = active ? 'employee.png' : 'employee-grayscale.png';
+
+  return (
+    <TouchableOpacity>
+      <View style={contractSelectorStyles.container}>
+        <View style={contractSelectorStyles.textContainer}>
+          <Text style={textStyle}>{textFirstLine}</Text>
+          {textSecondLine && <Text style={textStyle}>{textSecondLine}</Text>}
+        </View>
+        <View style={imgContainerStyle}>
+          <Image
+            style={contractSelectorStyles.buildingImg}
+            source={require(`../../../../assets/${buildImgPath}`)}
+          />
+          <Image
+            style={contractSelectorStyles.arrowImg}
+            source={require(`../../../../assets/${arrowImgPath}`)}
+          />
+          {contractType === ContractType.B2B && (
+            <Image
+              style={contractSelectorStyles.buildingImg}
+              source={require(`../../../../assets/${buildImgPath}`)}
+            />
+          )}
+          {contractType === ContractType.Employment && (
+            <Image
+              style={contractSelectorStyles.buildingImg}
+              source={require(`../../../../assets/${employeeImgPath}`)}
+            />
+          )}
+        </View>
       </View>
-      <View
-        style={
-          active ? styles.activeImageContainer : styles.inactiveImageContainer
-        }
-      >
-        <Text>Icon</Text>
-      </View>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
