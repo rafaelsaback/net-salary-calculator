@@ -5,6 +5,7 @@ import { appTheme, appThemeReactNavigation } from '../theme';
 const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
     height: 50,
     width: 250,
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 25,
   },

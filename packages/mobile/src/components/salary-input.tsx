@@ -18,14 +18,16 @@ const styles = StyleSheet.create({
   },
   currency: {
     flex: 1,
+    textAlign: 'center',
     marginLeft: 5,
-    color: appTheme.primaryTextColor,
+    color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
     fontSize: 18,
   },
   value: {
     flex: 4,
-    color: appTheme.primaryTextColor,
+    textAlign: 'center',
+    color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
     fontSize: 34,
   },

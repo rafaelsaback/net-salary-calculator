@@ -15,22 +15,24 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 45,
     justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 1,
     borderRightWidth: 0,
-    borderColor: appTheme.secondaryTextColor,
+    borderColor: appTheme.secondaryBlackColor,
     borderTopLeftRadius: appTheme.borderRadius,
     borderBottomLeftRadius: appTheme.borderRadius,
   },
   monthlyText: {
     fontSize: 18,
-    color: appTheme.secondaryTextColor,
+    color: appTheme.secondaryBlackColor,
   },
   annuallyContainer: {
     flex: 1,
     height: 45,
     justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 2,
-    borderColor: appTheme.primaryColor,
+    borderColor: appTheme.primaryRedColor,
     borderTopRightRadius: appTheme.borderRadius,
     borderBottomRightRadius: appTheme.borderRadius,
     backgroundColor: 'rgba(220, 20, 60, 0.1)',
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
   annuallyText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: appTheme.primaryColor,
+    color: appTheme.primaryRedColor,
   },
 });
 

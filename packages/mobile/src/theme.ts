@@ -1,22 +1,22 @@
 import { DefaultTheme } from '@react-navigation/native';
 
-const primaryColor = '#DC143C';
-const primaryTextColor = '#515151';
+const primaryRedColor = '#DC143C';
+const primaryBlackColor = '#515151';
 
 export const appThemeReactNavigation = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: primaryColor,
-    text: primaryTextColor,
+    primary: primaryRedColor,
+    text: primaryBlackColor,
     background: 'transparent',
   },
 };
 
 export const appTheme = {
-  primaryColor,
-  primaryTextColor,
-  secondaryTextColor: '#818181',
+  primaryRedColor,
+  primaryBlackColor,
+  secondaryBlackColor: '#818181',
   borderRadius: 10,
   btnBackgroundShadow: {
     shadowOffset: { width: 0, height: 4 },
