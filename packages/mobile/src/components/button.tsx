@@ -1,16 +1,16 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { appTheme, appThemeReactNavigation } from '../theme';
-import { scale } from '../utils';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    height: scale(40),
+    height: '44rem',
     width: '50%',
-    maxWidth: 250,
+    maxWidth: '250rem',
     backgroundColor: appThemeReactNavigation.colors.primary,
     borderRadius: appTheme.borderRadius,
     ...appTheme.btnBackgroundShadow,
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: scale(22),
+    fontSize: '24rem',
   },
 });
 

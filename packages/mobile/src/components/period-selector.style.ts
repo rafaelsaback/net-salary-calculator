@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { scale } from '../utils';
 import { appTheme } from '../theme';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   container: {
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    height: scale(40),
+    height: '40rem',
     width: '60%',
     maxWidth: 250,
     borderRadius: appTheme.borderRadius,

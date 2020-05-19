@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/home-screen/home-screen';
 import { appThemeReactNavigation } from './theme';
 import { ReactNavHeader } from './components/header';
 import { Footer } from './components/footer';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -23,6 +24,8 @@ const styles = StyleSheet.create({
 });
 
 const { Navigator, Screen } = createStackNavigator();
+const entireScreenWidth = Dimensions.get('window').width;
+EStyleSheet.build({ $rem: entireScreenWidth / 380 });
 
 const AppEntry: React.FC = () => {
   return (

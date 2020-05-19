@@ -1,8 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { scale } from '../utils';
 import { appTheme } from '../theme';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export const styles = StyleSheet.create({
+export const styles = EStyleSheet.create({
   selectorContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -31,7 +30,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(220, 20, 60, 0.1)',
   },
   text: {
-    fontSize: scale(16),
+    fontSize: '16rem',
     color: appTheme.secondaryBlackColor,
   },
   activeText: {

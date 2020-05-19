@@ -64,7 +64,7 @@ export const ContractSelector: React.FC<ContractSelector> = ({
           )}
           {contractType === ContractType.Employment && (
             <Image
-              style={contractSelectorStyles.buildingImg}
+              style={contractSelectorStyles.employeeImg}
               source={require(`../../../../assets/${employeeImgPath}`)}
             />
           )}

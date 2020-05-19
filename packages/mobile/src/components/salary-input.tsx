@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { appTheme } from '../theme';
-import { scale } from '../utils';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: 'white',
-    height: scale(50),
+    height: '55rem',
     width: '80%',
     maxWidth: 250,
     borderRadius: appTheme.borderRadius,
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
-    fontSize: scale(18),
+    fontSize: '20rem',
   },
   value: {
     flex: 4,
     textAlign: 'center',
     color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
-    fontSize: scale(28),
+    fontSize: '30rem',
   },
 });
 

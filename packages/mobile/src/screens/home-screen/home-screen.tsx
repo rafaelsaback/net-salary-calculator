@@ -1,14 +1,14 @@
 import { ContractSelector, ContractType } from './components/contract-selector';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from '../../components/button';
 import { appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
-import { scale } from '../../utils';
 import { PeriodSelector } from '../../components/period-selector';
 import { Period } from '../../interfaces';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
   },
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   grossSalary: {
     textAlign: 'center',
     color: appThemeReactNavigation.colors.text,
-    fontSize: scale(24),
+    fontSize: '26rem',
     fontWeight: 'bold',
   },
   contractContainer: {

@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native';
 import { appTheme } from '../../../theme';
-import { scale } from '../../../utils';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-export const contractSelectorStyles = StyleSheet.create({
+export const contractSelectorStyles = EStyleSheet.create({
   container: {
     justifyContent: 'space-around',
     flexDirection: 'row',
     marginHorizontal: 30,
-    height: scale(100),
+    height: '110rem',
   },
   textContainer: {
     flex: 1.2,
@@ -29,7 +28,7 @@ export const contractSelectorStyles = StyleSheet.create({
     backgroundColor: '#F1F1F1',
   },
   text: {
-    fontSize: scale(13),
+    fontSize: '14rem',
   },
   activeText: {
     fontWeight: 'bold',
@@ -39,11 +38,15 @@ export const contractSelectorStyles = StyleSheet.create({
     color: appTheme.secondaryBlackColor,
   },
   buildingImg: {
-    height: scale(45),
-    width: scale(38),
+    height: '60rem',
+    width: '50rem',
+  },
+  employeeImg: {
+    height: '48rem',
+    width: '41rem',
   },
   arrowImg: {
-    height: scale(20),
-    width: scale(21),
+    height: '20rem',
+    width: '21rem',
   },
 });
