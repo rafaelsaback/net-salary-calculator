@@ -17,7 +17,7 @@ export const appTheme = {
   primaryRedColor,
   primaryBlackColor,
   secondaryBlackColor: '#818181',
-  borderRadius: 10,
+  borderRadius: 5,
   btnBackgroundShadow: {
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,

@@ -20,7 +20,6 @@ export const contractSelectorStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: appTheme.borderRadius,
-    tintColor: 'gray',
     ...appTheme.btnBackgroundShadow,
   },
   activeImageContainer: {

@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components/button';
 import { appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
-import { PeriodSelector } from '../../components/period-selector';
 import { scale } from '../../utils';
+import { PeriodSelector } from '../../components/period-selector';
+import { Period } from '../../interfaces';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +39,7 @@ export const HomeScreen: React.FC = () => (
     <View style={styles.salaryContainer}>
       <Text style={styles.grossSalary}>Gross Salary</Text>
       <SalaryInput />
-      <PeriodSelector />
+      <PeriodSelector period={Period.Annually} />
       <Button
         onPress={() => {
           return;
