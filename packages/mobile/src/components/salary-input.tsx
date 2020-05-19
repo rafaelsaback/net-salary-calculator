@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { appTheme } from '../theme';
+import { scale } from '../utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: 'white',
-    height: 60,
+    height: scale(50),
     width: '80%',
     maxWidth: 250,
     borderRadius: appTheme.borderRadius,
@@ -22,14 +23,14 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: scale(18),
   },
   value: {
     flex: 4,
     textAlign: 'center',
     color: appTheme.primaryBlackColor,
     fontWeight: 'bold',
-    fontSize: 34,
+    fontSize: scale(28),
   },
 });
 

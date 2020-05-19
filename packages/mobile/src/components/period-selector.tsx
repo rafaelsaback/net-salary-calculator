@@ -1,19 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { appTheme } from '../theme';
+import { scale } from '../utils';
 
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '80%',
+    width: '60%',
     maxWidth: 250,
     borderRadius: appTheme.borderRadius,
   },
   monthlyContainer: {
     flex: 1,
-    height: 45,
+    height: scale(40),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -23,12 +24,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: appTheme.borderRadius,
   },
   monthlyText: {
-    fontSize: 18,
+    fontSize: scale(16),
     color: appTheme.secondaryBlackColor,
   },
   annuallyContainer: {
     flex: 1,
-    height: 45,
+    height: scale(40),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(220, 20, 60, 0.1)',
   },
   annuallyText: {
-    fontSize: 18,
+    fontSize: scale(16),
     fontWeight: 'bold',
     color: appTheme.primaryRedColor,
   },

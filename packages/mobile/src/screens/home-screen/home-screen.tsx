@@ -5,6 +5,7 @@ import { Button } from '../../components/button';
 import { appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
 import { PeriodSelector } from '../../components/period-selector';
+import { scale } from '../../utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   grossSalary: {
     textAlign: 'center',
     color: appThemeReactNavigation.colors.text,
-    fontSize: 24,
+    fontSize: scale(24),
     fontWeight: 'bold',
   },
   contractContainer: {

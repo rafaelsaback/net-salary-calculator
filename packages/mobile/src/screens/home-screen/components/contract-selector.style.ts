@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { appTheme } from '../../../theme';
+import { scale } from '../../../utils';
 
 export const contractSelectorStyles = StyleSheet.create({
   container: {
     justifyContent: 'space-around',
     flexDirection: 'row',
     marginHorizontal: 30,
-    height: 100,
+    height: scale(100),
   },
   textContainer: {
     flex: 1.2,
@@ -29,7 +30,7 @@ export const contractSelectorStyles = StyleSheet.create({
     backgroundColor: '#F1F1F1',
   },
   text: {
-    fontSize: 16,
+    fontSize: scale(13),
   },
   activeText: {
     fontWeight: 'bold',
@@ -39,11 +40,11 @@ export const contractSelectorStyles = StyleSheet.create({
     color: appTheme.secondaryBlackColor,
   },
   buildingImg: {
-    height: 55,
-    width: 45,
+    height: scale(45),
+    width: scale(38),
   },
   arrowImg: {
-    height: 25,
-    width: 27,
+    height: scale(20),
+    width: scale(21),
   },
 });
