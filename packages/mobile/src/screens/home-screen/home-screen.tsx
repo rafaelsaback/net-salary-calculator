@@ -1,5 +1,5 @@
 import { ContractSelector, ContractType } from './components/contract-selector';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components/button';
 import { appThemeReactNavigation } from '../../theme';
@@ -34,29 +34,32 @@ const styles = StyleSheet.create({
   },
 });
 
-export const HomeScreen: React.FC = () => (
-  <View style={styles.container}>
-    <View style={styles.salaryContainer}>
-      <Text style={styles.grossSalary}>Gross Salary</Text>
-      <SalaryInput />
-      <PeriodSelector period={Period.Annually} />
-      <Button
-        onPress={() => {
-          return;
-        }}
-      />
+export const HomeScreen: React.FC = () => {
+  const [period, setPeriod] = useState<Period>(Period.Monthly);
+  return (
+    <View style={styles.container}>
+      <View style={styles.salaryContainer}>
+        <Text style={styles.grossSalary}>Gross Salary</Text>
+        <SalaryInput />
+        <PeriodSelector value={period} onChange={setPeriod} />
+        <Button
+          onPress={() => {
+            return;
+          }}
+        />
+      </View>
+      <View style={styles.contractContainer}>
+        <ContractSelector
+          contractType={ContractType.Employment}
+          textFirstLine="Employment Contract"
+          textSecondLine="(Umowa o Pracę)"
+          active
+        />
+        <ContractSelector
+          contractType={ContractType.B2B}
+          textFirstLine="B2B Contract"
+        />
+      </View>
     </View>
-    <View style={styles.contractContainer}>
-      <ContractSelector
-        contractType={ContractType.Employment}
-        textFirstLine="Employment Contract"
-        textSecondLine="(Umowa o Pracę)"
-        active
-      />
-      <ContractSelector
-        contractType={ContractType.B2B}
-        textFirstLine="B2B Contract"
-      />
-    </View>
-  </View>
-);
+  );
+};
