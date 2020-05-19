@@ -7,7 +7,6 @@ export const contractSelectorStyles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 30,
     height: 100,
-    marginVertical: 10,
   },
   textContainer: {
     flex: 1.2,

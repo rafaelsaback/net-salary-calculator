@@ -9,7 +9,6 @@ import { PeriodSelector } from '../../components/period-selector';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
   },
   salaryContainer: {
     flex: 1,
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     marginHorizontal: 30,
-    maxHeight: 300,
+    paddingVertical: 5,
   },
   grossSalary: {
     textAlign: 'center',
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
   },
   contractContainer: {
     flex: 1,
+    justifyContent: 'space-around',
   },
 });
 
@@ -44,7 +44,7 @@ export const HomeScreen: React.FC = () => (
         }}
       />
     </View>
-    <View>
+    <View style={styles.contractContainer}>
       <ContractSelector
         contractType={ContractType.Employment}
         textFirstLine="Employment Contract"
