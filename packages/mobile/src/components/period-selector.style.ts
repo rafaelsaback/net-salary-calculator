@@ -8,7 +8,6 @@ export const styles = EStyleSheet.create({
     justifyContent: 'center',
     height: '40rem',
     width: '60%',
-    maxWidth: 250,
     borderRadius: appTheme.borderRadius,
   },
 });

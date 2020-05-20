@@ -10,7 +10,6 @@ const styles = EStyleSheet.create({
     alignSelf: 'center',
     height: '44rem',
     width: '50%',
-    maxWidth: '250rem',
     backgroundColor: appThemeReactNavigation.colors.primary,
     borderRadius: appTheme.borderRadius,
     ...appTheme.btnBackgroundShadow,

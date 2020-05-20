@@ -13,7 +13,6 @@ const styles = EStyleSheet.create({
     backgroundColor: 'white',
     height: '55rem',
     width: '80%',
-    maxWidth: 250,
     borderRadius: appTheme.borderRadius,
     shadowOpacity: 0.25,
     shadowRadius: 10,
@@ -24,7 +23,7 @@ const styles = EStyleSheet.create({
     marginLeft: '5rem',
     color: appTheme.secondaryBlackColor,
     fontWeight: 'bold',
-    fontSize: '20rem',
+    fontSize: '18rem',
   },
   valueContainer: {
     flex: 4,
@@ -54,7 +53,7 @@ export const SalaryInput: React.FC = () => (
     <TouchableWithoutFeedback onPress={() => console.log('Clearing salary...')}>
       <View style={styles.closeIcon}>
         <AntDesign
-          size={EStyleSheet.value('24rem')}
+          size={EStyleSheet.value('22rem')}
           name="close"
           color={appTheme.secondaryBlackColor}
         />
