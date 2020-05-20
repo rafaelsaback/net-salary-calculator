@@ -2,7 +2,7 @@ import { ContractSelector, ContractType } from './components/contract-selector';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button } from '../../components/button';
-import { appThemeReactNavigation } from '../../theme';
+import { appTheme, appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
 import { PeriodSelector } from '../../components/period-selector';
 import { Period } from '../../interfaces';
@@ -17,10 +17,9 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-around',
     borderRadius: 10,
     backgroundColor: 'white',
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
     marginHorizontal: 30,
     paddingVertical: 5,
+    ...appTheme.containerBackgroundShadow,
   },
   grossSalary: {
     textAlign: 'center',

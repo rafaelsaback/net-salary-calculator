@@ -22,9 +22,11 @@ export const appTheme = {
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 5,
   },
   containerBackgroundShadow: {
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 5,
   },
 };
