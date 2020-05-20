@@ -1,63 +1,45 @@
-import React from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import React, { useState } from 'react';
+import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { appTheme } from '../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
+import { styles } from './salary-input.style';
+import { InputModal } from './input-modal';
 
-const styles = EStyleSheet.create({
-  container: {
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: 'white',
-    height: '55rem',
-    width: '80%',
-    borderRadius: appTheme.borderRadius,
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-  },
-  currency: {
-    flex: 1,
-    textAlign: 'center',
-    marginLeft: '5rem',
-    color: appTheme.secondaryBlackColor,
-    fontWeight: 'bold',
-    fontSize: '18rem',
-  },
-  valueContainer: {
-    flex: 4,
-    alignItems: 'center',
-  },
-  value: {
-    color: appTheme.primaryBlackColor,
-    fontWeight: 'bold',
-    fontSize: '30rem',
-  },
-  closeIcon: {
-    padding: '5rem',
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export const SalaryInput: React.FC = () => (
-  <View style={styles.container}>
-    <Text style={styles.currency}>PLN</Text>
-    <TouchableWithoutFeedback onPress={() => console.log('Changing salary...')}>
-      <View style={styles.valueContainer}>
-        <Text style={styles.value}>120 000</Text>
-      </View>
-    </TouchableWithoutFeedback>
-    <TouchableWithoutFeedback onPress={() => console.log('Clearing salary...')}>
-      <View style={styles.closeIcon}>
-        <AntDesign
-          size={EStyleSheet.value('22rem')}
-          name="close"
-          color={appTheme.secondaryBlackColor}
+export const SalaryInput: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => setShowModal(false);
+  const [salary, setSalary] = useState('100 000');
+  return (
+    <View style={styles.container}>
+      <Modal
+        animationType="fade"
+        presentationStyle="fullScreen"
+        visible={showModal}
+        transparent={false}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <InputModal
+          defaultValue={salary}
+          closeModal={closeModal}
+          setValue={setSalary}
         />
-      </View>
-    </TouchableWithoutFeedback>
-  </View>
-);
+      </Modal>
+      <Text style={styles.currency}>PLN</Text>
+      <TouchableWithoutFeedback onPress={() => setShowModal(true)}>
+        <View style={styles.valueContainer}>
+          <Text style={styles.value}>{salary}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => setShowModal(true)}>
+        <View style={styles.closeIcon}>
+          <AntDesign
+            size={EStyleSheet.value('22rem')}
+            name="close"
+            color={appTheme.secondaryBlackColor}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+  );
+};
