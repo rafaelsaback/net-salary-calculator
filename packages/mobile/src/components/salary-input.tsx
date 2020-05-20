@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { Modal, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Platform, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { appTheme } from '../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
 import { InputModal } from './input-modal';
+
+const Modal = Platform.select({
+  ios: () => require('react-native').Modal,
+  android: () => require('react-native').Modal,
+  web: () => require('modal-react-native-web'),
+})?.();
+
+if (Platform.OS === 'web') {
+  Modal.setAppElement('body'); // Avoids Portal's warning message
+}
 
 export const SalaryInput: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
