@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import React, { Dispatch } from 'react';
 import { styles } from './period-selector.style';
 import { isAnnually, isMonthly, Period } from '../interfaces';
-import { SelectorOption, SelectorPosition } from './selector-option';
+import { SelectorOption } from './selector-option';
 
 interface PeriodSelectorProps {
   value: Period;
@@ -22,13 +22,13 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
         text="Monthly"
         active={isMonthly(value)}
         onPress={onMonthlyClick}
-        position={SelectorPosition.Left}
+        atLeftHandSide
       />
       <SelectorOption
         text="Annually"
         active={isAnnually(value)}
         onPress={onAnnuallyClick}
-        position={SelectorPosition.Right}
+        atRightHandSide
       />
     </View>
   );

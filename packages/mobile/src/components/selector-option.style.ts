@@ -9,23 +9,15 @@ export const styles = EStyleSheet.create({
     borderWidth: 1,
     borderColor: appTheme.secondaryBlackColor,
   },
-  leftContainer: {
-    borderRightWidth: 0,
+  leftBorderRadius: {
     borderTopLeftRadius: appTheme.borderRadius,
     borderBottomLeftRadius: appTheme.borderRadius,
   },
-  middleContainer: {
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-  },
-  rightContainer: {
-    borderLeftWidth: 0,
+  rightBorderRadius: {
     borderTopRightRadius: appTheme.borderRadius,
     borderBottomRightRadius: appTheme.borderRadius,
   },
   activeContainer: {
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
     borderColor: appTheme.primaryRedColor,
     backgroundColor: 'rgba(220, 20, 60, 0.1)',
   },
