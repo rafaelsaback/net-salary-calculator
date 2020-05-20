@@ -34,11 +34,15 @@ export const ContractSelector: React.FC<ContractSelector> = ({
       : contractSelectorStyles.inactiveText,
   ]);
 
-  const buildImgPath = active ? 'building.png' : 'building-grayscale.png';
+  const buildImgPath = active
+    ? require('@assets/building.png')
+    : require('@assets/building-grayscale.png');
   const arrowImgPath = active
-    ? 'arrow-left-right.png'
-    : 'arrow-left-right-grayscale.png';
-  const employeeImgPath = active ? 'employee.png' : 'employee-grayscale.png';
+    ? require('@assets/arrow-left-right.png')
+    : require('@assets/arrow-left-right-grayscale.png');
+  const employeeImgPath = active
+    ? require('@assets/employee.png')
+    : require('@assets/employee-grayscale.png');
 
   return (
     <TouchableOpacity>
@@ -50,22 +54,22 @@ export const ContractSelector: React.FC<ContractSelector> = ({
         <View style={imgContainerStyle}>
           <Image
             style={contractSelectorStyles.buildingImg}
-            source={require(`../../../../assets/${buildImgPath}`)}
+            source={buildImgPath}
           />
           <Image
             style={contractSelectorStyles.arrowImg}
-            source={require(`../../../../assets/${arrowImgPath}`)}
+            source={arrowImgPath}
           />
           {contractType === ContractType.B2B && (
             <Image
               style={contractSelectorStyles.buildingImg}
-              source={require(`../../../../assets/${buildImgPath}`)}
+              source={buildImgPath}
             />
           )}
           {contractType === ContractType.Employment && (
             <Image
               style={contractSelectorStyles.employeeImg}
-              source={require(`../../../../assets/${employeeImgPath}`)}
+              source={employeeImgPath}
             />
           )}
         </View>
