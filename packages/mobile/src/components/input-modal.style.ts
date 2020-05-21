@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { appTheme } from '../theme';
 
 export const closeIconSize = '40rem';
 export const styles = EStyleSheet.create({
@@ -13,19 +14,25 @@ export const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  inputContainer: {
+  flexContainer: {
     flex: 1,
+    justifyContent: 'center',
+    backgroundColor: appTheme.secondaryRedColor,
+  },
+  inputContainer: {
     flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: appTheme.borderRadius,
+    marginHorizontal: '10rem',
   },
   textContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    // Centralizes input number despite the close icon
-    marginLeft: '$closeIconSize + $closeIconPadding',
   },
   text: {
+    textAlign: 'center',
     fontSize: '60rem',
+    color: appTheme.primaryBlackColor,
   },
   closeIcon: {
     paddingRight: '$closeIconPadding',

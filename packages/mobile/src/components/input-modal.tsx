@@ -52,26 +52,28 @@ export const InputModal: React.FC<InputModalProps> = ({
           />
         </View>
       </View>
-      <View style={styles.inputContainer}>
-        <View style={styles.textContainer}>
-          <TextInput
-            value={tempValue}
-            onChangeText={setTempValue}
-            keyboardType="numeric"
-            style={styles.text}
-            onSubmitEditing={saveAndClose}
-            autoFocus
-          />
-        </View>
-        <TouchableWithoutFeedback onPress={() => setTempValue('')}>
-          <View style={styles.closeIcon}>
-            <AntDesign
-              size={EStyleSheet.value(closeIconSize)}
-              name="close"
-              color={appTheme.secondaryBlackColor}
+      <View style={styles.flexContainer}>
+        <View style={styles.inputContainer}>
+          <View style={styles.textContainer}>
+            <TextInput
+              value={tempValue}
+              onChangeText={setTempValue}
+              keyboardType="numeric"
+              style={styles.text}
+              onSubmitEditing={saveAndClose}
+              autoFocus
             />
           </View>
-        </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setTempValue('')}>
+            <View style={styles.closeIcon}>
+              <AntDesign
+                size={EStyleSheet.value(closeIconSize)}
+                name="close"
+                color={appTheme.secondaryBlackColor}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
