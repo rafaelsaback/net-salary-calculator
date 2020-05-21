@@ -47,10 +47,6 @@ export const ContractSelector: React.FC<ContractSelector> = ({
   return (
     <TouchableOpacity>
       <View style={contractSelectorStyles.container}>
-        <View style={contractSelectorStyles.textContainer}>
-          <Text style={textStyle}>{textFirstLine}</Text>
-          {textSecondLine && <Text style={textStyle}>{textSecondLine}</Text>}
-        </View>
         <View style={imgContainerStyle}>
           <Image
             style={contractSelectorStyles.buildingImg}
@@ -72,6 +68,10 @@ export const ContractSelector: React.FC<ContractSelector> = ({
               source={employeeImgPath}
             />
           )}
+        </View>
+        <View style={contractSelectorStyles.textContainer}>
+          <Text style={textStyle}>{textFirstLine}</Text>
+          {textSecondLine && <Text style={textStyle}>{textSecondLine}</Text>}
         </View>
       </View>
     </TouchableOpacity>
