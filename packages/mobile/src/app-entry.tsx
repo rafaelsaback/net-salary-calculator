@@ -2,44 +2,45 @@ import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from './screens/home-screen/home-screen';
+import { HomeScreen } from './screens/home/home-screen';
 import { appThemeReactNavigation } from './theme';
-import { ReactNavHeader } from './components/header';
 import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { ResultsScreen } from './screens/results/results-screen';
+import { RootStackParamList, ScreenName } from './types';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
-  backgroundContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-  },
-  whiteBackground: { flex: 1, backgroundColor: 'white' },
-  redBackground: { flex: 4, backgroundColor: 'rgba(220, 20, 60, 0.1)' },
-  contentContainer: { flex: 1, backgroundColor: 'transparent', paddingTop: 25 },
-  footer: { backgroundColor: 'rgba(220, 20, 60, 0.1)' },
 });
 
-const { Navigator, Screen } = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 const entireScreenWidth = Dimensions.get('window').width;
 EStyleSheet.build({ $rem: entireScreenWidth / 380 });
 
 const AppEntry: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.backgroundContainer}>
-        <View style={styles.whiteBackground} />
-        <View style={styles.redBackground} />
-      </View>
       <NavigationContainer theme={appThemeReactNavigation}>
-        <Navigator initialRouteName="Home">
+        <Navigator
+          initialRouteName={ScreenName.Home}
+          screenOptions={{
+            headerTitleAlign: 'center',
+            headerStyle: { height: EStyleSheet.value('70rem') },
+          }}
+        >
           <Screen
-            name="Home"
+            name={ScreenName.Home}
             component={HomeScreen}
-            options={{ title: '', header: ReactNavHeader }}
+            options={{
+              title: 'Home',
+            }}
+          />
+          <Screen
+            name={ScreenName.Results}
+            component={ResultsScreen}
+            options={{
+              title: 'Results',
+            }}
           />
         </Navigator>
       </NavigationContainer>

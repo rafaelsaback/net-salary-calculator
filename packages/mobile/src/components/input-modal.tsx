@@ -59,7 +59,7 @@ export const InputModal: React.FC<InputModalProps> = ({
             <View style={styles.backIcon}>
               <Ionicons
                 name="md-arrow-back"
-                size={EStyleSheet.value('50rem')}
+                size={EStyleSheet.value('30rem')}
                 color={appTheme.primaryRedColor}
               />
             </View>

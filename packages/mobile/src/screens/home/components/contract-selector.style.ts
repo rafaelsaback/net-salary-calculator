@@ -6,7 +6,7 @@ export const contractSelectorStyles = EStyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     marginHorizontal: 30,
-    height: '110rem',
+    height: '90rem',
   },
   textContainer: {
     flex: 1.2,
@@ -38,15 +38,15 @@ export const contractSelectorStyles = EStyleSheet.create({
     color: appTheme.secondaryBlackColor,
   },
   buildingImg: {
-    height: '60rem',
-    width: '50rem',
+    height: '48rem',
+    width: '40rem',
   },
   employeeImg: {
-    height: '48rem',
-    width: '41rem',
+    height: '38rem',
+    width: '33rem',
   },
   arrowImg: {
-    height: '20rem',
-    width: '21rem',
+    height: '15rem',
+    width: '15rem',
   },
 });

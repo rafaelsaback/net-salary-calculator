@@ -2,38 +2,23 @@ import { ContractSelector, ContractType } from './components/contract-selector';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, ButtonSize } from '../../components/button';
-import { appTheme, appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
 import { PeriodSelector } from '../../components/period-selector';
 import { Period } from '../../interfaces';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { styles } from './home-screen.style';
+import { RootStackParamList, ScreenName } from '../../types';
 
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  salaryContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
-    borderRadius: 10,
-    backgroundColor: 'white',
-    marginHorizontal: 30,
-    paddingVertical: 5,
-    ...appTheme.containerBackgroundShadow,
-  },
-  grossSalary: {
-    textAlign: 'center',
-    color: appThemeReactNavigation.colors.text,
-    fontSize: '26rem',
-    fontWeight: 'bold',
-  },
-  contractContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
-  },
-});
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  ScreenName.Home
+>;
 
-export const HomeScreen: React.FC = () => {
+interface HomeScreenProps {
+  navigation: ProfileScreenNavigationProp;
+}
+
+export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
   const [period, setPeriod] = useState<Period>(Period.Monthly);
   return (
     <View style={styles.container}>
@@ -43,9 +28,7 @@ export const HomeScreen: React.FC = () => {
         <PeriodSelector value={period} onChange={setPeriod} />
         <Button
           text="Calculate"
-          onPress={() => {
-            return;
-          }}
+          onPress={() => props.navigation.navigate(ScreenName.Results)}
           size={ButtonSize.Large}
         />
       </View>

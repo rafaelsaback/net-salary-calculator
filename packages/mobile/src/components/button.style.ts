@@ -15,17 +15,17 @@ export const styles = EStyleSheet.create({
     fontWeight: 'bold',
   },
   smallButton: {
-    width: '80rem',
-    height: '36rem',
+    width: '70rem',
+    height: '30rem',
   },
   smallText: {
-    fontSize: '16rem',
+    fontSize: '14rem',
   },
   largeButton: {
-    width: '160rem',
-    height: '44rem',
+    width: '140rem',
+    height: '40rem',
   },
   largeText: {
-    fontSize: '24rem',
+    fontSize: '18rem',
   },
 });

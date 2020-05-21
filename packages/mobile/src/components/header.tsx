@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { StackHeaderProps } from '@react-navigation/stack';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { appTheme } from '../theme';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   header: {
-    backgroundColor: 'transparent',
-    height: 50,
+    backgroundColor: 'white',
+    height: '60rem',
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    ...appTheme.btnBackgroundShadow,
   },
 });
 

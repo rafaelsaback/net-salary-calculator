@@ -40,6 +40,6 @@ export const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  backIcon: { paddingVertical: '10rem', paddingHorizontal: '15rem' },
-  saveButton: { marginTop: '15rem', marginRight: '15rem' },
+  backIcon: { paddingVertical: '9rem', paddingHorizontal: '15rem' },
+  saveButton: { marginTop: '10rem', marginRight: '15rem' },
 });
