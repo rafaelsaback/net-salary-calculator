@@ -1,34 +1,37 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { appTheme, appThemeReactNavigation } from '../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { styles } from './button.style';
 
-const styles = EStyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: '44rem',
-    width: '50%',
-    backgroundColor: appThemeReactNavigation.colors.primary,
-    borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '24rem',
-  },
-});
+export enum ButtonSize {
+  Small = 'Small',
+  Medium = 'Medium',
+  Large = 'Large',
+}
 
 interface ButtonProps {
+  size: ButtonSize;
   onPress(): void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={styles.button}>
-      <Text style={styles.buttonText}>Calculate</Text>
-    </View>
-  </TouchableOpacity>
-);
+export const Button: React.FC<ButtonProps> = ({ onPress, size }) => {
+  const buttonStyle = EStyleSheet.flatten([
+    styles.button,
+    size === ButtonSize.Small && {},
+    size === ButtonSize.Medium && {},
+    size === ButtonSize.Large && styles.largeButton,
+  ]);
+  const textStyle = EStyleSheet.flatten([
+    styles.text,
+    size === ButtonSize.Small && {},
+    size === ButtonSize.Medium && {},
+    size === ButtonSize.Large && styles.largeText,
+  ]);
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={buttonStyle}>
+        <Text style={textStyle}>Calculate</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};

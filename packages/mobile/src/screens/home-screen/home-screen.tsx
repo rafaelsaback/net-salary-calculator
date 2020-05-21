@@ -1,7 +1,7 @@
 import { ContractSelector, ContractType } from './components/contract-selector';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { Button } from '../../components/button';
+import { Button, ButtonSize } from '../../components/button';
 import { appTheme, appThemeReactNavigation } from '../../theme';
 import { SalaryInput } from '../../components/salary-input';
 import { PeriodSelector } from '../../components/period-selector';
@@ -45,6 +45,7 @@ export const HomeScreen: React.FC = () => {
           onPress={() => {
             return;
           }}
+          size={ButtonSize.Large}
         />
       </View>
       <View style={styles.contractContainer}>
