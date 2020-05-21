@@ -38,7 +38,7 @@ export const InputModal: React.FC<InputModalProps> = ({
         <TouchableWithoutFeedback onPress={closeModal}>
           <View style={styles.backIcon}>
             <Ionicons
-              name="md-arrow-round-back"
+              name="md-arrow-back"
               size={EStyleSheet.value('50rem')}
               color={appTheme.primaryRedColor}
             />
