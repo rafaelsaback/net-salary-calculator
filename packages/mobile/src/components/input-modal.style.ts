@@ -21,8 +21,7 @@ export const styles = EStyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: appTheme.secondaryBlackColor,
+    backgroundColor: 'white',
     borderRadius: appTheme.borderRadius,
     marginHorizontal: '10rem',
   },

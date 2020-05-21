@@ -13,14 +13,26 @@ import { appTheme } from '../theme';
 import { closeIconSize, styles } from './input-modal.style';
 import { Button, ButtonSize } from './button';
 
+const Modal = Platform.select({
+  ios: () => require('react-native').Modal,
+  android: () => require('react-native').Modal,
+  web: () => require('modal-react-native-web'),
+})?.();
+
+if (Platform.OS === 'web') {
+  Modal.setAppElement('body'); // Avoids Portal's warning message
+}
+
 interface InputModalProps {
   defaultValue: string;
+  visible: boolean;
   setValue: Dispatch<string>;
   closeModal(): void;
 }
 
 export const InputModal: React.FC<InputModalProps> = ({
   defaultValue,
+  visible,
   setValue,
   closeModal,
 }) => {
@@ -30,51 +42,67 @@ export const InputModal: React.FC<InputModalProps> = ({
     closeModal();
   }, [closeModal, setValue, tempValue]);
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.select({ ios: 'padding', android: 'height' })}
-      style={styles.container}
+    <Modal
+      animationType="fade"
+      presentationStyle="fullScreen"
+      visible={visible}
+      transparent={false}
+      onRequestClose={closeModal}
     >
-      <View style={styles.topRowContainer}>
-        <TouchableWithoutFeedback onPress={closeModal}>
-          <View style={styles.backIcon}>
-            <Ionicons
-              name="md-arrow-back"
-              size={EStyleSheet.value('50rem')}
-              color={appTheme.primaryRedColor}
-            />
-          </View>
-        </TouchableWithoutFeedback>
-        <View style={styles.saveButton}>
-          <Button
-            text="Confirm"
-            onPress={saveAndClose}
-            size={ButtonSize.Small}
-          />
-        </View>
-      </View>
-      <View style={styles.flexContainer}>
-        <View style={styles.inputContainer}>
-          <View style={styles.textContainer}>
-            <TextInput
-              value={tempValue}
-              onChangeText={setTempValue}
-              keyboardType="numeric"
-              style={styles.text}
-              onSubmitEditing={saveAndClose}
-              autoFocus
-            />
-          </View>
-          <TouchableWithoutFeedback onPress={() => setTempValue('')}>
-            <View style={styles.closeIcon}>
-              <AntDesign
-                size={EStyleSheet.value(closeIconSize)}
-                name="close"
-                color={appTheme.secondaryBlackColor}
+      <KeyboardAvoidingView
+        behavior={Platform.select({ ios: 'padding', android: 'height' })}
+        style={styles.container}
+      >
+        <View style={styles.topRowContainer}>
+          {/* Go back button */}
+          <TouchableWithoutFeedback onPress={closeModal}>
+            <View style={styles.backIcon}>
+              <Ionicons
+                name="md-arrow-back"
+                size={EStyleSheet.value('50rem')}
+                color={appTheme.primaryRedColor}
               />
             </View>
           </TouchableWithoutFeedback>
+
+          {/* Confirm button */}
+          <View style={styles.saveButton}>
+            <Button
+              text="Confirm"
+              onPress={saveAndClose}
+              size={ButtonSize.Small}
+            />
+          </View>
         </View>
-      </View>
-    </KeyboardAvoidingView>
+
+        {/* Text input + clear button */}
+        <View style={styles.flexContainer}>
+          <View style={styles.inputContainer}>
+            {/* Text input */}
+            <View style={styles.textContainer}>
+              <TextInput
+                value={tempValue}
+                onChangeText={setTempValue}
+                keyboardType="numeric"
+                style={styles.text}
+                onSubmitEditing={saveAndClose}
+                autoFocus
+              />
+            </View>
+
+            {/* Clear button */}
+            <TouchableWithoutFeedback onPress={() => setTempValue('')}>
+              <View style={styles.closeIcon}>
+                <AntDesign
+                  size={EStyleSheet.value(closeIconSize)}
+                  name="close"
+                  color={appTheme.secondaryBlackColor}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </Modal>
   );
 };

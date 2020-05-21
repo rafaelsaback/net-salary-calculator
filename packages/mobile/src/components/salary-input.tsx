@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
-import { Platform, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { appTheme } from '../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
 import { InputModal } from './input-modal';
-
-const Modal = Platform.select({
-  ios: () => require('react-native').Modal,
-  android: () => require('react-native').Modal,
-  web: () => require('modal-react-native-web'),
-})?.();
-
-if (Platform.OS === 'web') {
-  Modal.setAppElement('body'); // Avoids Portal's warning message
-}
 
 export const SalaryInput: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -32,19 +22,12 @@ export const SalaryInput: React.FC = () => {
   };
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="fade"
-        presentationStyle="fullScreen"
+      <InputModal
+        defaultValue={clearSalary ? '' : salary}
         visible={isModalVisible}
-        transparent={false}
-        onRequestClose={closeModal}
-      >
-        <InputModal
-          defaultValue={clearSalary ? '' : salary}
-          closeModal={closeModal}
-          setValue={setSalary}
-        />
-      </Modal>
+        closeModal={closeModal}
+        setValue={setSalary}
+      />
       <Text style={styles.currency}>PLN</Text>
       <TouchableWithoutFeedback onPress={showModal}>
         <View style={styles.valueContainer}>
