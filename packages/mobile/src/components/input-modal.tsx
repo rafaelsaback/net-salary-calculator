@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Dispatch, useCallback } from 'react';
+import { Dispatch, useCallback, useState } from 'react';
 import {
   KeyboardAvoidingView,
-  NativeSyntheticEvent,
   Platform,
   TextInput,
-  TextInputSubmitEditingEventData,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -25,31 +24,43 @@ export const InputModal: React.FC<InputModalProps> = ({
   setValue,
   closeModal,
 }) => {
-  const saveAndClose = useCallback(
-    (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-      setValue(event.nativeEvent.text);
-      closeModal();
-    },
-    [closeModal, setValue],
-  );
+  const [tempValue, setTempValue] = useState(defaultValue);
+  const saveAndClose = useCallback(() => {
+    setValue(tempValue);
+    closeModal();
+  }, [closeModal, setValue, tempValue]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.select({ ios: 'padding', android: 'height' })}
       style={styles.container}
     >
-      <TouchableWithoutFeedback onPress={() => closeModal()}>
-        <View style={styles.backIcon}>
-          <Ionicons
-            name="md-arrow-round-back"
-            size={EStyleSheet.value('50rem')}
-            color={appTheme.primaryRedColor}
-          />
+      <View style={styles.topRowContainer}>
+        <TouchableWithoutFeedback onPress={closeModal}>
+          <View style={styles.backIcon}>
+            <Ionicons
+              name="md-arrow-round-back"
+              size={EStyleSheet.value('50rem')}
+              color={appTheme.primaryRedColor}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.saveButton}>
+          <AntDesign.Button
+            name="save"
+            size={EStyleSheet.value('25rem')}
+            color="white"
+            style={{ backgroundColor: appTheme.primaryRedColor }}
+            onPress={saveAndClose}
+          >
+            Save
+          </AntDesign.Button>
         </View>
-      </TouchableWithoutFeedback>
+      </View>
       <View style={styles.inputContainer}>
         <View style={styles.textContainer}>
           <TextInput
-            defaultValue={defaultValue}
+            value={tempValue}
+            onChangeText={setTempValue}
             keyboardType="numeric"
             style={styles.text}
             onSubmitEditing={saveAndClose}

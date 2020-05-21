@@ -9,6 +9,10 @@ export const styles = EStyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  topRowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   inputContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -29,5 +33,6 @@ export const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  backIcon: { padding: '15rem' },
+  backIcon: { paddingVertical: '10rem', paddingHorizontal: '15rem' },
+  saveButton: { marginTop: '15rem', marginRight: '15rem' },
 });
