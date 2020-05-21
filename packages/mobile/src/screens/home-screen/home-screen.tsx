@@ -42,6 +42,7 @@ export const HomeScreen: React.FC = () => {
         <SalaryInput />
         <PeriodSelector value={period} onChange={setPeriod} />
         <Button
+          text="Calculate"
           onPress={() => {
             return;
           }}

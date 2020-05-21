@@ -11,26 +11,27 @@ export enum ButtonSize {
 
 interface ButtonProps {
   size: ButtonSize;
+  text: string;
   onPress(): void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onPress, size }) => {
+export const Button: React.FC<ButtonProps> = ({ text, size, onPress }) => {
   const buttonStyle = EStyleSheet.flatten([
     styles.button,
-    size === ButtonSize.Small && {},
+    size === ButtonSize.Small && styles.smallButton,
     size === ButtonSize.Medium && {},
     size === ButtonSize.Large && styles.largeButton,
   ]);
   const textStyle = EStyleSheet.flatten([
     styles.text,
-    size === ButtonSize.Small && {},
+    size === ButtonSize.Small && styles.smallText,
     size === ButtonSize.Medium && {},
     size === ButtonSize.Large && styles.largeText,
   ]);
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={buttonStyle}>
-        <Text style={textStyle}>Calculate</Text>
+        <Text style={textStyle}>{text}</Text>
       </View>
     </TouchableOpacity>
   );

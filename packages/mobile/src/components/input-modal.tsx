@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -12,6 +11,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { appTheme } from '../theme';
 import { closeIconSize, styles } from './input-modal.style';
+import { Button, ButtonSize } from './button';
 
 interface InputModalProps {
   defaultValue: string;
@@ -45,15 +45,11 @@ export const InputModal: React.FC<InputModalProps> = ({
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.saveButton}>
-          <AntDesign.Button
-            name="save"
-            size={EStyleSheet.value('25rem')}
-            color="white"
-            style={{ backgroundColor: appTheme.primaryRedColor }}
+          <Button
+            text="Confirm"
             onPress={saveAndClose}
-          >
-            Save
-          </AntDesign.Button>
+            size={ButtonSize.Small}
+          />
         </View>
       </View>
       <View style={styles.inputContainer}>

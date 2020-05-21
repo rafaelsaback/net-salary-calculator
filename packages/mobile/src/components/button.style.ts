@@ -14,6 +14,13 @@ export const styles = EStyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  smallButton: {
+    width: '80rem',
+    height: '36rem',
+  },
+  smallText: {
+    fontSize: '16rem',
+  },
   largeButton: {
     width: '160rem',
     height: '44rem',
