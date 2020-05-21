@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { appTheme } from '../theme';
 
 const closeIconSize = '40rem';
@@ -21,6 +21,9 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
+  },
+  inputContainer: {
+    flex: 1,
     flexDirection: 'row',
   },
   textContainer: {
@@ -39,6 +42,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  backIcon: { padding: '15rem' },
 });
 
 interface InputModalProps {
@@ -52,7 +56,7 @@ export const InputModal: React.FC<InputModalProps> = ({
   setValue,
   closeModal,
 }) => {
-  const onKeyPress = useCallback(
+  const saveAndClose = useCallback(
     (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
       setValue(event.nativeEvent.text);
       closeModal();
@@ -64,24 +68,35 @@ export const InputModal: React.FC<InputModalProps> = ({
       behavior={Platform.select({ ios: 'padding', android: 'height' })}
       style={styles.container}
     >
-      <View style={styles.textContainer}>
-        <TextInput
-          defaultValue={defaultValue}
-          keyboardType="numeric"
-          style={styles.text}
-          onSubmitEditing={onKeyPress}
-          autoFocus
-        />
-      </View>
-      <TouchableWithoutFeedback>
-        <View style={styles.closeIcon}>
-          <AntDesign
-            size={EStyleSheet.value(closeIconSize)}
-            name="close"
-            color={appTheme.secondaryBlackColor}
+      <TouchableWithoutFeedback onPress={() => closeModal()}>
+        <View style={styles.backIcon}>
+          <Ionicons
+            name="md-arrow-round-back"
+            size={EStyleSheet.value('50rem')}
+            color={appTheme.primaryRedColor}
           />
         </View>
       </TouchableWithoutFeedback>
+      <View style={styles.inputContainer}>
+        <View style={styles.textContainer}>
+          <TextInput
+            defaultValue={defaultValue}
+            keyboardType="numeric"
+            style={styles.text}
+            onSubmitEditing={saveAndClose}
+            autoFocus
+          />
+        </View>
+        <TouchableWithoutFeedback>
+          <View style={styles.closeIcon}>
+            <AntDesign
+              size={EStyleSheet.value(closeIconSize)}
+              name="close"
+              color={appTheme.secondaryBlackColor}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     </KeyboardAvoidingView>
   );
 };
