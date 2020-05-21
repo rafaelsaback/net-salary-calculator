@@ -1,12 +1,13 @@
-import React, { ReactNode } from 'react';
+import React, { Dispatch, ReactNode } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { contractSelectorStyles } from './contract-selector.style';
 
 interface ContractSelector {
   contractType: ContractType;
   textFirstLine: string;
+  active: boolean;
   textSecondLine?: string | ReactNode;
-  active?: boolean;
+  setContract: Dispatch<ContractType>;
 }
 
 export enum ContractType {
@@ -19,6 +20,7 @@ export const ContractSelector: React.FC<ContractSelector> = ({
   textFirstLine,
   textSecondLine,
   active,
+  setContract,
 }) => {
   const imgContainerStyle = StyleSheet.flatten([
     contractSelectorStyles.imageContainer,
@@ -45,7 +47,7 @@ export const ContractSelector: React.FC<ContractSelector> = ({
     : require('@assets/employee-grayscale.png');
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => setContract(contractType)}>
       <View style={contractSelectorStyles.container}>
         <View style={imgContainerStyle}>
           <Image

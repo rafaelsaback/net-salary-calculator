@@ -4,7 +4,7 @@ import { appTheme, appThemeReactNavigation } from '../../theme';
 export const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: '15rem',
+    marginVertical: '20rem',
   },
   salaryContainer: {
     flex: 1,
@@ -13,7 +13,7 @@ export const styles = EStyleSheet.create({
     paddingVertical: '5rem',
     backgroundColor: appTheme.containerBackgroundColor,
     borderRadius: appTheme.borderRadius,
-    ...appTheme.containerBackgroundShadow,
+    ...appTheme.btnBackgroundShadow,
   },
   grossSalary: {
     textAlign: 'center',
@@ -22,7 +22,8 @@ export const styles = EStyleSheet.create({
     fontWeight: 'bold',
   },
   contractContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
+    flex: 0.7,
+    marginTop: '20rem',
+    justifyContent: 'space-between',
   },
 });

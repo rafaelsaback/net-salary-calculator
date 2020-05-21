@@ -19,7 +19,8 @@ interface HomeScreenProps {
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
-  const [period, setPeriod] = useState<Period>(Period.Monthly);
+  const [period, setPeriod] = useState(Period.Monthly);
+  const [contract, setContract] = useState(ContractType.Employment);
   return (
     <View style={styles.container}>
       <View style={styles.salaryContainer}>
@@ -37,11 +38,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
           contractType={ContractType.Employment}
           textFirstLine="Employment Contract"
           textSecondLine="(Umowa o Pracę)"
-          active
+          active={contract === ContractType.Employment}
+          setContract={setContract}
         />
         <ContractSelector
           contractType={ContractType.B2B}
           textFirstLine="B2B Contract"
+          active={contract === ContractType.B2B}
+          setContract={setContract}
         />
       </View>
     </View>

@@ -29,9 +29,4 @@ export const appTheme = {
     shadowRadius: 4,
     elevation: 5,
   },
-  containerBackgroundShadow: {
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
 };
