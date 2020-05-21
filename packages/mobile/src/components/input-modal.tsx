@@ -67,7 +67,7 @@ export const InputModal: React.FC<InputModalProps> = ({
             autoFocus
           />
         </View>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={() => setTempValue('')}>
           <View style={styles.closeIcon}>
             <AntDesign
               size={EStyleSheet.value(closeIconSize)}
