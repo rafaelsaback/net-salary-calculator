@@ -17,31 +17,41 @@ if (Platform.OS === 'web') {
 }
 
 export const SalaryInput: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-  const closeModal = () => setShowModal(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [salary, setSalary] = useState('100 000');
+  const [clearSalary, setClearSalary] = useState(false);
+
+  const showModal = () => setIsModalVisible(true);
+  const clearSalaryAndShowModal = () => {
+    setClearSalary(true);
+    setIsModalVisible(true);
+  };
+  const closeModal = () => {
+    setClearSalary(false);
+    setIsModalVisible(false);
+  };
   return (
     <View style={styles.container}>
       <Modal
         animationType="fade"
         presentationStyle="fullScreen"
-        visible={showModal}
+        visible={isModalVisible}
         transparent={false}
-        onRequestClose={() => setShowModal(false)}
+        onRequestClose={closeModal}
       >
         <InputModal
-          defaultValue={salary}
+          defaultValue={clearSalary ? '' : salary}
           closeModal={closeModal}
           setValue={setSalary}
         />
       </Modal>
       <Text style={styles.currency}>PLN</Text>
-      <TouchableWithoutFeedback onPress={() => setShowModal(true)}>
+      <TouchableWithoutFeedback onPress={showModal}>
         <View style={styles.valueContainer}>
           <Text style={styles.value}>{salary}</Text>
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={() => setShowModal(true)}>
+      <TouchableWithoutFeedback onPress={clearSalaryAndShowModal}>
         <View style={styles.closeIcon}>
           <AntDesign
             size={EStyleSheet.value('22rem')}
