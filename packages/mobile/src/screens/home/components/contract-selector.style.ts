@@ -42,8 +42,8 @@ export const contractSelectorStyles = EStyleSheet.create({
     width: '40rem',
   },
   employeeImg: {
-    height: '38rem',
-    width: '33rem',
+    height: '45rem',
+    width: '39rem',
   },
   arrowImg: {
     height: '15rem',
