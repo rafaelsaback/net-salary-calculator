@@ -31,16 +31,12 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Home}
             component={HomeScreen}
-            options={{
-              title: 'Home',
-            }}
+            options={{ title: '' }}
           />
           <Screen
             name={ScreenName.Results}
             component={ResultsScreen}
-            options={{
-              title: 'Results',
-            }}
+            options={{ title: '' }}
           />
         </Navigator>
       </NavigationContainer>
