@@ -1,4 +1,4 @@
-import { appTheme } from '../../../theme';
+import { appTheme } from '../../../../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export const contractSelectorStyles = EStyleSheet.create({

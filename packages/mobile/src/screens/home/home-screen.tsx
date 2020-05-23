@@ -1,9 +1,12 @@
-import { ContractSelector, ContractType } from './components/contract-selector';
+import {
+  ContractSelector,
+  ContractType,
+} from './components/contract-selector/contract-selector';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { Button, ButtonSize } from '../../components/button';
-import { SalaryInput } from '../../components/salary-input';
-import { PeriodSelector } from '../../components/period-selector';
+import { Button, ButtonSize } from '../../components/button/button';
+import { SalaryInput } from './components/salary-input/salary-input';
+import { PeriodSelector } from '../../components/period-selector/period-selector';
 import { Period } from '../../interfaces';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';

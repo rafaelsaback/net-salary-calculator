@@ -1,5 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { appTheme, appThemeReactNavigation } from '../theme';
+import { appTheme, appThemeReactNavigation } from '../../theme';
 
 export const styles = EStyleSheet.create({
   button: {

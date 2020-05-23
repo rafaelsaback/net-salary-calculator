@@ -11,7 +11,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { appTheme } from '../../theme';
 import { closeIconSize, styles } from './input-modal.style';
-import { Button, ButtonSize } from '../button';
+import { Button, ButtonSize } from '../button/button';
 import { Modal } from './modal';
 
 interface InputModalProps {

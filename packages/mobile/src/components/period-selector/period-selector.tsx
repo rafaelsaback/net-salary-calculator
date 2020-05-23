@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import React, { Dispatch } from 'react';
 import { styles } from './period-selector.style';
-import { isAnnually, isMonthly, Period } from '../interfaces';
-import { SelectorOption } from './selector-option';
+import { isAnnually, isMonthly, Period } from '../../interfaces';
+import { SelectorOption } from '../selector-option/selector-option';
 
 interface PeriodSelectorProps {
   value: Period;
