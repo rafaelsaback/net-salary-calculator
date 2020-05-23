@@ -1,9 +1,7 @@
 export enum Period {
-  Monthly = 'MONTHLY',
-  Annually = 'ANNUALLY',
+  Monthly = 'Monthly',
+  Annually = 'Annually',
 }
-export const isMonthly = (period: Period) => period === Period.Monthly;
-export const isAnnually = (period: Period) => period === Period.Annually;
 
 export enum B2BTax {
   Linear = 'LINEAR',
