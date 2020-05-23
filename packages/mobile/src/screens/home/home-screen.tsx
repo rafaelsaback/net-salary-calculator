@@ -11,6 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';
 import { RootStackParamList, ScreenName } from '../../types';
 import { Period } from '@nsc/shared/src/types';
+import { Container } from '../../components/container/container';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -26,7 +27,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
   const [contract, setContract] = useState(ContractType.Employment);
   return (
     <View style={styles.container}>
-      <View style={styles.salaryContainer}>
+      <Container>
         <Text style={styles.grossSalary}>Gross Salary</Text>
         <SalaryInput />
         <PeriodSelector value={period} onChange={setPeriod} />
@@ -35,7 +36,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
           onPress={() => props.navigation.navigate(ScreenName.Results)}
           size={ButtonSize.Large}
         />
-      </View>
+      </Container>
       <View style={styles.contractContainer}>
         <ContractSelector
           contractType={ContractType.Employment}

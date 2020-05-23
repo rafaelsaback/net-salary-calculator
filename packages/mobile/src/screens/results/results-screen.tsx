@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList, ScreenName } from '../../types';
-import { styles } from './results-screen.style';
+import { Container } from '../../components/container/container';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -15,8 +15,8 @@ interface ResultsScreenProps {
 
 export const ResultsScreen: React.FC<ResultsScreenProps> = (props) => {
   return (
-    <View style={styles.container}>
+    <Container>
       <Text>Net Salary</Text>
-    </View>
+    </Container>
   );
 };

@@ -5,7 +5,7 @@ export const contractSelectorStyles = EStyleSheet.create({
   container: {
     justifyContent: 'space-around',
     flexDirection: 'row',
-    marginHorizontal: 30,
+    marginHorizontal: '30rem',
     height: '90rem',
   },
   textContainer: {
