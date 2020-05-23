@@ -13,7 +13,7 @@ module.exports = {
         options: {
           rootMode: 'upward',
         },
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(@nsc)\/).*/,
       },
     ],
   },
