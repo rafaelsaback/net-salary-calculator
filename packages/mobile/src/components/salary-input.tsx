@@ -4,7 +4,7 @@ import { appTheme } from '../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
-import { InputModal } from './input-modal';
+import { InputModal } from './input-modal/input-modal';
 
 export const SalaryInput: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);

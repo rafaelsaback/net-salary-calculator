@@ -9,19 +9,10 @@ import {
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
-import { appTheme } from '../theme';
+import { appTheme } from '../../theme';
 import { closeIconSize, styles } from './input-modal.style';
-import { Button, ButtonSize } from './button';
-
-const Modal = Platform.select({
-  ios: () => require('react-native').Modal,
-  android: () => require('react-native').Modal,
-  web: () => require('modal-react-native-web'),
-})?.();
-
-if (Platform.OS === 'web') {
-  Modal.setAppElement('body'); // Avoids Portal's warning message
-}
+import { Button, ButtonSize } from '../button';
+import { Modal } from './modal';
 
 interface InputModalProps {
   defaultValue: string;
