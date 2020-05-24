@@ -1,11 +1,5 @@
 import { List, Map } from 'immutable';
-import {
-  B2BTax,
-  ContractType,
-  Period,
-  Sickness,
-  ZUS,
-} from '@nsc/shared/src/types';
+import { B2BParams, ContractType, UOPParams } from '@nsc/shared/src/types';
 
 /* ENUMS */
 
@@ -22,20 +16,6 @@ export interface SalaryLabels {
 export interface ContractLabels {
   UOP: SalaryLabels;
   B2B: SalaryLabels;
-}
-
-export interface UOPParams {
-  salary: number;
-  period: Period;
-}
-
-export interface B2BParams {
-  salary: number;
-  period: Period;
-  taxType: B2BTax;
-  zus: ZUS;
-  sickness: Sickness;
-  costs: number;
 }
 
 export interface BaseSalaryResults {

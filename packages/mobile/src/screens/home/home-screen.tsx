@@ -1,7 +1,4 @@
-import {
-  ContractSelector,
-  ContractType,
-} from './components/contract-selector/contract-selector';
+import { ContractSelector } from './components/contract-selector/contract-selector';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, ButtonSize } from '../../components/button/button';
@@ -10,8 +7,10 @@ import { PeriodSelector } from '../../components/period-selector/period-selector
 import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';
 import { RootStackParamList, ScreenName } from '../../types';
-import { Period } from '@nsc/shared/src/types';
+import { ContractType, Period } from '@nsc/shared/src/types';
 import { Container } from '../../components/container/container';
+import { B2BParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
+import { isB2B } from '@nsc/shared/src/type-helpers';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -22,7 +21,7 @@ interface HomeScreenProps {
   navigation: ProfileScreenNavigationProp;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [period, setPeriod] = useState(Period.Monthly);
   const [contract, setContract] = useState(ContractType.Employment);
   return (
@@ -32,10 +31,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
         <SalaryInput />
         <PeriodSelector value={period} onChange={setPeriod} />
         <Button
-          text="Calculate"
-          onPress={() => props.navigation.navigate(ScreenName.Results)}
+          onPress={() => navigation.navigate(ScreenName.Results)}
           size={ButtonSize.Large}
-        />
+        >
+          Calculate
+        </Button>
       </Container>
       <View style={styles.contractContainer}>
         <ContractSelector
@@ -52,6 +52,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = (props) => {
           setContract={setContract}
         />
       </View>
+      <B2BParametersButton disabled={!isB2B(contract)} />
     </View>
   );
 };

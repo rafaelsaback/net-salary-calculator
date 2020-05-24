@@ -3,18 +3,16 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export const contractSelectorStyles = EStyleSheet.create({
   container: {
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    marginHorizontal: '30rem',
-    height: '90rem',
+    flex: 1,
+    maxWidth: '150rem',
   },
   textContainer: {
-    flex: 1.2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   imageContainer: {
-    flex: 1,
+    flex: 1.5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

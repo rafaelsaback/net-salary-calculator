@@ -58,11 +58,9 @@ export const InputModal: React.FC<InputModalProps> = ({
 
           {/* Confirm button */}
           <View style={styles.saveButton}>
-            <Button
-              text="Confirm"
-              onPress={saveAndClose}
-              size={ButtonSize.Small}
-            />
+            <Button onPress={saveAndClose} size={ButtonSize.Small}>
+              Confirm
+            </Button>
           </View>
         </View>
 

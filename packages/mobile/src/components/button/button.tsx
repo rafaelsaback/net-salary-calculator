@@ -1,7 +1,8 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { styles } from './button.style';
+import isString from 'lodash-es/isString';
 
 export enum ButtonSize {
   Small = 'Small',
@@ -10,29 +11,46 @@ export enum ButtonSize {
 }
 
 interface ButtonProps {
-  size: ButtonSize;
-  text: string;
+  size?: ButtonSize;
+  style?: EStyleSheet.AnyStyle;
+  textStyle?: EStyleSheet.AnyStyle;
+  disabled?: boolean;
   onPress(): void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, size, onPress }) => {
-  const buttonStyle = EStyleSheet.flatten([
+export const Button: React.FC<ButtonProps> = ({
+  size,
+  style = {},
+  textStyle = {},
+  disabled,
+  onPress,
+  children,
+}) => {
+  const flattenedStyle = EStyleSheet.flatten([
     styles.button,
     size === ButtonSize.Small && styles.smallButton,
     size === ButtonSize.Medium && {},
     size === ButtonSize.Large && styles.largeButton,
+    style,
   ]);
-  const textStyle = EStyleSheet.flatten([
+  const flattenedTextStyle = EStyleSheet.flatten([
     styles.text,
     size === ButtonSize.Small && styles.smallText,
     size === ButtonSize.Medium && {},
     size === ButtonSize.Large && styles.largeText,
+    textStyle,
   ]);
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={buttonStyle}>
-        <Text style={textStyle}>{text}</Text>
-      </View>
+    <TouchableOpacity
+      disabled={disabled}
+      style={flattenedStyle}
+      onPress={onPress}
+    >
+      {isString(children) ? (
+        <Text style={flattenedTextStyle}>{children}</Text>
+      ) : (
+        children
+      )}
     </TouchableOpacity>
   );
 };

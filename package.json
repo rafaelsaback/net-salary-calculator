@@ -8,6 +8,9 @@
     "install:all": "npm install && lerna bootstrap && npm run rn-link",
     "rn-link": "cd packages/mobile && npx react-native link"
   },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
@@ -17,6 +20,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
+    "@types/lodash-es": "^4.17.3",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^1.6.0",

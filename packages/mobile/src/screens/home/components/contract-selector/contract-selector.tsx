@@ -1,6 +1,8 @@
 import React, { Dispatch, ReactNode } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { contractSelectorStyles } from './contract-selector.style';
+import { isB2B, isEmployment } from '@nsc/shared/src/type-helpers';
+import { ContractType } from '@nsc/shared/src/types';
 
 interface ContractSelector {
   contractType: ContractType;
@@ -8,11 +10,6 @@ interface ContractSelector {
   active: boolean;
   textSecondLine?: string | ReactNode;
   setContract: Dispatch<ContractType>;
-}
-
-export enum ContractType {
-  Employment = 'Employment',
-  B2B = 'B2B',
 }
 
 export const ContractSelector: React.FC<ContractSelector> = ({
@@ -47,34 +44,32 @@ export const ContractSelector: React.FC<ContractSelector> = ({
     : require('@assets/employee-grayscale.png');
 
   return (
-    <TouchableOpacity onPress={() => setContract(contractType)}>
-      <View style={contractSelectorStyles.container}>
-        <View style={imgContainerStyle}>
+    <TouchableOpacity
+      style={contractSelectorStyles.container}
+      onPress={() => setContract(contractType)}
+    >
+      <View style={imgContainerStyle}>
+        <Image
+          style={contractSelectorStyles.buildingImg}
+          source={buildImgPath}
+        />
+        <Image style={contractSelectorStyles.arrowImg} source={arrowImgPath} />
+        {isB2B(contractType) && (
           <Image
             style={contractSelectorStyles.buildingImg}
             source={buildImgPath}
           />
+        )}
+        {isEmployment(contractType) && (
           <Image
-            style={contractSelectorStyles.arrowImg}
-            source={arrowImgPath}
+            style={contractSelectorStyles.employeeImg}
+            source={employeeImgPath}
           />
-          {contractType === ContractType.B2B && (
-            <Image
-              style={contractSelectorStyles.buildingImg}
-              source={buildImgPath}
-            />
-          )}
-          {contractType === ContractType.Employment && (
-            <Image
-              style={contractSelectorStyles.employeeImg}
-              source={employeeImgPath}
-            />
-          )}
-        </View>
-        <View style={contractSelectorStyles.textContainer}>
-          <Text style={textStyle}>{textFirstLine}</Text>
-          {textSecondLine && <Text style={textStyle}>{textSecondLine}</Text>}
-        </View>
+        )}
+      </View>
+      <View style={contractSelectorStyles.textContainer}>
+        <Text style={textStyle}>{textFirstLine}</Text>
+        {textSecondLine && <Text style={textStyle}>{textSecondLine}</Text>}
       </View>
     </TouchableOpacity>
   );

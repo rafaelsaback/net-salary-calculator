@@ -1,10 +1,9 @@
 import {
-  UOPParams,
-  B2BParams,
   IUOPSalaryResults,
   IB2BSalaryResults,
   ContractType,
 } from '../interfaces';
+import { B2BParams, UOPParams } from '@nsc/shared/src/types';
 
 export const SET_UOP_PARAMS = 'SET_UOP_PARAMS';
 export const SET_B2B_PARAMS = 'SET_B2B_PARAMS';

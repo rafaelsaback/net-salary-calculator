@@ -14,7 +14,8 @@ export const styles = EStyleSheet.create({
   },
   contractContainer: {
     flex: 0.7,
-    marginTop: '20rem',
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    marginHorizontal: '30rem',
   },
 });
