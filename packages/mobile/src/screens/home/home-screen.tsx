@@ -32,7 +32,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         <PeriodSelector value={period} onChange={setPeriod} />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
-          size={ButtonSize.Large}
+          size={ButtonSize.Medium}
         >
           Calculate
         </Button>

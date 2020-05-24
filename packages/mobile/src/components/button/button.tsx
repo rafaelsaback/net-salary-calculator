@@ -29,14 +29,14 @@ export const Button: React.FC<ButtonProps> = ({
   const flattenedStyle = EStyleSheet.flatten([
     styles.button,
     size === ButtonSize.Small && styles.smallButton,
-    size === ButtonSize.Medium && {},
+    size === ButtonSize.Medium && styles.mediumButton,
     size === ButtonSize.Large && styles.largeButton,
     style,
   ]);
   const flattenedTextStyle = EStyleSheet.flatten([
     styles.text,
     size === ButtonSize.Small && styles.smallText,
-    size === ButtonSize.Medium && {},
+    size === ButtonSize.Medium && styles.mediumText,
     size === ButtonSize.Large && styles.largeText,
     textStyle,
   ]);

@@ -18,12 +18,19 @@ export const styles = EStyleSheet.create({
     width: '70rem',
     height: '30rem',
   },
+  mediumButton: {
+    width: '140rem',
+    height: '40rem',
+  },
+  largeButton: {
+    width: '210rem',
+    height: '40rem',
+  },
   smallText: {
     fontSize: '14rem',
   },
-  largeButton: {
-    width: '140rem',
-    height: '40rem',
+  mediumText: {
+    fontSize: '18rem',
   },
   largeText: {
     fontSize: '18rem',

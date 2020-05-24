@@ -8,6 +8,7 @@ import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
+import { MonthlyBreakdownScreen } from './screens/monthly-breakdown/monthly-breakdown-screen';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -36,6 +37,11 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Results}
             component={ResultsScreen}
+            options={{ title: '' }}
+          />
+          <Screen
+            name={ScreenName.MonthlyBreakdown}
+            component={MonthlyBreakdownScreen}
             options={{ title: '' }}
           />
         </Navigator>
