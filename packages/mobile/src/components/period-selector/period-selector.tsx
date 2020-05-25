@@ -1,9 +1,8 @@
-import { View } from 'react-native';
 import React, { Dispatch } from 'react';
-import { styles } from './period-selector.style';
 import { SelectorOption } from '../selector-option/selector-option';
 import { Period } from '@nsc/shared/src/types';
 import { isAnnually, isMonthly } from '@nsc/shared/src/type-helpers';
+import { SelectorContainer } from '../selector-container/selector-container';
 
 interface PeriodSelectorProps {
   value: Period;
@@ -18,7 +17,7 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
   const onAnnuallyClick = () => onChange(Period.Annually);
 
   return (
-    <View style={styles.container}>
+    <SelectorContainer>
       <SelectorOption
         text="Monthly"
         active={isMonthly(value)}
@@ -31,6 +30,6 @@ export const PeriodSelector: React.FC<PeriodSelectorProps> = ({
         onPress={onAnnuallyClick}
         atRightHandSide
       />
-    </View>
+    </SelectorContainer>
   );
 };

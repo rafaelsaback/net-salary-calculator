@@ -11,6 +11,7 @@ export enum ButtonSize {
 }
 
 interface ButtonProps {
+  type?: 'primary' | 'secondary';
   size?: ButtonSize;
   style?: EStyleSheet.AnyStyle;
   textStyle?: EStyleSheet.AnyStyle;
@@ -19,6 +20,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
+  type = 'primary',
   size,
   style = {},
   textStyle = {},
@@ -28,6 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const flattenedStyle = EStyleSheet.flatten([
     styles.button,
+    type === 'primary' && styles.primaryButton,
+    type === 'secondary' && styles.secondaryButton,
     size === ButtonSize.Small && styles.smallButton,
     size === ButtonSize.Medium && styles.mediumButton,
     size === ButtonSize.Large && styles.largeButton,
@@ -35,6 +39,8 @@ export const Button: React.FC<ButtonProps> = ({
   ]);
   const flattenedTextStyle = EStyleSheet.flatten([
     styles.text,
+    type === 'primary' && styles.primaryText,
+    type === 'secondary' && styles.secondaryText,
     size === ButtonSize.Small && styles.smallText,
     size === ButtonSize.Medium && styles.mediumText,
     size === ButtonSize.Large && styles.largeText,

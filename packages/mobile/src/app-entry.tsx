@@ -9,6 +9,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
 import { MonthlyBreakdownScreen } from './screens/monthly-breakdown/monthly-breakdown-screen';
+import { B2BParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -32,6 +33,11 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Home}
             component={HomeScreen}
+            options={{ title: '' }}
+          />
+          <Screen
+            name={ScreenName.B2BParameters}
+            component={B2BParametersScreen}
             options={{ title: '' }}
           />
           <Screen

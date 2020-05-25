@@ -1,18 +1,30 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { appTheme, appThemeReactNavigation } from '../../theme';
+import { appTheme } from '../../theme';
 
 export const styles = EStyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: appThemeReactNavigation.colors.primary,
     borderRadius: appTheme.borderRadius,
     ...appTheme.btnBackgroundShadow,
   },
+  primaryButton: {
+    backgroundColor: appTheme.primaryRedColor,
+  },
+  secondaryButton: {
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: appTheme.primaryRedColor,
+  },
   text: {
-    color: 'white',
     fontWeight: 'bold',
+  },
+  primaryText: {
+    color: 'white',
+  },
+  secondaryText: {
+    color: appTheme.primaryRedColor,
   },
   smallButton: {
     width: '70rem',
