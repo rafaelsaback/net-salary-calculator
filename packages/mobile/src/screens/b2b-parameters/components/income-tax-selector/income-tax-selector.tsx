@@ -8,12 +8,12 @@ import { B2BTax } from '@nsc/shared/src/types';
 import { isLinearTax, isProgressiveTax } from '@nsc/shared/src/type-helpers';
 
 interface IncomeTaxSelectorProps {
-  tax: B2BTax;
+  taxType: B2BTax;
   setTax: Dispatch<B2BTax>;
 }
 
 export const IncomeTaxSelector: React.FC<IncomeTaxSelectorProps> = ({
-  tax,
+  taxType,
   setTax,
 }) => {
   return (
@@ -21,13 +21,13 @@ export const IncomeTaxSelector: React.FC<IncomeTaxSelectorProps> = ({
       <Text style={styles.textLabel}>Income Tax</Text>
       <SelectorContainer width="100%">
         <SelectorOption
-          active={isLinearTax(tax)}
+          active={isLinearTax(taxType)}
           text="19%"
           onPress={() => setTax(B2BTax.Linear)}
           atLeftHandSide
         />
         <SelectorOption
-          active={isProgressiveTax(tax)}
+          active={isProgressiveTax(taxType)}
           text="17% / 32%"
           onPress={() => setTax(B2BTax.Progressive)}
           atRightHandSide

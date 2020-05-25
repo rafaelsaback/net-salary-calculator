@@ -10,13 +10,13 @@ export enum B2BTax {
 
 export enum ZUS {
   No = 'No',
-  Discounted = 'DISCOUNTED',
-  Normal = 'NORMAL',
+  Discounted = 'Discounted',
+  Normal = 'Normal',
 }
 
 export enum Sickness {
-  Yes = 'YES',
-  No = 'NO',
+  Yes = 'Yes',
+  No = 'No',
 }
 
 export enum ContractType {

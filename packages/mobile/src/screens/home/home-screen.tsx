@@ -11,14 +11,21 @@ import { ContractType, Period } from '@nsc/shared/src/types';
 import { Container } from '../../components/container/container';
 import { B2BParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
 import { isB2B } from '@nsc/shared/src/type-helpers';
+import { RouteProp } from '@react-navigation/native';
 
-type ProfileScreenNavigationProp = StackNavigationProp<
+export type HomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  ScreenName.Home
+>;
+
+export type HomeScreenRouteProp = RouteProp<
   RootStackParamList,
   ScreenName.Home
 >;
 
 interface HomeScreenProps {
-  navigation: ProfileScreenNavigationProp;
+  navigation: HomeScreenNavigationProp;
+  route: HomeScreenRouteProp;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {

@@ -10,6 +10,7 @@ import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
 import { MonthlyBreakdownScreen } from './screens/monthly-breakdown/monthly-breakdown-screen';
 import { B2BParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
+import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -34,6 +35,14 @@ const AppEntry: React.FC = () => {
             name={ScreenName.Home}
             component={HomeScreen}
             options={{ title: '' }}
+            initialParams={{
+              b2bParameters: {
+                taxType: B2BTax.Linear,
+                zus: ZUS.No,
+                sickness: Sickness.No,
+                costs: '0',
+              },
+            }}
           />
           <Screen
             name={ScreenName.B2BParameters}
