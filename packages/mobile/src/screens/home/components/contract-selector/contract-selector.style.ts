@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export const contractSelectorStyles = EStyleSheet.create({
   container: {
     flex: 1,
-    maxWidth: '150rem',
+    maxWidth: '165rem',
   },
   textContainer: {
     flex: 1,

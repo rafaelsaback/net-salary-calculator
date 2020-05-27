@@ -7,7 +7,7 @@ import { Container } from '../../components/containers/container';
 import { Button, ButtonSize } from '../../components/button/button';
 import { SalaryDisplay } from './components/salary-display/salary-display';
 import { styles } from './results-screen.style';
-import { SalaryPieChart } from './components/pie-chart/pie-chart';
+import { SalaryPieChart } from './components/salary-pie-chart/salary-pie-chart';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
 import { createFontSizeStyle } from '../../helpers';
