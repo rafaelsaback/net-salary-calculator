@@ -7,7 +7,7 @@ import { Selector } from '../../components/selector/selector';
 import { createFontSizeStyle } from '../../helpers';
 import { styles } from '../results/results-screen.style';
 
-interface MonthlyBreakdownScreenProps {}
+interface DetailedResultsScreenProps {}
 
 enum DisplayMode {
   Monthly = 'Monthly',
@@ -20,7 +20,7 @@ const displayModeOptions = [
   DisplayMode.Annually,
 ];
 
-export const MonthlyBreakdownScreen: React.FC<MonthlyBreakdownScreenProps> = (
+export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = (
   props,
 ) => {
   const [displayMode, setDisplayMode] = useState<string>(DisplayMode.Monthly);

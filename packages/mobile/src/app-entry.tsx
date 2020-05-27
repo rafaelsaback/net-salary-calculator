@@ -8,7 +8,7 @@ import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
-import { MonthlyBreakdownScreen } from './screens/monthly-breakdown/monthly-breakdown-screen';
+import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
 import { B2BParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
 import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
 
@@ -56,7 +56,7 @@ const AppEntry: React.FC = () => {
           />
           <Screen
             name={ScreenName.DetailedResults}
-            component={MonthlyBreakdownScreen}
+            component={DetailedResultsScreen}
             options={{ title: '' }}
           />
         </Navigator>
