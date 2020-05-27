@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Container } from '../../components/container/container';
+import { Container } from '../../components/containers/container';
 import { IncomeTaxSelector } from './components/income-tax-selector/income-tax-selector';
 import { ZusSelector } from './components/zus-selector/zus-selector';
 import { SicknessInsuranceSelector } from './components/sickness-insurance-selector/sickness-insurance-selector';

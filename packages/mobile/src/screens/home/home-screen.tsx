@@ -8,7 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';
 import { RootStackParamList, ScreenName } from '../../types';
 import { ContractType, Period } from '@nsc/shared/src/types';
-import { Container } from '../../components/container/container';
+import { Container } from '../../components/containers/container';
 import { B2BParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
 import { isB2B } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
