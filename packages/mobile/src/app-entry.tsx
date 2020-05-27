@@ -55,7 +55,7 @@ const AppEntry: React.FC = () => {
             options={{ title: '' }}
           />
           <Screen
-            name={ScreenName.MonthlyBreakdown}
+            name={ScreenName.DetailedResults}
             component={MonthlyBreakdownScreen}
             options={{ title: '' }}
           />

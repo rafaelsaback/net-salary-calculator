@@ -14,13 +14,13 @@ interface B2BParameters {
 export enum ScreenName {
   Home = 'Home',
   Results = 'Results',
-  MonthlyBreakdown = 'Monthly Breakdown',
+  DetailedResults = 'Detailed Results',
   B2BParameters = 'B2B Parameters',
 }
 
 export type RootStackParamList = {
   [ScreenName.Home]: B2BParametersRouteProps;
   [ScreenName.Results]: undefined;
-  [ScreenName.MonthlyBreakdown]: undefined;
+  [ScreenName.DetailedResults]: undefined;
   [ScreenName.B2BParameters]: B2BParametersRouteProps;
 };

@@ -35,7 +35,7 @@ export const SalaryInput: React.FC = () => {
         </View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={clearSalaryAndShowModal}>
-        <View style={styles.closeIcon}>
+        <View style={styles.icon}>
           <AntDesign
             size={EStyleSheet.value('22rem')}
             name="close"

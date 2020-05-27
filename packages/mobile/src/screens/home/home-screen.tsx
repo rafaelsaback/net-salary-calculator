@@ -34,8 +34,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Container>
-        <Text style={styles.grossSalary}>Gross Salary</Text>
-        <SalaryInput />
+        <View>
+          <Text style={styles.title}>Gross Salary</Text>
+          <SalaryInput />
+        </View>
         <PeriodSelector value={period} onChange={setPeriod} />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
