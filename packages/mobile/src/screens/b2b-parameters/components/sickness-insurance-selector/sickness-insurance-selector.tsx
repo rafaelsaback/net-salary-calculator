@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Dispatch } from 'react';
 import { Text, View } from 'react-native';
-import { SelectorOption } from '../../../../components/selector-option/selector-option';
-import { SelectorContainer } from '../../../../components/selector-container/selector-container';
+import { SelectorOption } from '../../../../components/selector/selector-option';
+import { SelectorContainer } from '../../../../components/selector/selector-container';
 import { styles } from './sickness-insurance-selector.style';
 import { Sickness } from '@nsc/shared/src/types';
 import { isNoSickness, isYesSickness } from '@nsc/shared/src/type-helpers';

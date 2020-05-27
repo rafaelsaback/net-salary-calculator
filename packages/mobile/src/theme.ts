@@ -24,6 +24,10 @@ export const appTheme = {
   secondaryBlackColor,
   containerBackgroundColor,
   lightGray,
+  bodyContainer: {
+    flex: 1,
+    marginHorizontal: '15rem',
+  },
   title: {
     textAlign: 'center',
     color: primaryBlackColor,

@@ -3,7 +3,7 @@ import { appTheme } from '../../theme';
 
 export const styles = EStyleSheet.create({
   container: {
-    flex: 1,
+    ...appTheme.bodyContainer,
     marginBottom: '20rem',
   },
   title: {
@@ -13,6 +13,5 @@ export const styles = EStyleSheet.create({
     flex: 0.7,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: '30rem',
   },
 });

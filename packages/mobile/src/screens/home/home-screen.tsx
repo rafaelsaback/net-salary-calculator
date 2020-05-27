@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, ButtonSize } from '../../components/button/button';
 import { SalaryInput } from './components/salary-input/salary-input';
-import { PeriodSelector } from '../../components/period-selector/period-selector';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';
 import { RootStackParamList, ScreenName } from '../../types';
@@ -12,6 +11,7 @@ import { Container } from '../../components/containers/container';
 import { B2BParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
 import { isB2B } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
+import { Selector } from '../../components/selector/selector';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -29,7 +29,7 @@ interface HomeScreenProps {
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-  const [period, setPeriod] = useState(Period.Monthly);
+  const [period, setPeriod] = useState<string>(Period.Monthly);
   const [contract, setContract] = useState(ContractType.Employment);
   return (
     <View style={styles.container}>
@@ -38,7 +38,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           <Text style={styles.title}>Gross Salary</Text>
           <SalaryInput />
         </View>
-        <PeriodSelector value={period} onChange={setPeriod} />
+        <Selector
+          value={period}
+          options={[Period.Monthly, Period.Annually]}
+          onChange={setPeriod}
+        />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
           size={ButtonSize.Medium}

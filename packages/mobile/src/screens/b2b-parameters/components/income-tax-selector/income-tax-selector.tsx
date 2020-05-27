@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Dispatch } from 'react';
 import { Text, View } from 'react-native';
-import { SelectorOption } from '../../../../components/selector-option/selector-option';
+import { SelectorOption } from '../../../../components/selector/selector-option';
 import { styles } from './income-tax-selector.style';
-import { SelectorContainer } from '../../../../components/selector-container/selector-container';
+import { SelectorContainer } from '../../../../components/selector/selector-container';
 import { B2BTax } from '@nsc/shared/src/types';
 import { isLinearTax, isProgressiveTax } from '@nsc/shared/src/type-helpers';
 

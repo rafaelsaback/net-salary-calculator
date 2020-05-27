@@ -8,9 +8,9 @@ import { Button, ButtonSize } from '../../components/button/button';
 import { SalaryDisplay } from './components/salary-display/salary-display';
 import { styles } from './results-screen.style';
 import { SalaryPieChart } from './components/pie-chart/pie-chart';
-import { PeriodSelector } from '../../components/period-selector/period-selector';
-import { Period } from '@nsc/shared/src/types';
 import { BottomContainer } from '../../components/containers/bottom-container';
+import { Selector } from '../../components/selector/selector';
+import { createFontSizeStyle } from '../../helpers';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -21,10 +21,23 @@ interface ResultsScreenProps {
   navigation: ProfileScreenNavigationProp;
 }
 
+enum DisplayMode {
+  FirstMonth = '1st Month',
+  MonthlyAverage = '12-Month Average',
+  Annually = 'Annually',
+}
+const displayModeOptions = [
+  DisplayMode.FirstMonth,
+  DisplayMode.MonthlyAverage,
+  DisplayMode.Annually,
+];
+
 export const ResultsScreen: React.FC<ResultsScreenProps> = (props) => {
-  const [period, setPeriod] = useState(Period.Monthly);
+  const [displayMode, setDisplayMode] = useState<string>(
+    DisplayMode.FirstMonth,
+  );
   return (
-    <>
+    <View style={styles.container}>
       <Container>
         <View>
           <Text style={styles.title}>Net Salary</Text>
@@ -48,8 +61,14 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = (props) => {
         </Button>
       </Container>
       <BottomContainer>
-        <PeriodSelector value={period} onChange={setPeriod} />
+        <Selector
+          value={displayMode}
+          options={displayModeOptions}
+          onChange={setDisplayMode}
+          width="90%"
+          fontSize={createFontSizeStyle([16, 14, 16])}
+        />
       </BottomContainer>
-    </>
+    </View>
   );
 };

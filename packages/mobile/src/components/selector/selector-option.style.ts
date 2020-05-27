@@ -24,6 +24,7 @@ export const styles = EStyleSheet.create({
   text: {
     fontSize: '16rem',
     color: appTheme.secondaryBlackColor,
+    textAlign: 'center',
   },
   activeText: {
     fontWeight: 'bold',
