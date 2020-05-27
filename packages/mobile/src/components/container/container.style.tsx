@@ -7,7 +7,7 @@ export const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: '30rem',
     marginVertical: '20rem',
-    paddingVertical: '15rem',
+    paddingVertical: '25rem',
     backgroundColor: appTheme.containerBackgroundColor,
     borderRadius: appTheme.borderRadius,
     ...appTheme.btnBackgroundShadow,

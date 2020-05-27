@@ -20,33 +20,31 @@ interface SalaryPieChartProps {
 
 export const SalaryPieChart: React.FC<SalaryPieChartProps> = ({ data }) => {
   const total = data.reduce((res, { value }) => res + value, 0);
+  const normalizedData = data.map(({ value, ...rest }) => ({
+    ...rest,
+    value: Math.round((100 * value) / total),
+  }));
   return (
     <View style={styles.container}>
       <PieChart
         style={styles.pieChart}
         outerRadius={'70%'}
         innerRadius={10}
-        data={data.map(createData)}
+        data={normalizedData.map(createData)}
       />
       <View style={styles.legendContainer}>
-        {data.map(({ label, value }, index) => (
+        {normalizedData.map(({ label, value }, index) => (
           <View style={styles.legendRowContainer} key={label}>
             <View
               style={[styles.legendSquare, { backgroundColor: colors[index] }]}
             />
-            <Text style={styles.legendText}>{`${label} (${calcPercentage(
-              value,
-              total,
-            )})`}</Text>
+            <Text style={styles.legendText}>{`${label} (${value}%)`}</Text>
           </View>
         ))}
       </View>
     </View>
   );
 };
-
-const calcPercentage = (a: number, b: number): string =>
-  `${Math.round((100 * a) / b)}%`;
 
 const createData = (
   { value }: SalaryPieChartData,
