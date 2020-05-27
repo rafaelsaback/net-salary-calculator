@@ -37,3 +37,25 @@ export interface B2BParams {
   sickness: Sickness;
   costs: number;
 }
+
+export interface BaseSalaryResults {
+  salary: number;
+  pension: number[];
+  disability: number[];
+  sickness: number[];
+  socialSecurity: number[];
+  healthContribution: number[];
+  healthDeductible: number[];
+  taxBase: number[];
+  tax: number[];
+  endSalary: number[];
+}
+
+export type UOPSalaryResults = BaseSalaryResults;
+
+export interface B2BSalaryResults extends BaseSalaryResults {
+  laborFund: number[];
+  accident: number[];
+  others: number[];
+  costs: number;
+}

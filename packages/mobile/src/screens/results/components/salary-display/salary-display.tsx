@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Entypo } from '@expo/vector-icons';
 import { styles } from './salary-display.style';
-import { appTheme } from '../../../theme';
+import { appTheme } from '../../../../theme';
 
 interface SalaryDisplayProps {
   salary: string;

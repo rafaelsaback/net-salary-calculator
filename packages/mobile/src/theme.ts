@@ -29,7 +29,7 @@ export const appTheme = {
     color: primaryBlackColor,
     fontSize: '20rem',
     fontWeight: 'bold',
-    marginBottom: '10rem',
+    marginBottom: '15rem',
   },
   borderRadius: 5,
   btnBackgroundShadow: {
