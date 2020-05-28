@@ -10,7 +10,7 @@ export const styles = EStyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '13rem',
+    padding: '10rem',
   },
   text: {
     color: appTheme.primaryBlackColor,
