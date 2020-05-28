@@ -1,7 +1,14 @@
 import React from 'react';
-import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Entypo } from '@expo/vector-icons';
 import { HomeScreen } from './screens/home/home-screen';
 import { appTheme, appThemeReactNavigation } from './theme';
 import { Footer } from './components/footer';
@@ -11,6 +18,7 @@ import { RootStackParamList, ScreenName } from './types';
 import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
 import { B2BParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
 import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
+import { MenuIcon } from './components/menu-icon/menu-icon';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -35,6 +43,7 @@ const AppEntry: React.FC = () => {
             },
             headerBackTitle: '',
             headerTintColor: 'white',
+            headerRight: MenuIcon,
           }}
         >
           <Screen

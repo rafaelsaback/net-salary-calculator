@@ -49,7 +49,10 @@ export const InputModal: React.FC<InputModalProps> = ({
           <TouchableWithoutFeedback onPress={closeModal}>
             <View style={styles.backIcon}>
               <Ionicons
-                name="md-arrow-back"
+                name={Platform.select({
+                  ios: 'ios-arrow-back',
+                  default: 'md-arrow-back',
+                })}
                 size={EStyleSheet.value('30rem')}
                 color={appTheme.primaryRedColor}
               />
