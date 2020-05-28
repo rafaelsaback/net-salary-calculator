@@ -2,6 +2,7 @@ import { DefaultTheme } from '@react-navigation/native';
 
 const primaryRedColor = '#DC143C';
 const secondaryRedColor = '#FFE9ED';
+const backgroundColor = '#ffffff';
 const primaryBlackColor = '#515151';
 const secondaryBlackColor = '#818181';
 const lightGray = '#F4F4F4';
@@ -13,7 +14,7 @@ export const appThemeReactNavigation = {
     ...DefaultTheme.colors,
     primary: primaryRedColor,
     text: primaryBlackColor,
-    background: secondaryRedColor,
+    background: backgroundColor,
   },
 };
 

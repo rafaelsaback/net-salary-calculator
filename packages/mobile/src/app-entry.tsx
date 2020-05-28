@@ -1,9 +1,9 @@
 import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/home/home-screen';
-import { appThemeReactNavigation } from './theme';
+import { appTheme, appThemeReactNavigation } from './theme';
 import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
@@ -23,12 +23,18 @@ EStyleSheet.build({ $rem: entireScreenWidth / 380 });
 const AppEntry: React.FC = () => {
   return (
     <View style={styles.mainContainer}>
+      <StatusBar barStyle="light-content" />
       <NavigationContainer theme={appThemeReactNavigation}>
         <Navigator
           initialRouteName={ScreenName.Home}
           screenOptions={{
             headerTitleAlign: 'center',
-            headerStyle: { height: EStyleSheet.value('70rem') },
+            headerStyle: {
+              backgroundColor: appTheme.primaryRedColor,
+              height: EStyleSheet.value('55rem'),
+            },
+            headerBackTitle: '',
+            headerTintColor: 'white',
           }}
         >
           <Screen
