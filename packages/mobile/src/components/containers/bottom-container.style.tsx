@@ -4,7 +4,7 @@ export const styles = EStyleSheet.create({
   container: {
     flex: -1,
     height: '70rem',
-    padding: 0,
+    paddingVertical: 0,
     justifyContent: 'center',
     marginTop: 0,
   },

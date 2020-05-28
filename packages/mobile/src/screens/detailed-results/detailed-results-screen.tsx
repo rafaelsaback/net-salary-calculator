@@ -21,7 +21,7 @@ interface DetailedResultsScreenProps {}
 
 enum DisplayMode {
   Monthly = 'Monthly',
-  MonthlyAverage = '12-Month Average',
+  MonthlyAverage = 'Monthly\nAverage',
   Annually = 'Annually',
 }
 const displayModeOptions = [
@@ -77,7 +77,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = (
           value={displayMode}
           options={displayModeOptions}
           onChange={setDisplayMode}
-          width="90%"
+          width="92%"
           fontSize={createFontSizeStyle([16, 14, 16])}
         />
       </BottomContainer>

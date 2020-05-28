@@ -19,7 +19,7 @@ export const styles = EStyleSheet.create({
   },
   activeContainer: {
     borderColor: appTheme.primaryRedColor,
-    backgroundColor: 'rgba(220, 20, 60, 0.1)',
+    backgroundColor: appTheme.secondaryRedColor,
   },
   text: {
     fontSize: '16rem',

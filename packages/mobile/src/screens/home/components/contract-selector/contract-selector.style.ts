@@ -20,7 +20,7 @@ export const contractSelectorStyles = EStyleSheet.create({
     ...appTheme.btnBackgroundShadow,
   },
   activeImageContainer: {
-    backgroundColor: '#E5F3FF',
+    backgroundColor: appTheme.secondaryRedColor,
   },
   inactiveImageContainer: {
     backgroundColor: '#F1F1F1',
