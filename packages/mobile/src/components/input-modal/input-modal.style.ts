@@ -17,13 +17,13 @@ export const styles = EStyleSheet.create({
   flexContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: appTheme.secondaryRedColor,
   },
   inputContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: appTheme.borderRadius,
     marginHorizontal: '10rem',
+    borderWidth: 1,
   },
   textContainer: {
     flex: 1,
