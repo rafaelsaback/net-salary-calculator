@@ -8,11 +8,4 @@ export const styles = EStyleSheet.create({
   title: {
     ...appTheme.title,
   },
-  bottomContainer: {
-    flex: 'none',
-    height: '70rem',
-    padding: 0,
-    justifyContent: 'center',
-    marginTop: 0,
-  },
 });

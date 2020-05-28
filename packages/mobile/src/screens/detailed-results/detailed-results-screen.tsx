@@ -5,7 +5,8 @@ import { Container } from '../../components/containers/container';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
 import { createFontSizeStyle } from '../../helpers';
-import { styles } from '../results/results-screen.style';
+import { Table } from './components/table';
+import { styles } from './detailed-results-screen.style';
 
 interface DetailedResultsScreenProps {}
 
@@ -27,7 +28,20 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = (
   return (
     <View style={styles.container}>
       <Container>
-        <Text>January</Text>
+        <View>
+          <Text style={styles.title}>January</Text>
+          <Table
+            salary={{ label: 'Gross Salary', value: '10 000' }}
+            endSalary={{ label: 'Net Salary', value: '7 143' }}
+            salaryDiscounts={[
+              { label: 'Pension', value: '976' },
+              { label: 'Disability', value: '150' },
+              { label: 'Sickness', value: '245' },
+              { label: 'Health', value: '777' },
+              { label: 'Tax', value: '709' },
+            ]}
+          />
+        </View>
       </Container>
       <BottomContainer>
         <Selector

@@ -5,4 +5,7 @@ export const styles = EStyleSheet.create({
   container: {
     ...appTheme.bodyContainer,
   },
+  title: {
+    ...appTheme.title,
+  },
 });
