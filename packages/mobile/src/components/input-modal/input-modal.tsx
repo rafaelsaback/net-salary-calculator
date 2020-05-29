@@ -16,14 +16,12 @@ import { Modal } from './modal';
 
 interface InputModalProps {
   defaultValue: string;
-  visible: boolean;
   setValue: Dispatch<string>;
   closeModal(): void;
 }
 
 export const InputModal: React.FC<InputModalProps> = ({
   defaultValue,
-  visible,
   setValue,
   closeModal,
 }) => {
@@ -36,7 +34,6 @@ export const InputModal: React.FC<InputModalProps> = ({
     <Modal
       animationType="fade"
       presentationStyle="fullScreen"
-      visible={visible}
       transparent={false}
       onRequestClose={closeModal}
     >

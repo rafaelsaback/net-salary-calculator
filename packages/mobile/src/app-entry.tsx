@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  Dimensions,
-  StatusBar,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Entypo } from '@expo/vector-icons';
 import { HomeScreen } from './screens/home/home-screen';
 import { appTheme, appThemeReactNavigation } from './theme';
 import { Footer } from './components/footer';

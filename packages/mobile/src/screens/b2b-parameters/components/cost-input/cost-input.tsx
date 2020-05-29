@@ -13,34 +13,35 @@ interface CostInputProps {
 
 export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [clearCost, setClearCost] = useState(false);
+  const [clearCosts, setClearCosts] = useState(false);
 
   const showModal = () => setIsModalVisible(true);
-  const clearSalaryAndShowModal = () => {
-    setClearCost(true);
+  const clearCostAndShowModal = () => {
+    setClearCosts(true);
     setIsModalVisible(true);
   };
   const closeModal = () => {
-    setClearCost(false);
+    setClearCosts(false);
     setIsModalVisible(false);
   };
   return (
     <View style={styles.container}>
       <Text style={styles.textLabel}>Cost</Text>
       <View style={styles.inputContainer}>
-        <InputModal
-          defaultValue={clearCost ? '' : costs}
-          visible={isModalVisible}
-          closeModal={closeModal}
-          setValue={setCosts}
-        />
+        {isModalVisible && (
+          <InputModal
+            defaultValue={clearCosts ? '' : costs}
+            closeModal={closeModal}
+            setValue={setCosts}
+          />
+        )}
         <Text style={styles.currency}>PLN</Text>
         <TouchableWithoutFeedback onPress={showModal}>
           <View style={styles.valueContainer}>
             <Text style={styles.value}>{costs}</Text>
           </View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={clearSalaryAndShowModal}>
+        <TouchableWithoutFeedback onPress={clearCostAndShowModal}>
           <View style={styles.closeIcon}>
             <AntDesign
               size={EStyleSheet.value('22rem')}

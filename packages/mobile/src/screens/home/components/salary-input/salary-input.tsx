@@ -8,7 +8,7 @@ import { InputModal } from '../../../../components/input-modal/input-modal';
 
 export const SalaryInput: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [salary, setSalary] = useState('100 000');
+  const [salary, setSalary] = useState('100000');
   const [clearSalary, setClearSalary] = useState(false);
 
   const showModal = () => setIsModalVisible(true);
@@ -22,12 +22,13 @@ export const SalaryInput: React.FC = () => {
   };
   return (
     <View style={styles.container}>
-      <InputModal
-        defaultValue={clearSalary ? '' : salary}
-        visible={isModalVisible}
-        closeModal={closeModal}
-        setValue={setSalary}
-      />
+      {isModalVisible && (
+        <InputModal
+          defaultValue={clearSalary ? '' : salary}
+          closeModal={closeModal}
+          setValue={setSalary}
+        />
+      )}
       <Text style={styles.currency}>PLN</Text>
       <TouchableWithoutFeedback onPress={showModal}>
         <View style={styles.valueContainer}>
