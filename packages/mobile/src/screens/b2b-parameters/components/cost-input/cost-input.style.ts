@@ -15,7 +15,7 @@ export const styles = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: 'white',
-    height: '40rem',
+    height: '50rem',
     borderRadius: appTheme.borderRadius,
     borderWidth: 1,
     borderColor: appTheme.secondaryBlackColor,

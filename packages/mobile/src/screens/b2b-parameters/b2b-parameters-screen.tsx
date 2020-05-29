@@ -52,31 +52,33 @@ export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
   };
 
   return (
-    <Container>
-      <IncomeTaxSelector taxType={taxType} setTax={setTax} />
-      <ZusSelector zus={zus} setZus={setZus} />
-      <SicknessInsuranceSelector
-        sickness={sickness}
-        setSickness={setSickness}
-      />
-      <CostInput costs={costs} setCosts={setCosts} />
-      <View style={styles.buttonContainer}>
-        <Button
-          style={styles.button}
-          size={ButtonSize.Medium}
-          onPress={goBackWithParameters}
-        >
-          Ok
-        </Button>
-        <Button
-          style={styles.button}
-          type="secondary"
-          size={ButtonSize.Medium}
-          onPress={() => navigation.goBack()}
-        >
-          Cancel
-        </Button>
-      </View>
-    </Container>
+    <View style={styles.container}>
+      <Container>
+        <IncomeTaxSelector taxType={taxType} setTax={setTax} />
+        <ZusSelector zus={zus} setZus={setZus} />
+        <SicknessInsuranceSelector
+          sickness={sickness}
+          setSickness={setSickness}
+        />
+        <CostInput costs={costs} setCosts={setCosts} />
+        <View style={styles.buttonContainer}>
+          <Button
+            style={styles.button}
+            size={ButtonSize.Medium}
+            onPress={goBackWithParameters}
+          >
+            Ok
+          </Button>
+          <Button
+            style={styles.button}
+            type="secondary"
+            size={ButtonSize.Medium}
+            onPress={() => navigation.goBack()}
+          >
+            Cancel
+          </Button>
+        </View>
+      </Container>
+    </View>
   );
 };

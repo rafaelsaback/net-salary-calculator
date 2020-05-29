@@ -17,6 +17,7 @@ export const styles = EStyleSheet.create({
   legendRowContainer: {
     flexDirection: 'row',
     marginBottom: '5rem',
+    alignItems: 'center',
   },
   legendSquare: {
     width: '14rem',

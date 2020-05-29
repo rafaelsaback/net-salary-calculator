@@ -44,12 +44,16 @@ const AppEntry: React.FC = () => {
             headerBackTitle: '',
             headerTintColor: 'white',
             headerRight: MenuIcon,
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: EStyleSheet.value('22rem'),
+            },
           }}
         >
           <Screen
             name={ScreenName.Home}
             component={HomeScreen}
-            options={{ title: '' }}
+            options={{ title: 'Gross Salary' }}
             initialParams={{
               b2bParameters: {
                 taxType: B2BTax.Linear,
@@ -62,17 +66,17 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.B2BParameters}
             component={B2BParametersScreen}
-            options={{ title: '' }}
+            options={{ title: 'B2B Parameters' }}
           />
           <Screen
             name={ScreenName.Results}
             component={ResultsScreen}
-            options={{ title: '' }}
+            options={{ title: 'Net Salary' }}
           />
           <Screen
             name={ScreenName.DetailedResults}
             component={DetailedResultsScreen}
-            options={{ title: '' }}
+            options={{ title: 'Detailed Results' }}
           />
         </Navigator>
       </NavigationContainer>
