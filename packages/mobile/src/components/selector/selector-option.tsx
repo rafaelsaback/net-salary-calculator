@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from './selector-option.style';
 
@@ -33,10 +33,8 @@ export const SelectorOption: React.FC<SelectorOptionProps> = ({
     fontSize ? { fontSize } : {},
   ];
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View style={containerStyle}>
-        <Text style={textStyle}>{text}</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacity style={containerStyle} onPress={onPress}>
+      <Text style={textStyle}>{text}</Text>
+    </TouchableOpacity>
   );
 };
