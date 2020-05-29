@@ -4,8 +4,8 @@ export enum Period {
 }
 
 export enum B2BTax {
-  Linear = 'LINEAR',
-  Progressive = 'PROGRESSIVE',
+  Linear = 'Linear',
+  Progressive = 'Progressive',
 }
 
 export enum ZUS {

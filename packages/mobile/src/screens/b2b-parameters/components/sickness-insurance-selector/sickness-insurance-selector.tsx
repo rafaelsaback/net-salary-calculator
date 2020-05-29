@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { Dispatch } from 'react';
 import { Text, View } from 'react-native';
-import { SelectorOption } from '../../../../components/selector/selector-option';
-import { SelectorContainer } from '../../../../components/selector/selector-container';
 import { styles } from './sickness-insurance-selector.style';
 import { Sickness } from '@nsc/shared/src/types';
-import { isNoSickness, isYesSickness } from '@nsc/shared/src/type-helpers';
+import { Selector } from '../../../../components/selector/selector';
 
 interface SicknessInsuranceSelectorProps {
   sickness: Sickness;
-  setSickness: Dispatch<Sickness>;
+  setSickness: Dispatch<any>;
 }
 
 export const SicknessInsuranceSelector: React.FC<SicknessInsuranceSelectorProps> = ({
@@ -19,20 +17,13 @@ export const SicknessInsuranceSelector: React.FC<SicknessInsuranceSelectorProps>
   return (
     <View style={styles.container}>
       <Text style={styles.textLabel}>Sickness Insurance</Text>
-      <SelectorContainer width="100%">
-        <SelectorOption
-          active={isNoSickness(sickness)}
-          text="No"
-          onPress={() => setSickness(Sickness.No)}
-          atLeftHandSide
-        />
-        <SelectorOption
-          active={isYesSickness(sickness)}
-          text="Yes"
-          onPress={() => setSickness(Sickness.Yes)}
-          atRightHandSide
-        />
-      </SelectorContainer>
+      <Selector
+        value={sickness}
+        options={[Sickness.No, Sickness.Yes]}
+        onChange={setSickness}
+        width="100%"
+        height="45rem"
+      />
     </View>
   );
 };

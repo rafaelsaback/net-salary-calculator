@@ -8,6 +8,7 @@ interface SelectorProps {
   options: string[];
   onChange: Dispatch<string>;
   width?: string;
+  height?: string;
   fontSize?: number | number[];
 }
 
@@ -15,11 +16,12 @@ export const Selector: React.FC<SelectorProps> = ({
   value,
   options,
   width,
+  height,
   fontSize,
   onChange: onChange,
 }) => {
   return (
-    <SelectorContainer width={width}>
+    <SelectorContainer width={width} height={height}>
       {options.map((option, index) => (
         <SelectorOption
           key={option}
