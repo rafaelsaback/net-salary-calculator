@@ -43,6 +43,7 @@ export const InputModal: React.FC<InputModalProps> = ({
       closeModal();
     }
   }, [closeModal, isValid, setValue, tempValue]);
+
   return (
     <Modal
       animationType="fade"
@@ -79,7 +80,9 @@ export const InputModal: React.FC<InputModalProps> = ({
 
         {/* Text input + clear button */}
         <View style={styles.flexContainer}>
-          <View style={styles.inputContainer}>
+          <View
+            style={[styles.inputContainer, error ? styles.redBorderColor : {}]}
+          >
             {/* Text input */}
             <View style={styles.textContainer}>
               <TextInput
@@ -105,9 +108,9 @@ export const InputModal: React.FC<InputModalProps> = ({
               </View>
             </TouchableWithoutFeedback>
           </View>
-        </View>
-        <View>
-          <Text>{error}</Text>
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </Modal>

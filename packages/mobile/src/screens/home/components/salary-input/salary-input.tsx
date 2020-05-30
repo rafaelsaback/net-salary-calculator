@@ -21,6 +21,7 @@ export const SalaryInput: React.FC = () => {
   const closeModal = () => {
     setClearSalary(false);
     setIsModalVisible(false);
+    setError('');
   };
 
   const isValid = (salary: number) => {

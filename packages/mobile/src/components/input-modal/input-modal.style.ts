@@ -5,6 +5,7 @@ export const closeIconSize = '40rem';
 export const styles = EStyleSheet.create({
   $closeIconPadding: '15rem',
   $closeIconSize: closeIconSize,
+  $marginHorizontal: '10rem',
   container: {
     position: 'absolute',
     width: '100%',
@@ -22,8 +23,11 @@ export const styles = EStyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: appTheme.borderRadius,
-    marginHorizontal: '10rem',
+    marginHorizontal: '$marginHorizontal',
     borderWidth: 1,
+  },
+  redBorderColor: {
+    borderColor: appTheme.primaryRedColor,
   },
   textContainer: {
     flex: 1,
@@ -33,6 +37,14 @@ export const styles = EStyleSheet.create({
     textAlign: 'center',
     fontSize: '60rem',
     color: appTheme.primaryBlackColor,
+  },
+  errorContainer: {
+    marginHorizontal: '$marginHorizontal',
+    marginTop: '5rem',
+  },
+  errorText: {
+    color: appTheme.primaryRedColor,
+    fontSize: '14rem',
   },
   closeIcon: {
     paddingRight: '$closeIconPadding',
