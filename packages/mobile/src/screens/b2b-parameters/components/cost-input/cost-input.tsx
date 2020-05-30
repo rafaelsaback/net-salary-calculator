@@ -14,6 +14,7 @@ interface CostInputProps {
 export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clearCosts, setClearCosts] = useState(false);
+  const [error, setError] = useState('');
 
   const showModal = () => setIsModalVisible(true);
   const clearCostAndShowModal = () => {
@@ -24,6 +25,15 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
     setClearCosts(false);
     setIsModalVisible(false);
   };
+  const isValid = (costs: number) => {
+    if (costs < 0) {
+      setError('The cost should be greater than zero');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.textLabel}>Cost</Text>
@@ -33,6 +43,8 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
             defaultValue={clearCosts ? '' : costs}
             closeModal={closeModal}
             setValue={setCosts}
+            error={error}
+            isValid={isValid}
           />
         )}
         <Text style={styles.currency}>PLN</Text>
