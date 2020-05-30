@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from './screens/home/home-screen';
+import HomeScreen from './screens/home/home-screen';
 import { appTheme, appThemeReactNavigation } from './theme';
 import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';

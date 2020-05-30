@@ -6,7 +6,7 @@ import { SelectorOption } from './selector-option';
 interface SelectorProps {
   value: string;
   options: string[];
-  onChange: Dispatch<string>;
+  onChange: Dispatch<any>;
   width?: string;
   height?: string;
   fontSize?: number | number[];

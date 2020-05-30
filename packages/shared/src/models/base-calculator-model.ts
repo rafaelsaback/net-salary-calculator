@@ -7,10 +7,7 @@ import {
   RATE_32,
   TAX_THRESHOLD,
 } from '../consts';
-
-export const roundNumber = (number: number, decimals: number): number => {
-  return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
-};
+import { roundNumber } from '../helpers';
 
 export const accumulateValue = (list: List<number>) => {
   return list

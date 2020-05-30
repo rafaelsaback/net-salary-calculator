@@ -12,6 +12,8 @@ import { B2BParametersButton } from './components/b2b-parameters-button/b2b-para
 import { isB2B } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
 import { Selector } from '../../components/selector/selector';
+import { observer } from 'mobx-react';
+import { UopCalculatorModel } from '../../models/uop-calculator-model';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -28,17 +30,17 @@ interface HomeScreenProps {
   route: HomeScreenRouteProp;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
-  const [period, setPeriod] = useState<string>(Period.Monthly);
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [contract, setContract] = useState(ContractType.Employment);
+
   return (
     <View style={styles.container}>
       <Container>
         <SalaryInput />
         <Selector
-          value={period}
+          value={UopCalculatorModel.instance.period}
           options={[Period.Monthly, Period.Annually]}
-          onChange={setPeriod}
+          onChange={UopCalculatorModel.instance.setPeriod}
         />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
@@ -66,3 +68,5 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     </View>
   );
 };
+
+export default observer(HomeScreen);

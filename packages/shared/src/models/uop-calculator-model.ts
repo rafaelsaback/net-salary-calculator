@@ -1,12 +1,7 @@
 import { Map, List } from 'immutable';
-import {
-  IUOPSalaryResults,
-  IUOPParams,
-  Period,
-} from '../../../web/src/interfaces';
+import { IUOPSalaryResults, IUOPParams } from '../../../web/src/interfaces';
 import flowRight from 'lodash-es/flowRight';
 import {
-  roundNumber,
   calcProgressiveTaxList,
   calcHealthDeductibleList,
   calcTaxBaseList,
@@ -19,6 +14,8 @@ import {
   PENSION_RATE,
   SICKNESS_RATE,
 } from '../consts';
+import { Period } from '../types';
+import { roundNumber } from '../helpers';
 
 const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   const grossSalary = salaryResults.get('salary');

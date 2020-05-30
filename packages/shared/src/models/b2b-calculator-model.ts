@@ -11,10 +11,10 @@ import {
   calcHealthDeductibleList,
   calcTaxBaseList,
   calcProgressiveTaxList,
-  roundNumber,
 } from './base-calculator-model';
 import flowRight from 'lodash-es/flowRight';
 import { HEALTH_INSURANCE, NORMAL_ZUS, RATE_19, SMALL_ZUS } from '../consts';
+import { roundNumber } from '../helpers';
 
 const evalZUS = (
   zus: ZUS,

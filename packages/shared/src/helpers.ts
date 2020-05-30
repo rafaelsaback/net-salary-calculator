@@ -14,3 +14,7 @@ export const formatNumberWithSpaceSeparator = (
 
 export const removeSpaceSeparator = (text: string): string =>
   text.replace(/ /g, '');
+
+export const roundNumber = (number: number, decimals: number): number => {
+  return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
