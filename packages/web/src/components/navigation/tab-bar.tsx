@@ -7,8 +7,8 @@ import {
 } from '../../helpers/selectors';
 import { useSelector } from 'react-redux';
 import { List } from 'immutable';
-import { formatNumber } from '../../helpers/utils';
 import makeStyles from '@material-ui/styles/makeStyles';
+import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface AppTabsProps {
   value: any;
@@ -23,7 +23,9 @@ const createLabel = (label: string, salary: number, classes: any) =>
   salary ? (
     <div>
       <div className={classes.tabLabel}>{label}</div>
-      <div className={classes.tabSalary}>{formatNumber(salary)} PLN</div>
+      <div className={classes.tabSalary}>
+        {formatNumberWithSpaceSeparator(salary)} PLN
+      </div>
     </div>
   ) : (
     <div className={classes.tabLabel}>{label}</div>

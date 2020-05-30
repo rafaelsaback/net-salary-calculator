@@ -15,7 +15,6 @@ import TableRow from '@material-ui/core/TableRow';
 import { BaseSalaryResults } from '../../interfaces';
 import {
   calcTotal,
-  formatNumber,
   isB2BxSalaryResults,
   isUOPxSalaryResults,
 } from '../../helpers/utils';
@@ -24,6 +23,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import makeStyles from '@material-ui/styles/makeStyles';
 import classNames from 'classnames';
 import MobileDetailedTable from './mobile-detailed-table';
+import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface DetailedTableProps {
   salaryLabel: string;
@@ -103,35 +103,35 @@ const getTableBody = (
       <TableRow key={month}>
         <TableCell align="center">{month}</TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.salary)}
+          {formatNumberWithSpaceSeparator(salaryResults.salary)}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.pension[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.pension[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.disability[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.disability[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.sickness[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.sickness[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.healthContribution[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.healthContribution[i])}
         </TableCell>
         <TableCell
           align="center"
           className={matchesTablet ? classes.hideOnTablet : ''}
         >
-          {formatNumber(
+          {formatNumberWithSpaceSeparator(
             isB2BxSalaryResults(salaryResults)
               ? salaryResults.others[i]
               : salaryResults.taxBase[i],
           )}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.tax[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.tax[i])}
         </TableCell>
         <TableCell align="center">
-          {formatNumber(salaryResults.endSalary[i])}
+          {formatNumberWithSpaceSeparator(salaryResults.endSalary[i])}
         </TableCell>
       </TableRow>
     ))}
@@ -147,25 +147,27 @@ const getTableFooter = (
     <TableRow>
       <TableCell align="center">Total</TableCell>
       <TableCell align="center">
-        {formatNumber(salaryResults.salary * 12)}
+        {formatNumberWithSpaceSeparator(salaryResults.salary * 12)}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.pension))}
+        {formatNumberWithSpaceSeparator(calcTotal(salaryResults.pension))}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.disability))}
+        {formatNumberWithSpaceSeparator(calcTotal(salaryResults.disability))}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.sickness))}
+        {formatNumberWithSpaceSeparator(calcTotal(salaryResults.sickness))}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.healthContribution))}
+        {formatNumberWithSpaceSeparator(
+          calcTotal(salaryResults.healthContribution),
+        )}
       </TableCell>
       <TableCell
         align="center"
         className={matchesTablet ? classes.hideOnTablet : ''}
       >
-        {formatNumber(
+        {formatNumberWithSpaceSeparator(
           calcTotal(
             isB2BxSalaryResults(salaryResults)
               ? salaryResults.others
@@ -174,10 +176,10 @@ const getTableFooter = (
         )}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.tax))}
+        {formatNumberWithSpaceSeparator(calcTotal(salaryResults.tax))}
       </TableCell>
       <TableCell align="center">
-        {formatNumber(calcTotal(salaryResults.endSalary))}
+        {formatNumberWithSpaceSeparator(calcTotal(salaryResults.endSalary))}
       </TableCell>
     </TableRow>
   </TableFooter>

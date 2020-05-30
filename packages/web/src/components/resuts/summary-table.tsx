@@ -10,10 +10,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { formatNumber } from '../../helpers/utils';
 import classNames from 'classnames';
 import makeStyles from '@material-ui/styles/makeStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface SummaryTableProps {
   label: string;
@@ -78,39 +78,39 @@ const SummaryTable: FunctionComponent<SummaryTableProps> = ({
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{salaryLabel}</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(salary)}
+            {formatNumberWithSpaceSeparator(salary)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Social security</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(socialSecurity)}
+            {formatNumberWithSpaceSeparator(socialSecurity)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Health</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(health)}
+            {formatNumberWithSpaceSeparator(health)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Tax</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(tax)}
+            {formatNumberWithSpaceSeparator(tax)}
           </TableCell>
         </TableRow>
         {costs !== undefined && (
           <TableRow>
             <TableCell align="left">Costs</TableCell>
             <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(costs)}
+              {formatNumberWithSpaceSeparator(costs)}
             </TableCell>
           </TableRow>
         )}
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{endSalaryLabel}</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(endSalary)}
+            {formatNumberWithSpaceSeparator(endSalary)}
           </TableCell>
         </TableRow>
       </TableBody>

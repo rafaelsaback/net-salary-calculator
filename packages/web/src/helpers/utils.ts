@@ -1,13 +1,13 @@
 import { ChangeEvent, Dispatch } from 'react';
 import { compose } from 'redux';
-import { setUOPParams, setB2BParams } from '../redux/actions';
+import { setB2BParams, setUOPParams } from '../redux/actions';
 import { List } from 'immutable';
 import {
-  ContractType,
-  IUOPSalaryResults,
-  IB2BSalaryResults,
-  UOPSalaryResults,
   B2BSalaryResults,
+  ContractType,
+  IB2BSalaryResults,
+  IUOPSalaryResults,
+  UOPSalaryResults,
 } from '../interfaces';
 
 export const handleChange = (setFunction: (value: string) => void) => (
@@ -78,10 +78,6 @@ export const calcTotal = (list: List<number>): number =>
   list.reduce((a, b) => a + b, 0);
 
 export const calcAverage = (list: List<number>): number => calcTotal(list) / 12;
-
-export const formatNumber = (number: number, precision = 0): string => {
-  return number.toFixed(precision).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
 
 export const isUOP = (contractType: ContractType): boolean =>
   contractType === ContractType.UOP;

@@ -13,6 +13,10 @@ import { appTheme } from '../../theme';
 import { closeIconSize, styles } from './input-modal.style';
 import { Button, ButtonSize } from '../button/button';
 import { Modal } from './modal';
+import {
+  formatNumberWithSpaceSeparator,
+  removeSpaceSeparator,
+} from '@nsc/shared/src/helpers';
 
 interface InputModalProps {
   defaultValue: string;
@@ -25,9 +29,11 @@ export const InputModal: React.FC<InputModalProps> = ({
   setValue,
   closeModal,
 }) => {
-  const [tempValue, setTempValue] = useState(defaultValue);
+  const [tempValue, setTempValue] = useState(
+    removeSpaceSeparator(defaultValue),
+  );
   const saveAndClose = useCallback(() => {
-    setValue(tempValue);
+    setValue(formatNumberWithSpaceSeparator(tempValue));
     closeModal();
   }, [closeModal, setValue, tempValue]);
   return (
@@ -75,6 +81,7 @@ export const InputModal: React.FC<InputModalProps> = ({
                 keyboardType="numeric"
                 style={styles.text}
                 onSubmitEditing={saveAndClose}
+                selectTextOnFocus
                 autoFocus
               />
             </View>

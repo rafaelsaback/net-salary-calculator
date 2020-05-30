@@ -10,10 +10,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { formatNumber } from '../../helpers/utils';
 import makeStyles from '@material-ui/styles/makeStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import classNames from 'classnames';
+import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface MobileDetailedTableProps {
   header: string;
@@ -85,38 +85,38 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{salaryLabel}</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(salary)}
+            {formatNumberWithSpaceSeparator(salary)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Pension</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(pension)}
+            {formatNumberWithSpaceSeparator(pension)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Disability</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(disability)}
+            {formatNumberWithSpaceSeparator(disability)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Sickness</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(sickness)}
+            {formatNumberWithSpaceSeparator(sickness)}
           </TableCell>
         </TableRow>
         <TableRow>
           <TableCell align="left">Health</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(health)}
+            {formatNumberWithSpaceSeparator(health)}
           </TableCell>
         </TableRow>
         {taxBase !== undefined && (
           <TableRow>
             <TableCell align="left">Tax base</TableCell>
             <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(taxBase)}
+              {formatNumberWithSpaceSeparator(taxBase)}
             </TableCell>
           </TableRow>
         )}
@@ -124,28 +124,28 @@ const MobileDetailedTable: FunctionComponent<MobileDetailedTableProps> = ({
           <TableRow>
             <TableCell align="left">Others</TableCell>
             <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(others)}
+              {formatNumberWithSpaceSeparator(others)}
             </TableCell>
           </TableRow>
         )}
         <TableRow>
           <TableCell align="left">Tax</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(tax)}
+            {formatNumberWithSpaceSeparator(tax)}
           </TableCell>
         </TableRow>
         {costs !== undefined && (
           <TableRow>
             <TableCell align="left">Costs</TableCell>
             <TableCell className={classes.valueColumn} align="right">
-              {formatNumber(costs)}
+              {formatNumberWithSpaceSeparator(costs)}
             </TableCell>
           </TableRow>
         )}
         <TableRow className={classes.salaryRow}>
           <TableCell align="left">{endSalaryLabel}</TableCell>
           <TableCell className={classes.valueColumn} align="right">
-            {formatNumber(endSalary)}
+            {formatNumberWithSpaceSeparator(endSalary)}
           </TableCell>
         </TableRow>
       </TableBody>
