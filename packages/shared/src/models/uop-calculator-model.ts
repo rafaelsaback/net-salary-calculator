@@ -6,19 +6,19 @@ import {
 } from '../../../web/src/interfaces';
 import flowRight from 'lodash-es/flowRight';
 import {
-  ANNUAL_LIMIT,
-  PENSION_RATE,
-  DISABILITY_RATE,
-  SICKNESS_RATE,
-  HEALTH_CONTRIBUTION_RATE,
-  EARNING_COST,
-} from '../../../web/src/helpers/consts';
-import {
   roundNumber,
   calcProgressiveTaxList,
   calcHealthDeductibleList,
   calcTaxBaseList,
 } from './base-calculator-model';
+import {
+  ANNUAL_LIMIT,
+  DISABILITY_RATE,
+  EARNING_COST,
+  HEALTH_CONTRIBUTION_RATE,
+  PENSION_RATE,
+  SICKNESS_RATE,
+} from '../consts';
 
 const calcEndSalary = (salaryResults: IUOPSalaryResults): IUOPSalaryResults => {
   const grossSalary = salaryResults.get('salary');

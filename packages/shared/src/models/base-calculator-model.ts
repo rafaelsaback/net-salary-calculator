@@ -1,12 +1,12 @@
 import { List } from 'immutable';
 import {
-  TAX_THRESHOLD,
-  RATE_17,
-  MONTHLY_RELIEF,
-  RATE_32,
-  HEALTH_DEDUCTIBLE_RATE,
   HEALTH_CONTRIBUTION_RATE,
-} from '../../../web/src/helpers/consts';
+  HEALTH_DEDUCTIBLE_RATE,
+  MONTHLY_RELIEF,
+  RATE_17,
+  RATE_32,
+  TAX_THRESHOLD,
+} from '../consts';
 
 export const roundNumber = (number: number, decimals: number): number => {
   return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals);

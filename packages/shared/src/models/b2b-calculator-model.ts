@@ -14,12 +14,7 @@ import {
   roundNumber,
 } from './base-calculator-model';
 import flowRight from 'lodash-es/flowRight';
-import {
-  RATE_19,
-  NORMAL_ZUS,
-  SMALL_ZUS,
-  HEALTH_INSURANCE,
-} from '../../../web/src/helpers/consts';
+import { HEALTH_INSURANCE, NORMAL_ZUS, RATE_19, SMALL_ZUS } from '../consts';
 
 const evalZUS = (
   zus: ZUS,

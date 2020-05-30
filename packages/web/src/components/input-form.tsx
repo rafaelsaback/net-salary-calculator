@@ -10,7 +10,7 @@ import B2BForm from './input/b2b-form';
 import TabBar from './navigation/tab-bar';
 import TabPanel from './navigation/tab-panel';
 import UOPForm from './input/uop-form';
-import { BORDER_RADIUS, BOX_SHADOW, MINIMUM_WAGE } from '../helpers/consts';
+import { BORDER_RADIUS, BOX_SHADOW } from '../helpers/consts';
 import {
   setContractType,
   setSalaryResult,
@@ -29,6 +29,7 @@ import { calculateB2BSalary } from '@nsc/shared/src/models/b2b-calculator-model'
 import makeStyles from '@material-ui/styles/makeStyles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 
 const useStyles = makeStyles({
   root: { padding: 0 },

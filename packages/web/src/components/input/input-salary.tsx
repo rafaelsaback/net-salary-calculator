@@ -1,16 +1,16 @@
 import React, {
-  FunctionComponent,
   ChangeEvent,
-  useState,
+  FunctionComponent,
   useCallback,
   useEffect,
+  useState,
 } from 'react';
 import InputFinancial from './input-financial';
-import { MINIMUM_WAGE } from '../../helpers/consts';
 import { compose } from 'redux';
-import { stringToValue, eventToString } from '../../helpers/utils';
+import { eventToString, stringToValue } from '../../helpers/utils';
 import { selectSubmitted } from '../../helpers/selectors';
 import { useSelector } from 'react-redux';
+import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 
 interface InputSalaryProps {
   label: string;
@@ -31,10 +31,7 @@ const onSalaryChange = (
   setSalary: (event: ChangeEvent<HTMLInputElement>) => void,
   setError: (value: boolean) => void,
 ) => (event: ChangeEvent<HTMLInputElement>) => {
-  const salary = compose(
-    stringToValue,
-    eventToString,
-  )(event);
+  const salary = compose(stringToValue, eventToString)(event);
 
   validateSalary(salary, submitted, setError);
   setSalary(event);
