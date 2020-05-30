@@ -3,6 +3,7 @@ import { Dispatch, useCallback, useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
+  Text,
   TextInput,
   TouchableWithoutFeedback,
   View,
@@ -21,21 +22,27 @@ import {
 interface InputModalProps {
   defaultValue: string;
   setValue: Dispatch<string>;
+  error?: string;
+  isValid?(value: number): boolean;
   closeModal(): void;
 }
 
 export const InputModal: React.FC<InputModalProps> = ({
   defaultValue,
   setValue,
+  error = '',
+  isValid = () => true,
   closeModal,
 }) => {
   const [tempValue, setTempValue] = useState(
     removeSpaceSeparator(defaultValue),
   );
   const saveAndClose = useCallback(() => {
-    setValue(formatNumberWithSpaceSeparator(tempValue));
-    closeModal();
-  }, [closeModal, setValue, tempValue]);
+    if (isValid(parseFloat(tempValue))) {
+      setValue(formatNumberWithSpaceSeparator(tempValue));
+      closeModal();
+    }
+  }, [closeModal, isValid, setValue, tempValue]);
   return (
     <Modal
       animationType="fade"
@@ -81,6 +88,7 @@ export const InputModal: React.FC<InputModalProps> = ({
                 keyboardType="numeric"
                 style={styles.text}
                 onSubmitEditing={saveAndClose}
+                maxLength={9}
                 selectTextOnFocus
                 autoFocus
               />
@@ -97,6 +105,9 @@ export const InputModal: React.FC<InputModalProps> = ({
               </View>
             </TouchableWithoutFeedback>
           </View>
+        </View>
+        <View>
+          <Text>{error}</Text>
         </View>
       </KeyboardAvoidingView>
     </Modal>

@@ -5,11 +5,13 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
+import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 
 export const SalaryInput: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [salary, setSalary] = useState('100000');
   const [clearSalary, setClearSalary] = useState(false);
+  const [error, setError] = useState('');
 
   const showModal = () => setIsModalVisible(true);
   const clearSalaryAndShowModal = () => {
@@ -20,12 +22,27 @@ export const SalaryInput: React.FC = () => {
     setClearSalary(false);
     setIsModalVisible(false);
   };
+
+  const isValid = (salary: number) => {
+    if (salary >= MINIMUM_WAGE) {
+      setError('');
+      return true;
+    }
+
+    setError(
+      `The salary should be at least PLN ${MINIMUM_WAGE} (minimum wage)`,
+    );
+    return false;
+  };
+
   return (
     <View style={styles.container}>
       {isModalVisible && (
         <InputModal
           defaultValue={clearSalary ? '' : salary}
           closeModal={closeModal}
+          error={error}
+          isValid={isValid}
           setValue={setSalary}
         />
       )}
