@@ -18,7 +18,7 @@ export abstract class BaseCalculatorModel {
   @observable
   public period = Period.Monthly;
 
-  protected constructor() {
+  constructor() {
     reaction(
       () => this.period,
       (newPeriod) => {

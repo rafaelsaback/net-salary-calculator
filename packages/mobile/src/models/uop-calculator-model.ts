@@ -11,18 +11,6 @@ import { roundNumber } from '@nsc/shared/src/helpers';
 import { SerializedUOPModel } from '../types';
 
 export class UopCalculatorModel extends BaseCalculatorModel {
-  private static _instance: UopCalculatorModel;
-  private constructor() {
-    super();
-  }
-  public static get instance(): UopCalculatorModel {
-    if (!UopCalculatorModel._instance) {
-      UopCalculatorModel._instance = new UopCalculatorModel();
-    }
-
-    return UopCalculatorModel._instance;
-  }
-
   @computed
   public get pension(): number[] {
     return this.generateArray12x(this.calcPensionDisability(PENSION_RATE));

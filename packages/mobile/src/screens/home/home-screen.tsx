@@ -12,7 +12,7 @@ import { B2BParametersButton } from './components/b2b-parameters-button/b2b-para
 import { isB2B } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
 import { Selector } from '../../components/selector/selector';
-import { observer } from 'mobx-react';
+import { useLocalStore, useObserver } from 'mobx-react';
 import { UopCalculatorModel } from '../../models/uop-calculator-model';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
@@ -32,15 +32,16 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [contract, setContract] = useState(ContractType.Employment);
+  const uopModel = useLocalStore(() => new UopCalculatorModel());
 
-  return (
+  return useObserver(() => (
     <View style={styles.container}>
       <Container>
         <SalaryInput />
         <Selector
-          value={UopCalculatorModel.instance.period}
+          value={uopModel.period}
           options={[Period.Monthly, Period.Annually]}
-          onChange={UopCalculatorModel.instance.setPeriod}
+          onChange={uopModel.setPeriod}
         />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
@@ -66,7 +67,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       </View>
       <B2BParametersButton disabled={!isB2B(contract)} />
     </View>
-  );
+  ));
 };
 
-export default observer(HomeScreen);
+export default HomeScreen;
