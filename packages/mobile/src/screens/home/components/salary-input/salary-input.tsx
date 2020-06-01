@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { appTheme } from '../../../../theme';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -7,9 +7,16 @@ import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 
-export const SalaryInput: React.FC = () => {
+interface SalaryInputProps {
+  salary: string;
+  setSalary: Dispatch<string>;
+}
+
+export const SalaryInput: React.FC<SalaryInputProps> = ({
+  salary,
+  setSalary,
+}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [salary, setSalary] = useState('100000');
   const [clearSalary, setClearSalary] = useState(false);
   const [error, setError] = useState('');
 

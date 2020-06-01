@@ -32,16 +32,19 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [contract, setContract] = useState(ContractType.Employment);
-  const uopModel = useLocalStore(() => new UopCalculatorViewModel());
+  const uopViewModel = useLocalStore(() => new UopCalculatorViewModel());
 
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <SalaryInput />
+        <SalaryInput
+          salary={uopViewModel.salary}
+          setSalary={uopViewModel.setSalary}
+        />
         <Selector
-          value={uopModel.period}
+          value={uopViewModel.period}
           options={[Period.Monthly, Period.Annually]}
-          onChange={uopModel.setPeriod}
+          onChange={uopViewModel.setPeriod}
         />
         <Button
           onPress={() => navigation.navigate(ScreenName.Results)}
