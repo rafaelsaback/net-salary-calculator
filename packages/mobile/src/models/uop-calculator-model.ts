@@ -8,7 +8,6 @@ import {
   SICKNESS_RATE,
 } from '@nsc/shared/src/consts';
 import { roundNumber } from '@nsc/shared/src/helpers';
-import { SerializedUOPModel } from '../types';
 
 export class UopCalculatorModel extends BaseCalculatorModel {
   @computed
@@ -61,23 +60,5 @@ export class UopCalculatorModel extends BaseCalculatorModel {
         this.tax[i];
       return roundNumber(Math.max(0, endSalaryValue), 2);
     });
-  }
-
-  @computed
-  public get serialized(): SerializedUOPModel {
-    return {
-      salary: { value: this.salary, period: this.period },
-      results: {
-        pension: this.pension,
-        disability: this.disability,
-        sickness: this.sickness,
-        socialSecurity: this.socialSecurity,
-        healthContribution: this.healthContribution,
-        healthDeductible: this.healthDeductible,
-        taxBase: this.taxBase,
-        tax: this.tax,
-        endSalary: this.endSalary,
-      },
-    };
   }
 }

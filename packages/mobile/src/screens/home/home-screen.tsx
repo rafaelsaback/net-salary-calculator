@@ -13,7 +13,7 @@ import { isB2B } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
 import { Selector } from '../../components/selector/selector';
 import { useLocalStore, useObserver } from 'mobx-react';
-import { UopCalculatorModel } from '../../models/uop-calculator-model';
+import { UopCalculatorViewModel } from '../../models/uop-calculator-view-model';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -32,7 +32,7 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [contract, setContract] = useState(ContractType.Employment);
-  const uopModel = useLocalStore(() => new UopCalculatorModel());
+  const uopModel = useLocalStore(() => new UopCalculatorViewModel());
 
   return useObserver(() => (
     <View style={styles.container}>

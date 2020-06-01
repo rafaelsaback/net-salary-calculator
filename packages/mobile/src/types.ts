@@ -26,7 +26,7 @@ export type RootStackParamList = {
 };
 
 interface BaseSalaryModel {
-  value: number;
+  value: string;
   period: Period;
 }
 
@@ -35,15 +35,16 @@ interface B2BSalaryModel extends BaseSalaryModel {
 }
 
 interface BaseSalaryResultsModel {
-  pension: number[];
-  disability: number[];
-  sickness: number[];
-  socialSecurity: number[];
-  healthContribution: number[];
-  healthDeductible: number[];
-  taxBase: number[];
-  tax: number[];
-  endSalary: number[];
+  pension: string[];
+  disability: string[];
+  sickness: string[];
+  socialSecurity: string[];
+  healthContribution: string[];
+  healthDeductible: string[];
+  costs: string;
+  taxBase: string[];
+  tax: string[];
+  endSalary: string[];
 }
 
 interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
@@ -52,15 +53,15 @@ interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
   others: number[];
 }
 
-interface BaseCalculatorModel<
+interface BaseSerializedModel<
   SalaryModel = BaseSalaryModel,
   SalaryResultsModel = BaseSalaryResultsModel
 > {
   salary: SalaryModel;
   results: SalaryResultsModel;
 }
-export type SerializedUOPModel = BaseCalculatorModel;
-type B2BCalculatorModel = BaseCalculatorModel<
+export type UOPSerializedModel = BaseSerializedModel;
+type B2BSerializedModel = BaseSerializedModel<
   B2BSalaryModel,
   B2BSalaryResultsModel
 >;

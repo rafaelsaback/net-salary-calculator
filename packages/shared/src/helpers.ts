@@ -12,6 +12,9 @@ export const formatNumberWithSpaceSeparator = (
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 };
 
+export const parseToNumber = (value: string): number =>
+  parseFloat(removeSpaceSeparator(value));
+
 export const removeSpaceSeparator = (text: string): string =>
   text.replace(/ /g, '');
 
