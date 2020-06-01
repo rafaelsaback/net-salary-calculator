@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
+import { useObserver } from 'mobx-react';
 
 interface SalaryInputProps {
   salary: string;
@@ -43,7 +44,7 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
     return false;
   };
 
-  return (
+  return useObserver(() => (
     <View style={styles.container}>
       {isModalVisible && (
         <InputModal
@@ -70,5 +71,5 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
         </View>
       </TouchableWithoutFeedback>
     </View>
-  );
+  ));
 };

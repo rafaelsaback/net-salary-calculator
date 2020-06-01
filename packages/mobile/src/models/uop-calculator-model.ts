@@ -12,12 +12,16 @@ import { roundNumber } from '@nsc/shared/src/helpers';
 export class UopCalculatorModel extends BaseCalculatorModel {
   @computed
   public get pension(): number[] {
-    return this.generateArray12x(this.calcPensionDisability(PENSION_RATE));
+    return this.generateArray12x(
+      this.calcPensionDisability(this.monthlySalary, PENSION_RATE),
+    );
   }
 
   @computed
   public get disability(): number[] {
-    return this.generateArray12x(this.calcPensionDisability(DISABILITY_RATE));
+    return this.generateArray12x(
+      this.calcPensionDisability(this.monthlySalary, DISABILITY_RATE),
+    );
   }
 
   @computed

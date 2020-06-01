@@ -78,12 +78,12 @@ export abstract class BaseCalculatorModel {
     });
   }
 
-  protected calcPensionDisability = (rate: number) => (
+  protected calcPensionDisability = (monthlySalary: number, rate: number) => (
     _: number,
     index: number,
   ) => {
-    const accGrossSalary = this.monthlySalary * index;
-    const nextAccGrossSalary = this.monthlySalary * (index + 1);
+    const accGrossSalary = monthlySalary * index;
+    const nextAccGrossSalary = monthlySalary * (index + 1);
 
     if (nextAccGrossSalary < ANNUAL_LIMIT) {
       return this.monthlySalary * rate;
@@ -104,10 +104,10 @@ export abstract class BaseCalculatorModel {
   };
 
   protected generateArray12x = (
-    mapper: (_: number, index: number) => number,
+    generatorFnc: (_: number, index: number) => number,
   ): number[] => {
-    const loopArray = Array<number>(12);
-    return loopArray.map(mapper) as number[];
+    const loopArray = Array<number>(12).fill(0);
+    return loopArray.map(generatorFnc) as number[];
   };
 
   public abstract get pension(): number[];

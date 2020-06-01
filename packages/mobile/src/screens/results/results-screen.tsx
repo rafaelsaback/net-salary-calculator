@@ -2,7 +2,11 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList, ScreenName } from '../../types';
+import {
+  RootStackParamList,
+  ScreenName,
+  UOPSerializedModel,
+} from '../../types';
 import { Container } from '../../components/containers/container';
 import { Button, ButtonSize } from '../../components/button/button';
 import { SalaryDisplay } from './components/salary-display/salary-display';
@@ -19,6 +23,10 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 
 interface ResultsScreenProps {
   navigation: ProfileScreenNavigationProp;
+}
+
+export interface ResultsScreenOwnProps {
+  uopSerializedModel: UOPSerializedModel;
 }
 
 enum DisplayMode {

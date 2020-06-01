@@ -34,6 +34,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [contract, setContract] = useState(ContractType.Employment);
   const uopViewModel = useLocalStore(() => new UopCalculatorViewModel());
 
+  const goToResultsScreen = () =>
+    navigation.navigate(ScreenName.Results, {
+      uopSerializedModel: uopViewModel.serialized,
+    });
+
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
@@ -46,10 +51,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           options={[Period.Monthly, Period.Annually]}
           onChange={uopViewModel.setPeriod}
         />
-        <Button
-          onPress={() => navigation.navigate(ScreenName.Results)}
-          size={ButtonSize.Medium}
-        >
+        <Button onPress={goToResultsScreen} size={ButtonSize.Medium}>
           Calculate
         </Button>
       </Container>

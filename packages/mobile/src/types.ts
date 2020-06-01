@@ -1,4 +1,5 @@
 import { B2BTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
+import { ResultsScreenOwnProps } from './screens/results/results-screen';
 
 interface B2BParametersRouteProps {
   b2bParameters: B2BParameters;
@@ -20,7 +21,7 @@ export enum ScreenName {
 
 export type RootStackParamList = {
   [ScreenName.Home]: B2BParametersRouteProps;
-  [ScreenName.Results]: undefined;
+  [ScreenName.Results]: ResultsScreenOwnProps;
   [ScreenName.DetailedResults]: undefined;
   [ScreenName.B2BParameters]: B2BParametersRouteProps;
 };

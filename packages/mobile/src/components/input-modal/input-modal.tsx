@@ -18,6 +18,7 @@ import {
   formatNumberWithSpaceSeparator,
   removeSpaceSeparator,
 } from '@nsc/shared/src/helpers';
+import { useObserver } from 'mobx-react';
 
 interface InputModalProps {
   defaultValue: string;
@@ -44,7 +45,7 @@ export const InputModal: React.FC<InputModalProps> = ({
     }
   }, [closeModal, isValid, setValue, tempValue]);
 
-  return (
+  return useObserver(() => (
     <Modal
       animationType="fade"
       presentationStyle="fullScreen"
@@ -114,5 +115,5 @@ export const InputModal: React.FC<InputModalProps> = ({
         </View>
       </KeyboardAvoidingView>
     </Modal>
-  );
+  ));
 };
