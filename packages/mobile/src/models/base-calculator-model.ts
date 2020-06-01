@@ -78,10 +78,6 @@ export abstract class BaseCalculatorModel {
     });
   }
 
-  public abstract get healthContribution(): number[];
-  public abstract get socialSecurity(): number[];
-  public abstract get costs(): number;
-
   protected calcPensionDisability = (rate: number) => (
     _: number,
     index: number,
@@ -113,4 +109,13 @@ export abstract class BaseCalculatorModel {
     const loopArray = Array<number>(12);
     return loopArray.map(mapper) as number[];
   };
+
+  public abstract get pension(): number[];
+  public abstract get disability(): number[];
+  public abstract get sickness(): number[];
+  public abstract get socialSecurity(): number[];
+  public abstract get healthContribution(): number[];
+  public abstract get costs(): number;
+  public abstract get tax(): number[];
+  public abstract get endSalary(): number[];
 }
