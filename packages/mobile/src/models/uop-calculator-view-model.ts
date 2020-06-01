@@ -9,7 +9,8 @@ export class UopCalculatorViewModel extends BaseCalculatorViewModel {
   @computed
   public get serialized(): UOPSerializedModel {
     return {
-      salary: { value: this.salary, period: this.period },
+      salary: this.salary,
+      period: this.period,
       results: {
         pension: this.pension,
         disability: this.disability,

@@ -26,27 +26,33 @@ export type RootStackParamList = {
   [ScreenName.B2BParameters]: B2BParametersRouteProps;
 };
 
-interface BaseSalaryModel {
-  value: string;
-  period: Period;
-}
-
-interface B2BSalaryModel extends BaseSalaryModel {
-  b2bParameters: B2BParameters;
+export interface ValueObject {
+  value: number;
+  formatted: string;
 }
 
 interface BaseSalaryResultsModel {
-  pension: string[];
-  disability: string[];
-  sickness: string[];
-  socialSecurity: string[];
-  healthContribution: string[];
-  healthDeductible: string[];
-  costs: string;
-  taxBase: string[];
-  tax: string[];
-  endSalary: string[];
+  pension: ValueObject[];
+  disability: ValueObject[];
+  sickness: ValueObject[];
+  socialSecurity: ValueObject[];
+  healthContribution: ValueObject[];
+  healthDeductible: ValueObject[];
+  costs: ValueObject;
+  taxBase: ValueObject[];
+  tax: ValueObject[];
+  endSalary: ValueObject[];
 }
+
+export interface BaseSerializedModel<
+  SalaryResultsModel = BaseSalaryResultsModel
+> {
+  salary: ValueObject;
+  period: Period;
+  results: SalaryResultsModel;
+}
+
+export type UOPSerializedModel = BaseSerializedModel;
 
 interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
   laborFund: number[];
@@ -54,15 +60,7 @@ interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
   others: number[];
 }
 
-interface BaseSerializedModel<
-  SalaryModel = BaseSalaryModel,
-  SalaryResultsModel = BaseSalaryResultsModel
-> {
-  salary: SalaryModel;
-  results: SalaryResultsModel;
+interface B2BSerializedModel
+  extends BaseSerializedModel<B2BSalaryResultsModel> {
+  b2bParameters: B2BParameters;
 }
-export type UOPSerializedModel = BaseSerializedModel;
-type B2BSerializedModel = BaseSerializedModel<
-  B2BSalaryModel,
-  B2BSalaryResultsModel
->;

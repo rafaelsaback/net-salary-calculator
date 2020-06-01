@@ -5,16 +5,19 @@ import {
 import { action, computed } from 'mobx';
 import { BaseCalculatorModel } from './base-calculator-model';
 import { Period } from '@nsc/shared/src/types';
+import { ValueObject } from '../types';
 
 export abstract class BaseCalculatorViewModel {
   protected abstract model: BaseCalculatorModel;
 
-  protected parseToString = (value: number) =>
-    formatNumberWithSpaceSeparator(value);
+  protected createValueObject = (value: number): ValueObject => ({
+    value,
+    formatted: formatNumberWithSpaceSeparator(value),
+  });
 
   @computed
-  public get salary(): string {
-    return formatNumberWithSpaceSeparator(this.model.salary);
+  public get salary(): ValueObject {
+    return this.createValueObject(this.model.salary);
   }
 
   @action
@@ -23,8 +26,8 @@ export abstract class BaseCalculatorViewModel {
   };
 
   @computed
-  public get monthlySalary(): string {
-    return formatNumberWithSpaceSeparator(this.model.monthlySalary);
+  public get monthlySalary(): ValueObject {
+    return this.createValueObject(this.model.monthlySalary);
   }
 
   @computed
@@ -36,53 +39,54 @@ export abstract class BaseCalculatorViewModel {
   public setPeriod = (period: Period): void => {
     this.model.setPeriod(period);
   };
+
   @computed
-  public get pension(): string[] {
-    return this.model.pension.map(this.parseToString);
+  public get pension(): ValueObject[] {
+    return this.model.pension.map(this.createValueObject);
   }
 
   @computed
-  public get disability(): string[] {
-    return this.model.disability.map(this.parseToString);
+  public get disability(): ValueObject[] {
+    return this.model.disability.map(this.createValueObject);
   }
 
   @computed
-  public get sickness(): string[] {
-    return this.model.sickness.map(this.parseToString);
+  public get sickness(): ValueObject[] {
+    return this.model.sickness.map(this.createValueObject);
   }
 
   @computed
-  public get socialSecurity(): string[] {
-    return this.model.socialSecurity.map(this.parseToString);
+  public get socialSecurity(): ValueObject[] {
+    return this.model.socialSecurity.map(this.createValueObject);
   }
 
   @computed
-  public get healthContribution(): string[] {
-    return this.model.healthContribution.map(this.parseToString);
+  public get healthContribution(): ValueObject[] {
+    return this.model.healthContribution.map(this.createValueObject);
   }
 
   @computed
-  public get healthDeductible(): string[] {
-    return this.model.healthDeductible.map(this.parseToString);
+  public get healthDeductible(): ValueObject[] {
+    return this.model.healthDeductible.map(this.createValueObject);
   }
 
   @computed
-  public get costs(): string {
-    return this.parseToString(this.model.costs);
+  public get costs(): ValueObject {
+    return this.createValueObject(this.model.costs);
   }
 
   @computed
-  public get taxBase(): string[] {
-    return this.model.taxBase.map(this.parseToString);
+  public get taxBase(): ValueObject[] {
+    return this.model.taxBase.map(this.createValueObject);
   }
 
   @computed
-  public get tax(): string[] {
-    return this.model.tax.map(this.parseToString);
+  public get tax(): ValueObject[] {
+    return this.model.tax.map(this.createValueObject);
   }
 
   @computed
-  public get endSalary(): string[] {
-    return this.model.endSalary.map(this.parseToString);
+  public get endSalary(): ValueObject[] {
+    return this.model.endSalary.map(this.createValueObject);
   }
 }

@@ -43,7 +43,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     <View style={styles.container}>
       <Container>
         <SalaryInput
-          salary={uopViewModel.salary}
+          salary={uopViewModel.salary.formatted}
           setSalary={uopViewModel.setSalary}
         />
         <Selector

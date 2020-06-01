@@ -12,7 +12,7 @@ const colors = [
   '#008B3F',
 ];
 
-type SalaryPieChartData = { value: number; label: string };
+export type SalaryPieChartData = { value: number; label: string };
 
 interface SalaryPieChartProps {
   data: SalaryPieChartData[];
