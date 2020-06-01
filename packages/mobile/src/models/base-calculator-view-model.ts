@@ -5,7 +5,7 @@ import {
 import { action, computed } from 'mobx';
 import { BaseCalculatorModel } from './base-calculator-model';
 import { Period } from '@nsc/shared/src/types';
-import { ValueObject } from '../types';
+import { PeriodBreakdown, ValueObject } from '../types';
 
 export abstract class BaseCalculatorViewModel {
   protected abstract model: BaseCalculatorModel;
@@ -14,6 +14,18 @@ export abstract class BaseCalculatorViewModel {
     value,
     formatted: formatNumberWithSpaceSeparator(value),
   });
+
+  protected mapToResultBreakdownValueObject = (
+    result: PeriodBreakdown<number>,
+  ): PeriodBreakdown<ValueObject> => {
+    const { monthly, monthlyAverage, annually } = result;
+
+    return {
+      monthly: monthly.map(this.createValueObject),
+      monthlyAverage: this.createValueObject(monthlyAverage),
+      annually: this.createValueObject(annually),
+    };
+  };
 
   @computed
   public get salary(): ValueObject {
@@ -41,33 +53,39 @@ export abstract class BaseCalculatorViewModel {
   };
 
   @computed
-  public get pension(): ValueObject[] {
-    return this.model.pension.map(this.createValueObject);
+  public get pension(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.pensionBreakdown);
   }
 
   @computed
-  public get disability(): ValueObject[] {
-    return this.model.disability.map(this.createValueObject);
+  public get disability(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.disabilityBreakdown);
   }
 
   @computed
-  public get sickness(): ValueObject[] {
-    return this.model.sickness.map(this.createValueObject);
+  public get sickness(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.sicknessBreakdown);
   }
 
   @computed
-  public get socialSecurity(): ValueObject[] {
-    return this.model.socialSecurity.map(this.createValueObject);
+  public get socialSecurity(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(
+      this.model.socialSecurityBreakdown,
+    );
   }
 
   @computed
-  public get healthContribution(): ValueObject[] {
-    return this.model.healthContribution.map(this.createValueObject);
+  public get healthContribution(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(
+      this.model.healthContributionBreakdown,
+    );
   }
 
   @computed
-  public get healthDeductible(): ValueObject[] {
-    return this.model.healthDeductible.map(this.createValueObject);
+  public get healthDeductible(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(
+      this.model.healthDeductibleBreakdown,
+    );
   }
 
   @computed
@@ -76,17 +94,17 @@ export abstract class BaseCalculatorViewModel {
   }
 
   @computed
-  public get taxBase(): ValueObject[] {
-    return this.model.taxBase.map(this.createValueObject);
+  public get taxBase(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.taxBaseBreakdown);
   }
 
   @computed
-  public get tax(): ValueObject[] {
-    return this.model.tax.map(this.createValueObject);
+  public get tax(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.taxBreakdown);
   }
 
   @computed
-  public get endSalary(): ValueObject[] {
-    return this.model.endSalary.map(this.createValueObject);
+  public get endSalary(): PeriodBreakdown<ValueObject> {
+    return this.mapToResultBreakdownValueObject(this.model.endSalaryBreakdown);
   }
 }

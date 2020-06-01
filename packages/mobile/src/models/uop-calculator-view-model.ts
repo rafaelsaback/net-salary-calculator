@@ -11,6 +11,7 @@ export class UopCalculatorViewModel extends BaseCalculatorViewModel {
     return {
       salary: this.salary,
       period: this.period,
+      costs: this.costs,
       results: {
         pension: this.pension,
         disability: this.disability,
@@ -18,7 +19,6 @@ export class UopCalculatorViewModel extends BaseCalculatorViewModel {
         socialSecurity: this.socialSecurity,
         healthContribution: this.healthContribution,
         healthDeductible: this.healthDeductible,
-        costs: this.costs,
         taxBase: this.taxBase,
         tax: this.tax,
         endSalary: this.endSalary,

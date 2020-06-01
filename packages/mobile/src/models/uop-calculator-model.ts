@@ -8,6 +8,7 @@ import {
   SICKNESS_RATE,
 } from '@nsc/shared/src/consts';
 import { roundNumber } from '@nsc/shared/src/helpers';
+import { PeriodBreakdown } from '../types';
 
 export class UopCalculatorModel extends BaseCalculatorModel {
   @computed

@@ -11,6 +11,7 @@ import {
 } from '@nsc/shared/src/consts';
 import { roundNumber } from '@nsc/shared/src/helpers';
 import { Dispatch } from 'react';
+import { PeriodBreakdown } from '../types';
 
 export abstract class BaseCalculatorModel {
   @observable
@@ -78,6 +79,51 @@ export abstract class BaseCalculatorModel {
     });
   }
 
+  @computed
+  public get pensionBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.pension);
+  }
+
+  @computed
+  public get disabilityBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.disability);
+  }
+
+  @computed
+  public get sicknessBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.sickness);
+  }
+
+  @computed
+  public get socialSecurityBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.socialSecurity);
+  }
+
+  @computed
+  public get healthContributionBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.healthContribution);
+  }
+
+  @computed
+  public get healthDeductibleBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.healthDeductible);
+  }
+
+  @computed
+  public get taxBaseBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.taxBase);
+  }
+
+  @computed
+  public get taxBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.tax);
+  }
+
+  @computed
+  public get endSalaryBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.endSalary);
+  }
+
   protected calcPensionDisability = (monthlySalary: number, rate: number) => (
     _: number,
     index: number,
@@ -110,12 +156,20 @@ export abstract class BaseCalculatorModel {
     return loopArray.map(generatorFnc) as number[];
   };
 
+  protected calcTotal = (arr: number[]) =>
+    arr.reduce((res, value) => res + value);
+
+  protected createBreakdown = (monthly: number[]): PeriodBreakdown<number> => {
+    const annually = this.calcTotal(monthly);
+    return { monthly, annually, monthlyAverage: annually / 12 };
+  };
+
+  public abstract get costs(): number;
   public abstract get pension(): number[];
   public abstract get disability(): number[];
   public abstract get sickness(): number[];
   public abstract get socialSecurity(): number[];
   public abstract get healthContribution(): number[];
-  public abstract get costs(): number;
   public abstract get tax(): number[];
   public abstract get endSalary(): number[];
 }

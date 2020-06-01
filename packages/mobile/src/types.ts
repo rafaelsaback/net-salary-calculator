@@ -31,17 +31,22 @@ export interface ValueObject {
   formatted: string;
 }
 
+export interface PeriodBreakdown<T> {
+  monthly: T[];
+  monthlyAverage: T;
+  annually: T;
+}
+
 interface BaseSalaryResultsModel {
-  pension: ValueObject[];
-  disability: ValueObject[];
-  sickness: ValueObject[];
-  socialSecurity: ValueObject[];
-  healthContribution: ValueObject[];
-  healthDeductible: ValueObject[];
-  costs: ValueObject;
-  taxBase: ValueObject[];
-  tax: ValueObject[];
-  endSalary: ValueObject[];
+  pension: PeriodBreakdown<ValueObject>;
+  disability: PeriodBreakdown<ValueObject>;
+  sickness: PeriodBreakdown<ValueObject>;
+  socialSecurity: PeriodBreakdown<ValueObject>;
+  healthContribution: PeriodBreakdown<ValueObject>;
+  healthDeductible: PeriodBreakdown<ValueObject>;
+  taxBase: PeriodBreakdown<ValueObject>;
+  tax: PeriodBreakdown<ValueObject>;
+  endSalary: PeriodBreakdown<ValueObject>;
 }
 
 export interface BaseSerializedModel<
@@ -49,15 +54,16 @@ export interface BaseSerializedModel<
 > {
   salary: ValueObject;
   period: Period;
+  costs: ValueObject;
   results: SalaryResultsModel;
 }
 
 export type UOPSerializedModel = BaseSerializedModel;
 
 interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
-  laborFund: number[];
-  accident: number[];
-  others: number[];
+  laborFund: PeriodBreakdown<ValueObject>;
+  accident: PeriodBreakdown<ValueObject>;
+  others: PeriodBreakdown<ValueObject>;
 }
 
 interface B2BSerializedModel
