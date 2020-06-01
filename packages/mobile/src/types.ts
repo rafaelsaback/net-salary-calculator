@@ -31,7 +31,7 @@ export interface ValueObject {
   formatted: string;
 }
 
-export interface PeriodBreakdown<T> {
+export interface PeriodBreakdown<T = ValueObject> {
   monthly: T[];
   monthlyAverage: T;
   annually: T;
