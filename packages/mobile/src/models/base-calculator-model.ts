@@ -80,6 +80,18 @@ export abstract class BaseCalculatorModel {
   }
 
   @computed
+  public get endSalary(): number[] {
+    return this.generateArray12x((_, i) => {
+      const endSalaryValue =
+        this.monthlySalary -
+        this.socialSecurity[i] -
+        this.healthContribution[i] -
+        this.tax[i];
+      return roundNumber(Math.max(0, endSalaryValue), 2);
+    });
+  }
+
+  @computed
   public get pensionBreakdown(): PeriodBreakdown<number> {
     return this.createBreakdown(this.pension);
   }
@@ -164,6 +176,11 @@ export abstract class BaseCalculatorModel {
     return { monthly, annually, monthlyAverage: annually / 12 };
   };
 
+  protected sumElements = (...args: number[][]) =>
+    Array(12)
+      .fill(0)
+      .map((_, i) => args.reduce((res, array) => res + array[i], 0));
+
   public abstract get costs(): number;
   public abstract get pension(): number[];
   public abstract get disability(): number[];
@@ -171,5 +188,4 @@ export abstract class BaseCalculatorModel {
   public abstract get socialSecurity(): number[];
   public abstract get healthContribution(): number[];
   public abstract get tax(): number[];
-  public abstract get endSalary(): number[];
 }

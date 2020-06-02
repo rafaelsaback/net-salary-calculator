@@ -4,7 +4,7 @@ interface B2BParametersRouteProps {
   b2bParameters: B2BParameters;
 }
 
-interface B2BParameters {
+export interface B2BParameters {
   taxType: B2BTax;
   zus: ZUS;
   sickness: Sickness;

@@ -7,8 +7,6 @@ import {
   PENSION_RATE,
   SICKNESS_RATE,
 } from '@nsc/shared/src/consts';
-import { roundNumber } from '@nsc/shared/src/helpers';
-import { PeriodBreakdown } from '../types';
 
 export class UopCalculatorModel extends BaseCalculatorModel {
   @computed
@@ -32,9 +30,7 @@ export class UopCalculatorModel extends BaseCalculatorModel {
 
   @computed
   public get socialSecurity(): number[] {
-    return this.generateArray12x(
-      (_, i) => this.pension[i] + this.disability[i] + this.sickness[i],
-    );
+    return this.sumElements(this.pension, this.disability, this.sickness);
   }
 
   @computed
@@ -53,17 +49,5 @@ export class UopCalculatorModel extends BaseCalculatorModel {
 
   public get costs(): number {
     return EARNING_COST;
-  }
-
-  @computed
-  public get endSalary(): number[] {
-    return this.generateArray12x((_, i) => {
-      const endSalaryValue =
-        this.monthlySalary -
-        this.socialSecurity[i] -
-        this.healthContribution[i] -
-        this.tax[i];
-      return roundNumber(Math.max(0, endSalaryValue), 2);
-    });
   }
 }
