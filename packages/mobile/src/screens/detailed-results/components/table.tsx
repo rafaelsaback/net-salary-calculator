@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { styles } from './table.style';
 import { appTheme } from '../../../theme';
 
-type SalaryElement = { label: string; value: string };
+export type SalaryElement = { label: string; value: string };
 
 interface TableProps {
   salary: SalaryElement;

@@ -7,7 +7,6 @@ import {
   PeriodBreakdown,
   RootStackParamList,
   ScreenName,
-  UOPSerializedModel,
 } from '../../types';
 import { Container } from '../../components/containers/container';
 import { Button, ButtonSize } from '../../components/button/button';
@@ -38,10 +37,6 @@ interface ResultsScreenProps {
   route: ResultsScreenRouteProp;
 }
 
-export interface ResultsScreenOwnProps {
-  uopSerializedModel: UOPSerializedModel;
-}
-
 enum DisplayMode {
   FirstMonth = '1st Month',
   MonthlyAverage = 'Monthly\nAverage',
@@ -69,15 +64,18 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   const [displayMode, setDisplayMode] = useState(DisplayMode.FirstMonth);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
   const salary = selectFormatted(results.endSalary, periodBreakdown);
+
+  const goToDetailedResultsScreen = () =>
+    navigation.navigate(ScreenName.DetailedResults, {
+      uopSerializedModel,
+    });
+
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
         <SalaryDisplay salary={salary} />
         <SalaryPieChart data={createPieChartData(results, periodBreakdown)} />
-        <Button
-          onPress={() => navigation.navigate(ScreenName.DetailedResults)}
-          size={ButtonSize.Large}
-        >
+        <Button onPress={goToDetailedResultsScreen} size={ButtonSize.Large}>
           Detailed Results
         </Button>
       </Container>
