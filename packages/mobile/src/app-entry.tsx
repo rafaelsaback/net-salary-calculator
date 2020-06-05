@@ -54,6 +54,7 @@ const AppEntry: React.FC = () => {
                 sickness: Sickness.No,
                 costs: '0',
               },
+              costs: '0',
             }}
           />
           <Screen

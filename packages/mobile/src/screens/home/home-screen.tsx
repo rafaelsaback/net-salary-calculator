@@ -1,5 +1,5 @@
 import { ContractSelector } from './components/contract-selector/contract-selector';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Button, ButtonSize } from '../../components/button/button';
 import { SalaryInput } from './components/salary-input/salary-input';
@@ -14,6 +14,7 @@ import { RouteProp } from '@react-navigation/native';
 import { Selector } from '../../components/selector/selector';
 import { useLocalStore, useObserver } from 'mobx-react';
 import { UopCalculatorViewModel } from '../../models/uop-calculator-view-model';
+import { B2BCalculatorViewModel } from '../../models/b2b-calculator-view-model';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -30,9 +31,27 @@ interface HomeScreenProps {
   route: HomeScreenRouteProp;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
   const [contract, setContract] = useState(ContractType.Employment);
-  const uopViewModel = useLocalStore(() => new UopCalculatorViewModel());
+  const { b2bParameters, costs } = route.params;
+  const { uopViewModel, b2bViewModel } = useLocalStore(() => ({
+    uopViewModel: new UopCalculatorViewModel(),
+    b2bViewModel: new B2BCalculatorViewModel(b2bParameters),
+  }));
+
+  useEffect(() => {
+    b2bViewModel.setCosts(costs);
+  }, [b2bViewModel, costs]);
+
+  useEffect(() => {
+    b2bViewModel.setB2BParameters(b2bParameters);
+  }, [
+    b2bViewModel,
+    b2bParameters.taxType,
+    b2bParameters.sickness,
+    b2bParameters.zus,
+    b2bParameters,
+  ]);
 
   const goToResultsScreen = () =>
     navigation.navigate(ScreenName.Results, {
@@ -70,7 +89,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           setContract={setContract}
         />
       </View>
-      <B2BParametersButton disabled={!isB2B(contract)} />
+      <B2BParametersButton
+        disabled={!isB2B(contract)}
+        b2bParameters={b2bViewModel.b2bParameters}
+        costs={b2bViewModel.costs.formatted}
+      />
     </View>
   ));
 };

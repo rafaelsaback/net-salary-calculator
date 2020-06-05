@@ -12,6 +12,7 @@ import { CostInput } from './components/cost-input/cost-input';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList, ScreenName } from '../../types';
 import { RouteProp } from '@react-navigation/native';
+import { useObserver } from 'mobx-react';
 
 type B2BParametersScreenNavProp = StackNavigationProp<
   RootStackParamList,
@@ -32,13 +33,13 @@ export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { b2bParameters } = route.params;
+  const { b2bParameters, costs: _costs } = route.params;
   const [taxType, setTax] = useState(b2bParameters.taxType || B2BTax.Linear);
   const [zus, setZus] = useState(b2bParameters.zus || ZUS.No);
   const [sickness, setSickness] = useState(
     b2bParameters.sickness || Sickness.No,
   );
-  const [costs, setCosts] = useState(b2bParameters.costs.toString() || '');
+  const [costs, setCosts] = useState(_costs);
 
   const goBackWithParameters = () => {
     navigation.navigate(ScreenName.Home, {
@@ -48,10 +49,11 @@ export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
         sickness,
         costs,
       },
+      costs,
     });
   };
 
-  return (
+  return useObserver(() => (
     <View style={styles.container}>
       <Container>
         <IncomeTaxSelector taxType={taxType} setTax={setTax} />
@@ -80,5 +82,5 @@ export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
         </View>
       </Container>
     </View>
-  );
+  ));
 };

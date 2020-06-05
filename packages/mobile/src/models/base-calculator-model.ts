@@ -33,9 +33,8 @@ export abstract class BaseCalculatorModel {
   }
 
   @action
-  public setSalary = (newSalary: string | number): void => {
-    this.salary =
-      typeof newSalary === 'string' ? parseFloat(newSalary) : newSalary;
+  public setSalary = (newSalary: number): void => {
+    this.salary = newSalary;
   };
 
   @action

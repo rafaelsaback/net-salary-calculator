@@ -2,6 +2,7 @@ import { B2BTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
 
 interface B2BParametersRouteProps {
   b2bParameters: B2BParameters;
+  costs: string;
 }
 
 export interface B2BParameters {
@@ -69,7 +70,7 @@ interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
   others: PeriodBreakdown<ValueObject>;
 }
 
-interface B2BSerializedModel
+export interface B2BSerializedModel
   extends BaseSerializedModel<B2BSalaryResultsModel> {
   b2bParameters: B2BParameters;
 }

@@ -1,34 +1,34 @@
 import { BaseCalculatorModel } from './base-calculator-model';
-import { B2BParameters } from '../types';
-import { computed, observable } from 'mobx';
+import { B2BParameters, PeriodBreakdown } from '../types';
+import { action, computed, observable } from 'mobx';
 import {
   HEALTH_INSURANCE,
   NORMAL_ZUS,
   RATE_19,
   SMALL_ZUS,
 } from '@nsc/shared/src/consts';
-import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
+import { B2BTax, ZUS } from '@nsc/shared/src/types';
 
 export class B2BCalculatorModel extends BaseCalculatorModel {
   @observable
   public b2bParameters!: B2BParameters;
   @observable
-  public zusParam: ZUS;
-  @observable
-  public sicknessParam: Sickness;
-  @observable
-  public taxTypeParam: B2BTax;
-  @observable
-  public costs: number;
+  public costs = 0;
 
-  constructor(b2BParameters: B2BParameters, costs: number) {
+  constructor(b2BParameters: B2BParameters) {
     super();
-
-    this.zusParam = b2BParameters.zus;
-    this.sicknessParam = b2BParameters.sickness;
-    this.taxTypeParam = b2BParameters.taxType;
-    this.costs = costs;
+    this.b2bParameters = b2BParameters;
   }
+
+  @action
+  public setB2BParameters = (b2bParameters: B2BParameters) => {
+    this.b2bParameters = b2bParameters;
+  };
+
+  @action
+  public setCosts = (costs: number) => {
+    this.costs = costs;
+  };
 
   @computed
   public get pension(): number[] {
@@ -75,14 +75,26 @@ export class B2BCalculatorModel extends BaseCalculatorModel {
     );
   }
 
+  public get accidentBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.accident);
+  }
+
   @computed
   public get laborFund(): number[] {
     return this.evalZUS(this.b2bParameters.zus, 0, 0, NORMAL_ZUS.LABOR_FUND);
   }
 
+  public get laborFundBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.laborFund);
+  }
+
   @computed
   public get others(): number[] {
     return this.sumElements(this.accident, this.laborFund);
+  }
+
+  public get othersBreakdown(): PeriodBreakdown<number> {
+    return this.createBreakdown(this.others);
   }
 
   @computed
