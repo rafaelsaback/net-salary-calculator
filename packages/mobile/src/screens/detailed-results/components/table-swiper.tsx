@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 import { appTheme } from '../../../theme';
 import { styles } from '../detailed-results-screen.style';
 import { SalaryElement, Table } from './table';
-import { DetailedResultsScreenRouteProp } from '../detailed-results-screen';
 import { BaseSerializedModel } from '../../../types';
+import { isB2bResultsModel } from '../../../helpers';
 
 const SwiperPolyfill: React.FC<any> = ({ children }) => children[0];
 
@@ -17,6 +16,7 @@ const Swiper = Platform.select({
 })?.();
 
 interface TableSwiperProps {
+  serializedModel: BaseSerializedModel;
   visible: boolean;
 }
 
@@ -35,9 +35,10 @@ const MONTHS = [
   'December',
 ];
 
-const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
-  const { params } = useRoute<DetailedResultsScreenRouteProp>();
-  const { serializedModel } = params;
+const TableSwiper: React.FC<TableSwiperProps> = ({
+  serializedModel,
+  visible,
+}) => {
   const { results } = serializedModel;
 
   const panels = useMemo(
@@ -54,7 +55,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
               label: 'Net Salary',
               value: results.endSalary.monthly[index].formatted,
             }}
-            salaryDiscounts={createUopSalaryDiscounts(results, index)}
+            salaryDiscounts={createSalaryDiscounts(results, index)}
           />
         </View>
       )),
@@ -73,7 +74,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
   ) : null;
 };
 
-const createUopSalaryDiscounts = (
+const createSalaryDiscounts = (
   results: BaseSerializedModel['results'],
   index: number,
 ): SalaryElement[] => [
@@ -93,6 +94,18 @@ const createUopSalaryDiscounts = (
     label: 'Health',
     value: results.healthContribution.monthly[index].formatted,
   },
+  ...(isB2bResultsModel(results)
+    ? [
+        {
+          label: 'Labor Fund',
+          value: results.laborFund.monthly[index].formatted,
+        },
+        {
+          label: 'Accident Insurance',
+          value: results.accident.monthly[index].formatted,
+        },
+      ]
+    : []),
   {
     label: 'Tax',
     value: results.tax.monthly[index].formatted,

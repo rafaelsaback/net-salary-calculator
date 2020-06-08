@@ -44,15 +44,22 @@ const periodBreakdownMap: Map<DisplayMode, PeriodBreakdownKey> = new Map([
   [DisplayMode.Annually, PeriodBreakdownKey.Annually],
 ]);
 
-export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = () => {
+export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
+  route,
+}) => {
+  const { serializedModel } = route.params;
   const [displayMode, setDisplayMode] = useState(DisplayMode.Monthly);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
 
   return (
     <View style={styles.container}>
       <Container>
-        <TableSwiper visible={displayMode === DisplayMode.Monthly} />
+        <TableSwiper
+          serializedModel={serializedModel}
+          visible={displayMode === DisplayMode.Monthly}
+        />
         <SingleTable
+          serializedModel={serializedModel}
           visible={displayMode !== DisplayMode.Monthly}
           periodBreakdown={periodBreakdown}
         />

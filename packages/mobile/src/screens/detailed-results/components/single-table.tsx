@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { SalaryElement, Table } from './table';
-import {
-  DetailedResultsScreenRouteProp,
-  PeriodBreakdownKey,
-} from '../detailed-results-screen';
-import { useRoute } from '@react-navigation/native';
+import { PeriodBreakdownKey } from '../detailed-results-screen';
 import { BaseSerializedModel } from '../../../types';
 import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { isB2bResultsModel } from '../../../helpers';
 
 interface SingleTableProps {
+  serializedModel: BaseSerializedModel;
   visible: boolean;
   periodBreakdown: PeriodBreakdownKey;
 }
@@ -19,10 +17,8 @@ type MonthlyAverageOrAnnually =
   | PeriodBreakdownKey.Annually;
 
 export const SingleTable: React.FC<SingleTableProps> = (props) => {
-  const { visible } = props;
+  const { visible, serializedModel } = props;
   const periodBreakdown = props.periodBreakdown as MonthlyAverageOrAnnually;
-  const { params } = useRoute<DetailedResultsScreenRouteProp>();
-  const { serializedModel } = params;
   const { results } = serializedModel;
 
   return visible ? (
@@ -64,6 +60,18 @@ const createUopSalaryDiscounts = (
     label: 'Health',
     value: results.healthContribution[periodBreakdown].formatted,
   },
+  ...(isB2bResultsModel(results)
+    ? [
+        {
+          label: 'Labor Fund',
+          value: results.laborFund[periodBreakdown].formatted,
+        },
+        {
+          label: 'Accident Insurance',
+          value: results.accident[periodBreakdown].formatted,
+        },
+      ]
+    : []),
   {
     label: 'Tax',
     value: results.tax[periodBreakdown].formatted,

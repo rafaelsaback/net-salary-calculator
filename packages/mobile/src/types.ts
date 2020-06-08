@@ -40,7 +40,7 @@ export interface PeriodBreakdown<T = ValueObject> {
   annually: T;
 }
 
-interface BaseSalaryResultsModel {
+export interface BaseSalaryResultsModel {
   pension: PeriodBreakdown<ValueObject>;
   disability: PeriodBreakdown<ValueObject>;
   sickness: PeriodBreakdown<ValueObject>;
@@ -63,7 +63,7 @@ export interface BaseSerializedModel<
 
 export type UOPSerializedModel = BaseSerializedModel;
 
-interface B2bSalaryResultsModel extends BaseSalaryResultsModel {
+export interface B2bSalaryResultsModel extends BaseSalaryResultsModel {
   laborFund: PeriodBreakdown<ValueObject>;
   accident: PeriodBreakdown<ValueObject>;
   others: PeriodBreakdown<ValueObject>;
