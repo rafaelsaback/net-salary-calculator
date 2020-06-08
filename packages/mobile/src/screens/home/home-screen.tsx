@@ -9,12 +9,13 @@ import { RootStackParamList, ScreenName } from '../../types';
 import { ContractType, Period } from '@nsc/shared/src/types';
 import { Container } from '../../components/containers/container';
 import { B2bParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
-import { isB22 } from '@nsc/shared/src/type-helpers';
+import { isB2b } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
 import { Selector } from '../../components/selector/selector';
 import { useLocalStore, useObserver } from 'mobx-react';
 import { UopViewModel } from '../../models/uop-view-model';
 import { B2bViewModel } from '../../models/b2b-view-model';
+import { BaseViewModel } from '../../models/base-view-model';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -39,6 +40,19 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
     b2bViewModel: new B2bViewModel(b2bParameters),
   }));
 
+  const setSalary = (salary: string) => {
+    uopViewModel.setSalary(salary);
+    b2bViewModel.setSalary(salary);
+  };
+  const setPeriod = (period: Period) => {
+    uopViewModel.setPeriod(period);
+    b2bViewModel.setPeriod(period);
+  };
+
+  const selectedViewModel: BaseViewModel = isB2b(contract)
+    ? b2bViewModel
+    : uopViewModel;
+
   useEffect(() => {
     b2bViewModel.setCosts(costs);
   }, [b2bViewModel, costs]);
@@ -55,20 +69,20 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
 
   const goToResultsScreen = () =>
     navigation.navigate(ScreenName.Results, {
-      uopSerializedModel: uopViewModel.serialized,
+      uopSerializedModel: selectedViewModel.serialized,
     });
 
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
         <SalaryInput
-          salary={uopViewModel.salary.formatted}
-          setSalary={uopViewModel.setSalary}
+          salary={selectedViewModel.salary.formatted}
+          setSalary={setSalary}
         />
         <Selector
-          value={uopViewModel.period}
+          value={selectedViewModel.period}
           options={[Period.Monthly, Period.Annually]}
-          onChange={uopViewModel.setPeriod}
+          onChange={setPeriod}
         />
         <Button onPress={goToResultsScreen} size={ButtonSize.Medium}>
           Calculate
@@ -90,7 +104,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
         />
       </View>
       <B2bParametersButton
-        disabled={!isB22(contract)}
+        disabled={!isB2b(contract)}
         b2bParameters={b2bViewModel.b2bParameters}
         costs={b2bViewModel.costs.formatted}
       />

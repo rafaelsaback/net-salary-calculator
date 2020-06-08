@@ -5,7 +5,7 @@ import {
 import { action, computed } from 'mobx';
 import { BaseModel } from './base-model';
 import { Period } from '@nsc/shared/src/types';
-import { PeriodBreakdown, ValueObject } from '../types';
+import { BaseSerializedModel, PeriodBreakdown, ValueObject } from '../types';
 
 export abstract class BaseViewModel {
   protected abstract model: BaseModel;
@@ -107,4 +107,6 @@ export abstract class BaseViewModel {
   public get endSalary(): PeriodBreakdown<ValueObject> {
     return this.mapToResultBreakdownValueObject(this.model.endSalaryBreakdown);
   }
+
+  public abstract get serialized(): BaseSerializedModel;
 }
