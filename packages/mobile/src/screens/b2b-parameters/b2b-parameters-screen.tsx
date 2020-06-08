@@ -47,7 +47,6 @@ export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
         taxType,
         zus,
         sickness,
-        costs,
       },
       costs,
     });

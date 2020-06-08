@@ -2,14 +2,13 @@ import { B2BTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
 
 interface B2BParametersRouteProps {
   b2bParameters: B2BParameters;
-  costs: string;
+  costs?: string;
 }
 
 export interface B2BParameters {
   taxType: B2BTax;
   zus: ZUS;
   sickness: Sickness;
-  costs: string;
 }
 
 export enum ScreenName {

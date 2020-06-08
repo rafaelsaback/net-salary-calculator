@@ -52,9 +52,7 @@ const AppEntry: React.FC = () => {
                 taxType: B2BTax.Linear,
                 zus: ZUS.No,
                 sickness: Sickness.No,
-                costs: '0',
               },
-              costs: '0',
             }}
           />
           <Screen

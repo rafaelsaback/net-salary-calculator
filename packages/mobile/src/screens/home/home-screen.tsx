@@ -33,7 +33,7 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
   const [contract, setContract] = useState(ContractType.Employment);
-  const { b2bParameters, costs } = route.params;
+  const { b2bParameters, costs = '0' } = route.params;
   const { uopViewModel, b2bViewModel } = useLocalStore(() => ({
     uopViewModel: new UopCalculatorViewModel(),
     b2bViewModel: new B2BCalculatorViewModel(b2bParameters),

@@ -54,6 +54,7 @@ export class B2BCalculatorViewModel extends BaseCalculatorViewModel {
       salary: this.salary,
       period: this.period,
       costs: this.costs,
+      b2bParameters: this.b2bParameters,
       results: {
         pension: this.pension,
         disability: this.disability,
@@ -68,7 +69,6 @@ export class B2BCalculatorViewModel extends BaseCalculatorViewModel {
         tax: this.tax,
         endSalary: this.endSalary,
       },
-      b2bParameters: this.b2bParameters,
     };
   }
 }
