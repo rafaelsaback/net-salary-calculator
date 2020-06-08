@@ -59,22 +59,24 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   navigation,
   route,
 }) => {
-  const { uopSerializedModel } = route.params;
-  const { results } = uopSerializedModel;
+  const { serializedModel } = route.params;
+  const { results, costs } = serializedModel;
   const [displayMode, setDisplayMode] = useState(DisplayMode.FirstMonth);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
   const salary = selectFormatted(results.endSalary, periodBreakdown);
 
   const goToDetailedResultsScreen = () =>
     navigation.navigate(ScreenName.DetailedResults, {
-      uopSerializedModel,
+      serializedModel,
     });
 
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
         <SalaryDisplay salary={salary} />
-        <SalaryPieChart data={createPieChartData(results, periodBreakdown)} />
+        <SalaryPieChart
+          data={createPieChartData(results, periodBreakdown, costs.value)}
+        />
         <Button onPress={goToDetailedResultsScreen} size={ButtonSize.Large}>
           Detailed Results
         </Button>
@@ -111,22 +113,25 @@ const selectValue = (
 const createPieChartData = (
   results: BaseSerializedModel['results'],
   periodBreakdown: keyof PeriodBreakdown,
+  costs: number,
 ): SalaryPieChartData[] => {
   return [
-    { label: 'Pension', value: selectValue(results.pension, periodBreakdown) },
     {
-      label: 'Disability',
-      value: selectValue(results.disability, periodBreakdown),
-    },
-    {
-      label: 'Sickness',
-      value: selectValue(results.sickness, periodBreakdown),
+      label: 'Social Security',
+      value: selectValue(results.socialSecurity, periodBreakdown),
     },
     {
       label: 'Health',
       value: selectValue(results.healthContribution, periodBreakdown),
     },
-    { label: 'Tax', value: selectValue(results.tax, periodBreakdown) },
+    {
+      label: 'Tax',
+      value: selectValue(results.tax, periodBreakdown),
+    },
+    {
+      label: 'Costs',
+      value: costs,
+    },
     {
       label: 'Net Salary',
       value: selectValue(results.endSalary, periodBreakdown),

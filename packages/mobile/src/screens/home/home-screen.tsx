@@ -69,7 +69,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
 
   const goToResultsScreen = () =>
     navigation.navigate(ScreenName.Results, {
-      uopSerializedModel: selectedViewModel.serialized,
+      serializedModel: selectedViewModel.serialized,
     });
 
   return useObserver(() => (

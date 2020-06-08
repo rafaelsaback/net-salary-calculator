@@ -37,8 +37,8 @@ const MONTHS = [
 
 const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
   const { params } = useRoute<DetailedResultsScreenRouteProp>();
-  const { uopSerializedModel } = params;
-  const { results } = uopSerializedModel;
+  const { serializedModel } = params;
+  const { results } = serializedModel;
 
   const panels = useMemo(
     () =>
@@ -48,7 +48,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
           <Table
             salary={{
               label: 'Gross Salary',
-              value: uopSerializedModel.salary.formatted,
+              value: serializedModel.salary.formatted,
             }}
             endSalary={{
               label: 'Net Salary',
@@ -58,7 +58,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({ visible }) => {
           />
         </View>
       )),
-    [results, uopSerializedModel.salary.formatted],
+    [results, serializedModel.salary.formatted],
   );
 
   return visible ? (

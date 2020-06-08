@@ -22,15 +22,15 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
   const { visible } = props;
   const periodBreakdown = props.periodBreakdown as MonthlyAverageOrAnnually;
   const { params } = useRoute<DetailedResultsScreenRouteProp>();
-  const { uopSerializedModel } = params;
-  const { results } = uopSerializedModel;
+  const { serializedModel } = params;
+  const { results } = serializedModel;
 
   return visible ? (
     <View style={{ marginTop: EStyleSheet.value('42rem') }}>
       <Table
         salary={{
           label: 'Gross Salary',
-          value: uopSerializedModel.salary.formatted,
+          value: serializedModel.salary.formatted,
         }}
         endSalary={{
           label: 'Net Salary',

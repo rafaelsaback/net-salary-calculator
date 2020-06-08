@@ -19,7 +19,7 @@ export enum ScreenName {
 }
 
 interface RouteParams {
-  uopSerializedModel: UOPSerializedModel;
+  serializedModel: BaseSerializedModel;
 }
 
 export type RootStackParamList = {
