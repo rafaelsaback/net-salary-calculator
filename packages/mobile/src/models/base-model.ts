@@ -13,7 +13,7 @@ import { roundNumber } from '@nsc/shared/src/helpers';
 import { Dispatch } from 'react';
 import { PeriodBreakdown } from '../types';
 
-export abstract class BaseCalculatorModel {
+export abstract class BaseModel {
   @observable
   public salary = 0;
   @observable

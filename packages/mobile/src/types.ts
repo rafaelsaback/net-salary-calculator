@@ -1,12 +1,12 @@
-import { B2BTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
+import { B2bTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
 
-interface B2BParametersRouteProps {
-  b2bParameters: B2BParameters;
-  costs?: string;
+interface B2bParametersRouteProps {
+  b2bParameters: B2bParameters;
+  costs: string;
 }
 
-export interface B2BParameters {
-  taxType: B2BTax;
+export interface B2bParameters {
+  taxType: B2bTax;
   zus: ZUS;
   sickness: Sickness;
 }
@@ -15,7 +15,7 @@ export enum ScreenName {
   Home = 'Home',
   Results = 'Results',
   DetailedResults = 'Detailed Results',
-  B2BParameters = 'B2B Parameters',
+  B2bParameters = 'B2B Parameters',
 }
 
 interface RouteParams {
@@ -23,10 +23,10 @@ interface RouteParams {
 }
 
 export type RootStackParamList = {
-  [ScreenName.Home]: B2BParametersRouteProps;
+  [ScreenName.Home]: B2bParametersRouteProps;
   [ScreenName.Results]: RouteParams;
   [ScreenName.DetailedResults]: RouteParams;
-  [ScreenName.B2BParameters]: B2BParametersRouteProps;
+  [ScreenName.B2bParameters]: B2bParametersRouteProps;
 };
 
 export interface ValueObject {
@@ -63,13 +63,13 @@ export interface BaseSerializedModel<
 
 export type UOPSerializedModel = BaseSerializedModel;
 
-interface B2BSalaryResultsModel extends BaseSalaryResultsModel {
+interface B2bSalaryResultsModel extends BaseSalaryResultsModel {
   laborFund: PeriodBreakdown<ValueObject>;
   accident: PeriodBreakdown<ValueObject>;
   others: PeriodBreakdown<ValueObject>;
 }
 
-export interface B2BSerializedModel
-  extends BaseSerializedModel<B2BSalaryResultsModel> {
-  b2bParameters: B2BParameters;
+export interface B2bSerializedModel
+  extends BaseSerializedModel<B2bSalaryResultsModel> {
+  b2bParameters: B2bParameters;
 }

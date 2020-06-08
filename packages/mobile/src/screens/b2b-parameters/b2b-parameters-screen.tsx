@@ -7,34 +7,34 @@ import { SicknessInsuranceSelector } from './components/sickness-insurance-selec
 import { Button, ButtonSize } from '../../components/button/button';
 import { styles } from './b2b-parameters-screen.style';
 import { View } from 'react-native';
-import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
+import { B2bTax, Sickness, ZUS } from '@nsc/shared/src/types';
 import { CostInput } from './components/cost-input/cost-input';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList, ScreenName } from '../../types';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
 
-type B2BParametersScreenNavProp = StackNavigationProp<
+type B2bParametersScreenNavProp = StackNavigationProp<
   RootStackParamList,
-  ScreenName.B2BParameters
+  ScreenName.B2bParameters
 >;
 
-type B2BParametersScreenRouteProp = RouteProp<
+type B2bParametersScreenRouteProp = RouteProp<
   RootStackParamList,
-  ScreenName.B2BParameters
+  ScreenName.B2bParameters
 >;
 
-interface B2BParametersScreenProps {
-  navigation: B2BParametersScreenNavProp;
-  route: B2BParametersScreenRouteProp;
+interface B2bParametersScreenProps {
+  navigation: B2bParametersScreenNavProp;
+  route: B2bParametersScreenRouteProp;
 }
 
-export const B2BParametersScreen: React.FC<B2BParametersScreenProps> = ({
+export const B2bParametersScreen: React.FC<B2bParametersScreenProps> = ({
   navigation,
   route,
 }) => {
   const { b2bParameters, costs: _costs } = route.params;
-  const [taxType, setTax] = useState(b2bParameters.taxType || B2BTax.Linear);
+  const [taxType, setTax] = useState(b2bParameters.taxType || B2bTax.Linear);
   const [zus, setZus] = useState(b2bParameters.zus || ZUS.No);
   const [sickness, setSickness] = useState(
     b2bParameters.sickness || Sickness.No,

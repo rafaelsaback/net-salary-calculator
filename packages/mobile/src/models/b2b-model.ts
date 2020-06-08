@@ -1,5 +1,5 @@
-import { BaseCalculatorModel } from './base-calculator-model';
-import { B2BParameters, PeriodBreakdown } from '../types';
+import { BaseModel } from './base-model';
+import { B2bParameters, PeriodBreakdown } from '../types';
 import { action, computed, observable } from 'mobx';
 import {
   HEALTH_INSURANCE,
@@ -7,21 +7,21 @@ import {
   RATE_19,
   SMALL_ZUS,
 } from '@nsc/shared/src/consts';
-import { B2BTax, ZUS } from '@nsc/shared/src/types';
+import { B2bTax, ZUS } from '@nsc/shared/src/types';
 
-export class B2BCalculatorModel extends BaseCalculatorModel {
+export class B2bModel extends BaseModel {
   @observable
-  public b2bParameters!: B2BParameters;
+  public b2bParameters!: B2bParameters;
   @observable
   public costs = 0;
 
-  constructor(b2BParameters: B2BParameters) {
+  constructor(b2BParameters: B2bParameters) {
     super();
     this.b2bParameters = b2BParameters;
   }
 
   @action
-  public setB2BParameters = (b2bParameters: B2BParameters) => {
+  public setB2bParameters = (b2bParameters: B2bParameters) => {
     this.b2bParameters = b2bParameters;
   };
 
@@ -110,7 +110,7 @@ export class B2BCalculatorModel extends BaseCalculatorModel {
 
   @computed
   public get tax(): number[] {
-    if (this.b2bParameters.taxType === B2BTax.Progressive) {
+    if (this.b2bParameters.taxType === B2bTax.Progressive) {
       return this.progressiveTax;
     }
 

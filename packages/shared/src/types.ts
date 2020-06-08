@@ -3,7 +3,7 @@ export enum Period {
   Annually = 'Annually',
 }
 
-export enum B2BTax {
+export enum B2bTax {
   Linear = 'Linear',
   Progressive = 'Progressive',
 }
@@ -21,7 +21,7 @@ export enum Sickness {
 
 export enum ContractType {
   Employment = 'Employment',
-  B2B = 'B2B',
+  B2b = 'B2b',
 }
 
 export interface UOPParams {
@@ -32,7 +32,7 @@ export interface UOPParams {
 export interface B2BParams {
   salary: number;
   period: Period;
-  taxType: B2BTax;
+  taxType: B2bTax;
   zus: ZUS;
   sickness: Sickness;
   costs: number;

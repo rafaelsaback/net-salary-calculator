@@ -1,7 +1,7 @@
 import React, { Dispatch, ReactNode } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { contractSelectorStyles } from './contract-selector.style';
-import { isB2B, isEmployment } from '@nsc/shared/src/type-helpers';
+import { isB22, isEmployment } from '@nsc/shared/src/type-helpers';
 import { ContractType } from '@nsc/shared/src/types';
 
 interface ContractSelector {
@@ -54,7 +54,7 @@ export const ContractSelector: React.FC<ContractSelector> = ({
           source={buildImgPath}
         />
         <Image style={contractSelectorStyles.arrowImg} source={arrowImgPath} />
-        {isB2B(contractType) && (
+        {isB22(contractType) && (
           <Image
             style={contractSelectorStyles.buildingImg}
             source={buildImgPath}

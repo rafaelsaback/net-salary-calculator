@@ -1,4 +1,4 @@
-import { BaseCalculatorModel } from './base-calculator-model';
+import { BaseModel } from './base-model';
 import { computed } from 'mobx';
 import {
   DISABILITY_RATE,
@@ -8,7 +8,7 @@ import {
   SICKNESS_RATE,
 } from '@nsc/shared/src/consts';
 
-export class UopCalculatorModel extends BaseCalculatorModel {
+export class UopModel extends BaseModel {
   @computed
   public get pension(): number[] {
     return this.generateArray12x(

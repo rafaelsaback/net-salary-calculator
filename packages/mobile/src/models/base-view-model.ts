@@ -3,12 +3,12 @@ import {
   parseToNumber,
 } from '@nsc/shared/src/helpers';
 import { action, computed } from 'mobx';
-import { BaseCalculatorModel } from './base-calculator-model';
+import { BaseModel } from './base-model';
 import { Period } from '@nsc/shared/src/types';
 import { PeriodBreakdown, ValueObject } from '../types';
 
-export abstract class BaseCalculatorViewModel {
-  protected abstract model: BaseCalculatorModel;
+export abstract class BaseViewModel {
+  protected abstract model: BaseModel;
 
   protected createValueObject = (value: number): ValueObject => ({
     value,

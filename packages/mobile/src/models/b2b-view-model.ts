@@ -1,26 +1,26 @@
-import { BaseCalculatorViewModel } from './base-calculator-view-model';
+import { BaseViewModel } from './base-view-model';
 import { action, computed } from 'mobx';
 import {
-  B2BParameters,
-  B2BSerializedModel,
+  B2bParameters,
+  B2bSerializedModel,
   PeriodBreakdown,
   ValueObject,
 } from '../types';
-import { B2BCalculatorModel } from './b2b-calculator-model';
+import { B2bModel } from './b2b-model';
 import { parseToNumber } from '@nsc/shared/src/helpers';
 
-export class B2BCalculatorViewModel extends BaseCalculatorViewModel {
-  protected model: B2BCalculatorModel;
+export class B2bViewModel extends BaseViewModel {
+  protected model: B2bModel;
 
-  constructor(b2BParameters: B2BParameters) {
+  constructor(b2BParameters: B2bParameters) {
     super();
 
-    this.model = new B2BCalculatorModel(b2BParameters);
+    this.model = new B2bModel(b2BParameters);
   }
 
   @action
-  public setB2BParameters = (b2bParameters: B2BParameters) => {
-    this.model.setB2BParameters(b2bParameters);
+  public setB2bParameters = (b2bParameters: B2bParameters) => {
+    this.model.setB2bParameters(b2bParameters);
   };
 
   @action
@@ -44,12 +44,12 @@ export class B2BCalculatorViewModel extends BaseCalculatorViewModel {
   }
 
   @computed
-  public get b2bParameters(): B2BParameters {
+  public get b2bParameters(): B2bParameters {
     return this.model.b2bParameters;
   }
 
   @computed
-  public get serialized(): B2BSerializedModel {
+  public get serialized(): B2bSerializedModel {
     return {
       salary: this.salary,
       period: this.period,

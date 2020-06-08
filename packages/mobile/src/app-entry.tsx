@@ -9,8 +9,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
 import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
-import { B2BParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
-import { B2BTax, Sickness, ZUS } from '@nsc/shared/src/types';
+import { B2bParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
+import { B2bTax, Sickness, ZUS } from '@nsc/shared/src/types';
 import { MenuIcon } from './components/menu-icon/menu-icon';
 
 const styles = StyleSheet.create({
@@ -49,15 +49,15 @@ const AppEntry: React.FC = () => {
             options={{ title: 'Gross Salary' }}
             initialParams={{
               b2bParameters: {
-                taxType: B2BTax.Linear,
+                taxType: B2bTax.Linear,
                 zus: ZUS.No,
                 sickness: Sickness.No,
               },
             }}
           />
           <Screen
-            name={ScreenName.B2BParameters}
-            component={B2BParametersScreen}
+            name={ScreenName.B2bParameters}
+            component={B2bParametersScreen}
             options={{ title: 'B2B Parameters' }}
           />
           <Screen

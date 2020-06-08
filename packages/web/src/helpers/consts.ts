@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { IStoreState } from '../interfaces';
 import {
-  B2BTax,
+  B2bTax,
   ContractType,
   Period,
   Sickness,
@@ -63,7 +63,7 @@ export const initialState: IStoreState = fromJS({
   b2bParams: {
     salary: 0,
     period: Period.Monthly,
-    tax: B2BTax.Linear,
+    tax: B2bTax.Linear,
     zus: ZUS.No,
     sickness: Sickness.No,
     costs: 0,

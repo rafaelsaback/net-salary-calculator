@@ -1,10 +1,10 @@
-import { UopCalculatorModel } from './uop-calculator-model';
+import { UopModel } from './uop-model';
 import { computed } from 'mobx';
 import { UOPSerializedModel } from '../types';
-import { BaseCalculatorViewModel } from './base-calculator-view-model';
+import { BaseViewModel } from './base-view-model';
 
-export class UopCalculatorViewModel extends BaseCalculatorViewModel {
-  protected model = new UopCalculatorModel();
+export class UopViewModel extends BaseViewModel {
+  protected model = new UopModel();
 
   @computed
   public get serialized(): UOPSerializedModel {

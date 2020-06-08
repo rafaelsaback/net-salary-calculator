@@ -5,17 +5,17 @@ import { Octicons } from '@expo/vector-icons';
 import { styles } from './b2b-parameters-button.style';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useNavigation } from '@react-navigation/native';
-import { B2BParameters, ScreenName } from '../../../../types';
+import { B2bParameters, ScreenName } from '../../../../types';
 import { HomeScreenNavigationProp } from '../../home-screen';
 import { useObserver } from 'mobx-react';
 
-interface B2BParametersButtonProps {
+interface B2bParametersButtonProps {
   disabled: boolean;
-  b2bParameters: B2BParameters;
+  b2bParameters: B2bParameters;
   costs: string;
 }
 
-export const B2BParametersButton: React.FC<B2BParametersButtonProps> = ({
+export const B2bParametersButton: React.FC<B2bParametersButtonProps> = ({
   disabled,
   b2bParameters,
   costs,
@@ -37,7 +37,7 @@ export const B2BParametersButton: React.FC<B2BParametersButtonProps> = ({
     <Button
       disabled={disabled}
       onPress={() =>
-        navigation.navigate(ScreenName.B2BParameters, { b2bParameters, costs })
+        navigation.navigate(ScreenName.B2bParameters, { b2bParameters, costs })
       }
       style={buttonStyle}
     >

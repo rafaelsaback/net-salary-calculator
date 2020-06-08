@@ -1,12 +1,5 @@
 import { Map, List } from 'immutable';
-import {
-  IB2BSalaryResults,
-  ZUS,
-  IB2BParams,
-  Sickness,
-  B2BTax,
-  Period,
-} from '../../../web/src/interfaces';
+import { IB2BSalaryResults, IB2BParams } from '../../../web/src/interfaces';
 import {
   calcHealthDeductibleList,
   calcTaxBaseList,
@@ -15,6 +8,7 @@ import {
 import flowRight from 'lodash-es/flowRight';
 import { HEALTH_INSURANCE, NORMAL_ZUS, RATE_19, SMALL_ZUS } from '../consts';
 import { roundNumber } from '../helpers';
+import { Period, Sickness, ZUS } from '../types';
 
 const evalZUS = (
   zus: ZUS,
