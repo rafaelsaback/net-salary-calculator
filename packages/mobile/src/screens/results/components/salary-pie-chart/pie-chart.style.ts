@@ -8,8 +8,8 @@ export const styles = EStyleSheet.create({
     justifyContent: 'space-between',
   },
   pieChart: {
-    width: '200rem',
-    height: '200rem',
+    width: '190rem',
+    height: '190rem',
   },
   legendContainer: {
     flex: 1,

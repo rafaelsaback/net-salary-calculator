@@ -39,7 +39,8 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
   serializedModel,
   visible,
 }) => {
-  const { results } = serializedModel;
+  const { results, costs } = serializedModel;
+  const isB2b = isB2bResultsModel(results);
 
   const panels = useMemo(
     () =>
@@ -48,18 +49,22 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
           <Text style={styles.title}>{month}</Text>
           <Table
             salary={{
-              label: 'Gross Salary',
+              label: isB2b ? 'Net Salary from the Invoice' : 'Gross Salary',
               value: serializedModel.salary.formatted,
             }}
             endSalary={{
-              label: 'Net Salary',
+              label: isB2b ? 'Salary in hand' : 'Net Salary',
               value: results.endSalary.monthly[index].formatted,
             }}
-            salaryDiscounts={createSalaryDiscounts(results, index)}
+            salaryDiscounts={createSalaryDiscounts(
+              results,
+              costs.formatted,
+              index,
+            )}
           />
         </View>
       )),
-    [results, serializedModel.salary.formatted],
+    [costs.formatted, isB2b, results, serializedModel.salary.formatted],
   );
 
   return visible ? (
@@ -76,6 +81,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
 
 const createSalaryDiscounts = (
   results: BaseSerializedModel['results'],
+  costs: string,
   index: number,
 ): SalaryElement[] => [
   {
@@ -97,12 +103,12 @@ const createSalaryDiscounts = (
   ...(isB2bResultsModel(results)
     ? [
         {
-          label: 'Labor Fund',
-          value: results.laborFund.monthly[index].formatted,
+          label: 'Labor Fund + Accident',
+          value: results.others.monthly[index].formatted,
         },
         {
-          label: 'Accident Insurance',
-          value: results.accident.monthly[index].formatted,
+          label: 'Costs',
+          value: costs,
         },
       ]
     : []),

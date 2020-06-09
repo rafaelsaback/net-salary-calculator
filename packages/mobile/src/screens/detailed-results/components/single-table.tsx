@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SalaryElement, Table } from './table';
 import { PeriodBreakdownKey } from '../detailed-results-screen';
-import { BaseSerializedModel } from '../../../types';
+import { BaseSerializedModel, ValueObject } from '../../../types';
 import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { isB2bResultsModel } from '../../../helpers';
+import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface SingleTableProps {
   serializedModel: BaseSerializedModel;
@@ -19,7 +20,7 @@ type MonthlyAverageOrAnnually =
 export const SingleTable: React.FC<SingleTableProps> = (props) => {
   const { visible, serializedModel } = props;
   const periodBreakdown = props.periodBreakdown as MonthlyAverageOrAnnually;
-  const { results } = serializedModel;
+  const { results, costs } = serializedModel;
 
   return visible ? (
     <View style={{ marginTop: EStyleSheet.value('42rem') }}>
@@ -32,14 +33,15 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
           label: 'Net Salary',
           value: results.endSalary[periodBreakdown].formatted,
         }}
-        salaryDiscounts={createUopSalaryDiscounts(results, periodBreakdown)}
+        salaryDiscounts={createSalaryDiscounts(results, costs, periodBreakdown)}
       />
     </View>
   ) : null;
 };
 
-const createUopSalaryDiscounts = (
+const createSalaryDiscounts = (
   results: BaseSerializedModel['results'],
+  costs: ValueObject,
   periodBreakdown:
     | PeriodBreakdownKey.MonthlyAverage
     | PeriodBreakdownKey.Annually,
@@ -63,12 +65,15 @@ const createUopSalaryDiscounts = (
   ...(isB2bResultsModel(results)
     ? [
         {
-          label: 'Labor Fund',
-          value: results.laborFund[periodBreakdown].formatted,
+          label: 'Labor Fund + Accident',
+          value: results.others[periodBreakdown].formatted,
         },
         {
-          label: 'Accident Insurance',
-          value: results.accident[periodBreakdown].formatted,
+          label: 'Costs',
+          value:
+            periodBreakdown === 'annually'
+              ? formatNumberWithSpaceSeparator(12 * costs.value)
+              : costs.formatted,
         },
       ]
     : []),

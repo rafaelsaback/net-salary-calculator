@@ -18,7 +18,7 @@ import {
 } from './components/salary-pie-chart/salary-pie-chart';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
-import { createFontSizeStyle } from '../../helpers';
+import { createFontSizeStyle, isB2bResultsModel } from '../../helpers';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
 
@@ -115,6 +115,7 @@ const createPieChartData = (
   periodBreakdown: keyof PeriodBreakdown,
   costs: number,
 ): SalaryPieChartData[] => {
+  const isB2b = isB2bResultsModel(results);
   return [
     {
       label: 'Social Security',
@@ -128,12 +129,16 @@ const createPieChartData = (
       label: 'Tax',
       value: selectValue(results.tax, periodBreakdown),
     },
+    ...(isB2b
+      ? [
+          {
+            label: 'Costs',
+            value: periodBreakdown === 'annually' ? 12 * costs : costs,
+          },
+        ]
+      : []),
     {
-      label: 'Costs',
-      value: costs,
-    },
-    {
-      label: 'Net Salary',
+      label: isB2b ? 'Salary in hand' : 'Net Salary',
       value: selectValue(results.endSalary, periodBreakdown),
     },
   ].sort(({ value: valueA }, { value: valueB }) => valueB - valueA);
