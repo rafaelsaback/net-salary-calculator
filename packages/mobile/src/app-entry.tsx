@@ -36,7 +36,6 @@ const AppEntry: React.FC = () => {
             },
             headerBackTitle: '',
             headerTintColor: 'white',
-            headerRight: MenuIcon,
             headerTitleStyle: {
               fontSize: EStyleSheet.value('22rem'),
             },
