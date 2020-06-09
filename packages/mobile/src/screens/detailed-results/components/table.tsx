@@ -18,6 +18,15 @@ export const Table: React.FC<TableProps> = ({
 }) => {
   const salaryElements = [salary, ...salaryDiscounts, endSalary];
   const lastIndex = salaryElements.length - 1;
+  const hasManyRows = salaryDiscounts.length > 5;
+  const rowContainerStyles = [
+    styles.rowContainer,
+    hasManyRows ? styles.rowContainerSmall : styles.rowContainerLarge,
+  ];
+  const textStyles = [
+    styles.text,
+    hasManyRows ? styles.textSmall : styles.textLarge,
+  ];
 
   return (
     <View style={styles.container}>
@@ -27,12 +36,15 @@ export const Table: React.FC<TableProps> = ({
           idx % 2 === 0 ? appTheme.secondaryRedColor : 'white';
 
         return (
-          <View key={label} style={[styles.rowContainer, { backgroundColor }]}>
+          <View
+            key={label}
+            style={[...rowContainerStyles, { backgroundColor }]}
+          >
             <View>
-              <Text style={[styles.text, { fontWeight }]}>{label}</Text>
+              <Text style={[...textStyles, { fontWeight }]}>{label}</Text>
             </View>
             <View>
-              <Text style={[styles.text, { fontWeight }]}>{value}</Text>
+              <Text style={[...textStyles, { fontWeight }]}>{value}</Text>
             </View>
           </View>
         );

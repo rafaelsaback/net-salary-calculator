@@ -10,10 +10,20 @@ export const styles = EStyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  rowContainerSmall: {
+    padding: '8rem',
+  },
+  rowContainerLarge: {
     padding: '10rem',
   },
   text: {
     color: appTheme.primaryBlackColor,
+  },
+  textSmall: {
+    fontSize: '15rem',
+  },
+  textLarge: {
     fontSize: '16rem',
   },
 });

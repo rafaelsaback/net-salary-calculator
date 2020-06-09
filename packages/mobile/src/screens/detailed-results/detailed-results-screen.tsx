@@ -52,8 +52,8 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
 
   return (
-    <View style={styles.container}>
-      <Container>
+    <View style={styles.viewContainer}>
+      <Container style={styles.container}>
         <TableSwiper
           serializedModel={serializedModel}
           visible={displayMode === DisplayMode.Monthly}
