@@ -15,7 +15,7 @@ export const styles = EStyleSheet.create({
     padding: '8rem',
   },
   rowContainerLarge: {
-    padding: '10rem',
+    padding: '11rem',
   },
   text: {
     color: appTheme.primaryBlackColor,
@@ -24,6 +24,6 @@ export const styles = EStyleSheet.create({
     fontSize: '15rem',
   },
   textLarge: {
-    fontSize: '16rem',
+    fontSize: '17rem',
   },
 });
