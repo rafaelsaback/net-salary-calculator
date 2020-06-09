@@ -7,7 +7,7 @@ import {
   RATE_19,
   SMALL_ZUS,
 } from '@nsc/shared/src/consts';
-import { B2bTax, ZUS } from '@nsc/shared/src/types';
+import { B2bTax, Sickness, ZUS } from '@nsc/shared/src/types';
 
 export class B2bModel extends BaseModel {
   @observable
@@ -52,12 +52,14 @@ export class B2bModel extends BaseModel {
 
   @computed
   public get sickness(): number[] {
-    return this.evalZUS(
-      this.b2bParameters.zus,
-      0,
-      SMALL_ZUS.SICKNESS,
-      NORMAL_ZUS.SICKNESS,
-    );
+    return this.b2bParameters.sickness === Sickness.No
+      ? this.generateArray12x(() => 0)
+      : this.evalZUS(
+          this.b2bParameters.zus,
+          0,
+          SMALL_ZUS.SICKNESS,
+          NORMAL_ZUS.SICKNESS,
+        );
   }
 
   @computed

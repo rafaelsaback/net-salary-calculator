@@ -157,7 +157,7 @@ export abstract class BaseModel {
       ((sum) => (_: number, i: number, iter: number[]) => (sum += iter[i]))(0),
     );
 
-    return [0, ...accumulatedValues.slice(1, 10)];
+    return [0, ...accumulatedValues.slice(0, 9)];
   };
 
   protected generateArray12x = (
