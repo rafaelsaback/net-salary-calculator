@@ -16,6 +16,7 @@ import { useLocalStore, useObserver } from 'mobx-react';
 import { UopViewModel } from '../../models/uop-view-model';
 import { B2bViewModel } from '../../models/b2b-view-model';
 import { BaseViewModel } from '../../models/base-view-model';
+import { CalculateButton } from './components/calculate-button/calculate-button';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -84,9 +85,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
           options={[Period.Monthly, Period.Annually]}
           onChange={setPeriod}
         />
-        <Button onPress={goToResultsScreen} size={ButtonSize.Medium}>
-          Calculate
-        </Button>
+        <CalculateButton
+          disabled={!selectedViewModel.salary.value}
+          onPress={goToResultsScreen}
+        />
       </Container>
       <View style={styles.contractContainer}>
         <ContractSelector
