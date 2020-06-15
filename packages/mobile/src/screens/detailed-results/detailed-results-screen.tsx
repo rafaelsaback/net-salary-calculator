@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Container } from '../../components/containers/container';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
-import { createFontSizeStyle } from '../../helpers';
 import { styles } from './detailed-results-screen.style';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList, ScreenName } from '../../types';
@@ -22,7 +21,7 @@ interface DetailedResultsScreenProps {
 
 enum DisplayMode {
   Monthly = 'Monthly',
-  MonthlyAverage = 'Monthly\nAverage',
+  MonthlyAverage = 'Monthly Average',
   Annually = 'Annually',
 }
 
@@ -53,16 +52,19 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
 
   return (
     <View style={styles.viewContainer}>
-      <Container style={styles.container}>
-        <TableSwiper
-          serializedModel={serializedModel}
-          visible={displayMode === DisplayMode.Monthly}
-        />
-        <SingleTable
-          serializedModel={serializedModel}
-          visible={displayMode !== DisplayMode.Monthly}
-          periodBreakdown={periodBreakdown}
-        />
+      <Container>
+        <View>
+          <Text style={styles.title}>Take Home - {displayMode}</Text>
+          <TableSwiper
+            serializedModel={serializedModel}
+            visible={displayMode === DisplayMode.Monthly}
+          />
+          <SingleTable
+            serializedModel={serializedModel}
+            visible={displayMode !== DisplayMode.Monthly}
+            periodBreakdown={periodBreakdown}
+          />
+        </View>
       </Container>
       <BottomContainer>
         <Selector
@@ -70,7 +72,6 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
           options={displayModeOptions}
           onChange={setDisplayMode}
           width="92%"
-          fontSize={createFontSizeStyle([16, 14, 16])}
         />
       </BottomContainer>
     </View>

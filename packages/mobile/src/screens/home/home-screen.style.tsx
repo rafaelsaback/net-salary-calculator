@@ -10,7 +10,7 @@ export const styles = EStyleSheet.create({
     ...appTheme.title,
   },
   contractContainer: {
-    flex: 1,
+    flex: 0.8,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

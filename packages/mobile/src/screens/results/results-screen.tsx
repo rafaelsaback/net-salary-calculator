@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   BaseSerializedModel,
@@ -18,7 +18,7 @@ import {
 } from './components/salary-pie-chart/salary-pie-chart';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
-import { createFontSizeStyle, isB2bResultsModel } from '../../helpers';
+import { isB2bResultsModel } from '../../helpers';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
 
@@ -39,7 +39,7 @@ interface ResultsScreenProps {
 
 enum DisplayMode {
   FirstMonth = '1st Month',
-  MonthlyAverage = 'Monthly\nAverage',
+  MonthlyAverage = 'Monthly Average',
   Annually = 'Annually',
 }
 
@@ -73,7 +73,10 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <SalaryDisplay salary={salary} />
+        <View>
+          <Text style={styles.title}>Take Home - {displayMode}</Text>
+          <SalaryDisplay salary={salary} />
+        </View>
         <SalaryPieChart
           data={createPieChartData(results, periodBreakdown, costs.value)}
         />
@@ -87,7 +90,6 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
           options={displayModeOptions}
           onChange={setDisplayMode}
           width="92%"
-          fontSize={createFontSizeStyle([16, 14, 16])}
         />
       </BottomContainer>
     </View>
@@ -138,7 +140,7 @@ const createPieChartData = (
         ]
       : []),
     {
-      label: isB2b ? 'Salary in hand' : 'Net Salary',
+      label: 'Take Home',
       value: selectValue(results.endSalary, periodBreakdown),
     },
   ].sort(({ value: valueA }, { value: valueB }) => valueB - valueA);

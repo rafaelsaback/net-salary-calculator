@@ -49,11 +49,11 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
           <Text style={styles.title}>{month}</Text>
           <Table
             salary={{
-              label: isB2b ? 'Net Salary from the Invoice' : 'Gross Salary',
+              label: isB2b ? 'Salary (without VAT)' : 'Salary',
               value: serializedModel.salary.formatted,
             }}
             endSalary={{
-              label: isB2b ? 'Salary in hand' : 'Net Salary',
+              label: 'Take Home',
               value: results.endSalary.monthly[index].formatted,
             }}
             salaryDiscounts={createSalaryDiscounts(

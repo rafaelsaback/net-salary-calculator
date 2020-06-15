@@ -30,11 +30,12 @@ export const appTheme = {
     marginHorizontal: '15rem',
   },
   title: {
-    textAlign: 'center',
     color: primaryBlackColor,
     fontSize: '20rem',
     fontWeight: 'bold',
     marginBottom: '15rem',
+    alignSelf: 'flex-start',
+    marginLeft: '10%',
   },
   borderRadius: 5,
   btnBackgroundShadow: {

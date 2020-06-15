@@ -1,7 +1,6 @@
 import { ContractSelector } from './components/contract-selector/contract-selector';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import { Button, ButtonSize } from '../../components/button/button';
+import { Text, View } from 'react-native';
 import { SalaryInput } from './components/salary-input/salary-input';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { styles } from './home-screen.style';
@@ -76,10 +75,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <SalaryInput
-          salary={selectedViewModel.salary.formatted}
-          setSalary={setSalary}
-        />
+        <View>
+          <Text style={styles.title}>Salary</Text>
+          <SalaryInput
+            salary={selectedViewModel.salary.formatted}
+            setSalary={setSalary}
+          />
+        </View>
         <Selector
           value={selectedViewModel.period}
           options={[Period.Monthly, Period.Annually]}

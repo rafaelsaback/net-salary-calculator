@@ -5,9 +5,6 @@ export const styles = EStyleSheet.create({
   viewContainer: {
     ...appTheme.bodyContainer,
   },
-  container: {
-    paddingVertical: '10rem',
-  },
   title: {
     ...appTheme.title,
   },

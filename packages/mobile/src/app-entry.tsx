@@ -11,7 +11,6 @@ import { RootStackParamList, ScreenName } from './types';
 import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
 import { B2bParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
 import { B2bTax, Sickness, ZUS } from '@nsc/shared/src/types';
-import { MenuIcon } from './components/menu-icon/menu-icon';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -44,7 +43,7 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Home}
             component={HomeScreen}
-            options={{ title: 'Gross Salary' }}
+            options={{ title: '' }}
             initialParams={{
               b2bParameters: {
                 taxType: B2bTax.Linear,
@@ -61,12 +60,12 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Results}
             component={ResultsScreen}
-            options={{ title: 'Net Salary' }}
+            options={{ title: '' }}
           />
           <Screen
             name={ScreenName.DetailedResults}
             component={DetailedResultsScreen}
-            options={{ title: 'Detailed Results' }}
+            options={{ title: '' }}
           />
         </Navigator>
       </NavigationContainer>
