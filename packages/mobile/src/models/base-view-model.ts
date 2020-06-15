@@ -43,6 +43,11 @@ export abstract class BaseViewModel {
   }
 
   @computed
+  public get annualSalary(): ValueObject {
+    return this.createValueObject(this.model.annualSalary);
+  }
+
+  @computed
   public get period(): Period {
     return this.model.period;
   }

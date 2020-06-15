@@ -1,4 +1,10 @@
-import { B2bTax, Period, Sickness, ZUS } from '@nsc/shared/src/types';
+import {
+  B2bTax,
+  ContractType,
+  Period,
+  Sickness,
+  ZUS,
+} from '@nsc/shared/src/types';
 
 interface B2bParametersRouteProps {
   b2bParameters: B2bParameters;
@@ -55,8 +61,12 @@ export interface BaseSalaryResultsModel {
 export interface BaseSerializedModel<
   SalaryResultsModel = BaseSalaryResultsModel
 > {
+  // The value of the "salary" variable will depend on the chosen period (monthly/annually)
   salary: ValueObject;
+  monthlySalary: ValueObject;
+  annualSalary: ValueObject;
   period: Period;
+  contract: ContractType;
   costs: ValueObject;
   results: SalaryResultsModel;
 }

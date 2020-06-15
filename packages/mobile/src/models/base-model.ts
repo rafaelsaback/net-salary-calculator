@@ -48,6 +48,11 @@ export abstract class BaseModel {
   }
 
   @computed
+  public get annualSalary(): number {
+    return this.period === Period.Monthly ? this.salary * 12 : this.salary;
+  }
+
+  @computed
   public get healthDeductible(): number[] {
     return this.healthContribution.map(
       (value) => value * (HEALTH_DEDUCTIBLE_RATE / HEALTH_CONTRIBUTION_RATE),

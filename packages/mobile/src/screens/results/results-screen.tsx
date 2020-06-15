@@ -21,6 +21,7 @@ import { Selector } from '../../components/selector/selector';
 import { isB2bResultsModel } from '../../helpers';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
+import { Period } from '@nsc/shared/src/types';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -63,7 +64,13 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   const { results, costs } = serializedModel;
   const [displayMode, setDisplayMode] = useState(DisplayMode.FirstMonth);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
-  const salary = selectFormatted(results.endSalary, periodBreakdown);
+  const salary =
+    periodBreakdown === 'annually'
+      ? serializedModel.annualSalary
+      : serializedModel.monthlySalary;
+  const takeHome = selectFormatted(results.endSalary, periodBreakdown);
+  const period =
+    periodBreakdown === 'annually' ? Period.Annually : Period.Monthly;
 
   const goToDetailedResultsScreen = () =>
     navigation.navigate(ScreenName.DetailedResults, {
@@ -75,7 +82,12 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
       <Container>
         <View>
           <Text style={styles.title}>Take Home - {displayMode}</Text>
-          <SalaryDisplay salary={salary} />
+          <SalaryDisplay
+            salary={salary.formatted}
+            takeHome={takeHome}
+            contract={serializedModel.contract}
+            period={period}
+          />
         </View>
         <SalaryPieChart
           data={createPieChartData(results, periodBreakdown, costs.value)}

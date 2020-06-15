@@ -8,6 +8,7 @@ import {
 } from '../types';
 import { B2bModel } from './b2b-model';
 import { parseToNumber } from '@nsc/shared/src/helpers';
+import { ContractType } from '@nsc/shared/src/types';
 
 export class B2bViewModel extends BaseViewModel {
   protected model: B2bModel;
@@ -52,7 +53,10 @@ export class B2bViewModel extends BaseViewModel {
   public get serialized(): B2bSerializedModel {
     return {
       salary: this.salary,
+      monthlySalary: this.monthlySalary,
+      annualSalary: this.annualSalary,
       period: this.period,
+      contract: ContractType.B2B,
       costs: this.costs,
       b2bParameters: this.b2bParameters,
       results: {
