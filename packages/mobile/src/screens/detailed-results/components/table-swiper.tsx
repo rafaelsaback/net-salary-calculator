@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useMemo } from 'react';
 import { Platform, Text, View } from 'react-native';
 import { appTheme } from '../../../theme';
-import { styles } from '../detailed-results-screen.style';
+import { styles } from './table-swiper.style';
 import { SalaryElement, Table } from './table';
 import { BaseSerializedModel } from '../../../types';
 import { isB2bResultsModel } from '../../../helpers';
@@ -71,7 +71,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
     <Swiper
       loop={false}
       activeDotColor={appTheme.primaryRedColor}
-      paginationStyle={{ bottom: 0 }}
+      paginationStyle={styles.paginationStyle}
       loadMinimal
     >
       {panels}

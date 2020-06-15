@@ -3,7 +3,7 @@ import { SalaryElement, Table } from './table';
 import { PeriodBreakdownKey } from '../detailed-results-screen';
 import { BaseSerializedModel, ValueObject } from '../../../types';
 import { View } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { styles } from './single-table.style';
 import { isB2bResultsModel } from '../../../helpers';
 import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
@@ -23,7 +23,7 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
   const { results, costs } = serializedModel;
 
   return visible ? (
-    <View style={{ marginTop: EStyleSheet.value('42rem') }}>
+    <View style={styles.container}>
       <Table
         salary={{
           label: 'Gross Salary',

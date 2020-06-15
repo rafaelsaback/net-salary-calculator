@@ -7,5 +7,6 @@ export const styles = EStyleSheet.create({
   },
   title: {
     ...appTheme.title,
+    marginBottom: '5rem',
   },
 });
