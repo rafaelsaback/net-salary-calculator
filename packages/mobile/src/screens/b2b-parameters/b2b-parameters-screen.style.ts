@@ -14,4 +14,10 @@ export const styles = EStyleSheet.create({
     width: '110rem',
     height: '40rem',
   },
+  title: {
+    ...appTheme.title,
+    alignSelf: 'center',
+    marginLeft: 0,
+    marginBottom: 0,
+  },
 });

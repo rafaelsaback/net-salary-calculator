@@ -55,7 +55,7 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.B2bParameters}
             component={B2bParametersScreen}
-            options={{ title: 'B2B Parameters' }}
+            options={{ title: '' }}
           />
           <Screen
             name={ScreenName.Results}
