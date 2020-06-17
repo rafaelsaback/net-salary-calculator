@@ -5,7 +5,6 @@ import { BaseSerializedModel, ValueObject } from '../../../types';
 import { View } from 'react-native';
 import { styles } from './single-table.style';
 import { isB2bResultsModel } from '../../../helpers';
-import { formatNumberWithSpaceSeparator } from '@nsc/shared/src/helpers';
 
 interface SingleTableProps {
   serializedModel: BaseSerializedModel;
@@ -67,13 +66,6 @@ const createSalaryDiscounts = (
         {
           label: 'Labor Fund + Accident',
           value: results.others[periodBreakdown].formatted,
-        },
-        {
-          label: 'Costs',
-          value:
-            periodBreakdown === 'annually'
-              ? formatNumberWithSpaceSeparator(12 * costs.value)
-              : costs.formatted,
         },
       ]
     : []),

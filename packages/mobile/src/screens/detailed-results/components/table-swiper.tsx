@@ -106,10 +106,6 @@ const createSalaryDiscounts = (
           label: 'Labor Fund + Accident',
           value: results.others.monthly[index].formatted,
         },
-        {
-          label: 'Costs',
-          value: costs,
-        },
       ]
     : []),
   {

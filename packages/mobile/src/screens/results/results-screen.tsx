@@ -18,7 +18,6 @@ import {
 } from './components/salary-pie-chart/salary-pie-chart';
 import { BottomContainer } from '../../components/containers/bottom-container';
 import { Selector } from '../../components/selector/selector';
-import { isB2bResultsModel } from '../../helpers';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
 import { Period } from '@nsc/shared/src/types';
@@ -61,7 +60,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   route,
 }) => {
   const { serializedModel } = route.params;
-  const { results, costs } = serializedModel;
+  const { results } = serializedModel;
   const [displayMode, setDisplayMode] = useState(DisplayMode.FirstMonth);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
   const salary =
@@ -89,9 +88,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
             period={period}
           />
         </View>
-        <SalaryPieChart
-          data={createPieChartData(results, periodBreakdown, costs.value)}
-        />
+        <SalaryPieChart data={createPieChartData(results, periodBreakdown)} />
         <Button onPress={goToDetailedResultsScreen} size={ButtonSize.Large}>
           Detailed Results
         </Button>
@@ -127,9 +124,7 @@ const selectValue = (
 const createPieChartData = (
   results: BaseSerializedModel['results'],
   periodBreakdown: keyof PeriodBreakdown,
-  costs: number,
 ): SalaryPieChartData[] => {
-  const isB2b = isB2bResultsModel(results);
   return [
     {
       label: 'Social Security',
@@ -143,14 +138,6 @@ const createPieChartData = (
       label: 'Tax',
       value: selectValue(results.tax, periodBreakdown),
     },
-    ...(isB2b
-      ? [
-          {
-            label: 'Costs',
-            value: periodBreakdown === 'annually' ? 12 * costs : costs,
-          },
-        ]
-      : []),
     {
       label: 'Take Home',
       value: selectValue(results.endSalary, periodBreakdown),
