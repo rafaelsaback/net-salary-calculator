@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import HomeScreen from './screens/home/home-screen';
 import { appTheme, appThemeReactNavigation } from './theme';
 import { Footer } from './components/footer';
@@ -10,7 +11,6 @@ import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
 import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
 import { B2bParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
-import { B2bTax, Sickness, ZUS } from '@nsc/shared/src/types';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -44,13 +44,6 @@ const AppEntry: React.FC = () => {
             name={ScreenName.Home}
             component={HomeScreen}
             options={{ title: '' }}
-            initialParams={{
-              b2bParameters: {
-                taxType: B2bTax.Linear,
-                zus: ZUS.No,
-                sickness: Sickness.No,
-              },
-            }}
           />
           <Screen
             name={ScreenName.B2bParameters}

@@ -1,21 +1,31 @@
 import { ContractSelector } from './components/contract-selector/contract-selector';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
-import { SalaryInput } from './components/salary-input/salary-input';
+import isEmpty from 'lodash-es/isEmpty';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { styles } from './home-screen.style';
-import { RootStackParamList, ScreenName } from '../../types';
-import { ContractType, Period } from '@nsc/shared/src/types';
-import { Container } from '../../components/containers/container';
-import { B2bParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
 import { isB2b } from '@nsc/shared/src/type-helpers';
 import { RouteProp } from '@react-navigation/native';
+import {
+  B2bTax,
+  ContractType,
+  Period,
+  Sickness,
+  ZUS,
+} from '@nsc/shared/src/types';
+
+import { SalaryInput } from './components/salary-input/salary-input';
+import { styles } from './home-screen.style';
+import { B2bParameters, RootStackParamList, ScreenName } from '../../types';
+import { Container } from '../../components/containers/container';
+import { B2bParametersButton } from './components/b2b-parameters-button/b2b-parameters-button';
 import { Selector } from '../../components/selector/selector';
 import { useLocalStore, useObserver } from 'mobx-react';
 import { UopViewModel } from '../../models/uop-view-model';
 import { B2bViewModel } from '../../models/b2b-view-model';
 import { BaseViewModel } from '../../models/base-view-model';
 import { CalculateButton } from './components/calculate-button/calculate-button';
+import { PersistenceService } from '../../services/persistence-service';
+import { usePersistedData } from '../../use-persisted-data';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -32,9 +42,18 @@ interface HomeScreenProps {
   route: HomeScreenRouteProp;
 }
 
+const DEFAULT_B2B_PARAMETERS: B2bParameters = {
+  taxType: B2bTax.Linear,
+  zus: ZUS.No,
+  sickness: Sickness.No,
+};
+
+const B2B_PARAMETERS_STORAGE_KEY = 'b2bParameters';
+
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
   const [contract, setContract] = useState(ContractType.Employment);
-  const { b2bParameters, costs = '0' } = route.params;
+  const b2bParameters = route.params?.b2bParameters || {};
+  const costs = route.params?.costs || '0';
   const { uopViewModel, b2bViewModel } = useLocalStore(() => ({
     uopViewModel: new UopViewModel(),
     b2bViewModel: new B2bViewModel(b2bParameters),
@@ -53,12 +72,21 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
     ? b2bViewModel
     : uopViewModel;
 
+  usePersistedData(
+    B2B_PARAMETERS_STORAGE_KEY,
+    DEFAULT_B2B_PARAMETERS,
+    b2bViewModel.setB2bParameters,
+  );
+
   useEffect(() => {
     b2bViewModel.setCosts(costs);
   }, [b2bViewModel, costs]);
 
   useEffect(() => {
-    b2bViewModel.setB2bParameters(b2bParameters);
+    if (!isEmpty(b2bParameters)) {
+      b2bViewModel.setB2bParameters(b2bParameters);
+      PersistenceService.storeData('b2bParameters', b2bParameters);
+    }
   }, [
     b2bViewModel,
     b2bParameters.taxType,
