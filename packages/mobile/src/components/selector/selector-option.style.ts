@@ -6,19 +6,9 @@ export const styles = EStyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: appTheme.secondaryBlackColor,
-  },
-  leftBorderRadius: {
-    borderTopLeftRadius: appTheme.borderRadius,
-    borderBottomLeftRadius: appTheme.borderRadius,
-  },
-  rightBorderRadius: {
-    borderTopRightRadius: appTheme.borderRadius,
-    borderBottomRightRadius: appTheme.borderRadius,
+    borderRadius: appTheme.borderRadius,
   },
   activeContainer: {
-    borderColor: appTheme.primaryRedColor,
     backgroundColor: appTheme.secondaryRedColor,
   },
   text: {

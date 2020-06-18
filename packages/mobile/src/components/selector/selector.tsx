@@ -28,8 +28,6 @@ export const Selector: React.FC<SelectorProps> = ({
           text={option}
           active={value === option}
           onPress={() => onChange(option)}
-          atLeftHandSide={index === 0}
-          atRightHandSide={index === options.length - 1}
           fontSize={Array.isArray(fontSize) ? fontSize[index] : fontSize}
         />
       ))}
