@@ -7,15 +7,9 @@ export const styles = EStyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
   },
   primaryButton: {
     backgroundColor: appTheme.primaryRedColor,
-  },
-  secondaryButton: {
-    backgroundColor: 'white',
-    borderWidth: 2,
-    borderColor: appTheme.primaryRedColor,
   },
   text: {
     fontWeight: 'bold',

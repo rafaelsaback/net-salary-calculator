@@ -31,7 +31,6 @@ export const Button: React.FC<ButtonProps> = ({
   const flattenedStyle = EStyleSheet.flatten([
     styles.button,
     type === 'primary' && styles.primaryButton,
-    type === 'secondary' && styles.secondaryButton,
     size === ButtonSize.Small && styles.smallButton,
     size === ButtonSize.Medium && styles.mediumButton,
     size === ButtonSize.Large && styles.largeButton,
