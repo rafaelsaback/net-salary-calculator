@@ -16,9 +16,8 @@ export const styles = EStyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: 'white',
     height: '50rem',
-    borderRadius: appTheme.borderRadius,
-    borderWidth: 1,
-    borderColor: appTheme.secondaryBlackColor,
+    borderBottomWidth: 1,
+    borderColor: appTheme.tertiaryBlackColor,
   },
   currency: {
     flex: 1,

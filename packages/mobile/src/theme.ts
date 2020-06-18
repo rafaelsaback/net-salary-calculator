@@ -5,6 +5,7 @@ const secondaryRedColor = '#FFE9ED';
 const backgroundColor = '#ffffff';
 const primaryBlackColor = '#515151';
 const secondaryBlackColor = '#818181';
+const tertiaryBlackColor = '#d1d1d1';
 const lightGray = '#F4F4F4';
 const containerBackgroundColor = 'white';
 
@@ -23,6 +24,7 @@ export const appTheme = {
   secondaryRedColor,
   primaryBlackColor,
   secondaryBlackColor,
+  tertiaryBlackColor,
   containerBackgroundColor,
   lightGray,
   bodyContainer: {
