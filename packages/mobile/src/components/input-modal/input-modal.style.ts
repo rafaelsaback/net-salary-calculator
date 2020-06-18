@@ -40,11 +40,12 @@ export const styles = EStyleSheet.create({
   },
   errorContainer: {
     marginHorizontal: '$marginHorizontal',
-    marginTop: '5rem',
+    marginTop: '10rem',
+    height: '40rem',
   },
   errorText: {
     color: appTheme.primaryRedColor,
-    fontSize: '14rem',
+    fontSize: '16rem',
   },
   closeIcon: {
     paddingRight: '$closeIconPadding',

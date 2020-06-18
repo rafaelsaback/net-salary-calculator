@@ -7,15 +7,18 @@ import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 import { useObserver } from 'mobx-react';
+import { Period } from '@nsc/shared/src/types';
 
 interface SalaryInputProps {
   salary: string;
   setSalary: Dispatch<string>;
+  period: Period;
 }
 
 export const SalaryInput: React.FC<SalaryInputProps> = ({
   salary,
   setSalary,
+  period,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [clearSalary, setClearSalary] = useState(false);
@@ -33,13 +36,16 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
   };
 
   const isValid = (salary: number) => {
-    if (salary >= MINIMUM_WAGE) {
+    const adjustedMinimumWage =
+      period === Period.Annually ? 12 * MINIMUM_WAGE : MINIMUM_WAGE;
+    if (salary >= adjustedMinimumWage) {
       setError('');
       return true;
     }
+    const periodStr = period === Period.Annually ? 'year' : 'month';
 
     setError(
-      `The salary should be at least PLN ${MINIMUM_WAGE} (minimum wage)`,
+      `The salary should be at least PLN ${adjustedMinimumWage} per ${periodStr} (minimum wage).`,
     );
     return false;
   };

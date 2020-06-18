@@ -108,6 +108,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
           <SalaryInput
             salary={selectedViewModel.salary.formatted}
             setSalary={setSalary}
+            period={selectedViewModel.period}
           />
         </View>
         <Selector
