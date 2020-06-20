@@ -21,8 +21,7 @@ export const SicknessInsuranceSelector: React.FC<SicknessInsuranceSelectorProps>
         value={sickness}
         options={[Sickness.No, Sickness.Yes]}
         onChange={setSickness}
-        width="100%"
-        height="45rem"
+        width="66%"
       />
     </View>
   );

@@ -19,7 +19,6 @@ export const ZusSelector: React.FC<ZusSelectorProps> = ({ zus, setZus }) => {
         options={[ZUS.No, ZUS.Discounted, ZUS.Normal]}
         onChange={setZus}
         width="100%"
-        height="45rem"
       />
     </View>
   );

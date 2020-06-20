@@ -4,6 +4,7 @@ import { appTheme } from '../../../../theme';
 export const styles = EStyleSheet.create({
   container: {
     marginHorizontal: '20rem',
+    justifyContent: 'flex-start',
   },
   textLabel: {
     fontWeight: 'bold',

@@ -114,6 +114,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
         <Selector
           value={selectedViewModel.period}
           options={[Period.Monthly, Period.Annually]}
+          containerStyle={{ alignSelf: 'center' }}
           onChange={setPeriod}
         />
         <CalculateButton

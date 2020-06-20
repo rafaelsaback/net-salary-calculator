@@ -98,6 +98,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
           value={displayMode}
           options={displayModeOptions}
           onChange={setDisplayMode}
+          containerStyle={{ alignSelf: 'center' }}
           width="92%"
         />
       </BottomContainer>

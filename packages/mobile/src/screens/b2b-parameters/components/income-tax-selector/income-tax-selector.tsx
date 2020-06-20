@@ -21,8 +21,7 @@ export const IncomeTaxSelector: React.FC<IncomeTaxSelectorProps> = ({
         value={taxType}
         options={[B2bTax.Linear, B2bTax.Progressive]}
         onChange={setTax}
-        width="100%"
-        height="45rem"
+        width="66%"
       />
     </View>
   );
