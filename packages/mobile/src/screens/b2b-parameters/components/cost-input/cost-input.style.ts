@@ -10,6 +10,9 @@ export const styles = EStyleSheet.create({
     marginBottom: '10rem',
     color: appTheme.primaryBlackColor,
   },
+  textLabelContainer: {
+    flexDirection: 'row',
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -11,4 +11,10 @@ export const styles = EStyleSheet.create({
     marginBottom: '10rem',
     color: appTheme.primaryBlackColor,
   },
+  textBold: {
+    fontWeight: 'bold',
+  },
+  textLabelContainer: {
+    flexDirection: 'row',
+  },
 });

@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { styles } from './sickness-insurance-selector.style';
 import { Sickness } from '@nsc/shared/src/types';
 import { Selector } from '../../../../components/selector/selector';
+import { Popover } from '../../../../components/popover/popover';
 
 interface SicknessInsuranceSelectorProps {
   sickness: Sickness;
@@ -16,7 +17,12 @@ export const SicknessInsuranceSelector: React.FC<SicknessInsuranceSelectorProps>
 }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.textLabel}>Sickness Insurance</Text>
+      <View style={styles.textLabelContainer}>
+        <Text style={styles.textLabel}>Sickness Insurance</Text>
+        <Popover
+          tooltipContent={<Text>The sickness insurance is optional</Text>}
+        />
+      </View>
       <Selector
         value={sickness}
         options={[Sickness.No, Sickness.Yes]}

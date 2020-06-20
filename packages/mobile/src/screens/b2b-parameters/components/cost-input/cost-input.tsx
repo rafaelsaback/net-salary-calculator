@@ -5,6 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { AntDesign } from '@expo/vector-icons';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { styles } from './cost-input.style';
+import { Popover } from '../../../../components/popover/popover';
 
 interface CostInputProps {
   costs: string;
@@ -36,7 +37,14 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textLabel}>Cost</Text>
+      <View style={styles.textLabelContainer}>
+        <Text style={styles.textLabel}>Costs</Text>
+        <Popover
+          tooltipContent={
+            <Text>Costs associated with running your business</Text>
+          }
+        />
+      </View>
       <View style={styles.inputContainer}>
         {isModalVisible && (
           <InputModal
