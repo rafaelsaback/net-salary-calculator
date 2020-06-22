@@ -4,8 +4,8 @@ import { Text, View } from 'react-native';
 import { styles } from './zus-selector.style';
 import { ZUS } from '@nsc/shared/src/types';
 import { Selector } from '../../../../components/selector/selector';
-import { Popover } from '../../../../components/popover/popover';
 import { Strong } from '../../../../components/strong/strong';
+import { HelpPopover } from '../help-popover/help-popover';
 
 interface ZusSelectorProps {
   zus: ZUS;
@@ -17,7 +17,7 @@ export const ZusSelector: React.FC<ZusSelectorProps> = ({ zus, setZus }) => {
     <View style={styles.container}>
       <View style={styles.textLabelContainer}>
         <Text style={styles.textLabel}>ZUS</Text>
-        <Popover
+        <HelpPopover
           tooltipContent={
             <View>
               <Text style={styles.textMarginBottom}>

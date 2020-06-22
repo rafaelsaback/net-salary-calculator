@@ -4,8 +4,8 @@ import { Text, View } from 'react-native';
 import { styles } from './income-tax-selector.style';
 import { B2bTax } from '@nsc/shared/src/types';
 import { Selector } from '../../../../components/selector/selector';
-import { Popover } from '../../../../components/popover/popover';
 import { Strong } from '../../../../components/strong/strong';
+import { HelpPopover } from '../help-popover/help-popover';
 
 interface IncomeTaxSelectorProps {
   taxType: B2bTax;
@@ -20,7 +20,7 @@ export const IncomeTaxSelector: React.FC<IncomeTaxSelectorProps> = ({
     <View style={styles.container}>
       <View style={styles.textLabelContainer}>
         <Text style={styles.textLabel}>Income Tax</Text>
-        <Popover
+        <HelpPopover
           tooltipContent={
             <>
               <Text>

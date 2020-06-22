@@ -1,22 +1,25 @@
 import * as React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import PopoverView from 'react-native-popover-view';
-import { AntDesign } from '@expo/vector-icons';
 
 interface PopoverProps {
   tooltipContent: React.ReactNode | string;
 }
 
-export const Popover: React.FC<PopoverProps> = ({ tooltipContent }) => {
+export const Popover: React.FC<PopoverProps> = ({
+  tooltipContent,
+  children,
+}) => {
   return (
     <PopoverView
+      arrowStyle={{ backgroundColor: 'transparent' }}
       from={(sourceRef, showPopover) => (
         <TouchableOpacity
           style={{ alignSelf: 'flex-start' }}
           onPress={showPopover}
         >
           <View style={{ marginLeft: 5 }} ref={sourceRef}>
-            <AntDesign name="questioncircleo" size={16} color="black" />
+            {children}
           </View>
         </TouchableOpacity>
       )}
