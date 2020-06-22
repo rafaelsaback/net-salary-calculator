@@ -56,7 +56,7 @@ export class B2bViewModel extends BaseViewModel {
       monthlySalary: this.monthlySalary,
       annualSalary: this.annualSalary,
       period: this.period,
-      contract: ContractType.B2B,
+      contract: ContractType.B2b,
       costs: this.costs,
       b2bParameters: this.b2bParameters,
       results: {
