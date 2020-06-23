@@ -40,14 +40,16 @@ export const SalaryDisplay: React.FC<SalaryDisplayProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.currency}>PLN</Text>
-      <View style={styles.valueContainer}>
-        <Text style={styles.value}>{takeHome}</Text>
+      <View style={styles.salaryContainer}>
+        <Text>
+          <Text style={styles.value}>{takeHome} </Text>
+          <Text style={styles.currency}>zł</Text>
+        </Text>
       </View>
       <TouchableOpacity onPress={shareSalary}>
         <View style={styles.icon}>
           <Entypo
-            size={EStyleSheet.value('22rem')}
+            size={EStyleSheet.value('30rem')}
             name="share"
             color={appTheme.primaryRedColor}
           />

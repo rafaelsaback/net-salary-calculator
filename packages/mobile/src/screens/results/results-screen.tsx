@@ -79,17 +79,19 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <View>
-          <Text style={styles.title}>Take Home - {displayMode}</Text>
-          <SalaryDisplay
-            salary={salary.formatted}
-            takeHome={takeHome}
-            contract={serializedModel.contract}
-            period={period}
-          />
-        </View>
+        <Text style={styles.title}>Take Home - {displayMode}</Text>
+        <SalaryDisplay
+          salary={salary.formatted}
+          takeHome={takeHome}
+          contract={serializedModel.contract}
+          period={period}
+        />
         <SalaryPieChart data={createPieChartData(results, periodBreakdown)} />
-        <Button onPress={goToDetailedResultsScreen} size={ButtonSize.Large}>
+        <Button
+          onPress={goToDetailedResultsScreen}
+          size={ButtonSize.Large}
+          style={styles.button}
+        >
           Detailed Results
         </Button>
       </Container>

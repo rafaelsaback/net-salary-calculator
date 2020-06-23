@@ -35,7 +35,7 @@ export const appTheme = {
     color: primaryBlackColor,
     fontSize: '20rem',
     fontWeight: 'bold',
-    marginBottom: '15rem',
+    marginBottom: '10rem',
     alignSelf: 'flex-start',
     marginLeft: '10%',
   },

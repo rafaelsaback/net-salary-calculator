@@ -55,10 +55,10 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
             setValue={setSalary}
           />
         )}
-        <View style={styles.valueContainer}>
-          <Text style={styles.value}>{salary}</Text>
-        </View>
-        <Text style={styles.currency}>zł</Text>
+        <Text>
+          <Text style={styles.value}>{salary} </Text>
+          <Text style={styles.currency}>zł</Text>
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   ));

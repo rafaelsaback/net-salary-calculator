@@ -15,7 +15,7 @@ export const styles = EStyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'baseline',
     justifyContent: 'center',
     backgroundColor: 'white',
     height: '40rem',
@@ -23,13 +23,8 @@ export const styles = EStyleSheet.create({
     borderColor: appTheme.secondaryBlackColor,
   },
   currency: {
-    textAlign: 'center',
-    marginLeft: '5rem',
     color: appTheme.secondaryBlackColor,
     fontSize: '16rem',
-  },
-  valueContainer: {
-    alignItems: 'center',
   },
   value: {
     color: appTheme.primaryBlackColor,

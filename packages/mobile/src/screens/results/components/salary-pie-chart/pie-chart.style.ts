@@ -8,8 +8,8 @@ export const styles = EStyleSheet.create({
     justifyContent: 'space-between',
   },
   pieChart: {
-    width: '190rem',
-    height: '190rem',
+    width: '160rem',
+    height: '160rem',
   },
   legendContainer: {
     flex: 1,
@@ -26,7 +26,7 @@ export const styles = EStyleSheet.create({
     marginRight: '5rem',
   },
   legendText: {
-    color: appTheme.primaryBlackColor,
+    color: appTheme.secondaryBlackColor,
     fontSize: '14rem',
   },
 });

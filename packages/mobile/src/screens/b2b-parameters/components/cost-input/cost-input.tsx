@@ -49,10 +49,10 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
               isValid={isValid}
             />
           )}
-          <View style={styles.valueContainer}>
-            <Text style={styles.value}>{costs}</Text>
-          </View>
-          <Text style={styles.currency}>zł</Text>
+          <Text>
+            <Text style={styles.value}>{costs} </Text>
+            <Text style={styles.currency}>zł</Text>
+          </Text>
         </View>
       </TouchableWithoutFeedback>
     </View>
