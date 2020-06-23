@@ -23,16 +23,27 @@ export const PopupContainer: React.FC<PopupContainerProps> = ({
   const [layoutAnimation] = useState(
     () => new Animated.Value(EStyleSheet.value(0)),
   );
+  const [opacityAnimation] = useState(
+    () => new Animated.Value(EStyleSheet.value(1)),
+  );
 
   const openPopup = () => setVisible(true);
   const closePopup = () => {
-    setVisible(false);
-    layoutAnimation.setValue(0);
+    Animated.timing(opacityAnimation, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false,
+      easing: Easing.ease,
+    }).start(() => {
+      layoutAnimation.setValue(0);
+      setVisible(false);
+    });
   };
   const stopPropagation = (e: GestureResponderEvent) => e.stopPropagation();
 
   useEffect(() => {
     if (isVisible) {
+      opacityAnimation.setValue(1);
       Animated.timing(layoutAnimation, {
         toValue: 1,
         duration: 200,
@@ -40,7 +51,7 @@ export const PopupContainer: React.FC<PopupContainerProps> = ({
         easing: Easing.ease,
       }).start();
     }
-  }, [isVisible, layoutAnimation]);
+  }, [isVisible, layoutAnimation, opacityAnimation]);
 
   return (
     <>
@@ -60,6 +71,7 @@ export const PopupContainer: React.FC<PopupContainerProps> = ({
                       inputRange: [0, 1],
                       outputRange: ['0%', '30%'],
                     }),
+                    opacity: opacityAnimation,
                   },
                 ]}
               >
