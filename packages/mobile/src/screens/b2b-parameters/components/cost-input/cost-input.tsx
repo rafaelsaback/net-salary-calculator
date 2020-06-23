@@ -1,8 +1,5 @@
 import React, { Dispatch, useState } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { appTheme } from '../../../../theme';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { AntDesign } from '@expo/vector-icons';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { styles } from './cost-input.style';
 import { HelpPopover } from '../help-popover/help-popover';
@@ -18,10 +15,6 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
   const [error, setError] = useState('');
 
   const showModal = () => setIsModalVisible(true);
-  const clearCostAndShowModal = () => {
-    setClearCosts(true);
-    setIsModalVisible(true);
-  };
   const closeModal = () => {
     setClearCosts(false);
     setIsModalVisible(false);
@@ -45,32 +38,23 @@ export const CostInput: React.FC<CostInputProps> = ({ costs, setCosts }) => {
           }
         />
       </View>
-      <View style={styles.inputContainer}>
-        {isModalVisible && (
-          <InputModal
-            defaultValue={clearCosts ? '' : costs}
-            closeModal={closeModal}
-            setValue={setCosts}
-            error={error}
-            isValid={isValid}
-          />
-        )}
-        <Text style={styles.currency}>PLN</Text>
-        <TouchableWithoutFeedback onPress={showModal}>
+      <TouchableWithoutFeedback onPress={showModal}>
+        <View style={styles.inputContainer}>
+          {isModalVisible && (
+            <InputModal
+              defaultValue={clearCosts ? '' : costs}
+              closeModal={closeModal}
+              setValue={setCosts}
+              error={error}
+              isValid={isValid}
+            />
+          )}
           <View style={styles.valueContainer}>
             <Text style={styles.value}>{costs}</Text>
           </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={clearCostAndShowModal}>
-          <View style={styles.closeIcon}>
-            <AntDesign
-              size={EStyleSheet.value('22rem')}
-              name="close"
-              color={appTheme.secondaryBlackColor}
-            />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+          <Text style={styles.currency}>zł</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

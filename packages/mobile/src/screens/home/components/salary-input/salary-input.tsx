@@ -1,8 +1,5 @@
 import React, { Dispatch, useState } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { appTheme } from '../../../../theme';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { AntDesign } from '@expo/vector-icons';
 import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
 import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
@@ -25,10 +22,6 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
   const [error, setError] = useState('');
 
   const showModal = () => setIsModalVisible(true);
-  const clearSalaryAndShowModal = () => {
-    setClearSalary(true);
-    setIsModalVisible(true);
-  };
   const closeModal = () => {
     setClearSalary(false);
     setIsModalVisible(false);
@@ -51,31 +44,22 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
   };
 
   return useObserver(() => (
-    <View style={styles.container}>
-      {isModalVisible && (
-        <InputModal
-          defaultValue={clearSalary ? '' : salary}
-          closeModal={closeModal}
-          error={error}
-          isValid={isValid}
-          setValue={setSalary}
-        />
-      )}
-      <Text style={styles.currency}>PLN</Text>
-      <TouchableWithoutFeedback onPress={showModal}>
+    <TouchableWithoutFeedback onPress={showModal}>
+      <View style={styles.container}>
+        {isModalVisible && (
+          <InputModal
+            defaultValue={clearSalary ? '' : salary}
+            closeModal={closeModal}
+            error={error}
+            isValid={isValid}
+            setValue={setSalary}
+          />
+        )}
         <View style={styles.valueContainer}>
           <Text style={styles.value}>{salary}</Text>
         </View>
-      </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={clearSalaryAndShowModal}>
-        <View style={styles.icon}>
-          <AntDesign
-            size={EStyleSheet.value('22rem')}
-            name="close"
-            color={appTheme.secondaryBlackColor}
-          />
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
+        <Text style={styles.currency}>zł</Text>
+      </View>
+    </TouchableWithoutFeedback>
   ));
 };

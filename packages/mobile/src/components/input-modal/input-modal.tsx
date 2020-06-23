@@ -9,9 +9,9 @@ import {
   View,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { appTheme } from '../../theme';
-import { closeIconSize, styles } from './input-modal.style';
+import { styles } from './input-modal.style';
 import { Button, ButtonSize } from '../button/button';
 import { Modal } from './modal';
 import {
@@ -97,17 +97,6 @@ export const InputModal: React.FC<InputModalProps> = ({
                 autoFocus
               />
             </View>
-
-            {/* Clear button */}
-            <TouchableWithoutFeedback onPress={() => setTempValue('')}>
-              <View style={styles.closeIcon}>
-                <AntDesign
-                  size={EStyleSheet.value(closeIconSize)}
-                  name="close"
-                  color={appTheme.secondaryBlackColor}
-                />
-              </View>
-            </TouchableWithoutFeedback>
           </View>
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{error}</Text>

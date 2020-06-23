@@ -47,12 +47,6 @@ export const styles = EStyleSheet.create({
     color: appTheme.primaryRedColor,
     fontSize: '16rem',
   },
-  closeIcon: {
-    paddingRight: '$closeIconPadding',
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   backIcon: { paddingVertical: '9rem', paddingHorizontal: '15rem' },
   saveButton: { marginTop: '10rem', marginRight: '15rem' },
 });
