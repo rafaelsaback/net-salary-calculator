@@ -11,6 +11,7 @@ import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';
 import { DetailedResultsScreen } from './screens/detailed-results/detailed-results-screen';
 import { B2bParametersScreen } from './screens/b2b-parameters/b2b-parameters-screen';
+import { Menu } from './components/menu/menu';
 
 const styles = StyleSheet.create({
   mainContainer: { flex: 1 },
@@ -35,6 +36,8 @@ const AppEntry: React.FC = () => {
             },
             headerBackTitle: '',
             headerTintColor: 'white',
+            // eslint-disable-next-line react/display-name
+            headerRight: ({ tintColor }) => <Menu tintColor={tintColor} />,
             headerTitleStyle: {
               fontSize: EStyleSheet.value('22rem'),
             },

@@ -40,7 +40,7 @@ export const appTheme = {
     marginLeft: '10%',
   },
   borderRadius: 5,
-  btnBackgroundShadow: {
+  boxShadow: {
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 4,

@@ -9,6 +9,6 @@ export const styles = EStyleSheet.create({
     paddingVertical: '25rem',
     backgroundColor: appTheme.containerBackgroundColor,
     borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
+    ...appTheme.boxShadow,
   },
 });

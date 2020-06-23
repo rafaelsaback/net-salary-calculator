@@ -17,7 +17,7 @@ export const contractSelectorStyles = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: appTheme.borderRadius,
-    ...appTheme.btnBackgroundShadow,
+    ...appTheme.boxShadow,
   },
   activeImageContainer: {
     backgroundColor: appTheme.secondaryRedColor,
