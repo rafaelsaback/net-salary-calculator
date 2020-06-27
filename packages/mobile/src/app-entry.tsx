@@ -65,7 +65,6 @@ const AppEntry: React.FC = () => {
           />
         </Navigator>
       </NavigationContainer>
-      <Footer />
     </View>
   );
 };
