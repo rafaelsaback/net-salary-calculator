@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="4096"
+   height="4096"
+   viewBox="0 0 1083.7334 1083.7334"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="splash.svg"
+   inkscape:export-filename="/home/rafaelsaback/workspace/net-salary-calculator/packages/mobile/assets/icon.png"
+   inkscape:export-xdpi="160"
+   inkscape:export-ydpi="160">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000145"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.19873048"
+     inkscape:cx="2047.9999"
+     inkscape:cy="2047.9999"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="1613"
+     inkscape:window-height="995"
+     inkscape:window-x="229"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     units="px"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,786.73334)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48.94897461px;line-height:1.25;font-family:Milkshake;-inkscape-font-specification:'Milkshake, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="91.848343"
+       y="44.867298"
+       id="text1423"><tspan
+         sodipodi:role="line"
+         id="tspan1421"
+         x="91.848343"
+         y="85.713234"
+         style="stroke-width:0.26458332" /></text>
+    <rect
+       style="opacity:1;fill:#000145;fill-opacity:1;stroke:none;stroke-width:2.23062587;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect831"
+       width="1083.7333"
+       height="1083.7333"
+       x="2.8483073e-05"
+       y="-786.73334" />
+    <g
+       id="g930"
+       transform="translate(-2.5410003e-6,-17.223279)">
+      <g
+         transform="translate(406.4,-500.59181)"
+         id="g887">
+        <circle
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.76105595;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path814"
+           cx="135.46666"
+           cy="161.53333"
+           r="135.46666" />
+        <path
+           style="opacity:1;fill:#dc143c;fill-opacity:1;stroke:none;stroke-width:14.21501446;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 0,512 a 511.99997,511.99997 0 0 0 512,512 511.99997,511.99997 0 0 0 512,-512 z"
+           id="circle837"
+           transform="matrix(0.26458333,0,0,0.26458333,0,26.066659)"
+           inkscape:connector-curvature="0" />
+        <path
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:185.0039978px;line-height:1.25;font-family:Milkshake;-inkscape-font-specification:'Milkshake Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:middle;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.82620746;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 92.193597,161.32099 c -9.563525,9.3579 -19.198839,18.7855 -22.594466,22.33197 -0.29914,0.46863 -0.74784,1.0937 -1.04697,1.40612 -0.29913,0.78104 -0.29921,0.93698 -0.29921,3.59254 0,4.53008 0.59857,5.15525 3.29076,6.24871 h 59.377219 c 1.34609,-0.62483 2.39328,-1.5624 2.99155,-2.96829 0.29913,-0.78105 0.2992,-1.09323 0.2992,-9.05991 0,-7.81048 -7e-5,-8.1228 -0.2992,-8.90385 -0.4487,-1.09347 -1.34618,-2.18702 -2.39314,-2.65565 -0.59826,-0.31242 -0.89725,-0.46871 -3.58944,-0.46871 -3.44002,0 -3.73909,0.15644 -4.93562,1.40612 -1.19652,1.40588 -1.34617,1.8744 -1.34617,6.7169 v 4.21783 H 87.696719 c 0.88922,-0.92872 9.866755,-9.99639 22.253401,-21.86378 z m 64.087543,0 v 33.73541 h 26.2909 v -33.73541 z"
+           id="flowRoot840"
+           inkscape:connector-curvature="0" />
+        <path
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:185.0039978px;line-height:1.25;font-family:Milkshake;-inkscape-font-specification:'Milkshake Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:middle;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#dc143c;fill-opacity:1;stroke:none;stroke-width:0.8268472;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           d="m 156.15708,76.587221 v 52.171329 l -17.26183,12.43284 8.11907,11.74605 9.14276,-6.55929 v 15.15618 h 26.33164 v -29.19098 l 17.55428,-12.5088 -8.11855,-11.74605 -9.43573,6.71225 V 76.587221 Z m -54.01099,51.356399 c -15.428272,0 -28.310735,0.15606 -28.460536,0.15606 -1.49798,0.46863 -2.546347,1.71832 -3.295322,3.28042 l -0.150093,7.49825 c 0,7.18564 8.1e-5,7.49803 0.299655,8.27908 0.449401,1.09346 1.348257,2.18651 2.396864,2.65513 0.599176,0.31242 0.898645,0.31265 3.595003,0.31265 3.445336,0 3.744859,1.4e-4 4.943264,-1.24954 1.198378,-1.24968 1.348232,-1.87477 1.34826,-5.78001 v -3.28042 h 31.157025 c -3.26578,3.40557 -12.60315,12.52876 -22.009087,21.71909 h 17.783157 c 0.11403,-0.10907 0.21664,-0.20879 0.33125,-0.31833 11.83401,-11.71571 21.72071,-21.55704 22.02031,-21.86946 l 1.04859,-1.56166 c 0.29959,-0.62484 0.44925,-0.7813 0.44925,-3.59307 0,-4.68628 -1.04836,-4.52989 -3.29534,-6.24819 z"
+           id="flowRoot856"
+           inkscape:connector-curvature="0" />
+      </g>
+      <flowRoot
+         transform="matrix(0.43870951,0,0,0.43870951,-447.49698,-1398.896)"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:185.0039978px;line-height:1.25;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:middle;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="flowRoot889"
+         xml:space="preserve"><flowRegion
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold'"
+           id="flowRegion891"><rect
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold'"
+             y="2814.3689"
+             x="963.43298"
+             height="362.39221"
+             width="2580.9397"
+             id="rect893" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Mukti Narrow';-inkscape-font-specification:'Mukti Narrow Bold'"
+           id="flowPara895">Salary Calculator</flowPara></flowRoot>      <flowRoot
+         xml:space="preserve"
+         id="flowRoot915"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:185.0039978px;line-height:1.25;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:middle;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         transform="matrix(0.43870951,0,0,0.43870951,-444.82193,-1288.4863)"><flowRegion
+           id="flowRegion911"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold'"><rect
+             id="rect909"
+             width="2580.9397"
+             height="362.39221"
+             x="963.43298"
+             y="2814.3689"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:MathJax_Typewriter;-inkscape-font-specification:'MathJax_Typewriter Bold'" /></flowRegion><flowPara
+           id="flowPara913"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Mukti Narrow';-inkscape-font-specification:'Mukti Narrow Bold'">for Poland</flowPara></flowRoot>    </g>
+  </g>
+</svg>

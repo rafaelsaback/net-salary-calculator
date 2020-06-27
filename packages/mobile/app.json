@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Polish Salary Calculator",
-    "slug": "mobile",
+    "name": "Salary Calculator for Poland",
+    "slug": "salary-calculator-poland",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,14 +9,19 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000145"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.rsdev.salarycalculatorpoland",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.rsdev.salarycalculatorforpoland",
+      "versionCode": 1
     }
   }
 }
