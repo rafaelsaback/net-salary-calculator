@@ -12,10 +12,10 @@ export const styles = EStyleSheet.create({
     justifyContent: 'space-between',
   },
   rowContainerSmall: {
-    padding: '9rem',
+    padding: '11rem',
   },
   rowContainerLarge: {
-    padding: '10rem',
+    padding: '15rem',
   },
   text: {
     color: appTheme.primaryBlackColor,
@@ -24,6 +24,6 @@ export const styles = EStyleSheet.create({
     fontSize: '15rem',
   },
   textLarge: {
-    fontSize: '17rem',
+    fontSize: '15rem',
   },
 });
