@@ -33,7 +33,7 @@ export const Table: React.FC<TableProps> = ({
       {salaryElements.map(({ label, value }, idx) => {
         const fontWeight = idx === 0 || idx === lastIndex ? 'bold' : 'normal';
         const backgroundColor =
-          idx % 2 === 0 ? appTheme.secondaryRedColor : 'white';
+          idx === 0 || idx === lastIndex ? appTheme.secondaryRedColor : 'white';
 
         return (
           <View
