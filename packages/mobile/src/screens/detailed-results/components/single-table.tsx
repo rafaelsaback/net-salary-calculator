@@ -29,7 +29,7 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
           value: serializedModel.salary.formatted,
         }}
         endSalary={{
-          label: 'Take Home',
+          label: 'Take-home Pay',
           value: results.endSalary[periodBreakdown].formatted,
         }}
         salaryDiscounts={createSalaryDiscounts(results, costs, periodBreakdown)}

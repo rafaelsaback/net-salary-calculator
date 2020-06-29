@@ -79,7 +79,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <Text style={styles.title}>Take Home - {displayMode}</Text>
+        <Text style={styles.title}>Take-home Pay - {displayMode}</Text>
         <SalaryDisplay
           salary={salary.formatted}
           takeHome={takeHome}
@@ -142,7 +142,7 @@ const createPieChartData = (
       value: selectValue(results.tax, periodBreakdown),
     },
     {
-      label: 'Take Home',
+      label: 'Take-home Pay',
       value: selectValue(results.endSalary, periodBreakdown),
     },
   ].sort(({ value: valueA }, { value: valueB }) => valueB - valueA);

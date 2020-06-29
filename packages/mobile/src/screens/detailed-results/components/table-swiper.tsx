@@ -53,7 +53,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
               value: serializedModel.salary.formatted,
             }}
             endSalary={{
-              label: 'Take Home',
+              label: 'Take-home Pay',
               value: results.endSalary.monthly[index].formatted,
             }}
             salaryDiscounts={createSalaryDiscounts(

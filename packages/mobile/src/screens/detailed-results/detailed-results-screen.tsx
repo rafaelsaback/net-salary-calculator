@@ -56,7 +56,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
     <View style={styles.viewContainer}>
       <Container style={{ paddingVertical: EStyleSheet.value('15rem') }}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Take Home - {displayMode}</Text>
+          <Text style={styles.title}>Take-home Pay - {displayMode}</Text>
           <TableSwiper
             serializedModel={serializedModel}
             visible={displayMode === DisplayMode.Monthly}
