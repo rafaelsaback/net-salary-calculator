@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="icon.svg">
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/rafaelsaback/workspace/net-salary-calculator/packages/mobile/assets/icon.png"
+   inkscape:export-xdpi="48.000004"
+   inkscape:export-ydpi="48.000004">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,17 +28,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="-186"
-     inkscape:cy="512"
+     inkscape:zoom="0.58281067"
+     inkscape:cx="273.69989"
+     inkscape:cy="471.08932"
      inkscape:document-units="mm"
-     inkscape:current-layer="g826"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:pagecheckerboard="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1052"
-     inkscape:window-x="0"
-     inkscape:window-y="1050"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      units="px"
      showguides="false" />
@@ -52,10 +55,11 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
+     inkscape:label="Background"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-26.066659)">
+     transform="translate(0,-26.066659)"
+     style="opacity:1">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48.94897461px;line-height:1.25;font-family:Milkshake;-inkscape-font-specification:'Milkshake, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -68,17 +72,24 @@
          y="85.713234"
          style="stroke-width:0.26458332" /></text>
     <rect
-       style="opacity:1;fill:#000145;fill-opacity:1;stroke:none;stroke-width:1.87336349;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:0;fill:#000145;fill-opacity:1;stroke:none;stroke-width:1.87336349;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect818"
        width="270.93332"
        height="270.93332"
        x="7.1207683e-06"
-       y="26.066666" />
+       y="26.066666"
+       inkscape:export-xdpi="48.000004"
+       inkscape:export-ydpi="48.000004" />
     <g
-       id="g826">
+       id="g826"
+       inkscape:export-xdpi="12.5276"
+       inkscape:export-ydpi="12.5276"
+       transform="matrix(1.078097,0,0,1.078097,-10.579541,-12.615268)"
+       style="opacity:1">
       <g
          id="g832"
-         transform="matrix(0.74834764,0,0,0.74834764,34.090508,40.848239)">
+         transform="matrix(0.74834764,0,0,0.74834764,34.090508,40.848239)"
+         style="">
         <circle
            r="135.46666"
            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.76105595;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -104,4 +115,8 @@
       </g>
     </g>
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Foreground" />
 </svg>

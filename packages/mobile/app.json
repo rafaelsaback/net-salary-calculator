@@ -24,7 +24,8 @@
       "versionCode": 1,
       "permissions": ["WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE"],
       "adaptiveIcon": {
-        "backgroundColor": "#000145"
+        "backgroundColor": "#000145",
+        "foregroundImage": "./assets/icon.png"
       }
     }
   }
