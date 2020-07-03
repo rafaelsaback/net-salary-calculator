@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/home/home-screen';
 import { appTheme, appThemeReactNavigation } from './theme';
-import { Footer } from './components/footer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ResultsScreen } from './screens/results/results-screen';
 import { RootStackParamList, ScreenName } from './types';

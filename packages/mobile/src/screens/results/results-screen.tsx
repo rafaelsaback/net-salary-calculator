@@ -79,7 +79,10 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   return useObserver(() => (
     <View style={styles.container}>
       <Container>
-        <Text style={styles.title}>Take-home Pay - {displayMode}</Text>
+        <View>
+          <Text style={styles.title}>Take-home Summary</Text>
+          <Text style={styles.subTitle}>{displayMode}</Text>
+        </View>
         <SalaryDisplay
           salary={salary.formatted}
           takeHome={takeHome}

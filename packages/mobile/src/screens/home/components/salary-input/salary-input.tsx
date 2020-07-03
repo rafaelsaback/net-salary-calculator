@@ -55,7 +55,7 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
             setValue={setSalary}
           />
         )}
-        <Text>
+        <Text style={{ marginBottom: 10 }}>
           <Text style={styles.value}>{salary} </Text>
           <Text style={styles.currency}>zł</Text>
         </Text>

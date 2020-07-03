@@ -8,6 +8,8 @@ export const styles = EStyleSheet.create({
   },
   title: {
     ...appTheme.title,
+    alignSelf: 'flex-start',
+    marginLeft: '10%',
   },
   contractContainer: {
     flex: 0.8,

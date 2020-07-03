@@ -9,4 +9,9 @@ export const styles = EStyleSheet.create({
     ...appTheme.title,
     marginBottom: '5rem',
   },
+  subTitle: {
+    color: appTheme.secondaryBlackColor,
+    textAlign: 'center',
+    fontSize: '16rem',
+  },
 });

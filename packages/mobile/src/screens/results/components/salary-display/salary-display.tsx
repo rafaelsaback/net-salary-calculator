@@ -30,11 +30,11 @@ export const SalaryDisplay: React.FC<SalaryDisplayProps> = ({
       message:
         `Hey! I've just checked in the Salary Calculator for Poland app that ` +
         `${salaryPeriodStr} salary of PLN ${salaryWithoutSpace} in ${contractStr} ` +
-        `contract results in a take home pay of PLN ${takeHomeWithoutSpace}. \n\n` +
-        `If you want to check it yourself, you can download the app using one ` +
-        `of the following links: \n\n` +
-        `LINK TO ANDROID\n\n` +
-        `LINK TO IOS`,
+        `contract results in a take home pay of PLN ${takeHomeWithoutSpace}. \n\n`,
+      // `If you want to check it yourself, you can download the app using one ` +
+      // `of the following links: \n\n` +
+      // `LINK TO ANDROID\n\n` +
+      // `LINK TO IOS`,
     });
   };
 

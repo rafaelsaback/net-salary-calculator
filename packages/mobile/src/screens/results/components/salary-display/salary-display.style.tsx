@@ -21,7 +21,7 @@ export const styles = EStyleSheet.create({
   },
   value: {
     color: appTheme.primaryBlackColor,
-    fontSize: '56rem',
+    fontSize: '50rem',
     lineHeight: '66rem',
   },
   icon: {

@@ -7,7 +7,12 @@ export const styles = EStyleSheet.create({
   },
   title: {
     ...appTheme.title,
-    marginBottom: '25rem',
+    marginBottom: '5rem',
+  },
+  subTitle: {
+    color: appTheme.secondaryBlackColor,
+    textAlign: 'center',
+    fontSize: '16rem',
   },
   button: {
     marginTop: '20rem',

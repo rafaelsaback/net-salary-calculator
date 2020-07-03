@@ -36,8 +36,7 @@ export const appTheme = {
     fontSize: '20rem',
     fontWeight: 'bold',
     marginBottom: '10rem',
-    alignSelf: 'flex-start',
-    marginLeft: '10%',
+    textAlign: 'center',
   },
   borderRadius: 5,
   boxShadow: {
