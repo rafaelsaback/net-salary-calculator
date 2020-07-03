@@ -19,9 +19,15 @@ export const styles = EStyleSheet.create({
     shadowRadius: 9.51,
     elevation: 15,
   },
-  text: {
-    fontSize: '20rem',
+  contactMeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: '20rem',
+  },
+  text: {
+    fontSize: '14rem',
+    marginLeft: '10rem',
+    color: appTheme.primaryBlackColor,
   },
   footText: {
     fontSize: '10rem',

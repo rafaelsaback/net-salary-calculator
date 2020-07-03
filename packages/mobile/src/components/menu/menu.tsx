@@ -4,6 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { styles } from './menu.style';
 import { PopupContainer } from '../popup-container/popup-container';
+import { appTheme } from '../../theme';
 
 interface MenuProps {
   tintColor?: string;
@@ -16,7 +17,14 @@ export const Menu: React.FC<MenuProps> = ({ tintColor }) => {
       popupContent={
         <View style={styles.menu}>
           <TouchableOpacity onPress={sendEmail}>
-            <Text style={styles.text}>Contact me</Text>
+            <View style={styles.contactMeContainer}>
+              <Entypo
+                name="mail"
+                size={EStyleSheet.value('22rem')}
+                color={appTheme.secondaryBlackColor}
+              />
+              <Text style={styles.text}>Contact me</Text>
+            </View>
           </TouchableOpacity>
           <View
             style={{
