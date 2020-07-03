@@ -18,28 +18,29 @@ export const Menu: React.FC<MenuProps> = ({ tintColor }) => {
           <TouchableOpacity onPress={sendEmail}>
             <Text style={styles.text}>Contact me</Text>
           </TouchableOpacity>
-          <View>
-            <Text style={styles.footText}>
-              Made with love by a Brazilian in Poland.
-            </Text>
-          </View>
           <View
             style={{
               flexDirection: 'row',
+              flexWrap: 'wrap',
               justifyContent: 'center',
-              marginTop: 5,
             }}
           >
+            <Text style={styles.footText}>Made with</Text>
             <Image
-              style={{ width: 10, height: 7, margin: 2 }}
+              style={{ width: 10, height: 9, margin: 2 }}
+              source={require('@assets/heart.png')}
+            />
+            <Text style={styles.footText}>by </Text>
+            <Text style={styles.footText}>a </Text>
+            <Text style={styles.footText}>Brazilian </Text>
+            <Text style={styles.footText}>in </Text>
+            <Text style={styles.footText}>Poland. </Text>
+            <Image
+              style={{ width: 10, height: 8, margin: 2 }}
               source={require('@assets/brazil.png')}
             />
             <Image
-              style={{ width: 10, height: 7, margin: 2 }}
-              source={require('@assets/heart.png')}
-            />
-            <Image
-              style={{ width: 10, height: 7, margin: 2 }}
+              style={{ width: 10, height: 8, margin: 2 }}
               source={require('@assets/poland.png')}
             />
           </View>

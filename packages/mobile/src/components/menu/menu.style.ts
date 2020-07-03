@@ -24,7 +24,7 @@ export const styles = EStyleSheet.create({
     marginBottom: '20rem',
   },
   footText: {
-    fontSize: '12rem',
+    fontSize: '10rem',
     textAlign: 'center',
     color: appTheme.secondaryBlackColor,
   },
