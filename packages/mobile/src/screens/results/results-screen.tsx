@@ -21,6 +21,7 @@ import { Selector } from '../../components/selector/selector';
 import { RouteProp } from '@react-navigation/native';
 import { useObserver } from 'mobx-react';
 import { Period } from '@nsc/shared/src/types';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -104,6 +105,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
           options={displayModeOptions}
           onChange={setDisplayMode}
           containerStyle={{ alignSelf: 'center' }}
+          fontSize={EStyleSheet.value('14rem')}
           width="92%"
         />
       </BottomContainer>

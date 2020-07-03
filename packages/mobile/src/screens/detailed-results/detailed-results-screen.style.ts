@@ -5,9 +5,12 @@ export const styles = EStyleSheet.create({
   viewContainer: {
     ...appTheme.bodyContainer,
   },
+  titleContainer: {
+    marginBottom: '10rem',
+  },
   title: {
     ...appTheme.title,
-    marginBottom: '5rem',
+    marginBottom: 0,
   },
   subTitle: {
     color: appTheme.secondaryBlackColor,

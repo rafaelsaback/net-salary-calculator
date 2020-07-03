@@ -56,7 +56,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
     <View style={styles.viewContainer}>
       <Container style={{ paddingVertical: EStyleSheet.value('15rem') }}>
         <View style={{ flex: 1 }}>
-          <View>
+          <View style={styles.titleContainer}>
             <Text style={styles.title}>Take-home Breakdown</Text>
             <Text style={styles.subTitle}>{displayMode}</Text>
           </View>
@@ -77,6 +77,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
           options={displayModeOptions}
           onChange={setDisplayMode}
           containerStyle={{ alignSelf: 'center' }}
+          fontSize={EStyleSheet.value('14rem')}
           width="92%"
         />
       </BottomContainer>

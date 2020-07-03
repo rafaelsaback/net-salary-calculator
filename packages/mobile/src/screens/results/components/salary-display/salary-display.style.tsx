@@ -16,7 +16,7 @@ export const styles = EStyleSheet.create({
     flex: 1,
   },
   currency: {
-    fontSize: '32rem',
+    fontSize: '20rem',
     color: appTheme.secondaryBlackColor,
   },
   value: {
