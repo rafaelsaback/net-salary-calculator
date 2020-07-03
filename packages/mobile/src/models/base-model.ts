@@ -1,4 +1,4 @@
-import { action, computed, observable, reaction } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { Period } from '@nsc/shared/src/types';
 import {
   ANNUAL_LIMIT,
@@ -18,19 +18,6 @@ export abstract class BaseModel {
   public salary = 0;
   @observable
   public period = Period.Monthly;
-
-  constructor() {
-    reaction(
-      () => this.period,
-      (newPeriod) => {
-        if (newPeriod === Period.Monthly) {
-          this.setSalary(this.salary / 12);
-        } else if (newPeriod === Period.Annually) {
-          this.setSalary(this.salary * 12);
-        }
-      },
-    );
-  }
 
   @action
   public setSalary = (newSalary: number): void => {
