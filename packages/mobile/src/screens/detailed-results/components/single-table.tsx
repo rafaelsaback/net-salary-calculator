@@ -25,8 +25,8 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
     <View style={styles.container}>
       <Table
         salary={{
-          label: 'Gross Salary',
-          value: serializedModel.salary.formatted,
+          label: 'Salary',
+          value: salary.formatted,
         }}
         endSalary={{
           label: 'Take-home Pay',
