@@ -29,15 +29,8 @@ export const PopupContainer: React.FC<PopupContainerProps> = ({
 
   const openPopup = () => setVisible(true);
   const closePopup = () => {
-    Animated.timing(opacityAnimation, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: false,
-      easing: Easing.ease,
-    }).start(() => {
-      layoutAnimation.setValue(0);
-      setVisible(false);
-    });
+    layoutAnimation.setValue(0);
+    setVisible(false);
   };
   const stopPropagation = (e: GestureResponderEvent) => e.stopPropagation();
 
