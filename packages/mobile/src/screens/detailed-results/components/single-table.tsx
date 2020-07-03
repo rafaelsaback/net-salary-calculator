@@ -20,6 +20,10 @@ export const SingleTable: React.FC<SingleTableProps> = (props) => {
   const { visible, serializedModel } = props;
   const periodBreakdown = props.periodBreakdown as MonthlyAverageOrAnnually;
   const { results, costs } = serializedModel;
+  const salary =
+    periodBreakdown === 'annually'
+      ? serializedModel.annualSalary
+      : serializedModel.monthlySalary;
 
   return visible ? (
     <View style={styles.container}>
