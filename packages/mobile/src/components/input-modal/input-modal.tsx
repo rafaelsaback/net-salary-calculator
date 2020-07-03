@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dispatch, useCallback, useState } from 'react';
+import { Dispatch, useCallback, useEffect, useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -38,12 +38,17 @@ export const InputModal: React.FC<InputModalProps> = ({
   const [tempValue, setTempValue] = useState(
     removeSpaceSeparator(defaultValue),
   );
+  const inputRef = useRef<TextInput>(null);
   const saveAndClose = useCallback(() => {
     if (isValid(parseFloat(tempValue))) {
       setValue(formatNumberWithSpaceSeparator(tempValue));
       closeModal();
     }
   }, [closeModal, isValid, setValue, tempValue]);
+
+  useEffect(() => {
+    setTimeout(() => inputRef.current?.focus(), 50);
+  });
 
   return useObserver(() => (
     <Modal
@@ -89,12 +94,12 @@ export const InputModal: React.FC<InputModalProps> = ({
               <TextInput
                 value={tempValue}
                 onChangeText={setTempValue}
+                ref={inputRef}
                 keyboardType="numeric"
                 style={styles.text}
                 onSubmitEditing={saveAndClose}
                 maxLength={9}
                 selectTextOnFocus
-                autoFocus
               />
             </View>
           </View>
