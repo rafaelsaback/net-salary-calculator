@@ -54,7 +54,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
 
   return (
     <View style={styles.viewContainer}>
-      <Container style={{ paddingVertical: EStyleSheet.value('15rem') }}>
+      <Container>
         <View style={{ flex: 1 }}>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Take-home Breakdown</Text>
