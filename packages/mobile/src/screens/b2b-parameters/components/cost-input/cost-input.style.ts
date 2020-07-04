@@ -18,7 +18,7 @@ export const styles = EStyleSheet.create({
     alignItems: 'baseline',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: '40rem',
+    height: '45rem',
     borderBottomWidth: 1,
     borderColor: appTheme.secondaryBlackColor,
   },
