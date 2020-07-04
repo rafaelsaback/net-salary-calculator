@@ -45,7 +45,7 @@ const TableSwiper: React.FC<TableSwiperProps> = ({
   const panels = useMemo(
     () =>
       MONTHS.map((month, index) => (
-        <View key={index}>
+        <View style={styles.tableContainer} key={index}>
           <Text style={styles.title}>{month}</Text>
           <Table
             salary={{

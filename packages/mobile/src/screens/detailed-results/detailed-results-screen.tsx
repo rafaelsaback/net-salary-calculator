@@ -23,7 +23,7 @@ interface DetailedResultsScreenProps {
 
 export enum ResultPeriod {
   Monthly = 'Monthly',
-  MonthlyAverage = 'Monthly Average',
+  MonthlyAverage = 'Monthly\nAverage',
   Annually = 'Annually',
 }
 
@@ -55,21 +55,19 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
   return (
     <View style={styles.viewContainer}>
       <Container>
-        <View style={{ flex: 1 }}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Take-home Breakdown</Text>
-            <Text style={styles.subTitle}>{displayMode}</Text>
-          </View>
-          <TableSwiper
-            serializedModel={serializedModel}
-            visible={displayMode === ResultPeriod.Monthly}
-          />
-          <SingleTable
-            serializedModel={serializedModel}
-            visible={displayMode !== ResultPeriod.Monthly}
-            periodBreakdown={periodBreakdown}
-          />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Take-home Breakdown</Text>
+          <Text style={styles.subTitle}>{displayMode}</Text>
         </View>
+        <TableSwiper
+          serializedModel={serializedModel}
+          visible={displayMode === ResultPeriod.Monthly}
+        />
+        <SingleTable
+          serializedModel={serializedModel}
+          visible={displayMode !== ResultPeriod.Monthly}
+          periodBreakdown={periodBreakdown}
+        />
       </Container>
       <BottomContainer>
         <Selector

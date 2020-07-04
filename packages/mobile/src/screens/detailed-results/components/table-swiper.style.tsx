@@ -8,7 +8,11 @@ export const styles = EStyleSheet.create({
     fontSize: '16rem',
     marginBottom: '8rem',
   },
+  tableContainer: {
+    flex: 1,
+    paddingBottom: 25,
+  },
   paginationStyle: {
-    bottom: '-5rem',
+    bottom: 0,
   },
 });

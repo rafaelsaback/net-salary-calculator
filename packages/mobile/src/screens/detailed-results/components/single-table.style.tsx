@@ -2,6 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export const styles = EStyleSheet.create({
   container: {
-    marginTop: '32rem',
+    height: '80%',
+    paddingBottom: 25,
   },
 });

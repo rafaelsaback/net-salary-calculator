@@ -3,27 +3,20 @@ import { appTheme } from '../../../theme';
 
 export const styles = EStyleSheet.create({
   container: {
+    flex: 1,
     marginHorizontal: '10%',
     borderRadius: appTheme.borderRadius,
     overflow: 'hidden',
   },
-  rowContainer: {
+  row: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  rowContainerSmall: {
-    padding: '11rem',
-  },
-  rowContainerLarge: {
-    padding: '15rem',
+    paddingHorizontal: '10rem',
+    alignItems: 'center',
   },
   text: {
     color: appTheme.primaryBlackColor,
-  },
-  textSmall: {
-    fontSize: '15rem',
-  },
-  textLarge: {
     fontSize: '15rem',
   },
 });
