@@ -108,6 +108,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
           <SalaryInput
             salary={selectedViewModel.salary.formatted}
             setSalary={setSalary}
+            salaryError={selectedViewModel.error}
             period={selectedViewModel.period}
           />
         </View>
@@ -118,7 +119,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
           onChange={setPeriod}
         />
         <CalculateButton
-          disabled={!selectedViewModel.salary.value}
+          disabled={
+            !selectedViewModel.salary.value || !!selectedViewModel.error
+          }
           onPress={goToResultsScreen}
         />
       </Container>

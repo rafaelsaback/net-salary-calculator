@@ -4,12 +4,12 @@ import { appTheme } from '../../../../theme';
 export const styles = EStyleSheet.create({
   container: {
     alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    height: '50rem',
     width: '80%',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: '50rem',
     borderBottomWidth: 1,
     borderColor: appTheme.secondaryBlackColor,
   },
@@ -20,5 +20,13 @@ export const styles = EStyleSheet.create({
   value: {
     color: appTheme.primaryBlackColor,
     fontSize: '36rem',
+  },
+  errorContainer: {
+    marginTop: '5rem',
+    height: '10rem',
+  },
+  errorText: {
+    color: appTheme.primaryRedColor,
+    fontSize: '12rem',
   },
 });

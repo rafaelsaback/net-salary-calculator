@@ -45,7 +45,7 @@ export const styles = EStyleSheet.create({
   },
   errorText: {
     color: appTheme.primaryRedColor,
-    fontSize: '16rem',
+    fontSize: '12rem',
   },
   backIcon: { paddingVertical: '9rem', paddingHorizontal: '15rem' },
   saveButton: { marginTop: '10rem', marginRight: '15rem' },

@@ -2,19 +2,21 @@ import React, { Dispatch, useState } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { styles } from './salary-input.style';
 import { InputModal } from '../../../../components/input-modal/input-modal';
-import { MINIMUM_WAGE } from '@nsc/shared/src/consts';
 import { useObserver } from 'mobx-react';
 import { Period } from '@nsc/shared/src/types';
+import { validateSalary } from '../../../../helpers';
 
 interface SalaryInputProps {
   salary: string;
   setSalary: Dispatch<string>;
+  salaryError: string;
   period: Period;
 }
 
 export const SalaryInput: React.FC<SalaryInputProps> = ({
   salary,
   setSalary,
+  salaryError,
   period,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -28,38 +30,28 @@ export const SalaryInput: React.FC<SalaryInputProps> = ({
     setError('');
   };
 
-  const isValid = (salary: number) => {
-    const adjustedMinimumWage =
-      period === Period.Annually ? 12 * MINIMUM_WAGE : MINIMUM_WAGE;
-    if (salary >= adjustedMinimumWage) {
-      setError('');
-      return true;
-    }
-    const periodStr = period === Period.Annually ? 'year' : 'month';
-
-    setError(
-      `The salary should be at least PLN ${adjustedMinimumWage} per ${periodStr} (minimum wage).`,
-    );
-    return false;
-  };
-
   return useObserver(() => (
-    <TouchableWithoutFeedback onPress={showModal}>
-      <View style={styles.container}>
-        {isModalVisible && (
-          <InputModal
-            defaultValue={clearSalary ? '' : salary}
-            closeModal={closeModal}
-            error={error}
-            isValid={isValid}
-            setValue={setSalary}
-          />
-        )}
-        <Text style={{ marginBottom: 10 }}>
-          <Text style={styles.value}>{salary} </Text>
-          <Text style={styles.currency}>zł</Text>
-        </Text>
+    <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={showModal}>
+        <View style={styles.inputContainer}>
+          {isModalVisible && (
+            <InputModal
+              defaultValue={clearSalary ? '' : salary}
+              closeModal={closeModal}
+              error={error}
+              isValid={validateSalary(period, setError)}
+              setValue={setSalary}
+            />
+          )}
+          <Text>
+            <Text style={styles.value}>{salary} </Text>
+            <Text style={styles.currency}>zł</Text>
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorText}>{salaryError}</Text>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   ));
 };

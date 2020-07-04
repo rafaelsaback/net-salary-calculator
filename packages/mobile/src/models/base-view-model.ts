@@ -58,6 +58,16 @@ export abstract class BaseViewModel {
   };
 
   @computed
+  public get error(): string {
+    return this.model.error;
+  }
+
+  @action
+  public setError = (error: string): void => {
+    this.model.setError(error);
+  };
+
+  @computed
   public get pension(): PeriodBreakdown<ValueObject> {
     return this.mapToResultBreakdownValueObject(this.model.pensionBreakdown);
   }

@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, reaction } from 'mobx';
 import { Period } from '@nsc/shared/src/types';
 import {
   ANNUAL_LIMIT,
@@ -12,12 +12,22 @@ import {
 import { roundNumber } from '@nsc/shared/src/helpers';
 import { Dispatch } from 'react';
 import { PeriodBreakdown } from '../types';
+import { validateSalary } from '../helpers';
 
 export abstract class BaseModel {
   @observable
   public salary = 0;
   @observable
   public period = Period.Monthly;
+  @observable
+  public error = '';
+
+  constructor() {
+    reaction(
+      () => this.period,
+      () => validateSalary(this.period, this.setError)(this.salary),
+    );
+  }
 
   @action
   public setSalary = (newSalary: number): void => {
@@ -27,6 +37,11 @@ export abstract class BaseModel {
   @action
   public setPeriod: Dispatch<Period> = (newPeriod): void => {
     this.period = newPeriod;
+  };
+
+  @action
+  public setError: Dispatch<string> = (newError): void => {
+    this.error = newError;
   };
 
   @computed
