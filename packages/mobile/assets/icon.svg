@@ -28,16 +28,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.58281067"
-     inkscape:cx="273.69989"
-     inkscape:cy="471.08932"
+     inkscape:zoom="0.29140534"
+     inkscape:cx="-56.448005"
+     inkscape:cy="378.31424"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:pagecheckerboard="true"
-     inkscape:window-width="1853"
-     inkscape:window-height="1025"
-     inkscape:window-x="67"
+     inkscape:window-width="1613"
+     inkscape:window-height="995"
+     inkscape:window-x="229"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
      units="px"
@@ -84,12 +84,11 @@
        id="g826"
        inkscape:export-xdpi="12.5276"
        inkscape:export-ydpi="12.5276"
-       transform="matrix(1.078097,0,0,1.078097,-10.579541,-12.615268)"
+       transform="matrix(0.78253875,0,0,0.79205372,29.45875,33.590254)"
        style="opacity:1">
       <g
          id="g832"
-         transform="matrix(0.74834764,0,0,0.74834764,34.090508,40.848239)"
-         style="">
+         transform="matrix(0.74834764,0,0,0.74834764,34.090508,40.848239)">
         <circle
            r="135.46666"
            style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.76105595;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
