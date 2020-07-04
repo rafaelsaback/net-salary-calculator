@@ -3,17 +3,25 @@ import { appTheme } from '../../../../theme';
 
 export const styles = EStyleSheet.create({
   container: {
+    paddingVertical: '10rem',
+    justifyContent: 'space-around',
+  },
+  topContainer: {
     alignSelf: 'center',
     backgroundColor: 'white',
-    width: '90%',
+    width: '95%',
     flexDirection: 'row',
     alignItems: 'center',
   },
-  salaryContainer: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'center',
+  title: {
+    fontSize: '16rem',
+    color: appTheme.primaryBlackColor,
     flex: 1,
+    textAlign: 'center',
+    paddingLeft: '20rem',
+  },
+  salaryContainer: {
+    alignItems: 'center',
   },
   currency: {
     fontSize: '20rem',

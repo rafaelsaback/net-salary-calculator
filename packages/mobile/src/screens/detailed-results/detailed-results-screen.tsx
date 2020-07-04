@@ -21,16 +21,16 @@ interface DetailedResultsScreenProps {
   route: DetailedResultsScreenRouteProp;
 }
 
-enum DisplayMode {
+export enum ResultPeriod {
   Monthly = 'Monthly',
   MonthlyAverage = 'Monthly Average',
   Annually = 'Annually',
 }
 
 const displayModeOptions = [
-  DisplayMode.Monthly,
-  DisplayMode.MonthlyAverage,
-  DisplayMode.Annually,
+  ResultPeriod.Monthly,
+  ResultPeriod.MonthlyAverage,
+  ResultPeriod.Annually,
 ];
 
 export enum PeriodBreakdownKey {
@@ -39,17 +39,17 @@ export enum PeriodBreakdownKey {
   Annually = 'annually',
 }
 
-const periodBreakdownMap: Map<DisplayMode, PeriodBreakdownKey> = new Map([
-  [DisplayMode.Monthly, PeriodBreakdownKey.Monthly],
-  [DisplayMode.MonthlyAverage, PeriodBreakdownKey.MonthlyAverage],
-  [DisplayMode.Annually, PeriodBreakdownKey.Annually],
+const periodBreakdownMap: Map<ResultPeriod, PeriodBreakdownKey> = new Map([
+  [ResultPeriod.Monthly, PeriodBreakdownKey.Monthly],
+  [ResultPeriod.MonthlyAverage, PeriodBreakdownKey.MonthlyAverage],
+  [ResultPeriod.Annually, PeriodBreakdownKey.Annually],
 ]);
 
 export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
   route,
 }) => {
   const { serializedModel } = route.params;
-  const [displayMode, setDisplayMode] = useState(DisplayMode.Monthly);
+  const [displayMode, setDisplayMode] = useState(ResultPeriod.Monthly);
   const periodBreakdown = periodBreakdownMap.get(displayMode)!;
 
   return (
@@ -62,11 +62,11 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
           </View>
           <TableSwiper
             serializedModel={serializedModel}
-            visible={displayMode === DisplayMode.Monthly}
+            visible={displayMode === ResultPeriod.Monthly}
           />
           <SingleTable
             serializedModel={serializedModel}
-            visible={displayMode !== DisplayMode.Monthly}
+            visible={displayMode !== ResultPeriod.Monthly}
             periodBreakdown={periodBreakdown}
           />
         </View>

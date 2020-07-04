@@ -16,5 +16,6 @@ export const styles = EStyleSheet.create({
   },
   button: {
     marginTop: '20rem',
+    marginBottom: '30rem',
   },
 });

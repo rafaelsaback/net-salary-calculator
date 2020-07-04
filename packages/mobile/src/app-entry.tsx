@@ -55,12 +55,12 @@ const AppEntry: React.FC = () => {
           <Screen
             name={ScreenName.Results}
             component={ResultsScreen}
-            options={{ title: '' }}
+            options={{ title: 'Take-Home Pay' }}
           />
           <Screen
             name={ScreenName.DetailedResults}
             component={DetailedResultsScreen}
-            options={{ title: '' }}
+            options={{ title: 'Breakdown' }}
           />
         </Navigator>
       </NavigationContainer>
