@@ -25,7 +25,11 @@ export abstract class BaseModel {
   constructor() {
     reaction(
       () => this.period,
-      () => validateSalary(this.period, this.setError)(this.salary),
+      () => {
+        if (this.salary) {
+          validateSalary(this.period, this.setError)(this.salary);
+        }
+      },
     );
   }
 
