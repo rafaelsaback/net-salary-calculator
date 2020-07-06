@@ -3,7 +3,7 @@
     "name": "Salary Calculator for Poland",
     "slug": "salary-calculator-poland",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,11 +17,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.rsdev.salarycalculatorpoland",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "package": "com.rsdev.salarycalculatorforpoland",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": ["WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE"],
       "adaptiveIcon": {
         "backgroundImage": "./assets/icon-bg.png",
