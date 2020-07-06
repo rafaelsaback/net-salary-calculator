@@ -19,7 +19,7 @@ export const styles = EStyleSheet.create({
     shadowRadius: 9.51,
     elevation: 15,
   },
-  contactMeContainer: {
+  menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: '20rem',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { styles } from './menu.style';
 import { PopupContainer } from '../popup-container/popup-container';
@@ -12,18 +12,31 @@ interface MenuProps {
 
 export const Menu: React.FC<MenuProps> = ({ tintColor }) => {
   const sendEmail = () => Linking.openURL('mailto:rafaelsaback@gmail.com');
+  const rateApp = () =>
+    Linking.openURL('market://details?id=com.rsdev.salarycalculatorforpoland');
+
   return (
     <PopupContainer
       popupContent={
         <View style={styles.menu}>
           <TouchableOpacity onPress={sendEmail}>
-            <View style={styles.contactMeContainer}>
+            <View style={styles.menuItem}>
               <Entypo
                 name="mail"
                 size={EStyleSheet.value('22rem')}
                 color={appTheme.secondaryBlackColor}
               />
-              <Text style={styles.text}>Contact me</Text>
+              <Text style={styles.text}>Contact us</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={rateApp}>
+            <View style={styles.menuItem}>
+              <MaterialIcons
+                name="rate-review"
+                size={EStyleSheet.value('22rem')}
+                color={appTheme.secondaryBlackColor}
+              />
+              <Text style={styles.text}>Rate us</Text>
             </View>
           </TouchableOpacity>
           <View
