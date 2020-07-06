@@ -23,6 +23,9 @@ const ResultPeriodMap = {
   [ResultPeriod.Annually]: '',
 };
 
+const APP_LINK_ANDROID =
+  'https://play.google.com/store/apps/details?id=com.rsdev.salarycalculatorforpoland';
+
 export const SalaryDisplay: React.FC<SalaryDisplayProps> = ({
   salary,
   takeHome,
@@ -42,11 +45,9 @@ export const SalaryDisplay: React.FC<SalaryDisplayProps> = ({
         `Hey! I've just checked that ${salaryPeriodStr} salary of PLN ` +
         `${salaryWithoutSpace} in ${contractStr} contract results in a take ` +
         `home pay of PLN ${takeHomeWithoutSpace}${ResultPeriodMap[period]}.\n\n` +
-        `Calculated with the Salary Calculator for Poland app.`,
-      // `If you want to check it yourself, you can download the app using one ` +
-      // `of the following links: \n\n` +
-      // `LINK TO ANDROID\n\n` +
-      // `LINK TO IOS`,
+        `I've calculated it with the Salary Calculator for Poland app. Download it ` +
+        `as well in the link below (currently only available for Android):\n\n` +
+        APP_LINK_ANDROID,
     });
   };
 
