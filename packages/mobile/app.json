@@ -19,6 +19,10 @@
       "bundleIdentifier": "com.rsdev.salarycalculatorpoland",
       "buildNumber": "1.0.2"
     },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#00000000"
+    },
     "android": {
       "package": "com.rsdev.salarycalculatorforpoland",
       "versionCode": 3,
