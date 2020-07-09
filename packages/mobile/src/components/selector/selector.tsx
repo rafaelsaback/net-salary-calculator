@@ -12,6 +12,7 @@ interface SelectorProps {
   width?: string;
   height?: string;
   fontSize?: number | number[];
+  useTwoLines?: boolean;
 }
 
 export const Selector: React.FC<SelectorProps> = ({
@@ -21,6 +22,7 @@ export const Selector: React.FC<SelectorProps> = ({
   height,
   fontSize,
   containerStyle,
+  useTwoLines,
   onChange: onChange,
 }) => {
   return (
@@ -28,7 +30,7 @@ export const Selector: React.FC<SelectorProps> = ({
       {options.map((option, index) => (
         <SelectorOption
           key={option}
-          text={option}
+          text={useTwoLines ? option.replace(' ', '\n') : option}
           active={value === option}
           onPress={() => onChange(option)}
           fontSize={Array.isArray(fontSize) ? fontSize[index] : fontSize}

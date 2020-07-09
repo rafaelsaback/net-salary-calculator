@@ -23,7 +23,7 @@ interface DetailedResultsScreenProps {
 
 export enum ResultPeriod {
   Monthly = 'Monthly',
-  MonthlyAverage = 'Monthly\nAverage',
+  MonthlyAverage = 'Monthly Average',
   Annually = 'Annually',
 }
 
@@ -76,6 +76,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
           containerStyle={{ alignSelf: 'center' }}
           fontSize={EStyleSheet.value('14rem')}
           width="92%"
+          useTwoLines
         />
       </BottomContainer>
     </View>
