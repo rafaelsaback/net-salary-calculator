@@ -104,7 +104,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation, route }) => {
     <View style={styles.container}>
       <Container>
         <View>
-          <Text style={styles.title}>Salary</Text>
+          <Text style={styles.title}>
+            {contract === ContractType.Employment
+              ? 'Gross Salary'
+              : 'Gross Salary (without VAT)'}
+          </Text>
           <SalaryInput
             salary={selectedViewModel.salary.formatted}
             setSalary={setSalary}
