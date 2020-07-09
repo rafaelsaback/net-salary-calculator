@@ -10,6 +10,7 @@ export const styles = EStyleSheet.create({
     ...appTheme.title,
     alignSelf: 'flex-start',
     marginLeft: '10%',
+    fontWeight: 'normal',
   },
   contractContainer: {
     flex: 0.8,
