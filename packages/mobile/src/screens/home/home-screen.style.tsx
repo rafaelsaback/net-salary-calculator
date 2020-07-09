@@ -7,7 +7,9 @@ export const styles = EStyleSheet.create({
     marginBottom: '20rem',
   },
   title: {
-    ...appTheme.title,
+    color: appTheme.primaryBlackColor,
+    marginBottom: '10rem',
+    fontSize: '16rem',
     alignSelf: 'flex-start',
     marginLeft: '10%',
     fontWeight: 'normal',
