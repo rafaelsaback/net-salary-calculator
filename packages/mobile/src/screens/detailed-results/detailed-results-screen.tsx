@@ -56,8 +56,7 @@ export const DetailedResultsScreen: React.FC<DetailedResultsScreenProps> = ({
     <View style={styles.viewContainer}>
       <Container>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Take-home Breakdown</Text>
-          <Text style={styles.subTitle}>{displayMode}</Text>
+          <Text style={styles.title}>{displayMode}</Text>
         </View>
         <TableSwiper
           serializedModel={serializedModel}
