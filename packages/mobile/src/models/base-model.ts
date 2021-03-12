@@ -96,6 +96,7 @@ export abstract class BaseModel {
         this.monthlySalary -
         this.socialSecurity[i] -
         this.healthContribution[i] -
+        this.laborFund[i] -
         this.tax[i];
       return roundNumber(Math.max(0, endSalaryValue), 2);
     });
@@ -190,6 +191,10 @@ export abstract class BaseModel {
     Array(12)
       .fill(0)
       .map((_, i) => args.reduce((res, array) => res + array[i], 0));
+
+  public get laborFund(): number[] {
+    return Array<number>(12).fill(0);
+  }
 
   public abstract get costs(): number;
   public abstract get pension(): number[];

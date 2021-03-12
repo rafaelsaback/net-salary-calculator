@@ -106,7 +106,6 @@ export class B2bModel extends BaseModel {
       this.disability,
       this.sickness,
       this.accident,
-      this.laborFund,
     );
   }
 

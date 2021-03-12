@@ -47,7 +47,7 @@ export const InputModal: React.FC<InputModalProps> = ({
   }, [closeModal, isValid, setValue, tempValue]);
 
   useEffect(() => {
-    setTimeout(() => inputRef.current?.focus(), 50);
+    setTimeout(() => inputRef.current?.focus(), 100);
   });
 
   return useObserver(() => (
