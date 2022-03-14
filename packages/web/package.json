@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/rafaelsaback/net-salary-calculator/issues"
   },
-  "homepage": "https://rafaelsaback,github.io/net-salary-calculator",
+  "homepage": "https://rafaelsaback.github.io/net-salary-calculator",
   "devDependencies": {
     "@hot-loader/react-dom": "^16.13.0",
     "@types/react": "^16.9.34",

@@ -5,7 +5,7 @@ This is a monorepo containing a Web and Mobile app.
 The net salary calculator can be used for umowa o pracę and B2B contracts. It's currently hosted under the following links:
 
 Web app:
-https://partnersontheroad.com/net-salary-calculator-poland/
+https://rafaelsaback.github.io/net-salary-calculator
 
 Android app:
 https://play.google.com/store/apps/details?id=com.rsdev.salarycalculatorforpoland&hl=en&gl=US
