@@ -30,7 +30,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "fork-ts-checker-webpack-plugin": "^1.6.0",
-    "lerna": "^3.20.2",
+    "lerna": "^6.4.1",
     "prettier": "^1.19.1",
     "source-map-loader": "^0.2.4",
     "typescript": "^3.8.3",
